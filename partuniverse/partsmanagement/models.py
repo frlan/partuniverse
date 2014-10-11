@@ -32,18 +32,6 @@ class Distributor(models.Model):
 	name = models.CharField(max_length=50)
 
 
-class Part(models.Model):
-	'''Representing a special kind of parts'''
-	name = models.CharField(max_length=50)
-	min_amount = models.DecimalField(
-		max_digits=10,
-		decimal_places=4,
-		null=True,
-		blank=True)
-	manufacturer = models.ForeignKey(Manufacturer)
-	distributor = models.ForeignKey(Distributor)
-
-
 class Category(models.Model):
 	'''Representing a category a part might contains to. E.g. resistor'''
 	name = models.CharField(max_length=50)
@@ -54,6 +42,19 @@ class Category(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Categories"
+
+
+class Part(models.Model):
+	'''Representing a special kind of parts'''
+	name = models.CharField(max_length=50)
+	min_amount = models.DecimalField(
+		max_digits=10,
+		decimal_places=4,
+		null=True,
+		blank=True)
+	manufacturer = models.ForeignKey(Manufacturer)
+	distributor = models.ForeignKey(Distributor)
+	categories = models.ManyToManyField(Category)
 
 
 class Transaction(models.Model):
