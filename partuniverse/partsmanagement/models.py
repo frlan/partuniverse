@@ -58,14 +58,22 @@ class Category(models.Model):
 class Part(models.Model):
 	'''Representing a special kind of parts'''
 	name = models.CharField(max_length=50)
-	min_amount = models.DecimalField(
+	min_stock = models.DecimalField(
 		max_digits=10,
 		decimal_places=4,
 		null=True,
 		blank=True)
+	# Should be calculated based on transactions
+	on_stock = models.DecimalField(
+		max_digits=10,
+		decimal_places=4,
+		null=True,
+		blank=True)
+	unit = models.ForeignKey(Unit)
 	manufacturer = models.ForeignKey(Manufacturer)
 	distributor = models.ForeignKey(Distributor)
 	categories = models.ManyToManyField(Category)
+	creation_time = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
 		return self.name
@@ -78,7 +86,11 @@ class Transaction(models.Model):
 	amount = models.DecimalField(max_digits=10, decimal_places=4)
 	measuring_unit = models.ForeignKey(Unit)
 	part = models.ForeignKey(Part)
-	date = models.DateField(blank=False, null=False)
+	date = models.DateField(
+		blank=False,
+		null=False,
+		auto_now_add=True,
+		db_index=True)
 
 	def __unicode__(self):
 		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
