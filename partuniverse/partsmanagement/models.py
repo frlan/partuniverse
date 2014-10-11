@@ -13,6 +13,8 @@ class StorageType(models.Model):
 class Unit(models.Model):
 	name = models.CharField(max_length=50)
 
+	def __unicode__(self):
+		return self.name
 
 class StoragePlace(models.Model):
 	'''Representing the place inside the storage'''
@@ -27,10 +29,15 @@ class StoragePlace(models.Model):
 class Manufacturer(models.Model):
 	name = models.CharField(max_length=50)
 
+	def __unicode__(self):
+		return self.name
+
 
 class Distributor(models.Model):
 	name = models.CharField(max_length=50)
 
+	def __unicode__(self):
+		return self.name
 
 class Category(models.Model):
 	'''Representing a category a part might contains to. E.g. resistor'''
@@ -38,7 +45,11 @@ class Category(models.Model):
 	parent = models.ForeignKey("self", null=True, blank=True)
 
 	def __unicode__(self):
-		return self.name
+		if self.parent == None:
+			return self.name
+		else:
+			tmp = unicode(str(self.parent) + ':' + str(self.name))
+			return tmp
 
 	class Meta:
 		verbose_name_plural = "Categories"
@@ -56,6 +67,9 @@ class Part(models.Model):
 	distributor = models.ForeignKey(Distributor)
 	categories = models.ManyToManyField(Category)
 
+	def __unicode__(self):
+		return self.name
+
 
 class Transaction(models.Model):
 	'''The transaction really taking place for the part'''
@@ -65,4 +79,8 @@ class Transaction(models.Model):
 	measuring_unit = models.ForeignKey(Unit)
 	part = models.ForeignKey(Part)
 	date = models.DateField(blank=False, null=False)
+
+	def __unicode__(self):
+		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
+		return unicode(tmp)
 
