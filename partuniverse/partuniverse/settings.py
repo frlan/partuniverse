@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+SITE_ID = 1
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -24,6 +27,11 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
+
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'account.context_processors.account',
+    'django.contrib.auth.context_processors.auth'
+]
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -43,6 +51,8 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+    'django.contrib.sites',
+	'account',
     'partsmanagement'
 )
 
@@ -53,7 +63,9 @@ MIDDLEWARE_CLASSES = (
 	'django.middleware.csrf.CsrfViewMiddleware',
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
-	'django.middleware.clickjacking.XFrameOptionsMiddleware'
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'partuniverse.urls'
