@@ -57,3 +57,18 @@ This can be done by:
 
 	$ pip install -r requirements.txt
 
+Running
+-------
+
+Being inside the virtual environment, go into the folder where you have
+checked out the sources. Within the folder you will find partuniverse/manage.py.
+Run this as following:
+
+	$ ./manage.py syncdb
+
+This will initiate the database bhind and as you for creating a user
+you will need e.g. to access admin backend.
+
+If everything worked well, you can start the server (in debug mode):
+
+	$ ./manage.py runserver
