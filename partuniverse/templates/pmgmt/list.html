@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<p>A list with all items ... </p>
+	{% if output %}
+	<table>
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Minimum</td>
+				<td>In Stock</td>
+				<td>Manufacturer</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in output %}
+			<tr>
+				<td>{{ item.name }}</td>
+				<td>{{ item.min_stock}}</td>
+				<td>{{ item.on_stock }}</td>
+				<td>{{ item.manufacturer }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+    {% else %}
+    <p>No data available at the moment </p>
+    {% endif %}
+{% endblock %}

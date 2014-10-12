@@ -1,1 +1,10 @@
 {% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+	<h1>Welcome</h1>
+	<p>This is an approach for keeping an overview over your parts.</p>
+	<p>Please links below to navigate:</p>
+	<ul>
+		<li><a href="{% url "partslist" %}">List of Parts</a></li>
+	</ul>
+{% endblock %}

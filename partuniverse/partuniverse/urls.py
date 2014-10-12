@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name="home"),
+    url(r'^pmgmt/', include('partsmanagement.urls')),
 )
