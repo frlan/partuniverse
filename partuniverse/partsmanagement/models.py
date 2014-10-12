@@ -74,6 +74,7 @@ class Part(models.Model):
 	distributor = models.ForeignKey(Distributor)
 	categories = models.ManyToManyField(Category)
 	creation_time = models.DateTimeField(auto_now_add=True)
+	created_by = models.ForeignKey(User)
 
 	def __unicode__(self):
 		return self.name
