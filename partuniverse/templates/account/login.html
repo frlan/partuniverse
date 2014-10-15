@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Log in" %}{% endblock %}
+
+{% block content %}
+<p> {% trans "Please login with an existing account:" %}</p>
+<form method="POST" action="{% url "account_login" %}" autocapitalize="off">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<button type="submit">{% trans "Log in" %}</button>
+</form>
+
+<p><a href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a></p>
+
+{% endblock %}
+
+
