@@ -113,3 +113,6 @@ try:
 	from local_settings import *
 except ImportError:
 	pass
+
+# Temp. no real mail sending out
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
