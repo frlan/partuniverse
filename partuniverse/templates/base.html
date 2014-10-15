@@ -6,6 +6,26 @@
     <meta name="generator" content="Geany 1.25" />
 <body>
 <div>
+	<div>
+    {% if user.is_authenticated %}
+    <p>
+		<span>
+			<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>
+			<a href="{% url "account_settings" %}">{% trans "Settings" %}</a>
+		</span>
+
+	</p>
+    {% else %}
+	<p>
+		<span>
+			<a href="{% url "home" %}">Home</a>
+			<a href="{% url "account_login" %}">Login</a>
+			<a href="{% url "account_signup" %}">Register</a>
+		</span>
+	</p>
+    {% endif %}
+</div>
+<div>
 		{% block content %}Empty page{% endblock %}
 </div>
 {% block footer %}
