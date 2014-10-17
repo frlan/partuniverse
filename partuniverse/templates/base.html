@@ -10,6 +10,7 @@
     {% if user.is_authenticated %}
     <p>
 		<span>
+			{% trans "Logged in as:" %} {{ user.username }}
 			<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>
 			<a href="{% url "account_settings" %}">{% trans "Settings" %}</a>
 		</span>
