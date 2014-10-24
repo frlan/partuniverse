@@ -103,6 +103,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# Temp. no real mail sending out
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# django-user-accounts
+
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+
 ##################
 # LOCAL SETTINGS #
 ##################
@@ -113,11 +121,3 @@ try:
 	from local_settings import *
 except ImportError:
 	pass
-
-# Temp. no real mail sending out
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# django-user-accounts
-
-ACCOUNT_EMAIL_UNIQUE = True
-ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
