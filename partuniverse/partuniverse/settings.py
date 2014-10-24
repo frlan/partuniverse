@@ -116,3 +116,8 @@ except ImportError:
 
 # Temp. no real mail sending out
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# django-user-accounts
+
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
