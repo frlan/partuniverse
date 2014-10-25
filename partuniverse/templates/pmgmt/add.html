@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" class="form-horizontal" >
+{% csrf_token %}
+<table>
+    {{form.as_p}}
+</table>
+<input type="submit" value="Submit">
+</form>
+{% endblock %}
