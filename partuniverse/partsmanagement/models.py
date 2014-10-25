@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
 class StorageType(models.Model):
+	""" Defining a general typ of storage """
+
 	name = models.CharField(max_length=50)
 
 	def __unicode__(self):
@@ -11,13 +13,15 @@ class StorageType(models.Model):
 
 
 class Unit(models.Model):
+	""" Defining units used in context of partuniverse.
+		Keep in mind, only SI units are real units ;) """
 	name = models.CharField(max_length=50)
 
 	def __unicode__(self):
 		return self.name
 
 class StoragePlace(models.Model):
-	'''Representing the place inside the storage'''
+	""" Representing the place inside the storage """
 	# The Name could be e.g. cordinates
 	name = models.CharField(max_length=50)
 	storage_type = models.ForeignKey(StorageType)
@@ -27,6 +31,8 @@ class StoragePlace(models.Model):
 
 
 class Manufacturer(models.Model):
+	""" Manufacturer for a particular item """
+
 	name = models.CharField(max_length=50)
 
 	def __unicode__(self):
@@ -34,13 +40,17 @@ class Manufacturer(models.Model):
 
 
 class Distributor(models.Model):
+	""" A distributor which is selling a particular part """
+
 	name = models.CharField(max_length=50)
 
 	def __unicode__(self):
 		return self.name
 
 class Category(models.Model):
-	'''Representing a category a part might contains to. E.g. resistor'''
+	""" Representing a category a part might contains to.
+	E.g. resistor """
+
 	name = models.CharField(max_length=50)
 	parent = models.ForeignKey("self", null=True, blank=True)
 
@@ -56,7 +66,8 @@ class Category(models.Model):
 
 
 class Part(models.Model):
-	'''Representing a special kind of parts'''
+	""" Representing a special kind of parts """
+
 	name = models.CharField(max_length=50)
 	min_stock = models.DecimalField(
 		max_digits=10,
@@ -81,7 +92,7 @@ class Part(models.Model):
 
 
 class Transaction(models.Model):
-	'''The transaction really taking place for the part'''
+	""" The transaction really taking place for the part """
 	subject = models.CharField(max_length=100)
 	user = models.ForeignKey(User)
 	amount = models.DecimalField(max_digits=10, decimal_places=4)
