@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Avg
 from django.contrib.auth.decorators import login_required
 # Class based views to create a new dataset and Update one
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Current time
 from django.utils.timezone import now
@@ -39,4 +39,9 @@ class PartsAddView(CreateView):
 		form.instance.created_by = user
 		form.instance.timestamp = now()
 		return super(PartsAddView, self).form_valid(form)
+
+class PartDeleteView(DeleteView):
+	model = Part
+	success_url = reverse_lazy('partslist')
+	template_name = 'pmgmt/delete.html'
 
