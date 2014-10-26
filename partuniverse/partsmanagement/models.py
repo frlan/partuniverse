@@ -90,6 +90,9 @@ class Part(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	# Based upon post at http://stackoverflow.com/a/2217558/2915834
+	def get_fields(self):
+		return [(field.name, field.value_to_string(self)) for field in Part._meta.fields]
 
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """

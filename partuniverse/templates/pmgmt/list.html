@@ -17,7 +17,7 @@
 		<tbody>
 			{% for item in output %}
 			<tr>
-				<td>{{ item.name }}</td>
+				<td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
 				<td>{{ item.min_stock}}</td>
 				<td>{{ item.on_stock }}</td>
 				<td>{{ item.manufacturer }}</td>

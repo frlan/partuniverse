@@ -1,4 +1,5 @@
 from django.views.generic.base import View
+from django.views.generic import DetailView
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -45,3 +46,6 @@ class PartDeleteView(DeleteView):
 	success_url = reverse_lazy('partslist')
 	template_name = 'pmgmt/delete.html'
 
+class PartDetail(DetailView):
+	template_name = "pmgmt/detail.html"
+	model = Part
