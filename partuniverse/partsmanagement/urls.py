@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
 
-from views import PartsList, PartsAddView
+from .views import PartsList, PartsAddView
 
 urlpatterns = patterns('',
 	url(r'^list/', PartsList.as_view(), name='partslist'),
