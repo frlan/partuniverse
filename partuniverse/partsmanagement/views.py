@@ -24,6 +24,8 @@ class PartsList(View):
 class PartsAddView(CreateView):
 
 	model = Part
+	success_url='/'
+	template_name='/pmgmt/add.html'
 	fields = (	'name',
 				'min_stock',
 				'on_stock',

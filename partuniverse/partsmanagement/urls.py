@@ -11,7 +11,6 @@ from .views import PartsList, PartsAddView
 urlpatterns = patterns('',
 	url(r'^list/', PartsList.as_view(), name='partslist'),
 	url(r'^add/', login_required(
-			PartsAddView.as_view(template_name="pmgmt/add.html",
-								 success_url='/')),
+			PartsAddView.as_view()),
 			name='part_add'),
 )
