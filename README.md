@@ -61,8 +61,8 @@ Running
 -------
 
 Being inside the virtual environment, go into the folder where you have
-checked out the sources. Within the folder you will find partuniverse/manage.py.
-Run this as following:
+checked out the sources. Within the folder you will find a partuniverse
+folder. Change into it. Run this as following:
 
 	$ ./manage.py syncdb
 
