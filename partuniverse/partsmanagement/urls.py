@@ -15,5 +15,5 @@ urlpatterns = patterns('',
 			name='part_add'),
 	url(r'^(?P<pk>[\w]+)/delete/$', login_required(
 			PartDeleteView.as_view()),
-			name='delete-part')
+			name='part_delete')
 )
