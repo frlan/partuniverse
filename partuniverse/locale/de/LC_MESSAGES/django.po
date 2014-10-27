@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.2N\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-27 23:23+0100\n"
-"PO-Revision-Date: 2014-10-27 23:23+0100\n"
+"PO-Revision-Date: 2014-10-27 23:27+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: templates/account/delete.html:8 templates/account/settings.html:24
 msgid "Delete Account"
-msgstr ""
+msgstr "Nutzeraccount löschen"
 
 #: templates/account/delete.html:10
 msgid ""
@@ -122,24 +122,24 @@ msgstr ""
 
 #: templates/account/login.html:9
 msgid "Please login with an existing account:"
-msgstr ""
+msgstr "Bitte logge Dich mit einem Benutzeraccount ein."
 
 #: templates/account/login.html:18
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: templates/account/logout.html:6 templates/account/logout.html.py:9
 #: templates/account/logout.html:13
 msgid "Log out"
-msgstr ""
+msgstr "Ausloggen"
 
 #: templates/account/logout.html:12
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "Möchtest Du Dich wirklich ausloggen?"
 
 #: templates/account/password_change.html:6
 msgid "Change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: templates/account/password_change.html:9
 msgid "Please enter you old and your new password"
@@ -148,7 +148,7 @@ msgstr ""
 #: templates/account/password_reset.html:8
 #: templates/account/password_reset.html:14
 msgid "Password reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:16
 msgid ""
@@ -182,7 +182,7 @@ msgstr ""
 
 #: templates/account/password_reset_sent.html:20
 msgid "Resend"
-msgstr ""
+msgstr "Erneut senden"
 
 #: templates/account/password_reset_sent.html:25
 #, python-format
@@ -200,7 +200,7 @@ msgstr ""
 #: templates/account/password_reset_token.html:16
 #: templates/account/settings.html:15
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: templates/account/password_reset_token_fail.html:6
 #: templates/account/password_reset_token_fail.html:9
@@ -220,11 +220,11 @@ msgstr ""
 
 #: templates/account/settings.html:9
 msgid "Change here your account data:"
-msgstr ""
+msgstr "Aktualisiere Deine Accountdaten hier:"
 
 #: templates/account/settings.html:18
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: templates/account/settings.html:21
 msgid "Change your password here"
@@ -249,19 +249,19 @@ msgstr ""
 
 #: templates/base.html:2
 msgid "en"
-msgstr ""
+msgstr "de"
 
 #: templates/base.html:13
 msgid "Logged in as:"
-msgstr ""
+msgstr "Eingeloggt als:"
 
 #: templates/base.html:14
 msgid "Logout"
-msgstr ""
+msgstr "Ausloggen"
 
 #: templates/base.html:15
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: templates/pmgmt/delete.html:6
 msgid "Delete a part"
@@ -269,16 +269,16 @@ msgstr ""
 
 #: templates/pmgmt/detail.html:16
 msgid "Delete item"
-msgstr ""
+msgstr "Teil löschen"
 
 #: templates/pmgmt/detail.html:17
 msgid "Update item"
-msgstr ""
+msgstr "Teil editieren"
 
 #: templates/pmgmt/list.html:25
 msgid "Update"
-msgstr ""
+msgstr "Aktualisieren"
 
 #: templates/pmgmt/list.html:26
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
