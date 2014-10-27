@@ -54,3 +54,12 @@ class PartUpdateView(UpdateView):
 	template_name = "pmgmt/update.html"
 	success_url = reverse_lazy('partslist')
 	model = Part
+	# We don't want to amke all fields editable via
+	# normal frontend.
+	fields = (	'name',
+				'min_stock',
+				'on_stock',
+				'unit',
+				'manufacturer',
+				'distributor',
+				'categories' )
