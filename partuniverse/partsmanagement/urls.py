@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
 
-from .views import PartsList, PartsAddView, PartDeleteView, PartDetailView, PartUpdateView
+from .views import *
 
 urlpatterns = patterns('',
 	# Some general url pattern
