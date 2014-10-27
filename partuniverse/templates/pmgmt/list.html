@@ -21,6 +21,10 @@
 				<td>{{ item.min_stock}}</td>
 				<td>{{ item.on_stock }}</td>
 				<td>{{ item.manufacturer }}</td>
+				{% if user.is_authenticated %}
+				<td><a href="/pmgmt/{{object.id}}/update/">{% trans "Update" %}</a></td>
+				<td><a href="/pmgmt/{{object.id}}/delete/">{% trans "Delete" %}</a></td>
+				{% endif %}
 			</tr>
 			{% endfor %}
 		</tbody>
