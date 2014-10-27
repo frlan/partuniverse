@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
 from django.views.generic import TemplateView
 
+#i18n
+from django.utils.translation import ugettext_lazy as _
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'partuniverse.views.home', name='home'),
