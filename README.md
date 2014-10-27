@@ -1,8 +1,8 @@
 Partuniverse
 ============
 
-Another approach to keep track of parts inside a hacker space or more
-general storage.
+Another approach to keep track of parts not only inside a hacker space
+but at a more general storage.
 
 Installation
 ------------
