@@ -46,6 +46,11 @@ class PartDeleteView(DeleteView):
 	success_url = reverse_lazy('partslist')
 	template_name = 'pmgmt/delete.html'
 
-class PartDetail(DetailView):
+class PartDetailView(DetailView):
 	template_name = "pmgmt/detail.html"
+	model = Part
+
+class PartUpdateView(UpdateView):
+	template_name = "pmgmt/update.html"
+	success_url = reverse_lazy('partslist')
 	model = Part

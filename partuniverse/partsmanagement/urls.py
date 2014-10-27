@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
 
-from .views import PartsList, PartsAddView, PartDeleteView, PartDetail
+from .views import PartsList, PartsAddView, PartDeleteView, PartDetailView, PartUpdateView
 
 urlpatterns = patterns('',
 	# Some general url pattern
@@ -15,8 +15,12 @@ urlpatterns = patterns('',
 			PartsAddView.as_view()),
 			name='part_add'),
 	# item specific ones
-	url(r'^(?P<pk>[\w]+)/$', PartDetail.as_view(), name='part_detail'),
+	url(r'^(?P<pk>[\w]+)/$', PartDetailView.as_view(),
+			name='part_detail'),
 	url(r'^(?P<pk>[\w]+)/delete/$', login_required(
 			PartDeleteView.as_view()),
-			name='part_delete')
+			name='part_delete'),
+	url(r'^(?P<pk>[\w]+)/update/$', login_required(
+			PartUpdateView.as_view()),
+			name='part_update'),
 )
