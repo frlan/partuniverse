@@ -4,7 +4,7 @@
 {% load i18n %}
 {% block content %}
 <p>A list with all items ... </p>
-	{% if output %}
+	{% if object_list %}
 	<table>
 		<thead>
 			<tr>
@@ -15,15 +15,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for item in output %}
+			{% for item in object_list %}
 			<tr>
 				<td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
 				<td>{{ item.min_stock}}</td>
 				<td>{{ item.on_stock }}</td>
 				<td>{{ item.manufacturer }}</td>
 				{% if user.is_authenticated %}
-				<td><a href="/pmgmt/{{object.id}}/update/">{% trans "Update" %}</a></td>
-				<td><a href="/pmgmt/{{object.id}}/delete/">{% trans "Delete" %}</a></td>
+				<td><a href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a></td>
+				<td><a href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a></td>
 				{% endif %}
 			</tr>
 			{% endfor %}

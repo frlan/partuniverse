@@ -97,15 +97,18 @@ class Part(models.Model):
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
 	subject = models.CharField(max_length=100)
-	user = models.ForeignKey(User)
+	created_by = models.ForeignKey(User)
 	amount = models.DecimalField(max_digits=10, decimal_places=4)
-	measuring_unit = models.ForeignKey(Unit)
 	part = models.ForeignKey(Part)
 	date = models.DateField(
 		blank=False,
 		null=False,
 		auto_now_add=True,
 		db_index=True)
+	comment = models.TextField(
+		blank=True,
+		null=True,
+		max_length=200)
 
 	def __unicode__(self):
 		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
