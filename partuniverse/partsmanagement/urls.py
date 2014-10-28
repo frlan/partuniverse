@@ -23,4 +23,7 @@ urlpatterns = patterns('',
 	url(r'^(?P<pk>[\w]+)/update/$', login_required(
 			PartUpdateView.as_view()),
 			name='part_update'),
+	# Transactions
+	url(r'^transaction/new$', login_required(TransactionAddView.as_view()),
+			name='transaction_new'),
 )

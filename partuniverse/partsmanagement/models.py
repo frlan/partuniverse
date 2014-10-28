@@ -97,9 +97,8 @@ class Part(models.Model):
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
 	subject = models.CharField(max_length=100)
-	user = models.ForeignKey(User)
+	created_by = models.ForeignKey(User)
 	amount = models.DecimalField(max_digits=10, decimal_places=4)
-	measuring_unit = models.ForeignKey(Unit)
 	part = models.ForeignKey(Part)
 	date = models.DateField(
 		blank=False,

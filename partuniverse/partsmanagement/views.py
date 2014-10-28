@@ -13,6 +13,7 @@ from django.utils.timezone import now
 
 # Importing models
 from partsmanagement.models import Part
+from partsmanagement.models import Transaction
 
 class PartsList(View):
 	model = Part
@@ -62,3 +63,19 @@ class PartUpdateView(UpdateView):
 				'manufacturer',
 				'distributor',
 				'categories' )
+
+class TransactionAddView(CreateView):
+
+	model = Transaction
+	success_url='/'
+	template_name='pmgmt/add.html'
+	fields = (	'subject',
+				'part',
+				'amount',
+				'comment')
+
+	def form_valid(self, form):
+		user = self.request.user
+		form.instance.created_by = user
+		form.instance.timestamp = now()
+		return super(TransactionAddView, self).form_valid(form)
