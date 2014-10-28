@@ -9,6 +9,7 @@
 		{% if user.is_authenticated %}
 		<li><a href="{% url "transaction_new" %}">Add a new transaction</a></li>
 		{% endif %}
+		<li><a href="{% url "transaction_list" %}">Show all tranactions</a></li>
 	</ul>
 
 {% endblock %}
