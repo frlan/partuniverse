@@ -20,11 +20,15 @@ class PartsList(ListView):
 	model = Part
 	template_name = 'pmgmt/list.html'
 
+class TransactionListView(ListView):
+	model = Transaction
+	template_name = 'pmgmt/trans_list.html'
+
 class PartsAddView(CreateView):
 
 	model = Part
 	success_url='/'
-	template_name='/pmgmt/add.html'
+	template_name='pmgmt/add.html'
 	fields = (	'name',
 				'min_stock',
 				'on_stock',
@@ -76,3 +80,4 @@ class TransactionAddView(CreateView):
 		form.instance.created_by = user
 		form.instance.timestamp = now()
 		return super(TransactionAddView, self).form_valid(form)
+
