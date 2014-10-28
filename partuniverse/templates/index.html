@@ -3,14 +3,14 @@
 {% load url from future %}
 {% block content %}
 	<h1>Welcome</h1>
-	<p>This is an approach for keeping an overview over your parts.</p>
-	<p>Please links below to navigate:</p>
+	<p>{% trans "This is an approach for keeping an overview over your parts." %}</p>
+	<p>{% trans "Please follow links below to navigate:" %}</p>
 	<ul>
-		<li><a href="{% url "partslist" %}">List of Parts</a></li>
+		<li><a href="{% url "partslist" %}">{% trans "List of Parts" %}</a></li>
 		{% if user.is_authenticated %}
-		<li><a href="{% url "transaction_new" %}">Add a new transaction</a></li>
+		<li><a href="{% url "transaction_new" %}">{% trans "Add a new transaction" %}</a></li>
 		{% endif %}
-		<li><a href="{% url "transaction_list" %}">Show all tranactions</a></li>
+		<li><a href="{% url "transaction_list" %}">{% trans "Show all tranactions" %}</a></li>
 	</ul>
 
 {% endblock %}
