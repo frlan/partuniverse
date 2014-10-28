@@ -6,5 +6,9 @@
 	<p>Please links below to navigate:</p>
 	<ul>
 		<li><a href="{% url "partslist" %}">List of Parts</a></li>
+		{% if user.is_authenticated %}
+		<li><a href="{% url "transaction_new" %}">Add a new transaction</a></li>
+		{% endif %}
 	</ul>
+
 {% endblock %}
