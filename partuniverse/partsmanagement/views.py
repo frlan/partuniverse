@@ -58,7 +58,6 @@ class PartUpdateView(UpdateView):
 	# normal frontend.
 	fields = (	'name',
 				'min_stock',
-				'on_stock',
 				'unit',
 				'manufacturer',
 				'distributor',
