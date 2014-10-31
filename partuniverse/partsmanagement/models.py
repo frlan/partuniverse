@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+
 class StorageType(models.Model):
 	""" Defining a general typ of storage """
 
@@ -19,6 +20,7 @@ class Unit(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
 
 class StoragePlace(models.Model):
 	""" Representing the place inside the storage """
@@ -46,6 +48,7 @@ class Distributor(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
 
 class Category(models.Model):
 	""" Representing a category a part might contains to.
@@ -94,6 +97,7 @@ class Part(models.Model):
 	def get_fields(self):
 		return [(field.name, field.value_to_string(self)) for field in Part._meta.fields]
 
+
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
 	subject = models.CharField(max_length=100)
@@ -109,6 +113,15 @@ class Transaction(models.Model):
 		blank=True,
 		null=True,
 		max_length=200)
+
+	def save(self, *args, **kwargs):
+		try:
+			tmp_part = Part.objects.get(name = self.part.name)
+			tmp_part.on_stock = tmp_part.on_stock + self.amount
+			tmp_part.save()
+		except:
+			pass
+		super(Transaction, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
