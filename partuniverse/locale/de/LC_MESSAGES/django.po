@@ -5,16 +5,60 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.2N\n"
+"Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 23:23+0100\n"
-"PO-Revision-Date: 2014-10-27 23:27+0100\n"
+"POT-Creation-Date: 2014-11-05 19:14+0000\n"
+"PO-Revision-Date: 2014-11-05 20:21+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: partsmanagement/models.py:16
+msgid "Storage Type"
+msgstr "Lagertyp"
+
+#: partsmanagement/models.py:27
+msgid "Unit"
+msgstr "Einheit"
+
+#: partsmanagement/models.py:40
+msgid "Storage Place"
+msgstr "Lagerplatz"
+
+#: partsmanagement/models.py:52 templates/pmgmt/list.html:14
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: partsmanagement/models.py:64
+msgid "Distributor"
+msgstr "Lieferant"
+
+#: partsmanagement/models.py:81
+msgid "Category"
+msgstr "Kategorie"
+
+#: partsmanagement/models.py:82
+msgid "Categories"
+msgstr "Kategorien"
+
+#: partsmanagement/models.py:115
+msgid "Part"
+msgstr "Teil"
+
+#: partsmanagement/models.py:116
+msgid "Parts"
+msgstr "Teile"
+
+#: partsmanagement/models.py:148
+msgid "Transaction"
+msgstr "Transaktion"
+
+#: partsmanagement/models.py:149
+msgid "Transactions"
+msgstr "Transaktionen"
 
 #: templates/account/delete.html:8 templates/account/settings.html:24
 msgid "Delete Account"
@@ -24,7 +68,7 @@ msgstr "Nutzeraccount löschen"
 msgid ""
 "If you go ahead and delete your account, your  personal information will be "
 "purged</b>"
-msgstr ""
+msgstr "Dein Nutzeraccount wird gelöscht, wenn Du hier fortfährst"
 
 #: templates/account/email/email_confirmation_message.txt:1
 #, python-format
@@ -34,33 +78,37 @@ msgid ""
 "To confirm this email address, go to %(activate_url)s\n"
 "\n"
 "If you did not sign up for this site, you can ignore this message.\n"
-msgstr ""
+msgstr "Ein Nutzer auf %(site_name)s hat ein Benutzerkonto mit dieser Email-Adresse angelegt.\n"
+"\n"
+"Um diese Adresse zu bestätigen, gehe bitte auf %(activate_url)s\n"
+"\n"
+"Wenn Du Dich nicht auf dieser Seite angemeldet hast, kannst Du diese Mail einfach ignorieren."
 
 #: templates/account/email/email_confirmation_subject.txt:1
 #, python-format
 msgid "Confirm email address for %(site_name)s"
-msgstr ""
+msgstr "Bestätigung der Email-Adresse für %(site_name)s"
 
 #: templates/account/email/invite_user.txt:1
 #, python-format
 msgid "You have been invited to sign up at %(site_name)s. "
-msgstr ""
+msgstr "Du wurest eingeladen, Dich unter %(site_name)s zu registrieren"
 
 #: templates/account/email/invite_user_subject.txt:1
 #, python-format
 msgid " Create an account on %(site_name)s "
-msgstr ""
+msgstr "Lege ein Benutzerkonto unter %(site_name)s an"
 
 #: templates/account/email/password_change.txt:1
 #, python-format
 msgid ""
 "This is the email notification to confirm your password has been changed on "
 "%(user.account.now)s. "
-msgstr ""
+msgstr "Dies ist eine Email-Benachrichtung um zu bestätigen, dass Dein Passwort auf %(user.account.now)s geändert wurde"
 
 #: templates/account/email/password_change_subject.txt:1
 msgid "Change password email notification"
-msgstr ""
+msgstr "Passwort geändert Bestätigung"
 
 #: templates/account/email/password_reset.txt:1
 #, python-format
@@ -228,24 +276,24 @@ msgstr "Passwort"
 
 #: templates/account/settings.html:21
 msgid "Change your password here"
-msgstr ""
+msgstr "Ändere Dein Passwort hier"
 
 #: templates/account/settings.html:26
 msgid "Delete your account"
-msgstr ""
+msgstr "Benutzerkonto löschen"
 
 #: templates/account/signup.html:6 templates/account/signup.html.py:17
 #: templates/account/signup_closed.html:6
 msgid "Sign up"
-msgstr ""
+msgstr "Registrieren"
 
 #: templates/account/signup_closed.html:9
 msgid "This site is in private beta"
-msgstr ""
+msgstr "Diese Seite befindet sich in einer geschlossenen Beta-Phase"
 
 #: templates/account/signup_closed.html:10
 msgid "If you have signup code you can enter it below."
-msgstr ""
+msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 
 #: templates/base.html:2
 msgid "en"
@@ -263,9 +311,51 @@ msgstr "Ausloggen"
 msgid "Settings"
 msgstr "Einstellungen"
 
+#: templates/base.html:22
+msgid "Home"
+msgstr "Start"
+
+#: templates/base.html:23
+msgid "Login"
+msgstr "Einloggen"
+
+#: templates/base.html:24
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/index.html:6
+msgid "This is an approach for keeping an overview over your parts."
+msgstr ""
+
+#: templates/index.html:7
+msgid "Please follow links below to navigate:"
+msgstr ""
+
+#: templates/index.html:9
+msgid "List of Parts"
+msgstr ""
+
+#: templates/index.html:11
+msgid "Add a new transaction"
+msgstr ""
+
+#: templates/index.html:12
+msgid "Add a new part"
+msgstr ""
+
+#: templates/index.html:14
+msgid "Show all tranactions"
+msgstr ""
+
 #: templates/pmgmt/delete.html:6
 msgid "Delete a part"
 msgstr ""
+
+#: templates/pmgmt/delete.html:8
+#, fuzzy
+#| msgid "Are you sure you want to log out?"
+msgid "Are you sure you want to delete {{ object }}?"
+msgstr "Möchtest Du Dich wirklich ausloggen?"
 
 #: templates/pmgmt/detail.html:16
 msgid "Delete item"
@@ -275,6 +365,18 @@ msgstr "Teil löschen"
 msgid "Update item"
 msgstr "Teil editieren"
 
+#: templates/pmgmt/list.html:11
+msgid "Name"
+msgstr ""
+
+#: templates/pmgmt/list.html:12
+msgid "Minimum"
+msgstr ""
+
+#: templates/pmgmt/list.html:13
+msgid "In Stock"
+msgstr ""
+
 #: templates/pmgmt/list.html:25
 msgid "Update"
 msgstr "Aktualisieren"
@@ -282,3 +384,7 @@ msgstr "Aktualisieren"
 #: templates/pmgmt/list.html:26
 msgid "Delete"
 msgstr "Löschen"
+
+#: templates/pmgmt/list.html:34
+msgid "No data available at the moment"
+msgstr ""
