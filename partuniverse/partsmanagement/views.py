@@ -25,7 +25,6 @@ class TransactionListView(ListView):
 	template_name = 'pmgmt/trans_list.html'
 
 class PartsAddView(CreateView):
-
 	model = Part
 	success_url='/'
 	template_name='pmgmt/add.html'

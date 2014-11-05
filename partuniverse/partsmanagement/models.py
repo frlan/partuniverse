@@ -12,6 +12,8 @@ class StorageType(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		verbose_name = _("Storage Type")
 
 class Unit(models.Model):
 	""" Defining units used in context of partuniverse.
@@ -20,6 +22,9 @@ class Unit(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta:
+		verbose_name = _("Unit")
 
 
 class StoragePlace(models.Model):
@@ -31,6 +36,9 @@ class StoragePlace(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		verbose_name = _("Storage Place")
+
 
 class Manufacturer(models.Model):
 	""" Manufacturer for a particular item """
@@ -39,6 +47,9 @@ class Manufacturer(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta:
+		verbose_name = _("Manufacturer")
 
 
 class Distributor(models.Model):
@@ -49,6 +60,8 @@ class Distributor(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	class Meta:
+		verbose_name = _("Distributor")
 
 class Category(models.Model):
 	""" Representing a category a part might contains to.
@@ -65,7 +78,8 @@ class Category(models.Model):
 			return tmp
 
 	class Meta:
-		verbose_name_plural = "Categories"
+		verbose_name = _("Category")
+		verbose_name_plural = _("Categories")
 
 
 class Part(models.Model):
@@ -97,6 +111,9 @@ class Part(models.Model):
 	def get_fields(self):
 		return [(field.name, field.value_to_string(self)) for field in Part._meta.fields]
 
+	class Meta:
+		verbose_name = _("Part")
+		verbose_name_plural = _("Parts")
 
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
@@ -127,3 +144,6 @@ class Transaction(models.Model):
 		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
 		return unicode(tmp)
 
+	class Meta:
+		verbose_name = _("Transaction")
+		verbose_name_plural = _("Transactions")
