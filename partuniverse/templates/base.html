@@ -19,9 +19,9 @@
     {% else %}
 	<p>
 		<span>
-			<a href="{% url "home" %}">Home</a>
-			<a href="{% url "account_login" %}">Login</a>
-			<a href="{% url "account_signup" %}">Register</a>
+			<a href="{% url "home" %}">{% trans "Home" %}</a>
+			<a href="{% url "account_login" %}">{% trans "Login" %}</a>
+			<a href="{% url "account_signup" %}">{% trans "Register" %}</a>
 		</span>
 	</p>
     {% endif %}

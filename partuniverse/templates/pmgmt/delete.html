@@ -5,7 +5,7 @@
 {% block content %}
 <h2>{% trans "Delete a part" %}</h2>
 <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <p>{% trans "Are you sure you want to delete {{ object }}?" %}</p>
     <input type="submit" value="Confirm" />
 </form>
 {% endblock %}

@@ -5,6 +5,8 @@ from django.contrib.auth import views
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
+#i18n
+from django.utils.translation import ugettext_lazy as _
 
 from .views import *
 

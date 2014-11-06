@@ -3,15 +3,15 @@
 {% load url from future %}
 {% load i18n %}
 {% block content %}
-<p>A list with all items ... </p>
+<p>{% trans "A list with all items ... " %}</p>
 	{% if object_list %}
 	<table>
 		<thead>
 			<tr>
-				<td>Name</td>
-				<td>Minimum</td>
-				<td>In Stock</td>
-				<td>Manufacturer</td>
+				<td>{% trans "Name" %}</td>
+				<td>{% trans "Minimum" %}</td>
+				<td>{% trans "In Stock" %}</td>
+				<td>{% trans "Manufacturer" %}</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,6 +31,6 @@
 	</table>
 
     {% else %}
-    <p>No data available at the moment </p>
+    <p>{% trans "No data available at the moment" %}</p>
     {% endif %}
 {% endblock %}

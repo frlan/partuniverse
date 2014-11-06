@@ -1,0 +1,424 @@
+# German translation file of part universe
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Frank Lanitz <frank@frank.uvena.de>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-06 16:50+0000\n"
+"PO-Revision-Date: 2014-11-06 17:50+0100\n"
+"Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: partsmanagement/models.py:16
+msgid "Storage Type"
+msgstr "Lagertyp"
+
+#: partsmanagement/models.py:27
+msgid "Unit"
+msgstr "Einheit"
+
+#: partsmanagement/models.py:40
+msgid "Storage Place"
+msgstr "Lagerplatz"
+
+#: partsmanagement/models.py:52 templates/pmgmt/list.html:14
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: partsmanagement/models.py:64
+msgid "Distributor"
+msgstr "Lieferant"
+
+#: partsmanagement/models.py:81
+msgid "Category"
+msgstr "Kategorie"
+
+#: partsmanagement/models.py:82
+msgid "Categories"
+msgstr "Kategorien"
+
+#: partsmanagement/models.py:115
+msgid "Part"
+msgstr "Teil"
+
+#: partsmanagement/models.py:116
+msgid "Parts"
+msgstr "Teile"
+
+#: partsmanagement/models.py:148
+msgid "Transaction"
+msgstr "Transaktion"
+
+#: partsmanagement/models.py:149
+msgid "Transactions"
+msgstr "Transaktionen"
+
+#: templates/account/delete.html:8 templates/account/settings.html:24
+msgid "Delete Account"
+msgstr "Nutzeraccount löschen"
+
+#: templates/account/delete.html:10
+msgid ""
+"If you go ahead and delete your account, your  personal information will be "
+"purged</b>"
+msgstr "Dein Nutzeraccount wird gelöscht, wenn Du hier fortfährst"
+
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"A user on %(site_name)s has created an account using this email address.\n"
+"\n"
+"To confirm this email address, go to %(activate_url)s\n"
+"\n"
+"If you did not sign up for this site, you can ignore this message.\n"
+msgstr ""
+"Ein Nutzer auf %(site_name)s hat ein Benutzerkonto mit dieser Email-Adresse "
+"angelegt.\n"
+"\n"
+"Um diese Adresse zu bestätigen, gehe bitte auf %(activate_url)s\n"
+"\n"
+"Wenn Du Dich nicht auf dieser Seite angemeldet hast, kannst Du diese Mail "
+"einfach ignorieren.\n"
+
+#: templates/account/email/email_confirmation_subject.txt:1
+#, python-format
+msgid "Confirm email address for %(site_name)s"
+msgstr "Bestätigung der Email-Adresse für %(site_name)s"
+
+#: templates/account/email/invite_user.txt:1
+#, python-format
+msgid "You have been invited to sign up at %(site_name)s. "
+msgstr "Du wurest eingeladen, Dich unter %(site_name)s zu registrieren"
+
+#: templates/account/email/invite_user_subject.txt:1
+#, python-format
+msgid " Create an account on %(site_name)s "
+msgstr "Lege ein Benutzerkonto unter %(site_name)s an"
+
+#: templates/account/email/password_change.txt:1
+#, python-format
+msgid ""
+"This is the email notification to confirm your password has been changed on "
+"%(user.account.now)s. "
+msgstr ""
+"Dies ist eine Email-Benachrichtung um zu bestätigen, dass Dein Passwort auf "
+"%(user.account.now)s geändert wurde"
+
+#: templates/account/email/password_change_subject.txt:1
+msgid "Change password email notification"
+msgstr "Passwort geändert Bestätigung"
+
+#: templates/account/email/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password for your user account at %(site_name)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+msgstr ""
+"Du erhälst Diese Email, weil jemand ein neues Passwort für die Seite "
+"%(site_name)s angefordert hat. \n"
+" Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt "
+"hast. Um Dein Passwort zu ändern, klicken auf diesen Link: \n"
+"%(password_reset_url)s\n"
+
+#: templates/account/email/password_reset_subject.txt:1
+#, python-format
+msgid "[%(site_name)s] Password reset"
+msgstr "[%(site_name)s] Passwort zurücksetzen"
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:9
+msgid "Confirm Email"
+msgstr "Bestätigung Email"
+
+#: templates/account/email_confirm.html:12
+#, python-format
+msgid "Confirm email address <b>%(email)s</b>?"
+msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>?"
+
+#: templates/account/email_confirm.html:13
+msgid "Confirm"
+msgstr "Bestätigun"
+
+#: templates/account/email_confirmation_sent.html:6
+#: templates/account/email_confirmation_sent.html:9
+msgid "Confirm your email address"
+msgstr "Bestätige Deine Email-Adresse"
+
+#: templates/account/email_confirmation_sent.html:11
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+"Wir haben Dir eine Email an <b>%(email)s</b> zur bestätigung gesended. Folge "
+"der Anleitung in dieser Mail um den Registrierungsprozess abzuschließen. "
+"Solltest Du keine Email erhalten innerhalb der nächsten Minuten, "
+"kontaktieren uns bitte unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+
+#: templates/account/email_confirmed.html:6
+#: templates/account/email_confirmed.html:9
+msgid "Email confirmed"
+msgstr "Email bestätigt"
+
+#: templates/account/email_confirmed.html:10
+#, python-format
+msgid "You have confirmed <b>%(email)s</b>"
+msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
+
+#: templates/account/login.html:6 templates/account/login.html.py:15
+msgid "Log in"
+msgstr "Einloggen"
+
+#: templates/account/login.html:9
+msgid "Please login with an existing account:"
+msgstr "Bitte logge Dich mit einem Benutzeraccount ein."
+
+#: templates/account/login.html:18
+msgid "Forgot your password?"
+msgstr "Passwort vergessen?"
+
+#: templates/account/logout.html:6 templates/account/logout.html.py:9
+#: templates/account/logout.html:13
+msgid "Log out"
+msgstr "Ausloggen"
+
+#: templates/account/logout.html:12
+msgid "Are you sure you want to log out?"
+msgstr "Möchtest Du Dich wirklich ausloggen?"
+
+#: templates/account/password_change.html:6
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: templates/account/password_change.html:9
+msgid "Please enter you old and your new password"
+msgstr "Bitte gib Dein altes und Dein neues Passwort ein"
+
+#: templates/account/password_reset.html:8
+#: templates/account/password_reset.html:14
+msgid "Password reset"
+msgstr "Passwort zurücksetzen"
+
+#: templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+"Passowrt vergessen? Gebe Deine Email-Adresse unten ein und wir werden Dir "
+"eine Mail zusenden, die es Dir erlaubt, ein neues Passwort zu setzen."
+
+#: templates/account/password_reset.html:20
+msgid "Reset my password"
+msgstr "Mein Passowrt zurück setzen"
+
+#: templates/account/password_reset.html:24
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+"Wenn Du Probleme beim rücksetzen Deines Passwortes hast, kontaktiere uns "
+"über <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>. "
+
+#: templates/account/password_reset_sent.html:7
+#: templates/account/password_reset_sent.html:10
+msgid "Password reset sent"
+msgstr "Passwort zurücksetzen Email wurde versendet"
+
+#: templates/account/password_reset_sent.html:12
+#, python-format
+msgid ""
+"We have sent you an email. If you do not receive it within a few minutes, "
+"try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+"Wir haben Dir eine Email gesendet. Solltest Du diese nicht innerhalb der "
+"nächsten Minuten erhalten, versuche sie erneut zu senden oder kontaktiere "
+"uns via <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</"
+"a>"
+
+#: templates/account/password_reset_sent.html:20
+msgid "Resend"
+msgstr "Erneut senden"
+
+#: templates/account/password_reset_sent.html:25
+#, python-format
+msgid ""
+"We have resent the password email. If you do not receive it within a few "
+"minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+"Wir haben Dir die Email zu zurücksetzen Dienes Passowrts nocheinmal "
+"zugesendet. Sollest Du innerhalb weniger Minuten diese Mail nicht erhalten, "
+"kontaktiere uns unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+
+#: templates/account/password_reset_token.html:7
+#: templates/account/password_reset_token.html:10
+msgid "Set your new password"
+msgstr "Setze Dein neues Passwort"
+
+#: templates/account/password_reset_token.html:16
+#: templates/account/settings.html:15
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/account/password_reset_token_fail.html:6
+#: templates/account/password_reset_token_fail.html:9
+msgid "Bad token"
+msgstr "Falscher Token"
+
+#: templates/account/password_reset_token_fail.html:11
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(url)s\">new password reset</a>."
+msgstr ""
+"Der Link zum Zurücksetzen des Passwortes was leider ungültig. Es könnte "
+"sein, dass er schon einmal verwendet wurde. Bitte frage einen <a href="
+"\"%(url)s\">neuen Link</a> an."
+
+#: templates/account/settings.html:7
+msgid "Account settings"
+msgstr "Benutzerkonto-Einstellungen"
+
+#: templates/account/settings.html:9
+msgid "Change here your account data:"
+msgstr "Aktualisiere Deine Accountdaten hier:"
+
+#: templates/account/settings.html:18
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/account/settings.html:21
+msgid "Change your password here"
+msgstr "Ändere Dein Passwort hier"
+
+#: templates/account/settings.html:26
+msgid "Delete your account"
+msgstr "Benutzerkonto löschen"
+
+#: templates/account/signup.html:6 templates/account/signup.html.py:17
+#: templates/account/signup_closed.html:6
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: templates/account/signup_closed.html:9
+msgid "This site is in private beta"
+msgstr "Diese Seite befindet sich in einer geschlossenen Beta-Phase"
+
+#: templates/account/signup_closed.html:10
+msgid "If you have signup code you can enter it below."
+msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
+
+#: templates/base.html:2
+msgid "en"
+msgstr "de"
+
+#: templates/base.html:13
+msgid "Logged in as:"
+msgstr "Eingeloggt als:"
+
+#: templates/base.html:14
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: templates/base.html:15
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: templates/base.html:22
+msgid "Home"
+msgstr "Start"
+
+#: templates/base.html:23
+msgid "Login"
+msgstr "Einloggen"
+
+#: templates/base.html:24
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/index.html:6
+msgid "This is an approach for keeping an overview over your parts."
+msgstr ""
+"Dies ist ein Versuch, um einen Überblick über die vorhanden Teile zu "
+"erlangen."
+
+#: templates/index.html:7
+msgid "Please follow links below to navigate:"
+msgstr "Die folgenden Links helfen Dir zu navigieren"
+
+#: templates/index.html:9
+msgid "List of Parts"
+msgstr "Teileliste"
+
+#: templates/index.html:11
+msgid "Add a new transaction"
+msgstr "Eine neue Transaktion starten"
+
+#: templates/index.html:12
+msgid "Add a new part"
+msgstr "Ein neues Teil anlegen"
+
+#: templates/index.html:14
+msgid "Show all tranactions"
+msgstr "Alle Transaktionen anzeigen"
+
+#: templates/pmgmt/delete.html:6
+msgid "Delete a part"
+msgstr "Ein Teil löschen"
+
+#: templates/pmgmt/delete.html:8
+msgid "Are you sure you want to delete {{ object }}?"
+msgstr "Möchtest Du {{ object }} wirklich löschen?"
+
+#: templates/pmgmt/detail.html:16
+msgid "Delete item"
+msgstr "Teil löschen"
+
+#: templates/pmgmt/detail.html:17
+msgid "Update item"
+msgstr "Teil editieren"
+
+#: templates/pmgmt/list.html:6
+msgid "A list with all items ... "
+msgstr "Eine Liste mit bekannten Teilen ..."
+
+#: templates/pmgmt/list.html:11
+msgid "Name"
+msgstr "Name"
+
+#: templates/pmgmt/list.html:12
+msgid "Minimum"
+msgstr "Minimum"
+
+#: templates/pmgmt/list.html:13
+msgid "In Stock"
+msgstr "Lagerbestand"
+
+#: templates/pmgmt/list.html:25
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: templates/pmgmt/list.html:26
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/pmgmt/list.html:34
+msgid "No data available at the moment"
+msgstr "Aktuell keine Daten verfügbar"
