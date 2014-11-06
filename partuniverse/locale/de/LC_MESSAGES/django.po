@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-06 16:45+0000\n"
-"PO-Revision-Date: 2014-11-06 17:44+0100\n"
+"POT-Creation-Date: 2014-11-06 16:50+0000\n"
+"PO-Revision-Date: 2014-11-06 17:50+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -394,6 +394,10 @@ msgstr "Teil löschen"
 #: templates/pmgmt/detail.html:17
 msgid "Update item"
 msgstr "Teil editieren"
+
+#: templates/pmgmt/list.html:6
+msgid "A list with all items ... "
+msgstr "Eine Liste mit bekannten Teilen ..."
 
 #: templates/pmgmt/list.html:11
 msgid "Name"
