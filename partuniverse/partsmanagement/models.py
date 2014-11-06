@@ -85,24 +85,31 @@ class Category(models.Model):
 class Part(models.Model):
 	""" Representing a special kind of parts """
 
-	name = models.CharField(max_length=50)
+	name = models.CharField(_("Name of part"), max_length=50)
 	min_stock = models.DecimalField(
+		_("Minimal stock"),
 		max_digits=10,
 		decimal_places=4,
 		null=True,
 		blank=True)
 	# Should be calculated based on transactions
 	on_stock = models.DecimalField(
+		_("Parts on stock"),
 		max_digits=10,
 		decimal_places=4,
 		null=True,
 		blank=True)
-	unit = models.ForeignKey(Unit)
-	manufacturer = models.ForeignKey(Manufacturer)
-	distributor = models.ForeignKey(Distributor)
-	categories = models.ManyToManyField(Category)
+	unit = models.ForeignKey(Unit,
+					verbose_name=_("Unit"))
+	manufacturer = models.ForeignKey(Manufacturer,
+					verbose_name=_("Manufacturer"))
+	distributor = models.ForeignKey(Distributor,
+					verbose_name=_("Distributor"))
+	categories = models.ManyToManyField(Category,
+					verbose_name=_("Category"))
 	creation_time = models.DateTimeField(auto_now_add=True)
-	created_by = models.ForeignKey(User)
+	created_by = models.ForeignKey(User,
+					verbose_name=_("Added by"))
 
 	def __unicode__(self):
 		return self.name
