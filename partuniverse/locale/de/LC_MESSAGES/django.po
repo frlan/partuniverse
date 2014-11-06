@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-05 19:14+0000\n"
-"PO-Revision-Date: 2014-11-05 20:21+0100\n"
+"POT-Creation-Date: 2014-11-06 16:45+0000\n"
+"PO-Revision-Date: 2014-11-06 17:44+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -78,11 +78,14 @@ msgid ""
 "To confirm this email address, go to %(activate_url)s\n"
 "\n"
 "If you did not sign up for this site, you can ignore this message.\n"
-msgstr "Ein Nutzer auf %(site_name)s hat ein Benutzerkonto mit dieser Email-Adresse angelegt.\n"
+msgstr ""
+"Ein Nutzer auf %(site_name)s hat ein Benutzerkonto mit dieser Email-Adresse "
+"angelegt.\n"
 "\n"
 "Um diese Adresse zu bestätigen, gehe bitte auf %(activate_url)s\n"
 "\n"
-"Wenn Du Dich nicht auf dieser Seite angemeldet hast, kannst Du diese Mail einfach ignorieren."
+"Wenn Du Dich nicht auf dieser Seite angemeldet hast, kannst Du diese Mail "
+"einfach ignorieren.\n"
 
 #: templates/account/email/email_confirmation_subject.txt:1
 #, python-format
@@ -104,7 +107,9 @@ msgstr "Lege ein Benutzerkonto unter %(site_name)s an"
 msgid ""
 "This is the email notification to confirm your password has been changed on "
 "%(user.account.now)s. "
-msgstr "Dies ist eine Email-Benachrichtung um zu bestätigen, dass Dein Passwort auf %(user.account.now)s geändert wurde"
+msgstr ""
+"Dies ist eine Email-Benachrichtung um zu bestätigen, dass Dein Passwort auf "
+"%(user.account.now)s geändert wurde"
 
 #: templates/account/email/password_change_subject.txt:1
 msgid "Change password email notification"
@@ -120,30 +125,35 @@ msgid ""
 "\n"
 "%(password_reset_url)s\n"
 msgstr ""
+"Du erhälst Diese Email, weil jemand ein neues Passwort für die Seite "
+"%(site_name)s angefordert hat. \n"
+" Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt "
+"hast. Um Dein Passwort zu ändern, klicken auf diesen Link: \n"
+"%(password_reset_url)s\n"
 
 #: templates/account/email/password_reset_subject.txt:1
 #, python-format
 msgid "[%(site_name)s] Password reset"
-msgstr ""
+msgstr "[%(site_name)s] Passwort zurücksetzen"
 
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:9
 msgid "Confirm Email"
-msgstr ""
+msgstr "Bestätigung Email"
 
 #: templates/account/email_confirm.html:12
 #, python-format
 msgid "Confirm email address <b>%(email)s</b>?"
-msgstr ""
+msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>?"
 
 #: templates/account/email_confirm.html:13
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigun"
 
 #: templates/account/email_confirmation_sent.html:6
 #: templates/account/email_confirmation_sent.html:9
 msgid "Confirm your email address"
-msgstr ""
+msgstr "Bestätige Deine Email-Adresse"
 
 #: templates/account/email_confirmation_sent.html:11
 #, python-format
@@ -153,20 +163,25 @@ msgid ""
 "within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
 "\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Wir haben Dir eine Email an <b>%(email)s</b> zur bestätigung gesended. Folge "
+"der Anleitung in dieser Mail um den Registrierungsprozess abzuschließen. "
+"Solltest Du keine Email erhalten innerhalb der nächsten Minuten, "
+"kontaktieren uns bitte unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
 
 #: templates/account/email_confirmed.html:6
 #: templates/account/email_confirmed.html:9
 msgid "Email confirmed"
-msgstr ""
+msgstr "Email bestätigt"
 
 #: templates/account/email_confirmed.html:10
 #, python-format
 msgid "You have confirmed <b>%(email)s</b>"
-msgstr ""
+msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 
 #: templates/account/login.html:6 templates/account/login.html.py:15
 msgid "Log in"
-msgstr ""
+msgstr "Einloggen"
 
 #: templates/account/login.html:9
 msgid "Please login with an existing account:"
@@ -191,7 +206,7 @@ msgstr "Passwort ändern"
 
 #: templates/account/password_change.html:9
 msgid "Please enter you old and your new password"
-msgstr ""
+msgstr "Bitte gib Dein altes und Dein neues Passwort ein"
 
 #: templates/account/password_reset.html:8
 #: templates/account/password_reset.html:14
@@ -203,10 +218,12 @@ msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
+"Passowrt vergessen? Gebe Deine Email-Adresse unten ein und wir werden Dir "
+"eine Mail zusenden, die es Dir erlaubt, ein neues Passwort zu setzen."
 
 #: templates/account/password_reset.html:20
 msgid "Reset my password"
-msgstr ""
+msgstr "Mein Passowrt zurück setzen"
 
 #: templates/account/password_reset.html:24
 #, python-format
@@ -214,11 +231,13 @@ msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
 "\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Wenn Du Probleme beim rücksetzen Deines Passwortes hast, kontaktiere uns "
+"über <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>. "
 
 #: templates/account/password_reset_sent.html:7
 #: templates/account/password_reset_sent.html:10
 msgid "Password reset sent"
-msgstr ""
+msgstr "Passwort zurücksetzen Email wurde versendet"
 
 #: templates/account/password_reset_sent.html:12
 #, python-format
@@ -227,6 +246,10 @@ msgid ""
 "try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Wir haben Dir eine Email gesendet. Solltest Du diese nicht innerhalb der "
+"nächsten Minuten erhalten, versuche sie erneut zu senden oder kontaktiere "
+"uns via <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</"
+"a>"
 
 #: templates/account/password_reset_sent.html:20
 msgid "Resend"
@@ -239,11 +262,15 @@ msgid ""
 "minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Wir haben Dir die Email zu zurücksetzen Dienes Passowrts nocheinmal "
+"zugesendet. Sollest Du innerhalb weniger Minuten diese Mail nicht erhalten, "
+"kontaktiere uns unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
 
 #: templates/account/password_reset_token.html:7
 #: templates/account/password_reset_token.html:10
 msgid "Set your new password"
-msgstr ""
+msgstr "Setze Dein neues Passwort"
 
 #: templates/account/password_reset_token.html:16
 #: templates/account/settings.html:15
@@ -253,7 +280,7 @@ msgstr "Speichern"
 #: templates/account/password_reset_token_fail.html:6
 #: templates/account/password_reset_token_fail.html:9
 msgid "Bad token"
-msgstr ""
+msgstr "Falscher Token"
 
 #: templates/account/password_reset_token_fail.html:11
 #, python-format
@@ -261,10 +288,13 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a <a href=\"%(url)s\">new password reset</a>."
 msgstr ""
+"Der Link zum Zurücksetzen des Passwortes was leider ungültig. Es könnte "
+"sein, dass er schon einmal verwendet wurde. Bitte frage einen <a href="
+"\"%(url)s\">neuen Link</a> an."
 
 #: templates/account/settings.html:7
 msgid "Account settings"
-msgstr ""
+msgstr "Benutzerkonto-Einstellungen"
 
 #: templates/account/settings.html:9
 msgid "Change here your account data:"
@@ -326,36 +356,36 @@ msgstr "Registrieren"
 #: templates/index.html:6
 msgid "This is an approach for keeping an overview over your parts."
 msgstr ""
+"Dies ist ein Versuch, um einen Überblick über die vorhanden Teile zu "
+"erlangen."
 
 #: templates/index.html:7
 msgid "Please follow links below to navigate:"
-msgstr ""
+msgstr "Die folgenden Links helfen Dir zu navigieren"
 
 #: templates/index.html:9
 msgid "List of Parts"
-msgstr ""
+msgstr "Teileliste"
 
 #: templates/index.html:11
 msgid "Add a new transaction"
-msgstr ""
+msgstr "Eine neue Transaktion starten"
 
 #: templates/index.html:12
 msgid "Add a new part"
-msgstr ""
+msgstr "Ein neues Teil anlegen"
 
 #: templates/index.html:14
 msgid "Show all tranactions"
-msgstr ""
+msgstr "Alle Transaktionen anzeigen"
 
 #: templates/pmgmt/delete.html:6
 msgid "Delete a part"
-msgstr ""
+msgstr "Ein Teil löschen"
 
 #: templates/pmgmt/delete.html:8
-#, fuzzy
-#| msgid "Are you sure you want to log out?"
 msgid "Are you sure you want to delete {{ object }}?"
-msgstr "Möchtest Du Dich wirklich ausloggen?"
+msgstr "Möchtest Du {{ object }} wirklich löschen?"
 
 #: templates/pmgmt/detail.html:16
 msgid "Delete item"
@@ -367,15 +397,15 @@ msgstr "Teil editieren"
 
 #: templates/pmgmt/list.html:11
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: templates/pmgmt/list.html:12
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 #: templates/pmgmt/list.html:13
 msgid "In Stock"
-msgstr ""
+msgstr "Lagerbestand"
 
 #: templates/pmgmt/list.html:25
 msgid "Update"
@@ -387,4 +417,4 @@ msgstr "Löschen"
 
 #: templates/pmgmt/list.html:34
 msgid "No data available at the moment"
-msgstr ""
+msgstr "Aktuell keine Daten verfügbar"
