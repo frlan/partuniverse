@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Avg
 from django.contrib.auth.decorators import login_required
+
 # Class based views to create a new dataset and Update one
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -17,6 +18,7 @@ from django.utils.timezone import now
 # Importing models
 from partsmanagement.models import Part
 from partsmanagement.models import Transaction
+from partsmanagement.models import Manufacturer
 
 class PartsList(ListView):
 	model = Part
@@ -49,9 +51,11 @@ class PartDeleteView(DeleteView):
 	success_url = reverse_lazy('partslist')
 	template_name = 'pmgmt/delete.html'
 
+
 class PartDetailView(DetailView):
 	template_name = "pmgmt/detail.html"
 	model = Part
+
 
 class PartUpdateView(UpdateView):
 	template_name = "pmgmt/update.html"
@@ -81,4 +85,45 @@ class TransactionAddView(CreateView):
 		form.instance.created_by = user
 		form.instance.timestamp = now()
 		return super(TransactionAddView, self).form_valid(form)
+
+########################################################################
+# Manufacturer
+########################################################################
+
+class ManufacturerAddView(CreateView):
+	model = Manufacturer
+	success_url='/'
+	template_name='pmgmt/manufacturer/add.html'
+	fields = ( 'name', )
+
+	def form_valid(self, form):
+		user = self.request.user
+		form.instance.created_by = user
+		form.instance.creation_time = now()
+		return super(ManufacturerAddView, self).form_valid(form)
+
+
+class ManufacturerUpdateView(UpdateView):
+	template_name = "pmgmt/manufacturer/update.html"
+	success_url = reverse_lazy('home')
+	model = Manufacturer
+	# We don't want to amke all fields editable via
+	# normal frontend.
+	fields = (	'name', )
+
+
+class ManufacturerListView(ListView):
+	model = Manufacturer
+	template_name = 'pmgmt/manufacturer/list.html'
+
+
+class ManufacturerView(DetailView):
+	template_name = "pmgmt/manufacturer/detail.html"
+	model = Manufacturer
+
+
+class ManufacturerDeleteView(DeleteView):
+	model = Manufacturer
+	success_url = reverse_lazy('manufacturer_list')
+	template_name = 'pmgmt/manufacturer/delete.html'
 

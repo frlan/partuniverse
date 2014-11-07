@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% block content %}
+<h2>{% trans "Delete a manufacturer" %}</h2>
+<form action="" method="post">{% csrf_token %}
+    <p>{% blocktrans %}
+		Are you sure you want to delete »{{ object }}«?
+	   {% endblocktrans %}</p>
+    <input type="submit" value="Confirm" />
+</form>
+{% endblock %}

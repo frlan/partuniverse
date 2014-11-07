@@ -31,5 +31,15 @@ urlpatterns = patterns('',
 	url(r'^transaction/list', TransactionListView.as_view(), name='transaction_list'),
 	url(r'^transaction/new$', login_required(TransactionAddView.as_view()),
 			name='transaction_new'),
-
+	# Manufacturer
+	url(r'^manufacturer/list', ManufacturerListView.as_view(),
+			name='manufacturer_list'),
+	url(r'^manufacturer/add', login_required(ManufacturerAddView.as_view()),
+			name='manufacturer_new'),
+	url(r'^manufacturer/(?P<pk>[\w]+)/update/$', login_required(
+			ManufacturerUpdateView.as_view()), name='manufacturer_update'),
+#	url(r'^manufacturer/(?P<pk>[\w]+)/delete/$', ManufacturerDeleteView.as_view(),
+#			name='manufacturer_delete'),
+	url(r'^manufacturer/(?P<pk>[\w]+)$', ManufacturerView.as_view(),
+			name='manufacturer_detail'),
 )

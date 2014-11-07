@@ -53,6 +53,9 @@ class Manufacturer(models.Model):
 	""" Manufacturer for a particular item """
 
 	name = models.CharField(max_length=50)
+	creation_time = models.DateTimeField(auto_now_add=True)
+	created_by = models.ForeignKey(User,
+					verbose_name=_("Added by"))
 
 	def __unicode__(self):
 		return self.name
