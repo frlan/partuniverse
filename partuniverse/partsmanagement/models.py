@@ -102,9 +102,13 @@ class Part(models.Model):
 	unit = models.ForeignKey(Unit,
 					verbose_name=_("Unit"))
 	manufacturer = models.ForeignKey(Manufacturer,
-					verbose_name=_("Manufacturer"))
+					verbose_name=_("Manufacturer"),
+					null=True,
+					blank=True)
 	distributor = models.ForeignKey(Distributor,
-					verbose_name=_("Distributor"))
+					verbose_name=_("Distributor"),
+					null=True,
+					blank=True)
 	categories = models.ManyToManyField(Category,
 					verbose_name=_("Category"))
 	creation_time = models.DateTimeField(auto_now_add=True)
