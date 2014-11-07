@@ -72,3 +72,26 @@ you will need e.g. to access admin backend.
 If everything worked well, you can start the server (in debug mode):
 
 	$ ./manage.py runserver
+
+i18n/l10n
+---------
+
+You will find the tranlstions files inside
+locales/LC_MESSAGES/django.po encoded with gettext's po file format.
+To update translation file you can run
+
+$ manage.py makemessages --all
+
+After this has been done, translations needs to be recompiled with
+
+$ python manage.py compilemessages
+
+For translation the files you can use for example poedit or just any
+text editor -- like Geany which is also having some translations
+plugin.
+
+License
+-------
+
+The software is distributed under terms of AGPLv3+. Please check
+COPYING for details.
