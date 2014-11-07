@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-06 16:50+0000\n"
-"PO-Revision-Date: 2014-11-06 17:50+0100\n"
+"POT-Creation-Date: 2014-11-07 20:12+0000\n"
+"PO-Revision-Date: 2014-11-07 21:15+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -16,47 +16,92 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: partsmanagement/models.py:16
+#: partsmanagement/models.py:12
+msgid "Length"
+msgstr "Längen"
+
+#: partsmanagement/models.py:13
+msgid "meters"
+msgstr "Meter"
+
+#: partsmanagement/models.py:14
+msgid "centimeters"
+msgstr "Centimeter"
+
+#: partsmanagement/models.py:17
+msgid "Volume"
+msgstr "Volumen"
+
+#: partsmanagement/models.py:18
+msgid "litres"
+msgstr "Liter"
+
+#: partsmanagement/models.py:19
+msgid "cubicmeters"
+msgstr "Kubikmeter"
+
+#: partsmanagement/models.py:20
+msgid "cubic centimeters"
+msgstr "Kubikcentimeter"
+
+#: partsmanagement/models.py:23
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: partsmanagement/models.py:36
 msgid "Storage Type"
 msgstr "Lagertyp"
 
-#: partsmanagement/models.py:27
-msgid "Unit"
-msgstr "Einheit"
-
-#: partsmanagement/models.py:40
+#: partsmanagement/models.py:49
 msgid "Storage Place"
 msgstr "Lagerplatz"
 
-#: partsmanagement/models.py:52 templates/pmgmt/list.html:14
+#: partsmanagement/models.py:61 partsmanagement/models.py:114
+#: templates/pmgmt/list.html:14
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:64
+#: partsmanagement/models.py:73 partsmanagement/models.py:118
 msgid "Distributor"
 msgstr "Lieferant"
 
-#: partsmanagement/models.py:81
+#: partsmanagement/models.py:91 partsmanagement/models.py:122
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:82
+#: partsmanagement/models.py:92
 msgid "Categories"
 msgstr "Kategorien"
 
-#: partsmanagement/models.py:115
+#: partsmanagement/models.py:98
+msgid "Name of part"
+msgstr "Name des Teils"
+
+#: partsmanagement/models.py:100
+msgid "Minimal stock"
+msgstr "Mindestlagerbestand"
+
+#: partsmanagement/models.py:107
+msgid "Parts on stock"
+msgstr "Lagerbestand"
+
+#: partsmanagement/models.py:125
+msgid "Added by"
+msgstr "Hinzugefügt von"
+
+#: partsmanagement/models.py:135
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:116
+#: partsmanagement/models.py:136
 msgid "Parts"
 msgstr "Teile"
 
-#: partsmanagement/models.py:148
+#: partsmanagement/models.py:168
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:149
+#: partsmanagement/models.py:169
 msgid "Transactions"
 msgstr "Transaktionen"
 
@@ -384,8 +429,11 @@ msgid "Delete a part"
 msgstr "Ein Teil löschen"
 
 #: templates/pmgmt/delete.html:8
-msgid "Are you sure you want to delete {{ object }}?"
-msgstr "Möchtest Du {{ object }} wirklich löschen?"
+msgid ""
+"\n"
+"\t\tAre you sure you want to delete »%(object)s«?\n"
+"\t"
+msgstr "\n\t\tMöchtest Du {{ object }} wirklich löschen?\n\t"
 
 #: templates/pmgmt/detail.html:16
 msgid "Delete item"
@@ -422,3 +470,6 @@ msgstr "Löschen"
 #: templates/pmgmt/list.html:34
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
+
+#~ msgid "Unit"
+#~ msgstr "Einheit"

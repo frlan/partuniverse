@@ -1,10 +1,27 @@
 # -*- coding: utf-8 -*-
 
-
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+
+
+# Just defining units used on the system here.
+# Might can be moved to a seperate file at some point.
+UNIT_CHOICES = (
+	( _('Length'), (
+			('m', _('meters')),
+			('cm',_('centimeters'))
+		)
+	),
+	(_('Volume'), (
+			('l', _('litres')),
+			('m³', _('cubicmeters')),
+			('ccm', _('cubic centimeters'))
+		)
+	),
+	('---', _('Unknown')),
+)
 
 
 class StorageType(models.Model):
@@ -17,17 +34,6 @@ class StorageType(models.Model):
 
 	class Meta:
 		verbose_name = _("Storage Type")
-
-class Unit(models.Model):
-	""" Defining units used in context of partuniverse.
-		Keep in mind, only SI units are real units ;) """
-	name = models.CharField(max_length=50)
-
-	def __unicode__(self):
-		return self.name
-
-	class Meta:
-		verbose_name = _("Unit")
 
 
 class StoragePlace(models.Model):
@@ -66,6 +72,7 @@ class Distributor(models.Model):
 	class Meta:
 		verbose_name = _("Distributor")
 
+
 class Category(models.Model):
 	""" Representing a category a part might contains to.
 	E.g. resistor """
@@ -102,8 +109,7 @@ class Part(models.Model):
 		decimal_places=4,
 		null=True,
 		blank=True)
-	unit = models.ForeignKey(Unit,
-					verbose_name=_("Unit"))
+	unit = models.CharField(max_length=3, choices=UNIT_CHOICES, blank=False, default='---')
 	manufacturer = models.ForeignKey(Manufacturer,
 					verbose_name=_("Manufacturer"),
 					null=True,
