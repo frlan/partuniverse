@@ -4,6 +4,7 @@
 {% load i18n %}
 {% block content %}
 <p>{% trans "A list with all manufacturers ... " %}</p>
+	<p><a href="{% url "manufacturer_new" %}">{% trans "Add a new" %}</a></p>
 	{% if object_list %}
 	<table>
 		<thead>
