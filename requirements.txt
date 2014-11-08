@@ -1,3 +1,4 @@
 Django
+coverage
 argparse
 django-user-accounts
