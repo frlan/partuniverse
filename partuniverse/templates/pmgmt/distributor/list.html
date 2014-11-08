@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% block content %}
+<p>{% trans "A list with all distributors ... " %}</p>
+	{% if object_list %}
+	<table>
+		<thead>
+			<tr>
+				<td>{% trans "Name" %}</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in object_list %}
+			<tr>
+				<td><a href="/pmgmt/distributor/{{item.id}}">{{ item.name }}</a></td>
+				{% if user.is_authenticated %}
+				<td><a href="/pmgmt/distributor/{{item.id}}/update/">{% trans "Update" %}</a></td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+    {% else %}
+    <p>{% trans "No data available at the moment" %}</p>
+    {% endif %}
+{% endblock %}

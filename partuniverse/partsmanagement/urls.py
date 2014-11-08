@@ -42,4 +42,15 @@ urlpatterns = patterns('',
 #			name='manufacturer_delete'),
 	url(r'^manufacturer/(?P<pk>[\w]+)$', ManufacturerView.as_view(),
 			name='manufacturer_detail'),
+	# Distributor
+	url(r'^distributor/list', DistributorListView.as_view(),
+			name='distributor_list'),
+	url(r'^distributor/add', login_required(DistributorAddView.as_view()),
+			name='distributor_new'),
+	url(r'^distributor/(?P<pk>[\w]+)/update/$', login_required(
+			DistributorUpdateView.as_view()), name='distributor_update'),
+#	url(r'^manufacturer/(?P<pk>[\w]+)/delete/$', ManufacturerDeleteView.as_view(),
+#			name='manufacturer_delete'),
+	url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
+			name='distributor_detail'),
 )

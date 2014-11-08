@@ -19,7 +19,11 @@ from django.utils.timezone import now
 from partsmanagement.models import Part
 from partsmanagement.models import Transaction
 from partsmanagement.models import Manufacturer
+from partsmanagement.models import Distributor
 
+########################################################################
+# Part
+########################################################################
 class PartsList(ListView):
 	model = Part
 	template_name = 'pmgmt/list.html'
@@ -70,6 +74,9 @@ class PartUpdateView(UpdateView):
 				'distributor',
 				'categories' )
 
+########################################################################
+# Transaction
+########################################################################
 class TransactionAddView(CreateView):
 
 	model = Transaction
@@ -127,3 +134,43 @@ class ManufacturerDeleteView(DeleteView):
 	success_url = reverse_lazy('manufacturer_list')
 	template_name = 'pmgmt/manufacturer/delete.html'
 
+########################################################################
+# Distributor
+########################################################################
+
+class DistributorAddView(CreateView):
+	model = Distributor
+	success_url='/'
+	template_name='pmgmt/distributor/add.html'
+	fields = ( 'name', )
+
+	def form_valid(self, form):
+		user = self.request.user
+		form.instance.created_by = user
+		form.instance.creation_time = now()
+		return super(DistributorAddView, self).form_valid(form)
+
+
+class DistributorUpdateView(UpdateView):
+	template_name = "pmgmt/distributor/update.html"
+	success_url = reverse_lazy('home')
+	model = Distributor
+	# We don't want to make all fields editable via
+	# normal frontend.
+	fields = (	'name', )
+
+
+class DistributorListView(ListView):
+	model = Distributor
+	template_name = 'pmgmt/distributor/list.html'
+
+
+class DistributorView(DetailView):
+	template_name = "pmgmt/distributor/detail.html"
+	model = Distributor
+
+
+class DistributorDeleteView(DeleteView):
+	model = Distributor
+	success_url = reverse_lazy('distributorr_list')
+	template_name = 'pmgmt/distributor/delete.html'
