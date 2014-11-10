@@ -1,0 +1,21 @@
+#
+# A systemd service definition for partuniverse
+#
+[Unit]
+Description=partuniverse service definition
+Requires=nginx.service postgresql.service
+Before=nginx.service
+After=postgresql.service
+[Service]
+WorkingDirectory=/home/partuniverse/partuniverse
+Environment="DJANGO_SETTINGS_MODULE=settings.production"
+PIDFile=/run/partuniverse.pid
+Type=simple
+KillMode=process
+Restart=restart-always
+ExecStart=/home/partuniverse/partuniverse/utils/start_partuniverse.sh
+User=partuniverse
+Group=partuniverse
+[Install]
+# When should this service be triggered? (this is the equivalent of SysV's runlevel 3)
+WantedBy=multi-user.target
