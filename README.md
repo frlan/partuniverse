@@ -67,6 +67,28 @@ If everything worked well, you can start the server (in debug mode):
 
 	$ ./manage.py runserver
 
+### Running a production instance behind nginx
+
+This part assumes the following steps:
+
+* You have already set up your partuniverse.
+* You made your setup with postgresql
+* It is running as user partuniverse under
+  `/home/partuniverse/partuniverse`
+* You are using systemd
+
+Now do the following steps:
+
+1. Open `utils/start_partuniverse.sh` and edit `VIRTUALENVWRAPPER` to your
+   liking.
+2. Copy `utils/partuniverse.service` to `/etc/systemd/system`.
+3. Copy `utils/nginx-host.conf` to an appropriate place and edit it to
+   your liking, you should get the idea once you look at it.
+4. Start the partuniverse service.
+5. Activate the nginx vhost and reload.
+6. Your partuniverse is now running behind a high speed web server,
+   you are welcome :-).
+
 ## i18n/l10n
 
 
