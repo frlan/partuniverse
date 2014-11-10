@@ -1,14 +1,11 @@
-Partuniverse
-============
+# Partuniverse
 
 Another approach to keep track of parts not only inside a hacker space
 but at a more general storage.
 
-Installation
-------------
+## Installation
 
-Dependencies
-------------
+### Dependencies
 
 Partuniverse depends on:
 
@@ -22,9 +19,7 @@ For detailed list of python dependencies, have a look at
 requirements.txt next to this file.
 
 
-Virtualenv
-----------
-
+### Virtualenv
 
 Install virtualenvwrapper. This can be done either via your packet
 manage or by running
@@ -57,8 +52,7 @@ This can be done by:
 
 	$ pip install -r requirements.txt
 
-Running
--------
+### Running
 
 Being inside the virtual environment, go into the folder where you have
 checked out the sources. Within the folder you will find a partuniverse
@@ -73,8 +67,8 @@ If everything worked well, you can start the server (in debug mode):
 
 	$ ./manage.py runserver
 
-i18n/l10n
----------
+## i18n/l10n
+
 
 You will find the tranlstions files inside
 locales/LC_MESSAGES/django.po encoded with gettext's po file format.
@@ -90,8 +84,7 @@ For translation the files you can use for example poedit or just any
 text editor -- like Geany which is also having some translations
 plugin.
 
-License
--------
+## License
 
 The software is distributed under terms of AGPLv3+. Please check
 COPYING for details.
