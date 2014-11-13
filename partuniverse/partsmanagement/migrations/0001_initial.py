@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
-                ('parent', models.ForeignKey(null=True, blank=True, to='partsmanagement.Category')),
+                ('parent', models.ForeignKey(blank=True, to='partsmanagement.Category', null=True)),
             ],
             options={
                 'verbose_name': 'Category',
@@ -28,8 +28,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Distributor',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
+                ('creation_time', models.DateTimeField(auto_now_add=True)),
+                ('created_by', models.ForeignKey(verbose_name='Added by', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Distributor',
@@ -39,8 +41,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Manufacturer',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
+                ('creation_time', models.DateTimeField(auto_now_add=True)),
+                ('created_by', models.ForeignKey(verbose_name='Added by', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Manufacturer',
@@ -50,15 +54,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Part',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
-                ('name', models.CharField(verbose_name='Name of part', max_length=50)),
-                ('min_stock', models.DecimalField(decimal_places=4, null=True, max_digits=10, verbose_name='Minimal stock', blank=True)),
-                ('on_stock', models.DecimalField(decimal_places=4, null=True, max_digits=10, verbose_name='Parts on stock', blank=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=50, verbose_name='Name of part')),
+                ('min_stock', models.DecimalField(null=True, verbose_name='Minimal stock', max_digits=10, decimal_places=4, blank=True)),
+                ('on_stock', models.DecimalField(null=True, verbose_name='Parts on stock', max_digits=10, decimal_places=4, blank=True)),
+                ('unit', models.CharField(default=b'---', max_length=3, choices=[('Length', ((b'm', 'meters'), (b'cm', 'centimeters'))), ('Volume', ((b'l', 'litres'), (b'm\xc2\xb3', 'cubicmeters'), (b'ccm', 'cubic centimeters'))), (b'---', 'Unknown')])),
                 ('creation_time', models.DateTimeField(auto_now_add=True)),
                 ('categories', models.ManyToManyField(to='partsmanagement.Category', verbose_name='Category')),
-                ('created_by', models.ForeignKey(to=settings.AUTH_USER_MODEL, verbose_name='Added by')),
-                ('distributor', models.ForeignKey(to='partsmanagement.Distributor', verbose_name='Distributor')),
-                ('manufacturer', models.ForeignKey(to='partsmanagement.Manufacturer', verbose_name='Manufacturer')),
+                ('created_by', models.ForeignKey(verbose_name='Added by', to=settings.AUTH_USER_MODEL)),
+                ('distributor', models.ForeignKey(verbose_name='Distributor', blank=True, to='partsmanagement.Distributor', null=True)),
+                ('manufacturer', models.ForeignKey(verbose_name='Manufacturer', blank=True, to='partsmanagement.Manufacturer', null=True)),
             ],
             options={
                 'verbose_name': 'Part',
@@ -69,7 +74,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StoragePlace',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
             ],
             options={
@@ -80,7 +85,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StorageType',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
             ],
             options={
@@ -91,11 +96,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Transaction',
             fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('subject', models.CharField(max_length=100)),
                 ('amount', models.DecimalField(max_digits=10, decimal_places=4)),
                 ('date', models.DateField(auto_now_add=True, db_index=True)),
-                ('comment', models.TextField(null=True, max_length=200, blank=True)),
+                ('comment', models.TextField(max_length=200, null=True, blank=True)),
                 ('created_by', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('part', models.ForeignKey(to='partsmanagement.Part')),
             ],
@@ -105,27 +110,10 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
-        migrations.CreateModel(
-            name='Unit',
-            fields=[
-                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-            ],
-            options={
-                'verbose_name': 'Unit',
-            },
-            bases=(models.Model,),
-        ),
         migrations.AddField(
             model_name='storageplace',
             name='storage_type',
             field=models.ForeignKey(to='partsmanagement.StorageType'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='part',
-            name='unit',
-            field=models.ForeignKey(to='partsmanagement.Unit', verbose_name='Unit'),
             preserve_default=True,
         ),
     ]
