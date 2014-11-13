@@ -1,38 +1,39 @@
 <!DOCTYPE html>{% load staticfiles %}{% load url from future %}{% load i18n %}
 <html lang={% trans "en" %}>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Geany 1.25" />
-	<title>{% block head_title %}"Partuniverse"{% endblock %}</title>
-<body>
-<div>
-	<div>
-    {% if user.is_authenticated %}
-    <p>
-		<span>
-			{% trans "Logged in as:" %} {{ user.username }}
-			<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>
-			<a href="{% url "account_settings" %}">{% trans "Settings" %}</a>
-		</span>
+    <meta name="generator" content="partuniverse" />
+    <title>{% block head_title %}"Partuniverse"{% endblock %}</title>
+  </head>
+  <body>
+    <div>
+      <div>
+	{% if user.is_authenticated %}
+	<p>
+	  <span>
+	    {% trans "Logged in as:" %} {{ user.username }}
+	    <a href="{% url "account_logout" %}">{% trans "Logout" %}</a>
+	    <a href="{% url "account_settings" %}">{% trans "Settings" %}</a>
+	  </span>
 
 	</p>
-    {% else %}
+	{% else %}
 	<p>
-		<span>
-			<a href="{% url "home" %}">{% trans "Home" %}</a>
-			<a href="{% url "account_login" %}">{% trans "Login" %}</a>
-			<a href="{% url "account_signup" %}">{% trans "Register" %}</a>
-		</span>
+	  <span>
+	    <a href="{% url "home" %}">{% trans "Home" %}</a>
+	    <a href="{% url "account_login" %}">{% trans "Login" %}</a>
+	    <a href="{% url "account_signup" %}">{% trans "Register" %}</a>
+	  </span>
 	</p>
-    {% endif %}
-</div>
-<div>
-		{% block content %}Empty page{% endblock %}
-</div>
-{% block footer %}
-<div>
+	{% endif %}
+      </div>
+      <div>
+	{% block content %}Empty page{% endblock %}
+      </div>
+      {% block footer %}
+      <div>
 	<a href="{% url "home" %}">Home</a>
-</div>
-{% endblock footer %}
-</body>
+      </div>
+      {% endblock footer %}
+  </body>
 </html>
