@@ -1,0 +1,8 @@
+[Unit]
+Description=partuniverse socket
+
+[Socket]
+ListenStream=127.0.0.1:8005
+
+[Install]
+WantedBy=sockets.target

@@ -79,14 +79,16 @@ This part assumes the following steps:
 
 Now do the following steps:
 
-1. Open `utils/start_partuniverse.sh` and edit `VIRTUALENVWRAPPER` to your
-   liking.
-2. Copy `utils/partuniverse.service` to `/etc/systemd/system`.
-3. Copy `utils/nginx-host.conf` to an appropriate place and edit it to
+1. Create the directory /run/partuniverse
+2. Set the owner of /run/partuniverse to partuniverse
+3. Copy `utils/partuniverse.service` to `/etc/systemd/system`.
+3. Copy `utils/partuniverse.socket` to `/etc/systemd/system`.
+4. Copy `utils/nginx-host.conf` to an appropriate place and edit it to
    your liking, you should get the idea once you look at it.
-4. Start the partuniverse service.
-5. Activate the nginx vhost and reload.
-6. Your partuniverse is now running behind a high speed web server,
+5. Reload the systemd config: systemctl daemon-reload
+6. Start the partuniverse service: systemctl start partuniverse
+7. Activate the nginx vhost and reload.
+8. Your partuniverse is now running behind a high speed web server,
    you are welcome :-).
 
 ## i18n/l10n
