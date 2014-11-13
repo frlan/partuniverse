@@ -108,6 +108,20 @@ For translation the files you can use for example poedit or just any
 text editor -- like Geany which is also having some translations
 plugin.
 
+
+## Hacking
+
+### Testing
+
+To test your changes, you can use Django's test framework
+
+To run all available tests:
+
+	$ python manage.py test
+
+Please add new tests for each feature you are adding to suitable
+test-files.
+
 ## License
 
 The software is distributed under terms of AGPLv3+. Please check

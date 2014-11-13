@@ -116,7 +116,11 @@ class Part(models.Model):
 		decimal_places=4,
 		null=True,
 		blank=True)
-	unit = models.CharField(max_length=3, choices=UNIT_CHOICES, blank=False, default='---')
+	unit = models.CharField(
+		max_length=3,
+		choices=UNIT_CHOICES,
+		blank=False,
+		default='---')
 	manufacturer = models.ForeignKey(Manufacturer,
 					verbose_name=_("Manufacturer"),
 					null=True,
