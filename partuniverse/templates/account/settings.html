@@ -7,7 +7,7 @@
 {% endblock %}
 {% block content %}
 <h1 class="ui header dividing">{% trans "Account settings" %}</h1>
-<h2 class="ui header dividing">General Account Settings</h2>
+<h2 class="ui header dividing">{% trans "General Account Settings" %}</h2>
 <p>{% trans "Change here your account data:" %}</p>
 <form class="ui form segment" method="POST" action="{% url "account_settings" %}">
   {% csrf_token %}
