@@ -4,27 +4,27 @@
 {% load i18n %}
 {% block content %}
 <p>{% trans "A list with all manufacturers ... " %}</p>
-	<p><a href="{% url "manufacturer_new" %}">{% trans "Add a new" %}</a></p>
-	{% if object_list %}
-	<table>
-		<thead>
-			<tr>
-				<td>{% trans "Name" %}</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for item in object_list %}
-			<tr>
-				<td><a href="/pmgmt/manufacturer/{{item.id}}">{{ item.name }}</a></td>
-				{% if user.is_authenticated %}
-				<td><a href="/pmgmt/manufacturer/{{item.id}}/update/">{% trans "Update" %}</a></td>
-				{% endif %}
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+<p><a href="{% url "manufacturer_new" %}">{% trans "Add a new" %}</a></p>
+{% if object_list %}
+<table class="ui table segment">
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr>
+      <td><a href="/pmgmt/manufacturer/{{item.id}}">{{ item.name }}</a></td>
+      
+      <td>{% if user.is_authenticated %}<a href="/pmgmt/manufacturer/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-    {% else %}
-    <p>{% trans "No data available at the moment" %}</p>
-    {% endif %}
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
 {% endblock %}

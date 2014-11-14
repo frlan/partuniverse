@@ -117,6 +117,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
+# monkey patching BaseForm
+
+from django.forms import BaseForm
+from semantic_forms import as_semantic
+
+BaseForm.as_semantic = as_semantic
+
+
 ##################
 # LOCAL SETTINGS #
 ##################

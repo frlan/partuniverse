@@ -1,38 +1,42 @@
 <!DOCTYPE html>{% load staticfiles %}{% load url from future %}{% load i18n %}
 <html lang={% trans "en" %}>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="generator" content="Geany 1.25" />
-	<title>{% block head_title %}"Partuniverse"{% endblock %}</title>
-<body>
-<div>
-	<div>
-    {% if user.is_authenticated %}
-    <p>
-		<span>
-			{% trans "Logged in as:" %} {{ user.username }}
-			<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>
-			<a href="{% url "account_settings" %}">{% trans "Settings" %}</a>
-		</span>
-
-	</p>
-    {% else %}
-	<p>
-		<span>
-			<a href="{% url "home" %}">{% trans "Home" %}</a>
-			<a href="{% url "account_login" %}">{% trans "Login" %}</a>
-			<a href="{% url "account_signup" %}">{% trans "Register" %}</a>
-		</span>
-	</p>
-    {% endif %}
-</div>
-<div>
-		{% block content %}Empty page{% endblock %}
-</div>
-{% block footer %}
-<div>
-	<a href="{% url "home" %}">Home</a>
-</div>
-{% endblock footer %}
-</body>
+    <meta name="generator" content="partuniverse" />
+    <title>{% block head_title %}"Partuniverse"{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "semantic/css/semantic.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}">
+  </head>
+  <body>
+    <header class="ui fixed main menu inverted transparent ">
+      <div class="ui one column page grid">
+	<div class="ui column">
+	  {% if user.is_authenticated %}	  
+	  <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
+	  <div class="item"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
+	  <div class="item">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
+	  {% else %}
+	  <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
+	  <div class="item"><a href="{% url "account_login" %}">{% trans "Login" %}</a></div>
+	  <div class="item"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></div>
+	  {% endif %}
+	</div>
+      </div>
+    </header>
+    <div class="ui one column page grid">
+      <div class="column">
+	<div class="ui breadcrumb">
+	  <a class="section" href="{% url "home" %}">{% trans "Home" %}</a>
+	  <i class="right arrow icon divider"></i>
+	  {% block breadcrumbs %} {% endblock %}
+	</div>
+	{% block content %}Empty page{% endblock %}
+      </div>
+    </div>
+    {% block footer %}
+    <!-- <div> -->
+    <!--   <a href="{% url "home" %}">Home</a> -->
+    <!-- </div> -->
+    {% endblock footer %}
+  </body>
 </html>

@@ -7,15 +7,11 @@
 
 {% block content %}
 <p> {% trans "Please login with an existing account:" %}</p>
-<form method="POST" action="{% url "account_login" %}" autocapitalize="off">
-	{% csrf_token %}
-	<table>
-		{{ form.as_table }}
-	</table>
-	<button type="submit">{% trans "Log in" %}</button>
+<form method="POST" action="{% url "account_login" %}" autocapitalize="off" class="ui form segment">
+  {% csrf_token %}
+  {{ form.as_semantic }}
+  <button class="ui purple tiny button" type="submit">{% trans "Log in" %}</button> <a class="ui purple tiny button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
 </form>
-
-<p><a href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a></p>
 
 {% endblock %}
 
