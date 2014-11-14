@@ -6,7 +6,7 @@ from django.utils import six
 from django.forms.widgets import CheckboxInput
 
 def as_semantic(self):
-    "Helper function for outputting HTML. Used by as_table(), as_ul(), as_p()."
+    """Helper function for to generate a form with semantic ui styling."""
     normal_row='<div%(html_class_attr)s>%(label)s <div class="ui left labeled input">%(field)s%(required)s</div>%(help_text)s</div>'
     checkbox_row='<div class="field"><div class="ui checkbox">%(field)s%(label)s</div></div>'
     error_row='<li>%s</li>'
