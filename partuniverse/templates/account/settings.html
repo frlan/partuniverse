@@ -2,27 +2,27 @@
 
 {% load url from future %}
 {% load i18n %}
-
+{% block breadcrumbs %}
+<a href="{% url "account_settings" %}" class="section">{% trans "Settings" %}</a>
+{% endblock %}
 {% block content %}
-<h1>{% trans "Account settings" %}</h1>
-<h2>General Account Settings</h2>
+<h1 class="ui header dividing">{% trans "Account settings" %}</h1>
+<h2 class="ui header dividing">General Account Settings</h2>
 <p>{% trans "Change here your account data:" %}</p>
-<form method="POST" action="{% url "account_settings" %}">
-	{% csrf_token %}
-	<table>
-	{{ form.as_table}}
-	</table>
-    <button class="btn btn-primary" type="submit"> {% trans "Save" %}</button>
+<form class="ui form segment" method="POST" action="{% url "account_settings" %}">
+  {% csrf_token %}
+  {{ form.as_semantic }}
+  <button class="ui tiny button purple" type="submit"> {% trans "Save" %}</button>
 </form>
 
-<h2>{% trans "Password" %}</h2>
+<h2 class="ui header dividing">{% trans "Password" %}</h2>
 
 <p>
-	<a href=" {% url "account_password" %}"> {% trans "Change your password here" %} </a>
+  <a href=" {% url "account_password" %}"> {% trans "Change your password here" %} </a>
 </p>
 
-<h2>{% trans "Delete Account" %}</h2>
+<h2 class="ui header dividing">{% trans "Delete Account" %}</h2>
 <p>
-	<a href=" {% url "account_delete" %}"> {% trans "Delete your account" %}</a>
+  <a href=" {% url "account_delete" %}"> {% trans "Delete your account" %}</a>
 </p>
 {% endblock %}

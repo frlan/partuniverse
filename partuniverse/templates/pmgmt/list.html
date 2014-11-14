@@ -2,35 +2,38 @@
 
 {% load url from future %}
 {% load i18n %}
+{% block breadcrumbs %}
+<a href="{% url "partslist" %}" class="section">{% trans "Parts" %}</a>
+{% endblock %}
 {% block content %}
 <p>{% trans "A list with all items ... " %}</p>
-	{% if object_list %}
-	<table>
-		<thead>
-			<tr>
-				<td>{% trans "Name" %}</td>
-				<td>{% trans "Minimum" %}</td>
-				<td>{% trans "In Stock" %}</td>
-				<td>{% trans "Manufacturer" %}</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for item in object_list %}
-			<tr>
-				<td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
-				<td>{{ item.min_stock}}</td>
-				<td>{{ item.on_stock }}</td>
-				<td>{{ item.manufacturer }}</td>
-				{% if user.is_authenticated %}
-				<td><a href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a></td>
-				<td><a href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a></td>
-				{% endif %}
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+{% if object_list %}
+<table class="ui table segment">
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+      <th>{% trans "Minimum" %}</th>
+      <th>{% trans "In Stock" %}</th>
+      <th>{% trans "Manufacturer" %}</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr class="{% if item.on_stock|default:0 < item.min_stock|default:0 %}error{% endif %} ">
+      <td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
+      <td>{{ item.min_stock|default:"" }}</td>
+      <td>{{ item.on_stock|default:"" }}</td>
+      <td>{{ item.manufacturer|default:"" }}</td>      
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-    {% else %}
-    <p>{% trans "No data available at the moment" %}</p>
-    {% endif %}
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
 {% endblock %}

@@ -2,10 +2,29 @@
 
 {% load url from future %}
 {% load i18n %}
+{% block breadcrumbs %}
+<a href="{% url "transaction_list" %}" class="section">{% trans "Transactions" %}</a>
+{% endblock %}
 {% block content %}
-<ul>
-	{% for item in object_list %}
-	<li>{{ item }}</li>
-	{% endfor %}
-</ul>
+<table class="ui table segment">
+  <thead>
+    <tr>
+      <th>{% trans "What" %}</th>
+      <th>{% trans "Why" %}</th>
+      <th>{% trans "How much" %}</th>
+      <th>{% trans "When" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr>
+      <td>{{ item.part }}</td>
+      <td>{{ item.subject }}</td>
+      <td>{{ item.amount }}</td>
+      <td>{{ item.date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

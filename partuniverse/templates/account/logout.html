@@ -6,11 +6,11 @@
 {% block head_title %}{% trans "Log out" %}{% endblock %}
 
 {% block content %}
-<p>{% trans "Log out" %}</p>
-<form method="POST" action="{% url "account_logout" %}">
-	{% csrf_token %}
-	<p>{% trans "Are you sure you want to log out?" %}</p>
-	<button type="submit" class="btn btn-primary">{% trans "Log out" %}</button>
+<h1 class="ui dividing header">{% trans "Log out" %}</h1>
+<form class="ui form segment" method="POST" action="{% url "account_logout" %}">
+  {% csrf_token %}
+  <p>{% trans "Are you sure you want to log out?" %}</p>
+  <button type="submit" class="ui tiny button purple">{% trans "Log out" %}</button>
 </form>
 
 {% endblock %}

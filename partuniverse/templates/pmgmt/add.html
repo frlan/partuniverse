@@ -2,11 +2,9 @@
 {% load i18n %}
 {% load url from future %}
 {% block content %}
-<form method="post" class="form-horizontal" >
-{% csrf_token %}
-<table>
-    {{form.as_p}}
-</table>
-<input type="submit" value="Submit">
+<form method="post" class="ui form segment">
+  {% csrf_token %}
+  {{form.as_semantic}}
+  <input class="ui purple tiny button" type="submit" value="Submit">
 </form>
 {% endblock %}
