@@ -76,20 +76,24 @@ This part assumes the following steps:
 * It is running as user partuniverse under
   `/home/partuniverse/partuniverse`
 * You are using systemd
+* You have already recommpilled translations by running
+  `python manage.py compilemessages`
 
 Now do the following steps:
 
-1. Create the directory /run/partuniverse
-2. Set the owner of /run/partuniverse to partuniverse
-3. Copy `utils/partuniverse.service` to `/etc/systemd/system`.
-3. Copy `utils/partuniverse.socket` to `/etc/systemd/system`.
-4. Copy `utils/nginx-host.conf` to an appropriate place and edit it to
-   your liking, you should get the idea once you look at it.
-5. Reload the systemd config: systemctl daemon-reload
-6. Start the partuniverse service: systemctl start partuniverse
-7. Activate the nginx vhost and reload.
-8. Your partuniverse is now running behind a high speed web server,
-   you are welcome :-).
+1.  Create the directory /run/partuniverse
+2.  Set the owner of /run/partuniverse to partuniverse
+3.  Collect static files by running
+    `manage.py collectstatic` inside partuniversde project folder
+4.  Copy `utils/partuniverse.service` to `/etc/systemd/system`.
+5.  Copy `utils/partuniverse.socket` to `/etc/systemd/system`.
+6.  Copy `utils/nginx-host.conf` to an appropriate place and edit it to
+    your liking, you should get the idea once you look at it.
+7.  Reload the systemd config: systemctl daemon-reload
+8.  Start the partuniverse service: systemctl start partuniverse
+9.  Activate the nginx vhost and reload.
+10. Your partuniverse is now running behind a high speed web server,
+    you are welcome :-).
 
 ## i18n/l10n
 
