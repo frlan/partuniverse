@@ -102,7 +102,7 @@ ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 # monkey patching BaseForm
 
 from django.forms import BaseForm
-from semantic_forms import as_semantic
+from .semantic_forms import as_semantic
 
 BaseForm.as_semantic = as_semantic
 
@@ -114,6 +114,6 @@ BaseForm.as_semantic = as_semantic
 # ignored in your version control system allowing for settings to be
 # defined per machine.
 try:
-	from local_settings import *
+	from .local_settings import *
 except ImportError:
 	pass
