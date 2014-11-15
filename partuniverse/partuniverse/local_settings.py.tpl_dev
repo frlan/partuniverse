@@ -12,9 +12,16 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 
+# Emailsettings
+DEFAULT_FROM_EMAIL = 'partuniverse@example.com'
+
+# Temp. no real mail sending out
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
+# SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -22,6 +29,15 @@ DATABASES = {
     }
 }
 
-# Temp. no real mail sending out
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# PostgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'partuniverse',
+#         'USER': 'partuniverse',
+#         'PASSWORD': '',
+#         'HOST': '',
+#         'PORT': '5432',
+#     }
+# }
 
