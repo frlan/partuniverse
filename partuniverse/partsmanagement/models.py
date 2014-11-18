@@ -141,6 +141,29 @@ class Part(models.Model):
 	# Based upon post at http://stackoverflow.com/a/2217558/2915834
 	def get_fields(self):
 		return [(field.name, field.value_to_string(self)) for field in Part._meta.fields]
+	
+	def is_below_min_stock(self):
+		""" Returns True, if the item is below minimum stock. 
+			Will returns False if on_stock >= min_stock 
+			If either on_stock or min_stock is not defined, it will 
+			return False """
+		if (self.on_stock is not None and
+			self.min_stock is not None and
+			self.on_stock < self.min_stock):
+			return True
+		else:
+			return False
+	
+	def is_on_stock(self):
+		""" Returns True, if the item is on stock. 
+			Will return False if on_stock <= 0 
+			If either on_stock is not defined, it will 
+			return True """
+		if (self.on_stock is None or
+			self.on_stock > 0):
+			return True
+		else:
+			return False
 
 	class Meta:
 		verbose_name = _("Part")
