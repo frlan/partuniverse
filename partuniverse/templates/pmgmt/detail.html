@@ -10,6 +10,12 @@
 {% block content %}
 <h1>{{ object.name }}</h1>
 
+{% if object.is_below_min_stock == True or object.is_on_stock == False %}
+<div class="ui error message segment" style="display: block;">
+	<p>{% trans "Item out of stock or below minimum stock" %}</p>
+</div>
+{% endif %}
+
 <table class="ui table segment">
     {% for verbose_name, value in object.get_fields %}
     {% if value %}

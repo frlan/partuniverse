@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     {% for item in object_list %}
-    <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False	 %}error{% endif %} ">
+    <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
       <td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
       <td>{{ item.min_stock|default:"" }}</td>
       <td>{{ item.on_stock|default:"" }}</td>
