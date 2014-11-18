@@ -21,11 +21,11 @@
   </thead>
   <tbody>
     {% for item in object_list %}
-    <tr class="{% if item.on_stock|default:0 < item.min_stock|default:0 %}error{% endif %} ">
+    <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False	 %}error{% endif %} ">
       <td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
       <td>{{ item.min_stock|default:"" }}</td>
       <td>{{ item.on_stock|default:"" }}</td>
-      <td>{{ item.manufacturer|default:"" }}</td>      
+      <td>{{ item.manufacturer|default:"" }}</td>
       <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
       <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>
     </tr>
