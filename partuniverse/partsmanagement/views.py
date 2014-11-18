@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.db.models import Avg
+from django.db.models import F
 from django.contrib.auth.decorators import login_required
 
 # Class based views to create a new dataset and Update one
@@ -28,9 +28,19 @@ class PartsList(ListView):
 	model = Part
 	template_name = 'pmgmt/list.html'
 
-class TransactionListView(ListView):
-	model = Transaction
-	template_name = 'pmgmt/trans_list.html'
+class PartsReorderList(ListView):
+	# model = Part
+	template_name = 'pmgmt/list.html'
+	context_object_name = 'reorder_items'
+
+	# This is not using new generated functions, but should be much more
+	# performant for lot of items instead
+	def get_queryset(self):
+		# Should be translated to something like:
+		# SELECT * FROM "PARTS" WHERE NOT (on_stock > 0 AND on_stock >= min_stock)
+		# TODO: Check on database level
+		return Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
+
 
 class PartsAddView(CreateView):
 	model = Part
@@ -49,6 +59,7 @@ class PartsAddView(CreateView):
 		form.instance.created_by = user
 		form.instance.timestamp = now()
 		return super(PartsAddView, self).form_valid(form)
+
 
 class PartDeleteView(DeleteView):
 	model = Part
@@ -77,6 +88,11 @@ class PartUpdateView(UpdateView):
 ########################################################################
 # Transaction
 ########################################################################
+
+class TransactionListView(ListView):
+	model = Transaction
+	template_name = 'pmgmt/trans_list.html'
+
 class TransactionAddView(CreateView):
 
 	model = Transaction
