@@ -116,7 +116,7 @@ class Part(models.Model):
 		decimal_places=4,
 		null=True,
 		blank=True)
-	unit = models.CharField(
+	unit = models.CharField(_("Messuring unit"),
 		max_length=3,
 		choices=UNIT_CHOICES,
 		blank=False,
@@ -131,7 +131,8 @@ class Part(models.Model):
 					blank=True)
 	categories = models.ManyToManyField(Category,
 					verbose_name=_("Category"))
-	creation_time = models.DateTimeField(auto_now_add=True)
+	creation_time = models.DateTimeField(_("Creation time"),
+					auto_now_add=True)
 	created_by = models.ForeignKey(User,
 					verbose_name=_("Added by"))
 
@@ -140,12 +141,12 @@ class Part(models.Model):
 
 	# Based upon post at http://stackoverflow.com/a/2217558/2915834
 	def get_fields(self):
-		return [(field.name, field.value_to_string(self)) for field in Part._meta.fields]
-	
+		return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
+
 	def is_below_min_stock(self):
-		""" Returns True, if the item is below minimum stock. 
-			Will returns False if on_stock >= min_stock 
-			If either on_stock or min_stock is not defined, it will 
+		""" Returns True, if the item is below minimum stock.
+			Will returns False if on_stock >= min_stock
+			If either on_stock or min_stock is not defined, it will
 			return False """
 		if (self.on_stock is not None and
 			self.min_stock is not None and
@@ -153,11 +154,11 @@ class Part(models.Model):
 			return True
 		else:
 			return False
-	
+
 	def is_on_stock(self):
-		""" Returns True, if the item is on stock. 
-			Will return False if on_stock <= 0 
-			If either on_stock is not defined, it will 
+		""" Returns True, if the item is on stock.
+			Will return False if on_stock <= 0
+			If either on_stock is not defined, it will
 			return True """
 		if (self.on_stock is None or
 			self.on_stock > 0):
