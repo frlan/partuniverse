@@ -129,6 +129,10 @@ class Part(models.Model):
 					verbose_name=_("Distributor"),
 					null=True,
 					blank=True)
+	storage_place = models.ForeignKey(StoragePlace,
+					verbose_name=_("Storage"),
+					blank=True,
+					null=True)
 	categories = models.ManyToManyField(Category,
 					verbose_name=_("Category"))
 	creation_time = models.DateTimeField(_("Creation time"),
