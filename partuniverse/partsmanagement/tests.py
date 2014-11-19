@@ -18,7 +18,7 @@ class CategoryTestCase(TestCase):
 	def test_category_name(self):
 		self.assertEqual(self.cat1.__unicode__(), u'Category 1')
 		self.assertEqual(self.cat2.__unicode__(), u'Category 1:Category 2')
-		self.assertE+qual(self.cat3.__unicode__(), u'Category 1:Category 2:Category 3')
+		self.assertEqual(self.cat3.__unicode__(), u'Category 1:Category 2:Category 3')
 
 class TransactionInventoryChange(TestCase):
 	""" This is a test to check whether a new transaction is increasing
