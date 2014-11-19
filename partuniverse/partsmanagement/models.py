@@ -196,7 +196,7 @@ class Transaction(models.Model):
 		null=False,
 		auto_now_add=True,
 		db_index=True)
-	comment = models.TextField(_("Comment",
+	comment = models.TextField(_("Comment"),
 		blank=True,
 		null=True,
 		max_length=200)
