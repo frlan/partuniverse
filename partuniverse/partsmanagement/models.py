@@ -34,6 +34,7 @@ class StorageType(models.Model):
 
 	class Meta:
 		verbose_name = _("Storage Type")
+		verbose_name_plural = _("Storage Types")
 
 
 class StoragePlace(models.Model):
@@ -47,6 +48,7 @@ class StoragePlace(models.Model):
 
 	class Meta:
 		verbose_name = _("Storage Place")
+		verbose_name_plural = _("Storage Places")
 
 
 class Manufacturer(models.Model):
@@ -62,6 +64,7 @@ class Manufacturer(models.Model):
 
 	class Meta:
 		verbose_name = _("Manufacturer")
+		verbose_name_plural = _("Manufacturers")
 
 
 class Distributor(models.Model):
@@ -69,7 +72,8 @@ class Distributor(models.Model):
 
 	name = models.CharField(max_length=50)
 
-	creation_time = models.DateTimeField(auto_now_add=True)
+	creation_time = models.DateTimeField(_("Creation time"),
+					auto_now_add=True)
 	created_by = models.ForeignKey(User,
 					verbose_name=_("Added by"))
 
@@ -78,6 +82,8 @@ class Distributor(models.Model):
 
 	class Meta:
 		verbose_name = _("Distributor")
+		verbose_name_plural = _("Distributors")
+
 
 
 class Category(models.Model):
@@ -174,18 +180,23 @@ class Part(models.Model):
 		verbose_name = _("Part")
 		verbose_name_plural = _("Parts")
 
+
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
-	subject = models.CharField(max_length=100)
-	created_by = models.ForeignKey(User)
-	amount = models.DecimalField(max_digits=10, decimal_places=4)
+	subject = models.CharField(_("Subject"),
+		max_length=100)
+	created_by = models.ForeignKey(User,
+		verbose_name=_("Created by"))
+	amount = models.DecimalField(_("Amount"),
+		max_digits=10,
+		decimal_places=4)
 	part = models.ForeignKey(Part)
-	date = models.DateField(
+	date = models.DateField(_("Transaction Date"),
 		blank=False,
 		null=False,
 		auto_now_add=True,
 		db_index=True)
-	comment = models.TextField(
+	comment = models.TextField(_("Comment",
 		blank=True,
 		null=True,
 		max_length=200)
