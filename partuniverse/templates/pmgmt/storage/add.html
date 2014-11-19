@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block content %}
+<p>{% trans "Use this to add new storage places e.g. new shelf." %}</p>
+<form method="post" class="ui form segment" >
+  {% csrf_token %}
+  {{ form.as_semantic }}
+  <input class="ui tiny button purple" type="submit" value="Submit">
+</form>
+{% endblock %}

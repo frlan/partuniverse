@@ -20,6 +20,7 @@ from partsmanagement.models import Part
 from partsmanagement.models import Transaction
 from partsmanagement.models import Manufacturer
 from partsmanagement.models import Distributor
+from partsmanagement.models import StoragePlace
 
 ########################################################################
 # Part
@@ -190,3 +191,13 @@ class DistributorDeleteView(DeleteView):
 	model = Distributor
 	success_url = reverse_lazy('distributorr_list')
 	template_name = 'pmgmt/distributor/delete.html'
+
+########################################################################
+# Storage
+########################################################################
+
+class StoragePlaceAddView(CreateView):
+	model = StoragePlace
+	success_url = reverse_lazy('home')
+	fields = ('name', 'storage_type')
+	template_name = 'pmgmt/storage/add.html'

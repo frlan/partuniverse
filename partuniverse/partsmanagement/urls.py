@@ -54,4 +54,7 @@ urlpatterns = patterns('',
 #			name='manufacturer_delete'),
 	url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
 			name='distributor_detail'),
+	# Storage
+	url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
+			name='storage_add'),
 )
