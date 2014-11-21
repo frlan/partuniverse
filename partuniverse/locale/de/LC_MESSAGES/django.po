@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-21 17:53+0000\n"
-"PO-Revision-Date: 2014-11-21 18:59+0100\n"
+"PO-Revision-Date: 2014-11-21 19:00+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -64,10 +64,8 @@ msgid "Storage Type"
 msgstr "Lagertyp"
 
 #: partsmanagement/models.py:37
-#, fuzzy
-#| msgid "Storage Type"
 msgid "Storage Types"
-msgstr "Lagertyp"
+msgstr "Lagertypen"
 
 #: partsmanagement/models.py:50
 msgid "Storage Place"
