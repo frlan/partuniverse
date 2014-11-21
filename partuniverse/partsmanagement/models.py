@@ -107,7 +107,7 @@ class Category(models.Model):
 		if self.parent == None:
 			return self.name
 		else:
-			tmp = unicode(str(self.parent) + ':' + str(self.name))
+			tmp = unicode(str(self.parent) + settings.PARENT_DELIMITER + str(self.name))
 			return tmp
 
 	class Meta:
