@@ -48,6 +48,8 @@ class StoragePlace(models.Model):
 	storage_type = models.ForeignKey(StorageType)
 	parent = models.ForeignKey("self", null=True, blank=True,
 		verbose_name=_("Parent storage"))
+	disabled = models.BooleanField(_("Disabled"),
+		default=False)
 
 	def __unicode__(self):
 		if self.parent == None:
@@ -155,6 +157,8 @@ class Part(models.Model):
 					auto_now_add=True)
 	created_by = models.ForeignKey(User,
 					verbose_name=_("Added by"))
+	disabled = models.BooleanField(_("Disabled"),
+		default=False)
 
 	def __unicode__(self):
 		return self.name
