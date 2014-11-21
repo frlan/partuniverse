@@ -29,6 +29,10 @@ class PartsList(ListView):
 	model = Part
 	template_name = 'pmgmt/list.html'
 
+	def get_queryset(self):
+		return Part.objects.exclude(disabled='True')
+
+
 class PartsReorderList(ListView):
 	# model = Part
 	template_name = 'pmgmt/list.html'
@@ -192,6 +196,7 @@ class DistributorDeleteView(DeleteView):
 	model = Distributor
 	success_url = reverse_lazy('distributorr_list')
 	template_name = 'pmgmt/distributor/delete.html'
+
 
 ########################################################################
 # Storage
