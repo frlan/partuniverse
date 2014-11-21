@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1\n"
+"Project-Id-Version: 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-14 19:58+0000\n"
-"PO-Revision-Date: 2014-11-14 21:01+0100\n"
+"POT-Creation-Date: 2014-11-21 17:53+0000\n"
+"PO-Revision-Date: 2014-11-21 18:59+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_template_defaulttags.html:2938
+#, python-format
+msgid "The width is: %(width)s"
+msgstr "Die Breite ist:  %(width)s"
+
+#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_views_static.html:294
+#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_views_static.html:297
+#, python-format
+msgid "Index of %(directory)s"
+msgstr "Index von %(directory)s"
 
 #: partsmanagement/models.py:12
 msgid "Length"
@@ -53,58 +63,110 @@ msgstr "Unbekannt"
 msgid "Storage Type"
 msgstr "Lagertyp"
 
-#: partsmanagement/models.py:49
+#: partsmanagement/models.py:37
+#, fuzzy
+#| msgid "Storage Type"
+msgid "Storage Types"
+msgstr "Lagertyp"
+
+#: partsmanagement/models.py:50
 msgid "Storage Place"
 msgstr "Lagerplatz"
 
-#: partsmanagement/models.py:58 partsmanagement/models.py:74
-#: partsmanagement/models.py:136
+#: partsmanagement/models.py:51
+#| msgid "Storage Place"
+msgid "Storage Places"
+msgstr "Lagerplätze"
+
+#: partsmanagement/models.py:60 partsmanagement/models.py:78
+#: partsmanagement/models.py:147
 msgid "Added by"
 msgstr "Hinzugefügt von"
 
-#: partsmanagement/models.py:64 partsmanagement/models.py:125
+#: partsmanagement/models.py:66 partsmanagement/models.py:131
 #: templates/pmgmt/list.html:17
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:80 partsmanagement/models.py:129
+#: partsmanagement/models.py:67
+#| msgid "Manufacturer"
+msgid "Manufacturers"
+msgstr "Hersteller"
+
+#: partsmanagement/models.py:75 partsmanagement/models.py:144
+msgid "Creation time"
+msgstr "Angelegt am"
+
+#: partsmanagement/models.py:84 partsmanagement/models.py:135
 msgid "Distributor"
 msgstr "Lieferant"
 
-#: partsmanagement/models.py:98 partsmanagement/models.py:133
+#: partsmanagement/models.py:85
+msgid "Distributors"
+msgstr "Lieferanten"
+
+#: partsmanagement/models.py:104 partsmanagement/models.py:143
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:99
+#: partsmanagement/models.py:105
 msgid "Categories"
 msgstr "Kategorien"
 
-#: partsmanagement/models.py:105
+#: partsmanagement/models.py:111
 msgid "Name of part"
 msgstr "Name des Teils"
 
-#: partsmanagement/models.py:107
+#: partsmanagement/models.py:113
 msgid "Minimal stock"
 msgstr "Mindestlagerbestand"
 
-#: partsmanagement/models.py:114
+#: partsmanagement/models.py:120
 msgid "Parts on stock"
 msgstr "Lagerbestand"
 
-#: partsmanagement/models.py:146
+#: partsmanagement/models.py:125
+msgid "Messuring unit"
+msgstr "Maßeinheit"
+
+#: partsmanagement/models.py:139
+msgid "Storage"
+msgstr "Lager"
+
+#: partsmanagement/models.py:180
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:147 templates/pmgmt/detail.html:6
+#: partsmanagement/models.py:181 templates/pmgmt/detail.html:6
 #: templates/pmgmt/list.html:6
 msgid "Parts"
 msgstr "Teile"
 
-#: partsmanagement/models.py:179
+#: partsmanagement/models.py:186
+msgid "Subject"
+msgstr "Kurzbeschreibung"
+
+#: partsmanagement/models.py:189
+msgid "Created by"
+msgstr "Erstellt von"
+
+#: partsmanagement/models.py:190
+msgid "Amount"
+msgstr "Menge"
+
+#: partsmanagement/models.py:194
+msgid "Transaction Date"
+msgstr "Transaktionsdaten"
+
+#: partsmanagement/models.py:199
+msgid "Comment"
+msgstr "Kommentar"
+
+#: partsmanagement/models.py:218
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:180 templates/pmgmt/trans_list.html:6
+#: partsmanagement/models.py:219 templates/pmgmt/trans_list.html:6
 msgid "Transactions"
 msgstr "Transaktionen"
 
@@ -112,6 +174,24 @@ msgstr "Transaktionen"
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
 msgstr "(Hidden field %(name)s) %(error)s"
+
+#: templates/about.html:5
+msgid ""
+"\n"
+"<h1>About</h1>\n"
+"<h2>Licence</h2>\n"
+"<p>The software is distributed under terms of AGPLv3+.</p>\n"
+"<h2>Source Code</h2>\n"
+"<p>You can fetch the source code from <a href=\"https://github.com/frlan/"
+"partuniverse\">github.com</a></p>\n"
+msgstr ""
+"\n"
+"<h1>&Uuml;ber</h1>\n"
+"<h2>Lizenz</h2>\n"
+"<p>Die Software wurde unter den Bedingungen der AGPLv3+ veröffentlicht.</p>\n"
+"<h2>Quellcode</h2>\n"
+"<p>Du kannst die Quellen von <a href=\"https://github.com/frlan/"
+"partuniverse\">github.com</a> herunterladen.</p>\n"
 
 #: templates/account/delete.html:6 templates/account/password_change.html:8
 #: templates/account/settings.html:6 templates/base.html:16
@@ -364,7 +444,6 @@ msgid "Account settings"
 msgstr "Benutzerkonto-Einstellungen"
 
 #: templates/account/settings.html:10
-#| msgid "Account settings"
 msgid "General Account Settings"
 msgstr "Benutzerkonto-Einstellungen"
 
@@ -393,7 +472,7 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:15 templates/base.html.py:19 templates/base.html:29
+#: templates/base.html:15 templates/base.html.py:19 templates/base.html:30
 msgid "Home"
 msgstr "Start"
 
@@ -412,6 +491,10 @@ msgstr "Einloggen"
 #: templates/base.html:21
 msgid "Register"
 msgstr "Registrieren"
+
+#: templates/base.html:23
+msgid "About"
+msgstr "Über"
 
 #: templates/index.html:6
 msgid "This is an approach for keeping an overview over your parts."
@@ -435,15 +518,23 @@ msgstr "Eine neue Transaktion starten"
 msgid "Add a new part"
 msgstr "Ein neues Teil anlegen"
 
-#: templates/index.html:14
+#: templates/index.html:13
+msgid "Add a new storage"
+msgstr "Einen neuen Lagerort anlegen"
+
+#: templates/index.html:15
 msgid "Show all tranactions"
 msgstr "Alle Transaktionen anzeigen"
 
-#: templates/index.html:15
+#: templates/index.html:16
+msgid "Show all parts needs reordering"
+msgstr "Zeige alle Teile, die nachbestellt werden müssen"
+
+#: templates/index.html:17
 msgid "List of Manufacturers"
 msgstr "Liste der Hersteller"
 
-#: templates/index.html:16
+#: templates/index.html:18
 msgid "List of Distributors"
 msgstr "Liste der Lieferantanten"
 
@@ -453,7 +544,6 @@ msgstr "Ein Teil löschen"
 
 #: templates/pmgmt/delete.html:8 templates/pmgmt/distributor/delete.html:8
 #: templates/pmgmt/manufacturer/delete.html:8
-#, fuzzy, python-format
 #| msgid ""
 #| "\n"
 #| "\t\tAre you sure you want to delete »%(object)s«?\n"
@@ -467,12 +557,16 @@ msgstr ""
 "\t\tMöchtest Du {{ object }} wirklich löschen?\n"
 "\t"
 
-#: templates/pmgmt/detail.html:25 templates/pmgmt/distributor/detail.html:16
+#: templates/pmgmt/detail.html:15
+msgid "Item out of stock or below minimum stock"
+msgstr "Teile, die den Minimalbestand erreicht haben oder nicht mehr verfügbar sind"
+
+#: templates/pmgmt/detail.html:31 templates/pmgmt/distributor/detail.html:16
 #: templates/pmgmt/manufacturer/detail.html:16
 msgid "Update item"
 msgstr "Teil editieren"
 
-#: templates/pmgmt/detail.html:26
+#: templates/pmgmt/detail.html:32
 msgid "Delete item"
 msgstr "Teil löschen"
 
@@ -527,6 +621,10 @@ msgstr "Hersteller löschen"
 #: templates/pmgmt/manufacturer/list.html:6
 msgid "A list with all manufacturers ... "
 msgstr "Eine Liste mit bekannten Herstellern ..."
+
+#: templates/pmgmt/storage/add.html:5
+msgid "Use this to add new storage places e.g. new shelf."
+msgstr ""
 
 #: templates/pmgmt/trans_list.html:12
 msgid "What"
