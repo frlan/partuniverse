@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from django.conf import settings
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
@@ -38,13 +39,22 @@ class StorageType(models.Model):
 
 
 class StoragePlace(models.Model):
-	""" Representing the place inside the storage """
-	# The Name could be e.g. cordinates
+	""" Representing the general storage place. This can be either a
+		general storage or a particular place inside a storage as
+		e.g. a shelf."""
+
+	# The Name could be e.g. cordinates or something else meaningfull
 	name = models.CharField(max_length=50)
 	storage_type = models.ForeignKey(StorageType)
+	parent = models.ForeignKey("self", null=True, blank=True,
+		verbose_name=_("Parent storage"))
 
 	def __unicode__(self):
-		return self.name
+		if self.parent == None:
+			return self.name
+		else:
+			tmp = unicode(str(self.parent) + settings.PARENT_DELIMITER + str(self.name))
+			return tmp
 
 	class Meta:
 		verbose_name = _("Storage Place")

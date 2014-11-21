@@ -107,6 +107,12 @@ from .semantic_forms import as_semantic
 BaseForm.as_semantic = as_semantic
 
 
+########################################################################
+# Delimiter for hirachial stuff
+########################################################################
+
+PARENT_DELIMITER = "->"
+
 ##################
 # LOCAL SETTINGS #
 ##################
