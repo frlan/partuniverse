@@ -9,6 +9,9 @@ from django.conf import settings
 from .models import *
 from .views import *
 
+########################################################################
+# Category
+########################################################################
 class CategoryTestCase(TestCase):
 	""" Test to check whether category name is printed correctly.
 		If there is a parent, it should be also printed seperated by a : """
@@ -26,6 +29,10 @@ class CategoryTestCase(TestCase):
 		self.assertEqual(self.cat2.__unicode__(), cat_result2)
 		self.assertEqual(self.cat3.__unicode__(), cat_result3)
 
+
+########################################################################
+# Transaction
+########################################################################
 class TransactionInventoryChange(TestCase):
 	""" This is a test to check whether a new transaction is increasing
 		on_stock or decreasing on_stock of a particular part """
@@ -70,6 +77,10 @@ class TransactionInventoryChange(TestCase):
 
 		self.assertEqual(Part.objects.get(name='Test Part 2').on_stock, 110)
 
+
+########################################################################
+# Part related
+########################################################################
 class ItemOutOfStockTestCase(TestCase):
 	""" Checking whether reporting of out-of-stock-items are
 		working well """
@@ -148,6 +159,3 @@ class ItemOutOfStockTestCase(TestCase):
 		""" Testcase for checking whether
 			on_stock = min_stock """
 		self.assertFalse(Part.objects.get(name='Test Part 5').is_below_min_stock())
-
-
-
