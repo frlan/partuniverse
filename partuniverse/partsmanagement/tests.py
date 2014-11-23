@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+# For splitting of e.g. categories
+from django.conf import settings
+
 from .models import *
 from .views import *
 
@@ -16,9 +19,12 @@ class CategoryTestCase(TestCase):
 		self.cat3 = Category.objects.create(name='Category 3', parent=self.cat2)
 
 	def test_category_name(self):
-		self.assertEqual(self.cat1.__unicode__(), u'Category 1')
-		self.assertEqual(self.cat2.__unicode__(), u'Category 1:Category 2')
-		self.assertEqual(self.cat3.__unicode__(), u'Category 1:Category 2:Category 3')
+		cat_result1 = u'Category 1'
+		cat_result2 = u'Category 1' + settings.PARENT_DELIMITER + u'Category 2'
+		cat_result3 = u'Category 1' + settings.PARENT_DELIMITER + u'Category 2' + settings.PARENT_DELIMITER + u'Category 3'
+		self.assertEqual(self.cat1.__unicode__(), cat_result1)
+		self.assertEqual(self.cat2.__unicode__(), cat_result2)
+		self.assertEqual(self.cat3.__unicode__(), cat_result3)
 
 class TransactionInventoryChange(TestCase):
 	""" This is a test to check whether a new transaction is increasing
