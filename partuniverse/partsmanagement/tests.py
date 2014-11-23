@@ -189,3 +189,26 @@ class ItemOutOfStockTestCase(TestCase):
 		""" Testcase for checking whether
 			on_stock = min_stock """
 		self.assertFalse(Part.objects.get(name='Test Part 5').is_below_min_stock())
+
+########################################################################
+# Storage
+########################################################################
+class StrorageParentTestCase(TestCase):
+	""" Test to check whether storage name is printed correctly.
+		If there is a parent, it should be also printed seperated by the
+		defined delimiter """
+
+	def setUp(self):
+		self.storage_type = StorageType.objects.create(name='Generic Typ')
+		self.stor1 = StoragePlace.objects.create(name='Storage Lvl 1', storage_type=self.storage_type)
+		self.stor2 = StoragePlace.objects.create(name='Storage Lvl 2', parent=self.stor1, storage_type=self.storage_type)
+		self.stor3 = StoragePlace.objects.create(name='Storage Lvl 3', parent=self.stor2, storage_type=self.storage_type)
+
+	def test_storage_name(self):
+		stor_result1 = u'Storage Lvl 1'
+		stor_result2 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2'
+		stor_result3 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2' + settings.PARENT_DELIMITER + u'Storage Lvl 3'
+		self.assertEqual(self.stor1.__unicode__(), stor_result1)
+		self.assertEqual(self.stor2.__unicode__(), stor_result2)
+		self.assertEqual(self.stor3.__unicode__(), stor_result3)
+
