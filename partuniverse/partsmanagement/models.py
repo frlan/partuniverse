@@ -163,9 +163,16 @@ class Part(models.Model):
 	def __unicode__(self):
 		return self.name
 
-	# Based upon post at http://stackoverflow.com/a/2217558/2915834
+	# Based upon a post at http://stackoverflow.com/a/2217558/2915834
+	# Modified to make it better readable for n00bz and exclude disabled
+	# field or maybe others in future.
 	def get_fields(self):
-		return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
+		tmp = []
+		for field in Part._meta.fields:
+			if field.name is not 'disabled':
+				tmp.append((field.verbose_name, field.value_to_string(self)))
+		return tmp
+		#return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
 
 	def is_below_min_stock(self):
 		""" Returns True, if the item is below minimum stock.
