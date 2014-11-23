@@ -9,7 +9,11 @@
 {% endblock %}
 {% block content %}
 <h1>{{ object.name }}</h1>
-
+{% if object.disabled == True %}
+<div class="ui error message segment">
+<p>{% trans "This part has been marked as disbaled. Please contact your admin for details." %}</p>
+</div>
+{% endif %}
 {% if object.is_below_min_stock == True or object.is_on_stock == False %}
 <div class="ui error message segment">
 	<p>{% trans "The item is out of stock or below its minimum stock" %}</p>
@@ -28,8 +32,11 @@
 </table>
 
 <p>
+{% if object.disabled == Flase %}
   <a class="ui tiny button purple" href="/pmgmt/{{object.id}}/update/">{% trans "Update item" %}</a>
-  <a class="ui tiny button purple" href="/pmgmt/{{object.id}}/delete/">{% trans "Delete item" %}</a>
+{% endif %}
+<a class="ui tiny button purple" href="/pmgmt/{{object.id}}/delete/">{% trans "Delete item" %}</a>
 </p>
+
 
 {% endblock %}
