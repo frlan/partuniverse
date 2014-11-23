@@ -16,17 +16,21 @@
 {% endif %}
 {% if object.is_below_min_stock == True or object.is_on_stock == False %}
 <div class="ui error message segment">
-	<p>{% trans "The item is out of stock or below its minimum stock" %}</p>
+    <p>{% trans "The item is out of stock or below its minimum stock" %}</p>
 </div>
 {% endif %}
 
 <table class="ui table segment">
     {% for verbose_name, value in object.get_fields %}
     {% if value %}
-      <tr>
-	<td>{{ verbose_name }}</td>
-	<td>{{ value }} </td>
-      </tr>
+    <tr>
+    <td>{{ verbose_name }}</td>
+    {% if value == "None" %}
+        <td>{% trans "n/A" %}</td>
+    {% else %}
+        <td>{{ value }} </td>
+    {% endif %}
+    </tr>
     {% endif %}
     {% endfor %}
 </table>
