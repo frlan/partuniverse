@@ -36,7 +36,7 @@
 </table>
 
 <p>
-{% if object.disabled == Flase %}
+{% if object.disabled == False %}
   <a class="ui tiny button purple" href="/pmgmt/{{object.id}}/update/">{% trans "Update item" %}</a>
 {% endif %}
 <a class="ui tiny button purple" href="/pmgmt/{{object.id}}/delete/">{% trans "Delete item" %}</a>
