@@ -81,6 +81,36 @@ class TransactionInventoryChange(TestCase):
 ########################################################################
 # Part related
 ########################################################################
+
+class PartExcludeDisabledTestCase(TestCase):
+	""" Checking, wether get_fields() is not return the disabled field """
+
+	def setUp(self):
+		# Setting up test user
+		self.cat = Category.objects.create(name='Category 1')
+		self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Settig up a part
+		self.part1 = Part.objects.create(name='Test Part 1',
+			unit='m',
+			on_stock = 100,
+			min_stock = 50,
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+	def test_get_fields_not_showing_disabled_field(self):
+		# TODO: Is there a way to do it in a cleaner way?
+
+		# We are iterating over all fields and if field "Disabled"
+		# has been found the Test 1 == 0 will fail.
+		for field in self.part1.get_fields():
+			if unicode(field[0]) == 'Disabled':
+				self.assertTrue(False)
+		self.assertTrue(True)
+
+
+
 class ItemOutOfStockTestCase(TestCase):
 	""" Checking whether reporting of out-of-stock-items are
 		working well """

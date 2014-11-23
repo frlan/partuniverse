@@ -97,7 +97,6 @@ class Distributor(models.Model):
 		verbose_name_plural = _("Distributors")
 
 
-
 class Category(models.Model):
 	""" Representing a category a part might contains to.
 	E.g. resistor """
