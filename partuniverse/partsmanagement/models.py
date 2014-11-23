@@ -21,7 +21,7 @@ UNIT_CHOICES = (
 			('ccm', _('cubic centimeters'))
 		)
 	),
-	('---', _('Unknown')),
+	(_('n/A'), _('Unknown')),
 )
 
 
