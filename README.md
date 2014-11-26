@@ -54,6 +54,21 @@ This can be done by:
 
 ### Running
 
+#### Adjusting your configuration file
+
+Inside folder `partuniverse/partuniverse` you will find some local
+configuration file templates called `local_settings.py.tpl_dev` and
+`local_settings.py.tpl_prod`. Copy one of these to a file called
+`local_settings.py` and adjust values inside as needed. These file are
+holding your local configuration which should not be part of (public)
+git repository. So configure here e.g. your database connection
+settings and -- this is quiet important -- your SECRET_KEY. However,
+the templates are including some more configurations e.g. for debugging
+purpose. So `local_settings.py.tpl_prod` is indented to be a basis
+template for your production environment whereas
+`local_settings.py.tpl_dev` is targeting your local developing work.
+After this has been done, go ahead setting up your application.
+
 Being inside the virtual environment, go into the folder where you have
 checked out the sources. Within the folder you will find a partuniverse
 folder. Change into it. Run this as following:
