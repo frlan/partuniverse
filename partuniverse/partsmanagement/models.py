@@ -126,13 +126,6 @@ class Part(models.Model):
 		decimal_places=4,
 		null=True,
 		blank=True)
-	# Should be calculated based on transactions
-	on_stock = models.DecimalField(
-		_("Parts on stock"),
-		max_digits=10,
-		decimal_places=4,
-		null=True,
-		blank=True)
 	unit = models.CharField(_("Messuring unit"),
 		max_length=3,
 		choices=UNIT_CHOICES,
@@ -146,10 +139,6 @@ class Part(models.Model):
 					verbose_name=_("Distributor"),
 					null=True,
 					blank=True)
-	storage_place = models.ForeignKey(StoragePlace,
-					verbose_name=_("Storage"),
-					blank=True,
-					null=True)
 	categories = models.ManyToManyField(Category,
 					verbose_name=_("Category"))
 	creation_time = models.DateTimeField(_("Creation time"),
@@ -161,6 +150,10 @@ class Part(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	def get_on_stock(self):
+		""" Returns the amount of items which are on stock over all storages """
+		pass
 
 	# Based upon a post at http://stackoverflow.com/a/2217558/2915834
 	# Modified to make it better readable for n00bz and exclude disabled
@@ -201,8 +194,30 @@ class Part(models.Model):
 		verbose_name_plural = _("Parts")
 
 
+class StorageItem(models.Model):
+	part = models.ForeignKey(Part)
+	storage = models.ForeignKey(StoragePlace)
+	on_stock = models.DecimalField(
+		_("Parts inside storage"),
+		max_digits=10,
+		decimal_places=4,
+		null=True,
+		blank=True)
+	disabled = models.BooleanField(_("Disabled"),
+		default=False)
+
+	def __unicode__(self):
+		return str(self.part) + ": " + str(self.storage)
+
+	class Meta:
+		unique_together = ("part", "storage")
+		verbose_name = _("Storage Item")
+		verbose_name_plural = _("Storage Items")
+
+
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
+
 	subject = models.CharField(_("Subject"),
 		max_length=100)
 	created_by = models.ForeignKey(User,
@@ -210,7 +225,7 @@ class Transaction(models.Model):
 	amount = models.DecimalField(_("Amount"),
 		max_digits=10,
 		decimal_places=4)
-	part = models.ForeignKey(Part)
+	storage_item = models.ForeignKey(StorageItem,null=True, blank=True)
 	date = models.DateField(_("Transaction Date"),
 		blank=False,
 		null=False,
@@ -222,16 +237,14 @@ class Transaction(models.Model):
 		max_length=200)
 
 	def save(self, *args, **kwargs):
-		try:
-			tmp_part = Part.objects.get(name = self.part.name)
-			tmp_part.on_stock = tmp_part.on_stock + self.amount
-			tmp_part.save()
-		except:
-			pass
+		tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
+		print tmp_storage_item
+		tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
+		tmp_storage_item.save()
 		super(Transaction, self).save(*args, **kwargs)
 
 	def __unicode__(self):
-		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
+		tmp = self.subject + " " + str(self.storage_item) + " " + str(self.date)
 		return unicode(tmp)
 
 	class Meta:
