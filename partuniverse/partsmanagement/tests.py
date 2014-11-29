@@ -284,7 +284,7 @@ class ItemOutOfStockTestCase(TestCase):
 		self.storage_item4 = StorageItem.objects.create(
 			part=self.part4,
 			storage=self.storageplace4,
-			on_stock=100)
+			on_stock=0)
 
 		# on_stock not defined
 		# min_stock not defined
@@ -300,11 +300,12 @@ class ItemOutOfStockTestCase(TestCase):
 	def test_item_out_of_stock(self):
 		""" Testcase for on_stock = 0 """
 		self.assertFalse(Part.objects.get(name='Test Part 4').is_on_stock())
+		self.assertFalse(Part.objects.get(name='Test Part 5').is_on_stock())
+
 
 	def test_item_not_out_of_stock(self):
 		""" Testcase for on_stock > 0 """
 		self.assertTrue(Part.objects.get(name='Test Part 1').is_on_stock())
-		self.assertTrue(Part.objects.get(name='Test Part 5').is_on_stock())
 
 	def test_item_below_min_stock(self):
 		""" Testcase for checking whether

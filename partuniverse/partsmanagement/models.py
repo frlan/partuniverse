@@ -200,8 +200,7 @@ class Part(models.Model):
 			Will return False if on_stock <= 0
 			If either on_stock is not defined, it will
 			return True """
-		if (self.on_stock is None or
-			self.on_stock > 0):
+		if (self.get_on_stock() > 0):
 			return True
 		else:
 			return False
