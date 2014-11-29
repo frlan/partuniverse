@@ -94,6 +94,7 @@ class TransactionInventoryChange(TestCase):
 # Part related
 ########################################################################
 
+
 class PartExcludeDisabledTestCase(TestCase):
 	""" Checking, wether get_fields() is not return the disabled field """
 
