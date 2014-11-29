@@ -120,11 +120,14 @@ class Part(models.Model):
 	""" Representing a special kind of parts """
 
 	name = models.CharField(_("Name of part"), max_length=255)
-	sku = models.CharField(_("SKU"), max_length=60, default='n/A')
-	description = models.TextField(_("Description"),
+	sku = models.CharField(_("SKU"),
+		max_length=60,
 		blank=True,
 		null=True,
-		default="")
+		unique=True)
+	description = models.TextField(_("Description"),
+		blank=True,
+		null=True)
 	min_stock = models.DecimalField(
 		_("Minimal stock"),
 		max_digits=10,
