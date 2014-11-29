@@ -181,17 +181,19 @@ class Part(models.Model):
 		return tmp
 		#return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
 
+
 	def is_below_min_stock(self):
 		""" Returns True, if the item is below minimum stock.
 			Will returns False if on_stock >= min_stock
 			If either on_stock or min_stock is not defined, it will
 			return False """
-		if (self.on_stock is not None and
-			self.min_stock is not None and
-			self.on_stock < self.min_stock):
+		currently_on_stock = self.get_on_stock()
+		if (self.min_stock is not None and
+			currently_on_stock < self.min_stock):
 			return True
 		else:
 			return False
+
 
 	def is_on_stock(self):
 		""" Returns True, if the item is on stock.
