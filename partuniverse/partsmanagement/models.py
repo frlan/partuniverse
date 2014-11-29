@@ -161,7 +161,14 @@ class Part(models.Model):
 
 	def get_on_stock(self):
 		""" Returns the amount of items which are on stock over all storages """
-		pass
+
+		# Catching all StorageItems connected with this Part and
+		# calculating sum of them
+		sum_amount = 0
+		for si in self.storageitem_set.all():
+			if si.on_stock is not None:
+				sum_amount = sum_amount + si.on_stock
+		return sum_amount
 
 	# Based upon a post at http://stackoverflow.com/a/2217558/2915834
 	# Modified to make it better readable for n00bz and exclude disabled
