@@ -2,20 +2,8 @@
 {% load i18n %}
 {% load url from future %}
 {% block content %}
-<h1 class="ui dividing header">Welcome</h1>
-<p>{% trans "This is an approach for keeping an overview over your parts." %}</p>
-<p>{% trans "Please follow links below to navigate:" %}</p>
-<ul>
-  <li><a href="{% url "partslist" %}">{% trans "List of Parts" %}</a></li>
-  {% if user.is_authenticated %}
-  <li><a href="{% url "transaction_new" %}">{% trans "Add a new transaction" %}</a></li>
-  <li><a href="{% url "part_add" %}">{% trans "Add a new part" %}</a></li>
-  <li><a href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></li>
-  {% endif %}
-  <li><a href="{% url "transaction_list" %}">{% trans "Show all tranactions" %}</a></li>
-  <li><a href="{% url "parts_reorderlist" %}">{% trans "Show all parts needs reordering" %}</a></li>
-  <li><a href="{% url "manufacturer_list" %}">{% trans "List of Manufacturers" %}</a></li>
-  <li><a href="{% url "distributor_list" %}">{% trans "List of Distributors" %}</a></li>
-</ul>
+<h1 class="ui dividing header">Welcome to partuniverse</h1>
+
+{{ dashboard.render }}
 
 {% endblock %}
