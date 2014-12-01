@@ -1,0 +1,1 @@
+from partsmanagement.dashboards import NeedsRestockingDashboardItem
