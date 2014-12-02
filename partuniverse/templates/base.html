@@ -26,11 +26,19 @@
     </header>
     <div class="ui one column page grid">
       <div class="column">
-	<div class="ui breadcrumb">
-	  <a class="section" href="{% url "home" %}">{% trans "Home" %}</a>
-	  <i class="right arrow icon divider"></i>
-	  {% block breadcrumbs %} {% endblock %}
-	</div>
+        <div class="ui borderless menu">
+          <a class="item" href="{% url "home" %}">
+            {% trans "Home" %}             
+          </a>
+          <div class="item">
+            <i class="right chevron icon divider"></i>
+          </div>
+          {% block breadcrumbs %} {% endblock %}
+        </div>
+      </div>
+    </div>
+    <div class="ui one column page grid">
+      <div class="column">
 	{% block content %}Empty page{% endblock %}
       </div>
     </div>

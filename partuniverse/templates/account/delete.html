@@ -2,11 +2,15 @@
 
 {% load i18n %}
 {% load url from future %}
+
 {% block breadcrumbs %}
-<a href="{% url "account_settings" %}" class="section">{% trans "Settings" %}</a>
-<i class="right arrow icon divider"></i>
-<a class="section" href=" {% url "account_delete" %}"> {% trans "Delete your account" %} </a>
+<a class="item" href="{% url "account_settings" %}">{% trans "Settings" %}</a>
+<div class="item">
+  <i class="right chevron icon divider"></i>
+</div>
+<a class="active item" href=" {% url "account_delete" %}"> {% trans "Delete your account" %} </a>
 {% endblock %}
+
 {% block content %}
 <h1 class="ui header dividing">{% trans "Delete Account" %}</h1>
 

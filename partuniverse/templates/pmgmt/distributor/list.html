@@ -2,6 +2,11 @@
 
 {% load url from future %}
 {% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "distributor_list" %}" class="active item">{% trans "Distributors" %}</a>
+{% endblock %}
+
 {% block content %}
 <p>{% trans "A list with all distributors ... " %}</p>
 <p><a href="{% url "distributor_new" %}">{% trans "Add a new" %}</a></p>

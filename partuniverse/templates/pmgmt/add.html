@@ -1,6 +1,16 @@
 {% extends "base.html" %}
+
 {% load i18n %}
 {% load url from future %}
+
+{% block breadcrumbs %}
+<a href="{% url "partslist" %}" class="item">{% trans "Parts" %}</a>
+<div class="item">
+  <i class="right chevron icon divider"></i>
+</div>
+<a class="active item">{% trans "Add" %}</a>
+{% endblock %}
+
 {% block content %}
 <form method="post" class="ui form segment">
   {% csrf_token %}

@@ -2,9 +2,11 @@
 
 {% load url from future %}
 {% load i18n %}
+
 {% block breadcrumbs %}
-<a href="{% url "account_settings" %}" class="section">{% trans "Settings" %}</a>
+<a href="{% url "account_settings" %}" class="active item">{% trans "Settings" %}</a>
 {% endblock %}
+
 {% block content %}
 <h1 class="ui header dividing">{% trans "Account settings" %}</h1>
 <h2 class="ui header dividing">{% trans "General Account Settings" %}</h2>
