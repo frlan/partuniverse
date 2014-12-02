@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+
 {% load i18n %}
 {% load url from future %}
+
 {% block content %}
 <h1 class="ui dividing header">Welcome to partuniverse</h1>
 
+{% if user.is_authenticated %}
 {{ dashboard.render }}
+{% else %}
+<p>put your mission statement here</p>
+{% endif %}
 
 {% endblock %}
