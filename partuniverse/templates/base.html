@@ -8,19 +8,51 @@
     <link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}">
   </head>
   <body>
-    <header class="ui fixed main menu inverted transparent ">
+    <header class="ui fixed  menu inverted transparent ">
       <div class="ui one column page grid">
 	<div class="ui column">
+          <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
 	  {% if user.is_authenticated %}
-	  <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
-	  <div class="item"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
-	  <div class="item">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
+          <div class="ui simple dropdown item">
+             {% trans "Parts" %}
+             <i class="dropdown icon"></i>
+             <div class="menu">
+               <div class="item"><a href="{% url "partslist" %}">{% trans "List of parts" %}</a></div>
+               <div class="item"><a href="{% url "part_add" %}">{% trans "Add a new part" %}</a></div>
+             </div>
+          </div>
+          <div class="ui simple dropdown item">
+             {% trans "Transactions" %}
+             <i class="dropdown icon"></i>
+             <div class="menu">
+               <div class="item"><a href="{% url "transaction_list" %}">{% trans "List of transactions" %}</a></div>
+               <div class="item"><a href="{% url "transaction_new" %}">{% trans "Add a new transaction" %}</a></div>
+             </div>
+          </div>
+          <div class="ui simple dropdown item">
+             {% trans "Manufacturers" %}
+             <i class="dropdown icon"></i>
+             <div class="menu">
+               <div class="item"><a href="{% url "manufacturer_list" %}">{% trans "List of manufacturers" %}</a></div>
+               <div class="item"><a href="{% url "transaction_new" %}">{% trans "Add a new manufacturer" %}</a></div>
+             </div>
+          </div>
+          <div class="ui simple dropdown item">
+             {% trans "Distributors" %}
+             <i class="dropdown icon"></i>
+             <div class="menu">
+               <div class="item"><a href="{% url "distributor_list" %}">{% trans "List of distributors" %}</a></div>
+               <div class="item"><a href="{% url "distributor_new" %}">{% trans "Add a new distributor" %}</a></div>
+             </div>
+          </div>
+	  <div class="item right">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
+	  <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
+	  <div class="item right"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
 	  {% else %}
 	  <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
 	  <div class="item"><a href="{% url "account_login" %}">{% trans "Login" %}</a></div>
 	  <div class="item"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></div>
 	  {% endif %}
-	  <div class="item"><a href="{% url "about" %}">{% trans "About" %}</a></div>
 	</div>
       </div>
     </header>
