@@ -26,7 +26,7 @@
              <i class="dropdown icon"></i>
              <div class="menu">
                <div class="item"><a href="{% url "transaction_list" %}">{% trans "List of transactions" %}</a></div>
-               <div class="item"><a href="{% url "transaction_new" %}">{% trans "Add a new transaction" %}</a></div>
+               <div class="item"><a href="{% url "transaction_add" %}">{% trans "Add a new transaction" %}</a></div>
              </div>
           </div>
           <div class="ui simple dropdown item">
@@ -34,7 +34,7 @@
              <i class="dropdown icon"></i>
              <div class="menu">
                <div class="item"><a href="{% url "manufacturer_list" %}">{% trans "List of manufacturers" %}</a></div>
-               <div class="item"><a href="{% url "transaction_new" %}">{% trans "Add a new manufacturer" %}</a></div>
+               <div class="item"><a href="{% url "transaction_add" %}">{% trans "Add a new manufacturer" %}</a></div>
              </div>
           </div>
           <div class="ui simple dropdown item">
@@ -42,7 +42,7 @@
              <i class="dropdown icon"></i>
              <div class="menu">
                <div class="item"><a href="{% url "distributor_list" %}">{% trans "List of distributors" %}</a></div>
-               <div class="item"><a href="{% url "distributor_new" %}">{% trans "Add a new distributor" %}</a></div>
+               <div class="item"><a href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></div>
              </div>
           </div>
 	  <div class="item right">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
