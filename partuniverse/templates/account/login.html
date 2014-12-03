@@ -3,6 +3,10 @@
 {% load url from future %}
 {% load i18n %}
 
+{% block breadcrumbs %}
+<a class="active item" href=" {% url "account_login" %}"> {% trans "Log in" %} </a>
+{% endblock %}
+
 {% block head_title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
