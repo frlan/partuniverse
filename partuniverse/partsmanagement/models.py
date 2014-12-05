@@ -112,6 +112,7 @@ class Category(models.Model):
 			return tmp
 
 	class Meta:
+		unique_together = ("name", "parent")
 		verbose_name = _("Category")
 		verbose_name_plural = _("Categories")
 
