@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from dashboard.DashboardItemRegistry import DashboardItemRegistry
 from dashboard.DashboardItem import DashboardItem
 from django.template import RequestContext, loader
