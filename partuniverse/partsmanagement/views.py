@@ -16,11 +16,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.timezone import now
 
 # Importing models
-from partsmanagement.models import Part
-from partsmanagement.models import Transaction
-from partsmanagement.models import Manufacturer
-from partsmanagement.models import Distributor
-from partsmanagement.models import StoragePlace
+from partsmanagement.models import *
+
 
 ########################################################################
 # Part
@@ -206,3 +203,14 @@ class StoragePlaceAddView(CreateView):
 	success_url = reverse_lazy('home')
 	fields = ('name', 'storage_type')
 	template_name = 'pmgmt/storage/add.html'
+
+class StorageItemAddView(CreateView):
+	model = StorageItem
+	success_url = reverse_lazy('storage_item_list')
+	fields = ('part', 'storage', 'on_stock')
+
+class StorageItemListView(ListView):
+	model = StorageItem
+
+class StoragePlaceListView(ListView):
+	model = StoragePlace
