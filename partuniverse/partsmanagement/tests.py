@@ -8,6 +8,7 @@ from django.conf import settings
 
 from .models import *
 from .views import *
+from .utils import *
 
 ########################################################################
 # Category
@@ -94,6 +95,55 @@ class TransactionInventoryChange(TestCase):
 # Part related
 ########################################################################
 
+class PartListWithOnStockValue(TestCase):
+	def setUp(self):
+		# Setting up categories
+		self.cat = Category.objects.create(name='Category 1')
+
+		# Setting up test user
+		self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Basis setting of storage
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace1 = StoragePlace.objects.create(
+			name = 'Test Storage1',
+			storage_type = self.storagetype)
+		self.storageplace2 = StoragePlace.objects.create(
+			name = 'Test Storage2',
+			storage_type = self.storagetype)
+
+		# Some items
+		self.part1 = Part.objects.create(name='Test Part 1',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part2 = Part.objects.create(name='Test Part 2',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace1,
+			on_stock=25)
+		self.storage_item2a = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace1,
+			on_stock=7)
+		self.storage_item2b = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace2,
+			on_stock=3)
+
+	def test_part_list_with_on_stock_value(self):
+		# Defining goal list
+		expected_resultset = [
+			[self.part1, 25],
+			[self.part2, 10]
+		]
+		self.assertEqual(get_all_parts_with_on_stock(), expected_resultset)
 
 class PartExcludeDisabledTestCase(TestCase):
 	""" Checking, wether get_fields() is not return the disabled field """
