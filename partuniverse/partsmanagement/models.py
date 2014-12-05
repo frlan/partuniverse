@@ -4,7 +4,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-
+from django.db.models import Sum
 from django.conf import settings
 
 # Just defining units used on the system here.
@@ -23,6 +23,21 @@ UNIT_CHOICES = (
 	),
 	(_('n/A'), _('Unknown')),
 )
+
+
+def get_all_storage_item_parts_with_on_stock_and_min_stock():
+	""" Returns a list of list with all Parts having a StorageItem
+		with its min_stock value. """
+	result_list = []
+	for i in StorageItem.objects.values("part").annotate(Sum("on_stock")).order_by('part'):
+		tmp = []
+		tmp.append(i['part'])
+		tmp.append(i['on_stock__sum'])
+		tmp.append(Part.objects.get(pk=i['part']).min_stock)
+		result_list.append(tmp)
+	return result_list
+
+
 
 
 class StorageType(models.Model):
@@ -164,6 +179,7 @@ class Part(models.Model):
 
 		# Catching all StorageItems connected with this Part and
 		# calculating sum of them
+		# TODO: Finding a more performant way doing this
 		sum_amount = 0
 		for si in self.storageitem_set.all():
 			if si.on_stock is not None:

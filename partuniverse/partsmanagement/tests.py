@@ -8,7 +8,6 @@ from django.conf import settings
 
 from .models import *
 from .views import *
-from .utils import *
 
 ########################################################################
 # Category
@@ -95,7 +94,7 @@ class TransactionInventoryChange(TestCase):
 # Part related
 ########################################################################
 
-class PartListWithOnStockValue(TestCase):
+class PartListWithOnStockValueFromSI(TestCase):
 	def setUp(self):
 		# Setting up categories
 		self.cat = Category.objects.create(name='Category 1')
@@ -140,10 +139,10 @@ class PartListWithOnStockValue(TestCase):
 	def test_part_list_with_on_stock_value(self):
 		# Defining goal list
 		expected_resultset = [
-			[self.part1, 25],
-			[self.part2, 10]
+			[self.part1.id, 25, None],
+			[self.part2.id, 10, None]
 		]
-		self.assertEqual(get_all_parts_with_on_stock(), expected_resultset)
+		self.assertEqual(get_all_storage_item_parts_with_on_stock_and_min_stock(), expected_resultset)
 
 class PartExcludeDisabledTestCase(TestCase):
 	""" Checking, wether get_fields() is not return the disabled field """
