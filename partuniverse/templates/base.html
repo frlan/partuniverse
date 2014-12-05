@@ -45,6 +45,16 @@
                <div class="item"><a href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></div>
              </div>
           </div>
+		  <div class="ui simple dropdown item">
+			  {% trans "Storages" %}
+			  <i class="dropdown icon"></i>
+			  <div class="menu">
+				<div class="item"><a href="{% url "storage_list" %}">{% trans "List of storages" %}</a></div>
+				<div class="item"><a href="{% url "storage_item_list" %}">{% trans "List of storages items" %}</a></div>
+				<div class="item"><a href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></div>
+				<div class="item"><a href="{% url "storage_item_add" %}">{% trans "Add a storage item" %}</a></div>
+			  </div>
+		  </div>
 	  <div class="item right">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
 	  <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
 	  <div class="item right"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
@@ -60,7 +70,7 @@
       <div class="column">
         <div class="ui borderless menu">
           <a class="item" href="{% url "home" %}">
-            {% trans "Home" %}             
+            {% trans "Home" %}
           </a>
           <div class="item">
             <i class="right chevron icon divider"></i>
