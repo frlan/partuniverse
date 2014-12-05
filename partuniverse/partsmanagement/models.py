@@ -38,8 +38,6 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
 	return result_list
 
 
-
-
 class StorageType(models.Model):
 	""" Defining a general typ of storage """
 
@@ -209,7 +207,6 @@ class Part(models.Model):
 			return True
 		else:
 			return False
-
 
 	def is_on_stock(self):
 		""" Returns True, if the item is on stock.
