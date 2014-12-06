@@ -267,8 +267,8 @@ class Transaction(models.Model):
 
 	def save(self, *args, **kwargs):
 		tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
-		print tmp_storage_item
-		tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
+		if tmp_storage_item.on_stock != None:
+			tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
 		tmp_storage_item.save()
 		super(Transaction, self).save(*args, **kwargs)
 

@@ -103,7 +103,7 @@ class TransactionAddView(CreateView):
 	success_url='/'
 	template_name='pmgmt/add.html'
 	fields = (	'subject',
-				'part',
+				'storage_item',
 				'amount',
 				'comment')
 
@@ -134,7 +134,7 @@ class ManufacturerUpdateView(UpdateView):
 	template_name = "pmgmt/manufacturer/update.html"
 	success_url = reverse_lazy('home')
 	model = Manufacturer
-	# We don't want to amke all fields editable via
+	# We don't want to make all fields editable via
 	# normal frontend.
 	fields = (	'name', )
 
