@@ -220,6 +220,7 @@ class StorageItemDetailView(DetailView):
 
 class StoragePlaceListView(ListView):
 	model = StoragePlace
+	template_name = 'pmgmt/storage/list.html'
 
 class StorageDetailView(DetailView):
 	model = StoragePlace
