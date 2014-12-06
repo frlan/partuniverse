@@ -4,7 +4,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-
+from django.db.models import Sum
 from django.conf import settings
 
 # Just defining units used on the system here.
@@ -23,6 +23,19 @@ UNIT_CHOICES = (
 	),
 	(_('n/A'), _('Unknown')),
 )
+
+
+def get_all_storage_item_parts_with_on_stock_and_min_stock():
+	""" Returns a list of list with all Parts having a StorageItem
+		with its min_stock value. """
+	result_list = []
+	for i in StorageItem.objects.values("part").annotate(Sum("on_stock")).order_by('part'):
+		tmp = []
+		tmp.append(i['part'])
+		tmp.append(i['on_stock__sum'])
+		tmp.append(Part.objects.get(pk=i['part']).min_stock)
+		result_list.append(tmp)
+	return result_list
 
 
 class StorageType(models.Model):
@@ -120,16 +133,17 @@ class Category(models.Model):
 class Part(models.Model):
 	""" Representing a special kind of parts """
 
-	name = models.CharField(_("Name of part"), max_length=50)
+	name = models.CharField(_("Name of part"), max_length=255)
+	sku = models.CharField(_("SKU"),
+		max_length=60,
+		blank=True,
+		null=True,
+		unique=True)
+	description = models.TextField(_("Description"),
+		blank=True,
+		null=True)
 	min_stock = models.DecimalField(
 		_("Minimal stock"),
-		max_digits=10,
-		decimal_places=4,
-		null=True,
-		blank=True)
-	# Should be calculated based on transactions
-	on_stock = models.DecimalField(
-		_("Parts on stock"),
 		max_digits=10,
 		decimal_places=4,
 		null=True,
@@ -147,10 +161,6 @@ class Part(models.Model):
 					verbose_name=_("Distributor"),
 					null=True,
 					blank=True)
-	storage_place = models.ForeignKey(StoragePlace,
-					verbose_name=_("Storage"),
-					blank=True,
-					null=True)
 	categories = models.ManyToManyField(Category,
 					verbose_name=_("Category"))
 	creation_time = models.DateTimeField(_("Creation time"),
@@ -163,6 +173,18 @@ class Part(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	def get_on_stock(self):
+		""" Returns the amount of items which are on stock over all storages """
+
+		# Catching all StorageItems connected with this Part and
+		# calculating sum of them
+		# TODO: Finding a more performant way doing this
+		sum_amount = 0
+		for si in self.storageitem_set.all():
+			if si.on_stock is not None:
+				sum_amount = sum_amount + si.on_stock
+		return sum_amount
+
 	# Based upon a post at http://stackoverflow.com/a/2217558/2915834
 	# Modified to make it better readable for n00bz and exclude disabled
 	# field or maybe others in future.
@@ -174,14 +196,15 @@ class Part(models.Model):
 		return tmp
 		#return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
 
+
 	def is_below_min_stock(self):
 		""" Returns True, if the item is below minimum stock.
 			Will returns False if on_stock >= min_stock
 			If either on_stock or min_stock is not defined, it will
 			return False """
-		if (self.on_stock is not None and
-			self.min_stock is not None and
-			self.on_stock < self.min_stock):
+		currently_on_stock = self.get_on_stock()
+		if (self.min_stock is not None and
+			currently_on_stock < self.min_stock):
 			return True
 		else:
 			return False
@@ -191,8 +214,7 @@ class Part(models.Model):
 			Will return False if on_stock <= 0
 			If either on_stock is not defined, it will
 			return True """
-		if (self.on_stock is None or
-			self.on_stock > 0):
+		if (self.get_on_stock() > 0):
 			return True
 		else:
 			return False
@@ -202,8 +224,30 @@ class Part(models.Model):
 		verbose_name_plural = _("Parts")
 
 
+class StorageItem(models.Model):
+	part = models.ForeignKey(Part)
+	storage = models.ForeignKey(StoragePlace)
+	on_stock = models.DecimalField(
+		_("Parts inside storage"),
+		max_digits=10,
+		decimal_places=4,
+		null=True,
+		blank=True)
+	disabled = models.BooleanField(_("Disabled"),
+		default=False)
+
+	def __unicode__(self):
+		return str(self.part) + ": " + str(self.storage)
+
+	class Meta:
+		unique_together = ("part", "storage")
+		verbose_name = _("Storage Item")
+		verbose_name_plural = _("Storage Items")
+
+
 class Transaction(models.Model):
 	""" The transaction really taking place for the part """
+
 	subject = models.CharField(_("Subject"),
 		max_length=100)
 	created_by = models.ForeignKey(User,
@@ -211,7 +255,7 @@ class Transaction(models.Model):
 	amount = models.DecimalField(_("Amount"),
 		max_digits=10,
 		decimal_places=4)
-	part = models.ForeignKey(Part)
+	storage_item = models.ForeignKey(StorageItem,null=True, blank=True)
 	date = models.DateField(_("Transaction Date"),
 		blank=False,
 		null=False,
@@ -223,16 +267,14 @@ class Transaction(models.Model):
 		max_length=200)
 
 	def save(self, *args, **kwargs):
-		try:
-			tmp_part = Part.objects.get(name = self.part.name)
-			tmp_part.on_stock = tmp_part.on_stock + self.amount
-			tmp_part.save()
-		except:
-			pass
+		tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
+		if tmp_storage_item.on_stock != None:
+			tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
+		tmp_storage_item.save()
 		super(Transaction, self).save(*args, **kwargs)
 
 	def __unicode__(self):
-		tmp = self.subject + " " + str(self.part) + " " + str(self.date)
+		tmp = self.subject + " " + str(self.storage_item) + " " + str(self.date)
 		return unicode(tmp)
 
 	class Meta:

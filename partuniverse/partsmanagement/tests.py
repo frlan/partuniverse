@@ -36,52 +36,114 @@ class CategoryTestCase(TestCase):
 ########################################################################
 class TransactionInventoryChange(TestCase):
 	""" This is a test to check whether a new transaction is increasing
-		on_stock or decreasing on_stock of a particular part """
+		on_stock or decreasing on_stock of a particular storage item """
 
 	def setUp(self):
 		self.cat = Category.objects.create(name='Category 1')
 		self.user = User.objects.create_user(
-            username='jacob', email='jacob@foo.baa', password='top_secret')
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret')
 		self.manu = Manufacturer.objects.create(
 			name='Test Manufacturer 1',
 			created_by=self.user)
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace = StoragePlace.objects.create(
+			name = 'Test Storage',
+			storage_type = self.storagetype)
 		self.part1 = Part.objects.create(name='Test Part 1',
 			unit='m',
-			on_stock = 100,
 			creation_time=timezone.now(),
 			created_by=self.user)
 		self.part2 = Part.objects.create(name='Test Part 2',
 			unit='m',
-			on_stock = 100,
 			creation_time=timezone.now(),
 			created_by=self.user)
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace,
+			on_stock=100)
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace,
+			on_stock=100)
+
 
 	def test_transaction_decrease_on_stock(self):
 		trans = Transaction.objects.create(
 			subject='Testtransaction 1',
 			created_by=self.user,
 			amount=-10,
-			part=self.part1,
+			storage_item=self.storage_item1,
 			date=timezone.now(),
 		)
-
-		self.assertEqual(Part.objects.get(name='Test Part 1').on_stock, 90)
+		self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 90)
 
 	def test_transaction_increase_on_stock(self):
 		trans = Transaction.objects.create(
 			subject='Testtransaction 1',
 			created_by=self.user,
 			amount=10,
-			part=self.part2,
+			storage_item=self.storage_item1,
 			date=timezone.now(),
 		)
 
-		self.assertEqual(Part.objects.get(name='Test Part 2').on_stock, 110)
+		self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 110)
 
 
 ########################################################################
 # Part related
 ########################################################################
+
+class PartListWithOnStockValueFromSI(TestCase):
+	def setUp(self):
+		# Setting up categories
+		self.cat = Category.objects.create(name='Category 1')
+
+		# Setting up test user
+		self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Basis setting of storage
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace1 = StoragePlace.objects.create(
+			name = 'Test Storage1',
+			storage_type = self.storagetype)
+		self.storageplace2 = StoragePlace.objects.create(
+			name = 'Test Storage2',
+			storage_type = self.storagetype)
+
+		# Some items
+		self.part1 = Part.objects.create(name='Test Part 1',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part2 = Part.objects.create(name='Test Part 2',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace1,
+			on_stock=25)
+		self.storage_item2a = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace1,
+			on_stock=7)
+		self.storage_item2b = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace2,
+			on_stock=3)
+
+	def test_part_list_with_on_stock_value(self):
+		# Defining goal list
+		expected_resultset = [
+			[self.part1.id, 25, None],
+			[self.part2.id, 10, None]
+		]
+		self.assertEqual(get_all_storage_item_parts_with_on_stock_and_min_stock(), expected_resultset)
 
 class PartExcludeDisabledTestCase(TestCase):
 	""" Checking, wether get_fields() is not return the disabled field """
@@ -95,7 +157,6 @@ class PartExcludeDisabledTestCase(TestCase):
 		# Settig up a part
 		self.part1 = Part.objects.create(name='Test Part 1',
 			unit='m',
-			on_stock = 100,
 			min_stock = 50,
 			creation_time=timezone.now(),
 			created_by=self.user)
@@ -110,6 +171,89 @@ class PartExcludeDisabledTestCase(TestCase):
 				self.assertTrue(False)
 		self.assertTrue(True)
 
+class PartGetOnStockAmount(TestCase):
+	""" Checking for currently amount of on stock items for a special part
+		Testcase include these scenario:
+		- Part is having only one storage place
+		- Part is having two storage places (StorageItem)
+		- Part is having none storage place (StorageItem)
+	"""
+
+	def setUp(self):
+		# Setting up categories
+		self.cat = Category.objects.create(name='Category 1')
+
+		# Setting up test user
+		self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Basis setting of storage
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace1 = StoragePlace.objects.create(
+			name = 'Test Storage1',
+			storage_type = self.storagetype)
+		self.storageplace2 = StoragePlace.objects.create(
+			name = 'Test Storage2',
+			storage_type = self.storagetype)
+
+		# Some items
+		self.part1 = Part.objects.create(name='Test Part 1',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part2 = Part.objects.create(name='Test Part 2',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part3 = Part.objects.create(name='Test Part 3',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part4 = Part.objects.create(name='Test Part 4',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		# Assigning Parts to StoragePlace aka creating StorageItem
+		# Part 1: 1 StorageItem
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace1,
+			on_stock=25)
+
+		# Part 2: Two items needed
+		self.storage_item2a = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace1,
+			on_stock=7)
+		self.storage_item2b = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace2,
+			on_stock=3)
+
+		# Part 3: No Item needed -- just not stored somewhere
+		# --
+
+		# Part 4: One itme with amount = 0
+		self.storage_item4 = StorageItem.objects.create(
+			part=self.part4,
+			storage=self.storageplace1,
+			on_stock=0)
+
+	def test_part_with_two_storageitems(self):
+		self.assertEqual(Part.objects.get(name='Test Part 1').get_on_stock(), 25)
+
+	def test_part_with_one_storageitem(self):
+		self.assertEqual(Part.objects.get(name='Test Part 2').get_on_stock(), 10)
+
+	def test_part_without_storageitem(self):
+		self.assertEqual(Part.objects.get(name='Test Part 3').get_on_stock(), 0)
+
+	def test_part_without_stock(self):
+		self.assertEqual(Part.objects.get(name='Test Part 4').get_on_stock(), 0)
 
 
 class ItemOutOfStockTestCase(TestCase):
@@ -117,42 +261,80 @@ class ItemOutOfStockTestCase(TestCase):
 		working well """
 
 	def setUp(self):
-		# Setting up test user
+		# Each part is having at least one storage item carring the
+		# acutal on stock value
+
+		# Setting up categories
 		self.cat = Category.objects.create(name='Category 1')
+
+		# Setting up test user
 		self.user = User.objects.create_user(
             username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Basis setting of storage
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace1 = StoragePlace.objects.create(
+			name = 'Test Storage1',
+			storage_type = self.storagetype)
+		self.storageplace2 = StoragePlace.objects.create(
+			name = 'Test Storage2',
+			storage_type = self.storagetype)
+		self.storageplace3 = StoragePlace.objects.create(
+			name = 'Test Storage3',
+			storage_type = self.storagetype)
+		self.storageplace4 = StoragePlace.objects.create(
+			name = 'Test Storage4',
+			storage_type = self.storagetype)
+		self.storageplace5 = StoragePlace.objects.create(
+			name = 'Test Storage5',
+			storage_type = self.storagetype)
 
 		# on_stock > min_stock
 		self.part1 = Part.objects.create(name='Test Part 1',
 			unit='m',
-			on_stock = 100,
 			min_stock = 50,
 			creation_time=timezone.now(),
 			created_by=self.user)
 
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace1,
+			on_stock=100)
+
 		# on_stock < min_stock
 		self.part2 = Part.objects.create(name='Test Part 2',
 			unit='m',
-			on_stock = 100,
 			min_stock = 150,
 			creation_time=timezone.now(),
 			created_by=self.user)
 
+		self.storage_item2 = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace2,
+			on_stock=100)
+
+
 		# on_stock = min_stock
 		self.part3 = Part.objects.create(name='Test Part 3',
 			unit='m',
-			on_stock = 100,
 			min_stock = 100,
 			creation_time=timezone.now(),
 			created_by=self.user)
+		self.storage_item3 = StorageItem.objects.create(
+			part=self.part3,
+			storage=self.storageplace3,
+			on_stock=100)
 
 		# on_stock = 0
 		self.part4 = Part.objects.create(name='Test Part 4',
 			unit='m',
-			on_stock = 0,
 			min_stock = 0,
 			creation_time=timezone.now(),
 			created_by=self.user)
+		self.storage_item4 = StorageItem.objects.create(
+			part=self.part4,
+			storage=self.storageplace4,
+			on_stock=0)
 
 		# on_stock not defined
 		# min_stock not defined
@@ -160,16 +342,20 @@ class ItemOutOfStockTestCase(TestCase):
 			unit='m',
 			creation_time=timezone.now(),
 			created_by=self.user)
+		self.storage_item5 = StorageItem.objects.create(
+			part=self.part5,
+			storage=self.storageplace5)
 
 
 	def test_item_out_of_stock(self):
 		""" Testcase for on_stock = 0 """
 		self.assertFalse(Part.objects.get(name='Test Part 4').is_on_stock())
+		self.assertFalse(Part.objects.get(name='Test Part 5').is_on_stock())
+
 
 	def test_item_not_out_of_stock(self):
 		""" Testcase for on_stock > 0 """
 		self.assertTrue(Part.objects.get(name='Test Part 1').is_on_stock())
-		self.assertTrue(Part.objects.get(name='Test Part 5').is_on_stock())
 
 	def test_item_below_min_stock(self):
 		""" Testcase for checking whether
@@ -190,6 +376,7 @@ class ItemOutOfStockTestCase(TestCase):
 		""" Testcase for checking whether
 			on_stock = min_stock """
 		self.assertFalse(Part.objects.get(name='Test Part 5').is_below_min_stock())
+
 
 ########################################################################
 # Storage
