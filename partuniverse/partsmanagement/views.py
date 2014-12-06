@@ -52,6 +52,7 @@ class PartsAddView(CreateView):
 	success_url='/'
 	template_name='pmgmt/add.html'
 	fields = (	'name',
+				'sku',
 				'min_stock',
 				'unit',
 				'manufacturer',
