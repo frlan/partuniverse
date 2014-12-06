@@ -15,15 +15,15 @@
 
 <table class="ui table segment">
 <tr>
-	<th>Part</th>
+	<th>{% trans "Part" %}</th>
 	<td>{{object.part}}</td>
 </tr>
 <tr>
-	<th>Storage</th>
+	<th>{% trans "Storage" %}</th>
 	<td>{{object.storage}}</td>
 </tr>
 <tr>
-	<th>On Stock</th>
+	<th>{% trans "On Stock" %}</th>
 	{% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}</td> {% endif %}
 </tr>
 </table>
