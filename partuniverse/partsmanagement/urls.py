@@ -63,5 +63,7 @@ urlpatterns = patterns('',
 			name='storage_add'),
 	url(r'^storage/list', StoragePlaceListView.as_view(),
 			name='storage_list'),
+	url(r'^storage/(?P<pk>[\w]+)$', StorageDetailView.as_view(),
+			name='storage_detail'),
 
 )

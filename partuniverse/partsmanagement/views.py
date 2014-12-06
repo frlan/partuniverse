@@ -211,6 +211,10 @@ class StorageItemAddView(CreateView):
 
 class StorageItemListView(ListView):
 	model = StorageItem
+	template_name = 'pmgmt/storageitem/list.html'
 
 class StoragePlaceListView(ListView):
+	model = StoragePlace
+
+class StorageDetailView(DetailView):
 	model = StoragePlace
