@@ -213,8 +213,13 @@ class StorageItemListView(ListView):
 	model = StorageItem
 	template_name = 'pmgmt/storageitem/list.html'
 
+class StorageItemDetailView(DetailView):
+	model = StorageItem
+	template_name = 'pmgmt/storageitem/detail.html'
+
 class StoragePlaceListView(ListView):
 	model = StoragePlace
 
 class StorageDetailView(DetailView):
 	model = StoragePlace
+
