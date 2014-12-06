@@ -7,11 +7,11 @@
 <div class="item">
   <i class="right chevron icon divider"></i>
 </div>
-<a class="active item" href="/pmgmt/storageitem/{{object.id}}">{{ object }}</a>
+<a class="active item" href="/pmgmt/storageitem/{{object.id}}">{{ object.name }}</a>
 
 {% endblock %}
 {% block content %}
-<h1>{{ object }}</h1>
+<h1>{{ object.name }}</h1>
 
 <table class="ui table segment">
 <tr>
@@ -20,7 +20,7 @@
 </tr>
 <tr>
 	<th>{% trans "Storage" %}</th>
-	<td>{{object.storage}}</td>
+	<td><a href="/pmgmt/storage/{{object.storage.id}}">{{object.storage.name}}</a></td>
 </tr>
 <tr>
 	<th>{% trans "On Stock" %}</th>

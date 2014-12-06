@@ -61,11 +61,14 @@ urlpatterns = patterns('',
 			name='storage_item_list'),
 	url(r'^storageitem/(?P<pk>[\w]+)$', StorageItemDetailView.as_view(),
 			name='storage_item_detail'),
+	url(r'^storageitem/(?P<pk>[\w]+)/update/$', login_required(
+			StoragePlaceUpdateView.as_view()), name='storage_item_update'),
 	url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
 			name='storage_add'),
 	url(r'^storage/list', StoragePlaceListView.as_view(),
 			name='storage_list'),
-	url(r'^storage/(?P<pk>[\w]+)$', StorageDetailView.as_view(),
+	url(r'^storage/(?P<pk>[\w]+)$', StoragePlaceDetailView.as_view(),
 			name='storage_detail'),
-
+	url(r'^storage/(?P<pk>[\w]+)/update/$', login_required(
+			StoragePlaceUpdateView.as_view()), name='storage_update'),
 )

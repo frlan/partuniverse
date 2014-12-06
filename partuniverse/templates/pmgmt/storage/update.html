@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "manufacturer_list" %}" class="item">{% trans "Manufacturers" %}</a>
+<div class="item">
+  <i class="right chevron icon divider"></i>
+</div>
+<a class="active item" href="{% url 'manufacturer_detail' object.id %}">{{ object.name }}</a>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="Submit">
+</form>
+{% endblock %}

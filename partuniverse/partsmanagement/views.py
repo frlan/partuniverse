@@ -198,11 +198,6 @@ class DistributorDeleteView(DeleteView):
 # Storage
 ########################################################################
 
-class StoragePlaceAddView(CreateView):
-	model = StoragePlace
-	success_url = reverse_lazy('home')
-	fields = ('name', 'storage_type')
-	template_name = 'pmgmt/storage/add.html'
 
 class StorageItemAddView(CreateView):
 	model = StorageItem
@@ -218,10 +213,24 @@ class StorageItemDetailView(DetailView):
 	model = StorageItem
 	template_name = 'pmgmt/storageitem/detail.html'
 
+class StoragePlaceAddView(CreateView):
+	model = StoragePlace
+	success_url = reverse_lazy('home')
+	fields = ('name', 'storage_type')
+	template_name = 'pmgmt/storage/add.html'
+
 class StoragePlaceListView(ListView):
 	model = StoragePlace
 	template_name = 'pmgmt/storage/list.html'
 
-class StorageDetailView(DetailView):
+class StoragePlaceDetailView(DetailView):
 	model = StoragePlace
+	template_name = 'pmgmt/storage/detail.html'
 
+class StoragePlaceUpdateView(UpdateView):
+	model = StoragePlace
+	template_name = 'pmgmt/storage/update.html'
+	fields = (	'name',
+				'storage_type',
+				'parent')
+	success_url = reverse_lazy('storage_list')
