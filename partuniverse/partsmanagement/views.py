@@ -208,6 +208,7 @@ class StorageItemAddView(CreateView):
 	model = StorageItem
 	success_url = reverse_lazy('storage_item_list')
 	fields = ('part', 'storage', 'on_stock')
+	template_name = 'pmgmt/storageitem/add.html'
 
 class StorageItemListView(ListView):
 	model = StorageItem
