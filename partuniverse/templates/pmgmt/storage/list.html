@@ -14,7 +14,7 @@
       <th>{% trans "Storage Typ" %}</th>
       <th>{% trans "Assigned To" %}</th>
       <th></th>
-      <th></th>
+      {% comment %}<th></th>{% endcomment %}
     </tr>
   </thead>
   <tbody>
@@ -24,8 +24,8 @@
       {% if item.parent == None %} <td>{% trans "n/A" %}</td> {% else %}<td><a href="/pmgmt/storage/{{item.parent.id}}">{{item.parent.name}}</a></td>{% endif %}
 
       <td><a class="ui tiny button purple" href="/pmgmt/storage/{{item.id}}"/>Detail</a></td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "storage_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+      {% comment %}<td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>{% endcomment %}
     </tr>
     {% endfor %}
   </tbody>
