@@ -7,7 +7,7 @@
 <div class="item">
   <i class="right chevron icon divider"></i>
 </div>
-<a class="active item" href="/pmgmt/{{object.id}}">{{ object.name }}</a>
+<a class="active item" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
 
 {% endblock %}
 {% block content %}
@@ -40,9 +40,9 @@
 
 <p>
 {% if object.disabled == False %}
-  <a class="ui tiny button purple" href="/pmgmt/{{object.id}}/update/">{% trans "Update item" %}</a>
+  <a class="ui tiny button purple" href="{% url "part_detail" object.id %}">{% trans "Update item" %}</a>
 {% endif %}
-<a class="ui tiny button purple" href="/pmgmt/{{object.id}}/delete/">{% trans "Delete item" %}</a>
+<a class="ui tiny button purple" href="{% url "part_delete" %}">{% trans "Delete item" %}</a>
 </p>
 
 

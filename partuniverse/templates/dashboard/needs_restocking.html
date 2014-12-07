@@ -14,7 +14,7 @@
   <tbody>
     {% for part in parts %}
     <tr>
-      <td><a href="/pmgmt/{{ part.id }}">{{ part.name }}</a></td>
+      <td><a href="{% url "part_detail" part.id%}">{{ part.name }}</a></td>
       <td>{{ part.on_stock }}</td>
     </tr>
     {% endfor %}

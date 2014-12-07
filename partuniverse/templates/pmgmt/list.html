@@ -25,8 +25,8 @@
       <td>{{ item.min_stock|default:"" }}</td>
       <td>{{ item.get_on_stock|default:"" }}</td>
       <td>{{ item.manufacturer|default:"" }}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_detail" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

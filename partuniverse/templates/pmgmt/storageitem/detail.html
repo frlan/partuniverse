@@ -7,7 +7,7 @@
 <div class="item">
   <i class="right chevron icon divider"></i>
 </div>
-<a class="active item" href="/pmgmt/storageitem/{{object.id}}">{{ object }}</a>
+<a class="active item" href="{% url "storage_item_detail" object.id%}">{{ object }}</a>
 
 {% endblock %}
 {% block content %}
@@ -20,7 +20,7 @@
 </tr>
 <tr>
 	<th>{% trans "Storage" %}</th>
-	<td><a href="/pmgmt/storage/{{object.storage.id}}">{{object.storage.name}}</a></td>
+	<td><a href="{% url "storage_detail" object.storage.id%}">{{object.storage.name}}</a></td>
 </tr>
 <tr>
 	<th>{% trans "On Stock" %}</th>

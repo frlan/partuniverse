@@ -19,8 +19,8 @@
   <tbody>
     {% for item in object_list %}
     <tr>
-      <td><a href="/pmgmt/distributor/{{item.id}}">{{ item.name }}</a></td>				
-      <td>{% if user.is_authenticated %}<a href="/pmgmt/distributor/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
+      <td><a href="{% url "distributor_detail" item.id %}">{{ item.name }}</a></td>
+      <td>{% if user.is_authenticated %}<a href="{% url "distributor_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -22,6 +22,6 @@
 	{% endif %}
 {% endfor %}
 
-<p><a href="/pmgmt/manufacturer/{{object.id}}/update/">{% trans "Update item" %}</a></p>
+<p><a href="{% url "manufacturer_update" object.id %}">{% trans "Update item" %}</a></p>
 
 {% endblock %}
