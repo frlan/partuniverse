@@ -16,11 +16,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.timezone import now
 
 # Importing models
-from partsmanagement.models import Part
-from partsmanagement.models import Transaction
-from partsmanagement.models import Manufacturer
-from partsmanagement.models import Distributor
-from partsmanagement.models import StoragePlace
+from partsmanagement.models import *
+
 
 ########################################################################
 # Part
@@ -201,8 +198,51 @@ class DistributorDeleteView(DeleteView):
 # Storage
 ########################################################################
 
+
+class StorageItemAddView(CreateView):
+	model = StorageItem
+	success_url = reverse_lazy('storage_item_list')
+	fields = (	'part',
+				'storage',
+				'on_stock')
+	template_name = 'pmgmt/storageitem/add.html'
+
+class StorageItemListView(ListView):
+	model = StorageItem
+	template_name = 'pmgmt/storageitem/list.html'
+
+class StorageItemDetailView(DetailView):
+	model = StorageItem
+	template_name = 'pmgmt/storageitem/detail.html'
+
+class StorageItemUpdateView(UpdateView):
+	model = StorageItem
+	fields = (	'part',
+				'storage',
+				'on_stock')
+	template_name = 'pmgmt/storageitem/update.html'
+	success_url = reverse_lazy('storage_item_list')
+
 class StoragePlaceAddView(CreateView):
 	model = StoragePlace
-	success_url = reverse_lazy('home')
-	fields = ('name', 'storage_type')
+	success_url = reverse_lazy('storage_list')
+	fields = (	'name',
+				'storage_type',
+				'parent')
 	template_name = 'pmgmt/storage/add.html'
+
+class StoragePlaceListView(ListView):
+	model = StoragePlace
+	template_name = 'pmgmt/storage/list.html'
+
+class StoragePlaceDetailView(DetailView):
+	model = StoragePlace
+	template_name = 'pmgmt/storage/detail.html'
+
+class StoragePlaceUpdateView(UpdateView):
+	model = StoragePlace
+	template_name = 'pmgmt/storage/update.html'
+	fields = (	'name',
+				'storage_type',
+				'parent')
+	success_url = reverse_lazy('storage_list')

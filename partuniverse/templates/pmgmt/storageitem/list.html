@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+{% block breadcrumbs %}
+<a href="{% url "storage_item_list" %}" class="active item">{% trans "Storage Items" %}</a>
+{% endblock %}
+{% block content %}
+{% if object_list %}
+<table class="ui table segment">
+  <thead>
+    <tr>
+      <th>{% trans "Part" %}</th>
+      <th>{% trans "Storage" %}</th>
+      <th>{% trans "Reported On Stock" %}</th>
+      <th></th>
+      <th></th>
+      {% comment %}<th></th>{% endcomment %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for item in object_list %}
+      <td><a href="/pmgmt/{{item.part.id}}">{{ item.part }}</a></td>
+      <td><a href="/pmgmt/storage/{{item.storage.id}}">{{ item.storage.name }}</a></td>
+      {% if item.on_stock == None %}<td>---</td>{% else %}<td>{{item.on_stock}}</td>{% endif %}
+      <td><a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}"/>Detail</a></td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/update/">{% trans "Update" %}</a>{% endif %}</td>
+      {% comment %}<td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>{% endcomment %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
+{% endblock %}
