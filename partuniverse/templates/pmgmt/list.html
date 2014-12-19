@@ -16,16 +16,17 @@
       <th>{% trans "Manufacturer" %}</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {% for item in object_list %}
     <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
-      <td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
+      <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>
       <td>{{ item.min_stock|default:"" }}</td>
       <td>{{ item.get_on_stock|default:"" }}</td>
       <td>{{ item.manufacturer|default:"" }}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_detail" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
       <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>{% endif %}</td>
     </tr>
     {% endfor %}
