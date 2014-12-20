@@ -46,7 +46,7 @@ class PartsReorderList(ListView):
 
 class PartsAddView(CreateView):
 	model = Part
-	success_url='/'
+	success_url='part_list'
 	template_name='pmgmt/add.html'
 	fields = (	'name',
 				'sku',
@@ -65,7 +65,7 @@ class PartsAddView(CreateView):
 
 class PartDeleteView(DeleteView):
 	model = Part
-	success_url = reverse_lazy('partslist')
+	success_url='part_list'
 	template_name = 'pmgmt/delete.html'
 
 
@@ -76,7 +76,7 @@ class PartDetailView(DetailView):
 
 class PartUpdateView(UpdateView):
 	template_name = "pmgmt/update.html"
-	success_url = reverse_lazy('partslist')
+	success_url='part_list'
 	model = Part
 	# We don't want to amke all fields editable via
 	# normal frontend.
@@ -98,7 +98,7 @@ class TransactionListView(ListView):
 class TransactionAddView(CreateView):
 
 	model = Transaction
-	success_url='/'
+	success_url='transaction_list'
 	template_name='pmgmt/add.html'
 	fields = (	'subject',
 				'storage_item',
@@ -117,7 +117,7 @@ class TransactionAddView(CreateView):
 
 class ManufacturerAddView(CreateView):
 	model = Manufacturer
-	success_url='/'
+	success_url='manufacturer_list'
 	template_name='pmgmt/manufacturer/add.html'
 	fields = ( 'name', )
 
@@ -130,7 +130,7 @@ class ManufacturerAddView(CreateView):
 
 class ManufacturerUpdateView(UpdateView):
 	template_name = "pmgmt/manufacturer/update.html"
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('manufacturer_list')
 	model = Manufacturer
 	# We don't want to make all fields editable via
 	# normal frontend.
@@ -158,7 +158,7 @@ class ManufacturerDeleteView(DeleteView):
 
 class DistributorAddView(CreateView):
 	model = Distributor
-	success_url='/'
+	success_url='distributor_list'
 	template_name='pmgmt/distributor/add.html'
 	fields = ( 'name', )
 
@@ -171,7 +171,7 @@ class DistributorAddView(CreateView):
 
 class DistributorUpdateView(UpdateView):
 	template_name = "pmgmt/distributor/update.html"
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('distributor_list')
 	model = Distributor
 	# We don't want to make all fields editable via
 	# normal frontend.
@@ -190,7 +190,7 @@ class DistributorView(DetailView):
 
 class DistributorDeleteView(DeleteView):
 	model = Distributor
-	success_url = reverse_lazy('distributorr_list')
+	success_url = reverse_lazy('distributor_list')
 	template_name = 'pmgmt/distributor/delete.html'
 
 
@@ -222,6 +222,10 @@ class StorageItemUpdateView(UpdateView):
 				'on_stock')
 	template_name = 'pmgmt/storageitem/update.html'
 	success_url = reverse_lazy('storage_item_list')
+
+########################################################################
+# StoragePlace
+########################################################################
 
 class StoragePlaceAddView(CreateView):
 	model = StoragePlace

@@ -14,11 +14,11 @@ from .views import *
 
 urlpatterns = patterns('',
 	# Some general url pattern
-	url(r'^list/', PartsList.as_view(), name='partslist'),
+	url(r'^list/', PartsList.as_view(), name='part_list'),
 	url(r'^add/', login_required(
 			PartsAddView.as_view()),
 			name='part_add'),
-	url(r'^reorderlist/$', PartsReorderList.as_view(), name='parts_reorderlist'),
+	url(r'^reorderlist/$', PartsReorderList.as_view(), name='part_reorderlist'),
 	# item specific ones
 	url(r'^(?P<pk>[\w]+)/$', PartDetailView.as_view(),
 			name='part_detail'),
