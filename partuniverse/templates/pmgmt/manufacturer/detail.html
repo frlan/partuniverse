@@ -21,7 +21,7 @@
 	</table>
 	{% endif %}
 {% endfor %}
-
-<p><a href="{% url "manufacturer_update" object.id %}">{% trans "Update item" %}</a></p>
-
+{% if user.is_authenticated %}
+<p><a class="ui tiny button purple" href="{% url "manufacturer_update" object.id %}">{% trans "Update item" %}</a></p>
+{% endif %}
 {% endblock %}
