@@ -450,6 +450,10 @@ class StorageItemsMergeTestCase(TestCase):
 			storage=self.storageplace3,
 			on_stock=200)
 
+	def test_merging_same_storage_item(self):
+		tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
+		self.assertFalse(tmp)
+
 	def test_working_merge_of_two_storage_items(self):
 		tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item2)
 		self.assertTrue(tmp)

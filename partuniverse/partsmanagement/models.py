@@ -240,7 +240,12 @@ class Part(models.Model):
 		if si1.part.id != si2.part.id or self.id != si1.part.id:
 			return False
 
-		# special behavior for on_stock is None storage items
+		# Check, whether si1 and si2 are different storage types at all
+		# If so, we better don't do anything.
+		if si1.id == si2.id:
+			return False
+
+		# Special behavior for on_stock is None storage items
 		# 0x None -> New on_stock is si1.on_stock + si2.on_stock
 		# 1x None -> New on_stock is based on not None value
 		# 2x None -> None
