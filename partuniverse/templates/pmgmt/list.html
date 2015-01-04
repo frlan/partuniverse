@@ -3,7 +3,7 @@
 {% load url from future %}
 {% load i18n %}
 {% block breadcrumbs %}
-<a href="{% url "partslist" %}" class="active item">{% trans "Parts" %}</a>
+<a href="{% url "part_list" %}" class="active item">{% trans "Parts" %}</a>
 {% endblock %}
 {% block content %}
 {% if object_list %}
