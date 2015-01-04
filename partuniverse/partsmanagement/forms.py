@@ -10,8 +10,3 @@ from .models import Part
 #i18n (just in case)
 from django.utils.translation import ugettext_lazy as _
 
-class PartAddForm(forms.ModelForm):
-
-	class Meta:
-		model = Part
-		exclude = ('user')
