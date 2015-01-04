@@ -46,7 +46,7 @@ class PartsReorderList(ListView):
 
 class PartsAddView(CreateView):
 	model = Part
-	success_url='part_list'
+	success_url=reverse_lazy('part_list')
 	template_name='pmgmt/add.html'
 	fields = (	'name',
 				'sku',
@@ -65,7 +65,7 @@ class PartsAddView(CreateView):
 
 class PartDeleteView(DeleteView):
 	model = Part
-	success_url='part_list'
+	success_url=reverse_lazy('part_list')
 	template_name = 'pmgmt/delete.html'
 
 
@@ -76,7 +76,7 @@ class PartDetailView(DetailView):
 
 class PartUpdateView(UpdateView):
 	template_name = "pmgmt/update.html"
-	success_url='part_list'
+	success_url=reverse_lazy('part_list')
 	model = Part
 	# We don't want to amke all fields editable via
 	# normal frontend.
@@ -86,6 +86,7 @@ class PartUpdateView(UpdateView):
 				'manufacturer',
 				'distributor',
 				'categories' )
+
 
 ########################################################################
 # Transaction
@@ -98,7 +99,7 @@ class TransactionListView(ListView):
 class TransactionAddView(CreateView):
 
 	model = Transaction
-	success_url='transaction_list'
+	success_url=reverse_lazy('transaction_list')
 	template_name='pmgmt/add.html'
 	fields = (	'subject',
 				'storage_item',
@@ -117,7 +118,7 @@ class TransactionAddView(CreateView):
 
 class ManufacturerAddView(CreateView):
 	model = Manufacturer
-	success_url='manufacturer_list'
+	success_url=reverse_lazy('manufacturer_list')
 	template_name='pmgmt/manufacturer/add.html'
 	fields = ( 'name', )
 
@@ -158,8 +159,8 @@ class ManufacturerDeleteView(DeleteView):
 
 class DistributorAddView(CreateView):
 	model = Distributor
-	success_url='distributor_list'
-	template_name='pmgmt/distributor/add.html'
+	success_url = reverse_lazy('distributor_list')
+	template_name = 'pmgmt/distributor/add.html'
 	fields = ( 'name', )
 
 	def form_valid(self, form):
@@ -235,13 +236,16 @@ class StoragePlaceAddView(CreateView):
 				'parent')
 	template_name = 'pmgmt/storage/add.html'
 
+
 class StoragePlaceListView(ListView):
 	model = StoragePlace
 	template_name = 'pmgmt/storage/list.html'
 
+
 class StoragePlaceDetailView(DetailView):
 	model = StoragePlace
 	template_name = 'pmgmt/storage/detail.html'
+
 
 class StoragePlaceUpdateView(UpdateView):
 	model = StoragePlace
