@@ -10,13 +10,16 @@ from django.db.models import F
 from django.contrib.auth.decorators import login_required
 
 # Class based views to create a new dataset and Update one
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 
 # Current time
 from django.utils.timezone import now
 
 # Importing models
 from partsmanagement.models import *
+
+# Importing custom forms
+from .forms import *
 
 
 ########################################################################
@@ -223,6 +226,18 @@ class StorageItemUpdateView(UpdateView):
 				'on_stock')
 	template_name = 'pmgmt/storageitem/update.html'
 	success_url = reverse_lazy('storage_item_list')
+
+class StorageItemMergeView(FormView):
+	form_class = MergeStorageItemsForm
+	success_url = reverse_lazy('storage_item_list')
+	template_name = 'pmgmt/storageitem/merge.html'
+
+	def form_valid(self, form):
+		print self.__dict__
+		print self.kwargs
+		si = StorageItem.objects.get(pk=self.kwargs["pk"])
+		si.part.merge_storage_items(si, StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+		return super(StorageItemMergeView, self).form_valid(form)
 
 ########################################################################
 # StoragePlace

@@ -63,6 +63,8 @@ urlpatterns = patterns('',
 			name='storage_item_detail'),
 	url(r'^storageitem/(?P<pk>[\w]+)/update/$', login_required(
 			StorageItemUpdateView.as_view()), name='storage_item_update'),
+	url(r'^storageitem/(?P<pk>[\w]+)/merge/$', login_required(
+			StorageItemMergeView.as_view()), name='storage_item_merge'),
 	url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
 			name='storage_add'),
 	url(r'^storage/list', StoragePlaceListView.as_view(),
