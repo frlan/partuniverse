@@ -233,8 +233,6 @@ class StorageItemMergeView(FormView):
 	template_name = 'pmgmt/storageitem/merge.html'
 
 	def form_valid(self, form):
-		print self.__dict__
-		print self.kwargs
 		si = StorageItem.objects.get(pk=self.kwargs["pk"])
 		si.part.merge_storage_items(si, StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
 		return super(StorageItemMergeView, self).form_valid(form)
