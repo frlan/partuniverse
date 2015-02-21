@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+
+{% block content %}
+<h1>{{ object }}</h1>
+<p>{% trans "Changes here will not change die internal ID of a storage item, but it will change the name you will see inside the application." %}</p>
+<form method="post" class="ui form segment">
+  {% csrf_token %}
+  {{ form.as_semantic }}
+  <input class="ui tiny button purple" type="submit" value="Submit">
+</form>
+{% endblock %}

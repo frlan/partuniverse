@@ -145,6 +145,7 @@ class PartListWithOnStockValueFromSI(TestCase):
 		]
 		self.assertEqual(get_all_storage_item_parts_with_on_stock_and_min_stock(), expected_resultset)
 
+
 class PartExcludeDisabledTestCase(TestCase):
 	""" Checking, wether get_fields() is not return the disabled field """
 
@@ -170,6 +171,7 @@ class PartExcludeDisabledTestCase(TestCase):
 			if unicode(field[0]) == 'Disabled':
 				self.assertTrue(False)
 		self.assertTrue(True)
+
 
 class PartGetOnStockAmount(TestCase):
 	""" Checking for currently amount of on stock items for a special part
@@ -376,6 +378,105 @@ class ItemOutOfStockTestCase(TestCase):
 		""" Testcase for checking whether
 			on_stock = min_stock """
 		self.assertFalse(Part.objects.get(name='Test Part 5').is_below_min_stock())
+
+
+class StorageItemsMergeTestCase(TestCase):
+	""" To check, whether the merging of two storage items is working"""
+
+	def setUp(self):
+		# Setting up categories
+		self.cat = Category.objects.create(name='Category 1')
+
+		# Setting up test user
+		self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+		# Basis setting of storage
+		self.storagetype = StorageType.objects.create(name="Testtype")
+		self.storageplace1 = StoragePlace.objects.create(
+			name = 'Test Storage1',
+			storage_type = self.storagetype)
+		self.storageplace2 = StoragePlace.objects.create(
+			name = 'Test Storage2',
+			storage_type = self.storagetype)
+		self.storageplace3 = StoragePlace.objects.create(
+			name = 'Test Storage3',
+			storage_type = self.storagetype)
+
+		# Some items
+		self.part1 = Part.objects.create(name='Test Part 1',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part2 = Part.objects.create(name='Test Part 2',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		self.part3 = Part.objects.create(name='Test Part 3',
+			unit='m',
+			creation_time=timezone.now(),
+			created_by=self.user)
+
+		# Setting up storage items
+		self.storage_item1 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace1,
+			on_stock=25)
+
+		self.storage_item2 = StorageItem.objects.create(
+			part=self.part1,
+			storage=self.storageplace2,
+			on_stock=50)
+
+		# and a storage items from a different part
+		self.storage_item3 = StorageItem.objects.create(
+			part=self.part2,
+			storage=self.storageplace2,
+			on_stock=100)
+
+		# And some items for checking None-behavior of merging function
+		self.storage_item_none1 =  StorageItem.objects.create(
+			part=self.part3,
+			storage=self.storageplace1)
+
+		self.storage_item_none2 =  StorageItem.objects.create(
+			part=self.part3,
+			storage=self.storageplace2)
+
+		self.storage_item4 = StorageItem.objects.create(
+			part=self.part3,
+			storage=self.storageplace3,
+			on_stock=200)
+
+	def test_merging_same_storage_item(self):
+		tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
+		self.assertFalse(tmp)
+
+	def test_working_merge_of_two_storage_items(self):
+		tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item2)
+		self.assertTrue(tmp)
+		self.assertEqual(int(StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 75)
+		self.assertIsNone(StorageItem.objects.filter(pk=self.storage_item2.id).first())
+
+	def test_merging_with_different_parts(self):
+		tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item3)
+		self.assertFalse(tmp)
+
+	def test_merging_with_non_existent_storage_items(self):
+		tmp = self.part1.merge_storage_items(self.storage_item1, None)
+		self.assertFalse(tmp)
+
+	def test_merging_with_two_on_stock_none(self):
+		tmp = self.part3.merge_storage_items(self.storage_item_none1, self.storage_item_none2)
+		self.assertTrue(tmp)
+		self.assertIsNone(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock)
+
+	def test_merging_with_one_on_stock_none(self):
+		tmp = self.part3.merge_storage_items(self.storage_item_none1, self.storage_item4)
+		self.assertTrue(tmp)
+		self.assertEquals(int(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock), 200)
 
 
 ########################################################################
