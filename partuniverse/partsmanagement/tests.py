@@ -381,7 +381,9 @@ class ItemOutOfStockTestCase(TestCase):
 
 
 class StorageItemsMergeTestCase(TestCase):
-    """ To check, whether the merging of two storage items is working"""
+    """
+    To check, whether the merging of two storage items is working
+    """
 
     def setUp(self):
         # Setting up categories
@@ -451,32 +453,60 @@ class StorageItemsMergeTestCase(TestCase):
             on_stock=200)
 
     def test_merging_same_storage_item(self):
-        tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
-        self.assertFalse(tmp)
+        """
+        Checks whether merging the samse storage items fails
+        """
+        with self.assertRaises(PartsmanagementException):
+            tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
 
     def test_working_merge_of_two_storage_items(self):
+        """
+        Checks whether normal merging of two storage items is working
+        """
         tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item2)
-        self.assertTrue(tmp)
         self.assertEqual(int(StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 75)
         self.assertIsNone(StorageItem.objects.filter(pk=self.storage_item2.id).first())
 
     def test_merging_with_different_parts(self):
-        tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item3)
-        self.assertFalse(tmp)
+        """
+        Checks whether merging of storage items of two differenz parts
+        are failing
+        """
+        with self.assertRaises(PartsNotFitException):
+            self.part1.merge_storage_items(self.storage_item1, self.storage_item3)
 
     def test_merging_with_non_existent_storage_items(self):
-        tmp = self.part1.merge_storage_items(self.storage_item1, None)
-        self.assertFalse(tmp)
+        """
+        Tests whether an invalid storage item causes the merge method
+        to rais an exception
+        """
+        with self.assertRaises(PartsmanagementException):
+            self.part1.merge_storage_items(self.storage_item1, None)
 
     def test_merging_with_two_on_stock_none(self):
-        tmp = self.part3.merge_storage_items(self.storage_item_none1, self.storage_item_none2)
-        self.assertTrue(tmp)
-        self.assertIsNone(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock)
+        """
+        Checkes whether two storage items without any on stock value
+        can be successfully merged
+        """
+        try:
+            self.part3.merge_storage_items(self.storage_item_none1, self.storage_item_none2)
+            self.assertTrue(True)
+            self.assertIsNone(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock)
+        except:
+            self.assertFalse(True)
 
     def test_merging_with_one_on_stock_none(self):
-        tmp = self.part3.merge_storage_items(self.storage_item_none1, self.storage_item4)
-        self.assertTrue(tmp)
-        self.assertEquals(int(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock), 200)
+        """
+        Checkes whether merging an storage item with items inside storage
+        and one without any inforamtion is resulting into a on stock value
+        """
+        try:
+            self.part3.merge_storage_items(self.storage_item_none1, self.storage_item4)
+            self.assertTrue(True)
+            self.assertEquals(int(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock), 200)
+        except:
+            self.assertFalse(True)
+
 
 
 ########################################################################

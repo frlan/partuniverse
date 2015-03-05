@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.conf import settings
 
+# Exceptions
+from .exceptions import *
+
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
 UNIT_CHOICES = (
@@ -220,30 +223,29 @@ class Part(models.Model):
             return False
 
     def merge_storage_items(self, si1, si2):
-        """ Takes two storage items of a part and merging the second
-            one (si2) onto first one (si1). This is done by transfering
-            on_stock value of si2 to si1. At the end, it will delete si2
-            so keep care to don't use it anymore.
-            If one of the storage items is not having and value set for
-            on_stock (read: on_stock is None) the result value will set
-            to the only given value. If both items are None, None is
-            kept."""
-        # Doing some checks
-        # TODO: Check, whether there is a nicer way doing this like in
-        # faster and good readable
+        """
+        Takes two storage items of a part and merging the second
+        one (si2) onto first one (si1). This is done by transfering
+        on_stock value of si2 to si1. At the end, it will delete si2
+        so keep care to don't use it anymore.
+        """
 
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
-            return False
-
+            raise PartsmanagementException(
+                'One of the storage items seems to not exists: %s, %s' % (si1, si2)
+            )
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
-            return False
+            raise PartsNotFitException(
+                'Cannot merge not idendical parts. Parts »%s« and »%s« are not idendical' % (si1.part, si2.part))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
         if si1.id == si2.id:
-            return False
+            raise PartsmanagementException(
+                'StorageItems are idendical. Nothing to merge'
+            )
 
         # Special behavior for on_stock is None storage items
         # 0x None -> New on_stock is si1.on_stock + si2.on_stock
@@ -253,26 +255,22 @@ class Part(models.Model):
             # Case: Both on_stock are None
             # Just delete si2 item from database
             si2.delete()
-            return True
 
         elif si1.on_stock is not None and si2.on_stock is not None:
             # Case: Botn on_stock are not None
             si1.on_stock = si1.on_stock + si2.on_stock
             si1.save()
             si2.delete()
-            return True
 
         elif si1.on_stock is not None:
             # Case: si2 on_stock is None
             si2.delete()
-            return True
 
         else:
             # Case: si1 on_stock is None
             si1.on_stock = si2.on_stock
             si1.save()
             si2.delete()
-            return True
 
 
     class Meta:
