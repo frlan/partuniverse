@@ -11,4 +11,5 @@ class PartsNotFitException(PartsmanagementException):
     """
     Shall be used, when ever a Part is not fitting to another such like cannot be compared
     """
-    print ('foo')
+    pass
+
