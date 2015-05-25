@@ -24,6 +24,10 @@ UNIT_CHOICES = (
             ('ccm', _('cubic centimeters'))
         )
     ),
+    ( _('Piece'), (
+            ('pc', _('piece')),
+        )
+    ),
     (_('n/A'), _('Unknown')),
 )
 
