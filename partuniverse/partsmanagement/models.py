@@ -123,6 +123,9 @@ class Category(models.Model):
 
     name = models.CharField(max_length=50)
     parent = models.ForeignKey("self", null=True, blank=True)
+    description = models.TextField(_("Description"),
+        blank=True,
+        null=True)
 
     def __unicode__(self):
         if self.parent == None:
