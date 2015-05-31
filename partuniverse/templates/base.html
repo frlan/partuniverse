@@ -10,60 +10,60 @@
   <body>
     <header class="ui fixed  menu inverted transparent ">
       <div class="ui one column page grid">
-    <div class="ui column">
+        <div class="ui column">
           <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
-      {% if user.is_authenticated %}
+          {% if user.is_authenticated %}
           <div class="ui simple dropdown item">
-             {% trans "Parts" %}
-             <i class="dropdown icon"></i>
-             <div class="menu">
-               <div class="item"><a href="{% url "part_list" %}">{% trans "List of parts" %}</a></div>
-               <div class="item"><a href="{% url "part_add" %}">{% trans "Add a new part" %}</a></div>
-               <div class="item"><a href="{% url "storage_item_list" %}">{% trans "List of storages items" %}</a></div>
-               <div class="item"><a href="{% url "storage_item_add" %}">{% trans "Add a storage item" %}</a></div>
-             </div>
+            {% trans "Parts" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><a href="{% url "part_list" %}">{% trans "List of parts" %}</a></div>
+              <div class="item"><a href="{% url "part_add" %}">{% trans "Add a new part" %}</a></div>
+              <div class="item"><a href="{% url "storage_item_list" %}">{% trans "List of storages items" %}</a></div>
+              <div class="item"><a href="{% url "storage_item_add" %}">{% trans "Add a storage item" %}</a></div>
+            </div>
           </div>
           <div class="ui simple dropdown item">
-             {% trans "Transactions" %}
-             <i class="dropdown icon"></i>
-             <div class="menu">
-               <div class="item"><a href="{% url "transaction_list" %}">{% trans "List of transactions" %}</a></div>
-               <div class="item"><a href="{% url "transaction_add" %}">{% trans "Add a new transaction" %}</a></div>
-             </div>
+            {% trans "Transactions" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><a href="{% url "transaction_list" %}">{% trans "List of transactions" %}</a></div>
+              <div class="item"><a href="{% url "transaction_add" %}">{% trans "Add a new transaction" %}</a></div>
+            </div>
           </div>
           <div class="ui simple dropdown item">
-             {% trans "Manufacturers" %}
-             <i class="dropdown icon"></i>
-             <div class="menu">
-               <div class="item"><a href="{% url "manufacturer_list" %}">{% trans "List of manufacturers" %}</a></div>
-               <div class="item"><a href="{% url "manufacturer_add" %}">{% trans "Add a new manufacturer" %}</a></div>
-             </div>
+            {% trans "Manufacturers" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><a href="{% url "manufacturer_list" %}">{% trans "List of manufacturers" %}</a></div>
+              <div class="item"><a href="{% url "manufacturer_add" %}">{% trans "Add a new manufacturer" %}</a></div>
+            </div>
           </div>
           <div class="ui simple dropdown item">
-             {% trans "Distributors" %}
-             <i class="dropdown icon"></i>
-             <div class="menu">
-               <div class="item"><a href="{% url "distributor_list" %}">{% trans "List of distributors" %}</a></div>
-               <div class="item"><a href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></div>
-             </div>
+            {% trans "Distributors" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><a href="{% url "distributor_list" %}">{% trans "List of distributors" %}</a></div>
+              <div class="item"><a href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></div>
+            </div>
           </div>
           <div class="ui simple dropdown item">
-              {% trans "Storages" %}
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item"><a href="{% url "storage_list" %}">{% trans "List of storages" %}</a></div>
-                <div class="item"><a href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></div>
-              </div>
+            {% trans "Storages" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item"><a href="{% url "storage_list" %}">{% trans "List of storages" %}</a></div>
+              <div class="item"><a href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></div>
+            </div>
           </div>
-      <div class="item right">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
-      <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
-      <div class="item right"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
-      {% else %}
+          <div class="item right">{% trans "Logged in as:" %} {{ user.username }} (<a href="{% url "account_logout" %}">{% trans "Logout" %}</a>)</div>
           <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
-      <div class="item right"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></div>
-      <div class="item right"><a href="{% url "account_login" %}">{% trans "Login" %}</a></div>
-      {% endif %}
-    </div>
+          <div class="item right"><a href="{% url "account_settings" %}">{% trans "Settings" %}</a></div>
+          {% else %}
+          <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
+          <div class="item right"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></div>
+          <div class="item right"><a href="{% url "account_login" %}">{% trans "Login" %}</a></div>
+          {% endif %}
+        </div>
       </div>
     </header>
     <div class="ui one column page grid">
@@ -81,7 +81,7 @@
     </div>
     <div class="ui one column page grid">
       <div class="column">
-    {% block content %}Empty page{% endblock %}
+        {% block content %}Empty page{% endblock %}
       </div>
     </div>
     {% block footer %}
