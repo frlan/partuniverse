@@ -7,12 +7,13 @@
 {% endblock %}
 {% block content %}
 {% if object_list %}
-<table class="ui table segment">
+<table class="ui table">
   <thead>
     <tr>
       <th>{% trans "Storage Name" %}</th>
       <th>{% trans "Storage Typ" %}</th>
       <th>{% trans "Assigned To" %}</th>
+      <th></th>
       <th></th>
       {% comment %}<th></th>{% endcomment %}
     </tr>

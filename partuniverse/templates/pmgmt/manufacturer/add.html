@@ -12,11 +12,11 @@
 {% endblock %}
 
 {% block content %}
-<form method="post" class="form-horizontal" >
+<div class="ui segment">
+<form method="post" class="ui form" >
 {% csrf_token %}
-<table>
-    {{form.as_p}}
-</table>
-<input type="submit" value="Submit">
+    {{form.as_semantic}}
+<input type="submit" value="Submit" class="ui tiny purple button">
 </form>
+</div>
 {% endblock %}

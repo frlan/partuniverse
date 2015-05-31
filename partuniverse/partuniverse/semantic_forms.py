@@ -7,7 +7,7 @@ from django.forms.widgets import CheckboxInput
 
 def as_semantic(self):
     """Helper function for to generate a form with semantic ui styling."""
-    normal_row='<div%(html_class_attr)s>%(label)s <div class="ui left labeled input">%(field)s%(required)s</div>%(help_text)s</div>'
+    normal_row='<div%(html_class_attr)s><label>%(label)s</label> %(field)s%(help_text)s</div>'
     checkbox_row='<div class="field"><div class="ui checkbox">%(field)s%(label)s</div></div>'
     error_row='<li>%s</li>'
     row_ender=''
@@ -33,7 +33,7 @@ def as_semantic(self):
             css_classes = bf.css_classes()
             if (bf_errors):
                 css_classes = css_classes + ' error'
-            html_class_attr = ' class="field %s"' % css_classes
+            html_class_attr = ' class="field %s%s"' % ("required " if bf.field.required else "",css_classes)
 
             if bf_errors:
                 for error in bf_errors:
@@ -57,7 +57,6 @@ def as_semantic(self):
             output.append(row % {
                 'errors': force_text(bf_errors),
                 'has_errors': True if len(force_text(bf_errors)) > 0 else False,
-                'required': '<div class="ui corner label"><i class="icon asterisk"></i></div>' if bf.field.required else '',
                 'label': force_text(label),
                 'field': six.text_type(bf),
                 'help_text': help_text,
