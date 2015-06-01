@@ -3,9 +3,9 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block content %}
-<h1 class="ui dividing header">Welcome to partuniverse</h1>
+{% block heading %}Welcome to partuniverse{% endblock %}
 
+{% block content %}
 {% if user.is_authenticated %}
 {{ dashboard.render }}
 {% else %}

@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load url from future %}
+
+{% block breadcrumbs %}
+<a href="{% url "about" %}" class="active section">{% trans "About" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "About" %}{% endblock %}
+
+{% block heading %}{% trans "About" %}{% endblock %}
+
 {% block content %}
-{% blocktrans %}
-<div class="ui segment">
-<h1>About</h1>
-<h2>Licence</h2>
-<p>The software is distributed under terms of AGPLv3+.</p>
-<h2>Source Code</h2>
-<p>You can fetch the source code from <a href="https://github.com/frlan/partuniverse">github.com</a></p>
+<h2 class="ui dividing header">{% trans "Licence" %}</h2>
+<p>{% blocktrans %} The software is distributed under terms of AGPLv3+.{% endblocktrans %}</p>
+<h2 class="ui dividing header">{% trans "Source Code" %}</h2>
+<p>{% blocktrans %}You can fetch the source code from <a href="https://github.com/frlan/partuniverse">github.com</a>{% endblocktrans %}</p>
 </div>
-{% endblocktrans %}
 {% endblock %}

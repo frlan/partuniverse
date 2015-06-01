@@ -4,17 +4,19 @@
 {% load url from future %}
 
 {% block breadcrumbs %}
-<a href="{% url "distributor_list" %}" class="item">{% trans "Distributors" %}</a>
-<div class="item">
-  <i class="right chevron icon divider"></i>
-</div>
-<a class="active item">{% trans "Add" %}</a>
+<a href="{% url "distributor_list" %}" class="section">{% trans "Distributors" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section">{% trans "Add" %}</a>
 {% endblock %}
 
+{% block head_title %}{% trans "Add a new distributor" %}{% endblock %}
+
+{% block heading %}{% trans "Add a new distributor" %}{% endblock %}
+
 {% block content %}
-<form method="post" class="ui form segment" >
+<form method="post" class="ui form" >
   {% csrf_token %}
   {{ form.as_semantic }}
-  <input class="ui tiny button purple" type="submit" value="Submit">
+  <input class="ui purple button" type="submit" value="Submit">
 </form>
 {% endblock %}

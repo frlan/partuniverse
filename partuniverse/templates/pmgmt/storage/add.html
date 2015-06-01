@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load url from future %}
+
+{% block breadcrumbs %}
+<a href="{% url "storage_list" %}" class="section">{% trans "Storage" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section">{% trans "Add" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Add a new storage" %}{% endblock %}
+
+{% block heading %}{% trans "Add a new storage" %}{% endblock %}
+
 {% block content %}
 <p>{% trans "Use this to add new storage places e.g. new shelf." %}</p>
-<form method="post" class="ui form segment" >
+<form method="post" class="ui form" >
   {% csrf_token %}
   {{ form.as_semantic }}
   <input class="ui tiny button purple" type="submit" value="Submit">

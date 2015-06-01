@@ -4,17 +4,18 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<a class="active item" href=" {% url "account_login" %}"> {% trans "Log in" %} </a>
+<a class="active section" href=" {% url "account_login" %}"> {% trans "Log in" %} </a>
 {% endblock %}
 
 {% block head_title %}{% trans "Log in" %}{% endblock %}
 
+{% block heading %}{% trans "Log in" %}{% endblock %}
+
 {% block content %}
-<p> {% trans "Please login with an existing account:" %}</p>
-<form method="POST" action="{% url "account_login" %}" autocapitalize="off" class="ui form segment">
+<form method="POST" action="{% url "account_login" %}" autocapitalize="off" class="ui form">
   {% csrf_token %}
   {{ form.as_semantic }}
-  <button class="ui purple tiny button" type="submit">{% trans "Log in" %}</button> <a class="ui purple tiny button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
+  <button class="ui purple button" type="submit">{% trans "Log in" %}</button> <a class="ui purple button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
 </form>
 
 {% endblock %}

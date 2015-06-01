@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="generator" content="partuniverse" />
-    <title>{% block head_title %}"Partuniverse"{% endblock %}</title>
+    <title>{% block head_title %}Start{% endblock %} — Partuniverse</title>
     <link rel="stylesheet" type="text/css" href="{% static "semantic-ui/dist/semantic.css" %}">
     <!-- link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}" -->
   </head>
@@ -68,20 +68,18 @@
     </header>
     <div class="ui one column page grid">
       <div class="column">
-        <div class="ui borderless menu">
-          <a class="item" href="{% url "home" %}">
-            {% trans "Home" %}
-          </a>
-          <div class="item">
+        <h1 class="ui top attached header">{% block heading %}heading{% endblock %}</h1>
+        <div class="ui attached segment">
+          <div class="ui breadcrumb">
+            <a class="section" href="{% url "home" %}">
+              {% trans "Home" %}
+            </a>
             <i class="right chevron icon divider"></i>
+            {% block breadcrumbs %} {% endblock %}
           </div>
-          {% block breadcrumbs %} {% endblock %}
+
+          {% block content %}Empty page{% endblock %}
         </div>
-      </div>
-    </div>
-    <div class="ui one column page grid">
-      <div class="column">
-        {% block content %}Empty page{% endblock %}
       </div>
     </div>
     {% block footer %}

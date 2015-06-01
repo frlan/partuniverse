@@ -2,21 +2,36 @@
 
 {% load url from future %}
 {% load i18n %}
+
 {% block breadcrumbs %}
-<a href="{% url "part_list" %}" class="active item">{% trans "Parts" %}</a>
+<a href="{% url "part_list" %}" class="active section">{% trans "Parts" %}</a>
 {% endblock %}
+
+{% block head_title %}{% trans "List of parts" %}{% endblock %}
+
+{% block heading %}{% trans "List of parts" %}{% endblock %}
+
 {% block content %}
 {% if object_list %}
 <table class="ui table segment">
+  <colgroup>
+    <col>
+    <col width="10%">
+    <col width="10%">
+    <col width="18%">
+    {% if user.is_authenticated %}
+    <col width="16%">
+    {% endif %}
+  </colgroup>
   <thead>
     <tr>
       <th>{% trans "Name" %}</th>
       <th>{% trans "Minimum" %}</th>
       <th>{% trans "In Stock" %}</th>
       <th>{% trans "Manufacturer" %}</th>
+      {% if user.is_authenticated %}
       <th></th>
-      <th></th>
-      <th></th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -26,8 +41,12 @@
       <td>{{ item.min_stock|default:"" }}</td>
       <td>{{ item.get_on_stock|default:"" }}</td>
       <td>{{ item.manufacturer|default:"" }}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>{% endif %}</td>
+      {% if user.is_authenticated %}
+      <td>
+        <a class="ui tiny button purple" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
+        <a class="ui tiny button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+      </td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

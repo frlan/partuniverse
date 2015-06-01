@@ -4,12 +4,20 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<a href="{% url "manufacturer_list" %}" class="active item">{% trans "Manufacturers" %}</a>
+<a href="{% url "manufacturer_list" %}" class="active section">{% trans "Manufacturers" %}</a>
 {% endblock %}
+
+{% block head_title %}{% trans "List of manufacturers" %}{% endblock %}
+
+{% block heading %}{% trans "List of manufacturers" %}{% endblock %}
 
 {% block content %}
 {% if object_list %}
 <table class="ui table segment">
+  <colgroup>
+    <col>
+    <col width="8%">
+  </colgroup>
   <thead>
     <tr>
       <th>{% trans "Name" %}</th>

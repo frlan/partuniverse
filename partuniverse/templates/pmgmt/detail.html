@@ -3,15 +3,16 @@
 {% load url from future %}
 {% load i18n %}
 {% block breadcrumbs %}
-<a href="{% url "part_list" %}" class="item">{% trans "Parts" %}</a>
-<div class="item">
-  <i class="right chevron icon divider"></i>
-</div>
-<a class="active item" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
-
+<a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
 {% endblock %}
+
+{% block head_title %}{{ object.name }}{% endblock %}
+
+{% block heading %}{{ object.name }}{% endblock %}
+
 {% block content %}
-<h1>{{ object.name }}</h1>
 {% if object.disabled == True %}
 <div class="ui error message segment">
 <p>{% trans "This part has been marked as disbaled. Please contact your admin for details." %}</p>
@@ -23,7 +24,11 @@
 </div>
 {% endif %}
 
-<table class="ui table segment">
+<table class="ui definition table">
+  <colgroup>
+    <col width="15%">
+    <col>
+  </colgroup>
     {% for verbose_name, value in object.get_fields %}
     {% if value %}
     <tr>
@@ -40,9 +45,9 @@
 
 <p>
 {% if object.disabled == False %}
-  <a class="ui tiny button purple" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
+  <a class="ui purple button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
 {% endif %}
-<a class="ui tiny button purple" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
+<a class="ui purple button" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
 </p>
 
 

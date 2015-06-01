@@ -2,9 +2,15 @@
 
 {% load url from future %}
 {% load i18n %}
+
 {% block breadcrumbs %}
-<a href="{% url "transaction_list" %}" class="active item">{% trans "Transactions" %}</a>
+<a href="{% url "transaction_list" %}" class="active section">{% trans "Transactions" %}</a>
 {% endblock %}
+
+{% block head_title %}{% trans "List of transactions" %}{% endblock %}
+
+{% block heading %}{% trans "List of transactions" %}{% endblock %}
+
 {% block content %}
 <table class="ui table segment">
   <thead>

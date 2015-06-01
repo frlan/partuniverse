@@ -3,14 +3,18 @@
 {% load url from future %}
 
 {% block breadcrumbs %}
-<a href="{% url "storage_item_add" %}" class="active item">{% trans "Storage Item Add" %}</a>
+<a href="{% url "storage_item_add" %}" class="active section">{% trans "Storage Item Add" %}</a>
 {% endblock %}
+
+{% block head_title %}{% trans "Add a storages item" %}{% endblock %}
+
+{% block heading %}{% trans "Add a storages item" %}{% endblock %}
 
 {% block content %}
 <p>{% trans "Use this to add new storage items, which are parts on a decent storage place" %}</p>
-<form method="post" class="ui form segment" >
+<form method="post" class="ui form" >
   {% csrf_token %}
   {{ form.as_semantic }}
-  <input class="ui tiny button purple" type="submit" value="Submit">
+  <input class="ui purple button" type="submit" value="Submit">
 </form>
 {% endblock %}

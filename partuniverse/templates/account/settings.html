@@ -4,17 +4,20 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<a href="{% url "account_settings" %}" class="active item">{% trans "Settings" %}</a>
+<a href="{% url "account_settings" %}" class="active section">{% trans "Settings" %}</a>
 {% endblock %}
 
+{% block head_title %}{% trans "Account settings" %}{% endblock %}
+
+{% block heading %}{% trans "Account settings" %}{% endblock %}
+
 {% block content %}
-<h1 class="ui header dividing">{% trans "Account settings" %}</h1>
 <h2 class="ui header dividing">{% trans "General Account Settings" %}</h2>
 <p>{% trans "Change here your account data:" %}</p>
-<form class="ui form segment" method="POST" action="{% url "account_settings" %}">
+<form class="ui form" method="POST" action="{% url "account_settings" %}">
   {% csrf_token %}
   {{ form.as_semantic }}
-  <button class="ui tiny button purple" type="submit"> {% trans "Save" %}</button>
+  <button class="ui purple button" type="submit"> {% trans "Save" %}</button>
 </form>
 
 <h2 class="ui header dividing">{% trans "Password" %}</h2>

@@ -2,21 +2,36 @@
 
 {% load url from future %}
 {% load i18n %}
+
 {% block breadcrumbs %}
-<a href="{% url "storage_item_list" %}" class="active item">{% trans "Storage Items" %}</a>
+<a href="{% url "storage_item_list" %}" class="active section">{% trans "Storage Items" %}</a>
 {% endblock %}
+
+{% block head_title %}{% trans "List of storages items" %}{% endblock %}
+
+{% block heading %}{% trans "List of storages items" %}{% endblock %}
+
 {% block content %}
 {% if object_list %}
 <table class="ui table segment">
+  <colgroup>
+    <col>
+    <col>
+    <col>
+    {% if user.is_authenticated %}
+    <col width="29%">
+    {% else %}
+    <col width="8%">
+    {% endif %}
+  </colgroup>
   <thead>
     <tr>
       <th>{% trans "Part" %}</th>
       <th>{% trans "Storage" %}</th>
       <th>{% trans "Reported On Stock" %}</th>
+      {% if user.is_authenticated %}
       <th></th>
-      <th></th>
-      <th></th>
-      {% comment %}<th></th>{% endcomment %}
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -25,10 +40,13 @@
       <td><a href="{% url "part_detail" item.part.id %}">{{ item.part }}</a></td>
       <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage.name }}</a></td>
       {% if item.on_stock == None %}<td>---</td>{% else %}<td>{{item.on_stock}}</td>{% endif %}
-      <td><a class="ui tiny button purple" href="{% url "storage_item_detail" item.id %}"/>Detail</a></td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a> {% endif %}</td>
-      {% comment %}<td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="/pmgmt/storageitem/{{item.id}}/delete/">{% trans "Delete" %}</a>{% endif %}</td>{% endcomment %}
+      <td>  
+        <a class="ui tiny button purple" href="{% url "storage_item_detail" item.id %}"/>Detail</a>
+        {% if user.is_authenticated %}
+        <a class="ui tiny button purple" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>
+        <a class="ui tiny button purple" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a>
+        {% endif %}
+      </td>      
     </tr>
     {% endfor %}
   </tbody>
