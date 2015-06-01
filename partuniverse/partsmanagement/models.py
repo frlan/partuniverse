@@ -70,6 +70,9 @@ class StoragePlace(models.Model):
         verbose_name=_("Parent storage"))
     disabled = models.BooleanField(_("Disabled"),
         default=False)
+    description = models.TextField(_("Description"),
+        blank=True,
+        null=True)
 
     def __unicode__(self):
         if self.parent == None:

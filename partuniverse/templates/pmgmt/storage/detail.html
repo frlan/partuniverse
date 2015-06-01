@@ -28,6 +28,15 @@
     <td>{% trans "Storage Type" %}</td>
     <td>{{object.storage_type}}</td>
   </tr>
+  <tr>
+      <td>{% trans "Description" %}</td>
+      {% if object.description == None %}
+          <td>{% trans "no Details" %}
+      {% else %}
+          <td>{{object.description}}</td>
+      {% endif %}
+
+  </tr>
 </table>
 
 <p><a class="ui tiny button purple" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a>
