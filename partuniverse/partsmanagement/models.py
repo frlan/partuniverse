@@ -184,7 +184,7 @@ class Part(models.Model):
         default=False)
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name)
 
 
     def get_on_stock(self):
@@ -301,7 +301,7 @@ class StorageItem(models.Model):
         default=False)
 
     def __unicode__(self):
-        return str(self.part) + ": " + str(self.storage)
+        return unicode(self.part) + ": " + unicode(self.storage)
 
     class Meta:
         unique_together = ("part", "storage")
