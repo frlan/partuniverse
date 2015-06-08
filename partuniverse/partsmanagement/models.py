@@ -78,7 +78,7 @@ class StoragePlace(models.Model):
         if self.parent == None:
             return self.name
         else:
-            tmp = unicode(str(self.parent) + settings.PARENT_DELIMITER + str(self.name))
+            tmp = unicode(unicode(self.parent) + settings.PARENT_DELIMITER + unicode(self.name))
             return tmp
 
     class Meta:
