@@ -9,16 +9,16 @@
 
 {% block head_title %}{% trans "Sign up" %}{% endblock %}
 
+{% block heading %}{% trans "Sign up" %}{% endblock %}
+
 {% block content %}
-<form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-	{% csrf_token %}
-	<table>
+<form class="ui form" id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+    {% csrf_token %}
     {{ form.as_semantic }}
-    </table>
     {% if redirect_field_value %}
-		<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-	{% endif %}
-	<button type="submit">{% trans "Sign up" %}</button>
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="ui purple button" type="submit">{% trans "Sign up" %}</button>
 </form>
 
 {% endblock %}
