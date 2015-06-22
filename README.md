@@ -9,7 +9,7 @@ but at a more general storage.
 
 Partuniverse depends on:
 
-- Django and therefor Python
+- Django and therefore Python
 - A database server supported by django (PostgreSQL recommended) and
   its development libraries --
   SQLlite -- the default -- should be fine for the very beginning
