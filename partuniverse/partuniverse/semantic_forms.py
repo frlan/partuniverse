@@ -72,5 +72,5 @@ def as_semantic(self):
     
 
     if hidden_fields:  # Insert any hidden fields in the last row.
-        output.append(str_hidden)
+        output.append('\n'.join(hidden_fields))
     return mark_safe('\n'.join(output))
