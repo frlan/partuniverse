@@ -10,6 +10,12 @@ from django.conf import settings
 # Exceptions
 from .exceptions import *
 
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
+
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
 UNIT_CHOICES = (

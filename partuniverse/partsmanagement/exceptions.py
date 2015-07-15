@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
 class PartsmanagementException(Exception):
     """
     Base exceptions for this packages
