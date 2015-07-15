@@ -8,7 +8,7 @@ from django.db.models import Sum
 from django.conf import settings
 
 # Exceptions
-from .exceptions import *
+from .exceptions import PartsNotFitException, PartsmanagementException
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
