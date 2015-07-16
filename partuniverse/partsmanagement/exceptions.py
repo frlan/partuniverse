@@ -12,13 +12,15 @@ class PartsmanagementException(Exception):
     """
     Base exceptions for this packages
     """
-    logger.error(_("An fatal error has been occurred"))
-    pass
+    def __init__(self):
+        logger.error(_("An fatal error has been occurred"))
+
 
 class PartsNotFitException(PartsmanagementException):
     """
     Shall be used, when ever a Part is not fitting to another such like cannot be compared
     """
-    logger.error(_("Exception: Parts cannot be combined"))
-    pass
+    def __init__(self):
+        logger.error(_("Exception: Parts cannot be combined"))
+
 
