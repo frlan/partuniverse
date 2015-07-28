@@ -19,13 +19,13 @@ class CategoryTestCase(TestCase):
 
     def setUp(self):
         self.cat1 = Category.objects.create(name='Category 1')
-        self.cat2 = Category.objects.create(name='Category 2', parent=self.cat1)
+        self.cat2 = Category.objects.create(name='Category ü', parent=self.cat1)
         self.cat3 = Category.objects.create(name='Category 3', parent=self.cat2)
 
     def test_category_name(self):
         cat_result1 = u'Category 1'
-        cat_result2 = u'Category 1' + settings.PARENT_DELIMITER + u'Category 2'
-        cat_result3 = u'Category 1' + settings.PARENT_DELIMITER + u'Category 2' + settings.PARENT_DELIMITER + u'Category 3'
+        cat_result2 = u'Category 1' + settings.PARENT_DELIMITER + u'Category ü'
+        cat_result3 = u'Category 1' + settings.PARENT_DELIMITER + u'Category ü' + settings.PARENT_DELIMITER + u'Category 3'
         self.assertEqual(self.cat1.__unicode__(), cat_result1)
         self.assertEqual(self.cat2.__unicode__(), cat_result2)
         self.assertEqual(self.cat3.__unicode__(), cat_result3)
@@ -51,7 +51,7 @@ class TransactionInventoryChange(TestCase):
         self.storageplace = StoragePlace.objects.create(
             name = 'Test Storage',
             storage_type = self.storagetype)
-        self.part1 = Part.objects.create(name='Test Part 1',
+        self.part1 = Part.objects.create(name='Test Part 1 with unicode µä³½',
             unit='m',
             creation_time=timezone.now(),
             created_by=self.user)
@@ -81,7 +81,7 @@ class TransactionInventoryChange(TestCase):
 
     def test_transaction_increase_on_stock(self):
         trans = Transaction.objects.create(
-            subject='Testtransaction 1',
+            subject='Testtransaction 1 with Unicode µä³½',
             created_by=self.user,
             amount=10,
             storage_item=self.storage_item1,
@@ -380,6 +380,8 @@ class ItemOutOfStockTestCase(TestCase):
         self.assertFalse(Part.objects.get(name='Test Part 5').is_below_min_stock())
 
 
+########################################################################
+
 class StorageItemsMergeTestCase(TestCase):
     """
     To check, whether the merging of two storage items is working
@@ -521,13 +523,12 @@ class StrorageParentTestCase(TestCase):
         self.storage_type = StorageType.objects.create(name='Generic Typ')
         self.stor1 = StoragePlace.objects.create(name='Storage Lvl 1', storage_type=self.storage_type)
         self.stor2 = StoragePlace.objects.create(name='Storage Lvl 2', parent=self.stor1, storage_type=self.storage_type)
-        self.stor3 = StoragePlace.objects.create(name='Storage Lvl 3', parent=self.stor2, storage_type=self.storage_type)
+        self.stor3 = StoragePlace.objects.create(name='Storage Lvl 3 with unicode µä³½', parent=self.stor2, storage_type=self.storage_type)
 
     def test_storage_name(self):
         stor_result1 = u'Storage Lvl 1'
         stor_result2 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2'
-        stor_result3 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2' + settings.PARENT_DELIMITER + u'Storage Lvl 3'
+        stor_result3 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2' + settings.PARENT_DELIMITER + u'Storage Lvl 3 with unicode µä³½'
         self.assertEqual(self.stor1.__unicode__(), stor_result1)
         self.assertEqual(self.stor2.__unicode__(), stor_result2)
         self.assertEqual(self.stor3.__unicode__(), stor_result3)
-
