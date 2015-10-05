@@ -3,6 +3,10 @@
 from django.contrib import admin
 from .models import *
 
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
 admin.site.register(StorageType)
 admin.site.register(Category)
 admin.site.register(StoragePlace)
