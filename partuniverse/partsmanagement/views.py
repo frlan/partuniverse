@@ -21,6 +21,10 @@ from partsmanagement.models import *
 # Importing custom forms
 from .forms import *
 
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
 
 ########################################################################
 # Part
