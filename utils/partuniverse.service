@@ -12,7 +12,7 @@ PIDFile=/run/partuniverse/pid
 User=partuniverse
 Group=partuniverse
 WorkingDirectory=/home/partuniverse/partuniverse/partuniverse
-ExecStart=/home/partuniverse/Envs/partuniverse/bin/gunicorn --pid /run/partuniverse/pid partuniverse.wsgi:application --bind 127.0.0.1:8005
+ExecStart=/home/partuniverse/partuniverse/bin/gunicorn --pid /run/partuniverse/pid partuniverse.wsgi:application --bind 127.0.0.1:8005
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 
