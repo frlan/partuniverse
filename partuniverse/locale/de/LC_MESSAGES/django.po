@@ -1,13 +1,13 @@
 # German translation file of part universe
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Frank Lanitz <frank@frank.uvena.de>, 2014.
+# Frank Lanitz <frank@frank.uvena.de>, 2014 -2015
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-21 18:33+0000\n"
+"POT-Creation-Date: 2015-11-02 19:54+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -16,198 +16,1329 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_template_defaulttags.html:2938
+#: lib/python2.7/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr "Meldungen"
+
+#: lib/python2.7/site-packages/django/contrib/sitemaps/apps.py:7
+msgid "Site Maps"
+msgstr "Inhalt"
+
+#: lib/python2.7/site-packages/django/contrib/staticfiles/apps.py:7
+msgid "Static Files"
+msgstr "Statische Dateien"
+
+#: lib/python2.7/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr "Zusammenfassung"
+
+#: lib/python2.7/site-packages/django/contrib/webdesign/apps.py:7
+msgid "Web Design"
+msgstr "Web Design"
+
+#: lib/python2.7/site-packages/django/core/validators.py:20
+msgid "Enter a valid value."
+msgstr "Gib einen gültigen Wert ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:87
+#: lib/python2.7/site-packages/django/forms/fields.py:712
+msgid "Enter a valid URL."
+msgstr "Gib eine gültige URL ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:130
+msgid "Enter a valid integer."
+msgstr "Gib eine gültige Ganzzahl ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:141
+#| msgid "Confirm your email address"
+msgid "Enter a valid email address."
+msgstr "Bestätige Deine Email-Adresse."
+
+#: lib/python2.7/site-packages/django/core/validators.py:215
+msgid ""
+"Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/core/validators.py:220
+#: lib/python2.7/site-packages/django/core/validators.py:239
+msgid "Enter a valid IPv4 address."
+msgstr "Gib eine gültige IPv4-Adresse ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:225
+#: lib/python2.7/site-packages/django/core/validators.py:240
+msgid "Enter a valid IPv6 address."
+msgstr "Gib eine gültige IPv6-Adresse ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:235
+#: lib/python2.7/site-packages/django/core/validators.py:238
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr "Gib entweder eine gütlige IPv4- oder IPv6-Adresse ein."
+
+#: lib/python2.7/site-packages/django/core/validators.py:263
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1144
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/core/validators.py:272
 #, python-format
-msgid "The width is: %(width)s"
-msgstr "Die Breite ist:  %(width)s"
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
 
-#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_views_static.html:294
-#: htmlcov/_home_frlan__virtualenvs_partuniverse_lib_python2_7_site-packages_django_views_static.html:297
+#: lib/python2.7/site-packages/django/core/validators.py:298
 #, python-format
-msgid "Index of %(directory)s"
-msgstr "Index von %(directory)s"
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
 
-#: partsmanagement/models.py:13
-msgid "Length"
-msgstr "Längen"
+#: lib/python2.7/site-packages/django/core/validators.py:305
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
 
-#: partsmanagement/models.py:14
-msgid "meters"
-msgstr "Meter"
+#: lib/python2.7/site-packages/django/core/validators.py:314
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
 
-#: partsmanagement/models.py:15
-msgid "centimeters"
-msgstr "Centimeter"
+#: lib/python2.7/site-packages/django/core/validators.py:325
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
 
-#: partsmanagement/models.py:18
-msgid "Volume"
-msgstr "Volumen"
+#: lib/python2.7/site-packages/django/db/models/base.py:1130
+#: lib/python2.7/site-packages/django/forms/models.py:718
+msgid "and"
+msgstr ""
 
-#: partsmanagement/models.py:19
-msgid "litres"
-msgstr "Liter"
+#: lib/python2.7/site-packages/django/db/models/base.py:1132
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
 
-#: partsmanagement/models.py:20
-msgid "cubicmeters"
-msgstr "Kubikmeter"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:107
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
 
-#: partsmanagement/models.py:21
-msgid "cubic centimeters"
-msgstr "Kubikcentimeter"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:108
+msgid "This field cannot be null."
+msgstr ""
 
-#: partsmanagement/models.py:24
-msgid "Unknown"
-msgstr "Unbekannt"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:109
+msgid "This field cannot be blank."
+msgstr ""
 
-#: partsmanagement/models.py:37
-msgid "Storage Type"
-msgstr "Lagertyp"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:110
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
 
-#: partsmanagement/models.py:38
-msgid "Storage Types"
-msgstr "Lagertypen"
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:114
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
 
-#: partsmanagement/models.py:50
-#| msgid "Add a new storage"
-msgid "Parent storage"
-msgstr "Übergeorndetes Lager"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:132
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
 
-#: partsmanagement/models.py:60
-msgid "Storage Place"
-msgstr "Lagerplatz"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:922
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1832
+msgid "Integer"
+msgstr ""
 
-#: partsmanagement/models.py:61
-msgid "Storage Places"
-msgstr "Lagerplätze"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:926
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1830
+#, python-format
+msgid "'%(value)s' value must be an integer."
+msgstr ""
 
-#: partsmanagement/models.py:70 partsmanagement/models.py:88
-#: partsmanagement/models.py:157
-msgid "Added by"
-msgstr "Hinzugefügt von"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1001
+#, python-format
+msgid "'%(value)s' value must be either True or False."
+msgstr ""
 
-#: partsmanagement/models.py:76 partsmanagement/models.py:141
-#: templates/pmgmt/list.html:17
-msgid "Manufacturer"
-msgstr "Hersteller"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1003
+msgid "Boolean (Either True or False)"
+msgstr ""
 
-#: partsmanagement/models.py:77
-msgid "Manufacturers"
-msgstr "Hersteller"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1078
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
 
-#: partsmanagement/models.py:85 partsmanagement/models.py:154
-msgid "Creation time"
-msgstr "Angelegt am"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1139
+msgid "Comma-separated integers"
+msgstr ""
 
-#: partsmanagement/models.py:94 partsmanagement/models.py:145
-msgid "Distributor"
-msgstr "Lieferant"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1188
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
 
-#: partsmanagement/models.py:95
-msgid "Distributors"
-msgstr "Lieferanten"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1190
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1340
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
 
-#: partsmanagement/models.py:114 partsmanagement/models.py:153
-msgid "Category"
-msgstr "Kategorie"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1193
+msgid "Date (without time)"
+msgstr ""
 
-#: partsmanagement/models.py:115
-msgid "Categories"
-msgstr "Kategorien"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1338
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
 
-#: partsmanagement/models.py:121
-msgid "Name of part"
-msgstr "Name des Teils"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1342
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
 
-#: partsmanagement/models.py:123
-msgid "Minimal stock"
-msgstr "Mindestlagerbestand"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1346
+msgid "Date (with time)"
+msgstr ""
 
-#: partsmanagement/models.py:130
-msgid "Parts on stock"
-msgstr "Lagerbestand"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1498
+#, python-format
+msgid "'%(value)s' value must be a decimal number."
+msgstr ""
 
-#: partsmanagement/models.py:135
-msgid "Messuring unit"
-msgstr "Maßeinheit"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1500
+msgid "Decimal number"
+msgstr ""
 
-#: partsmanagement/models.py:149
-msgid "Storage"
-msgstr "Lager"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1651
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in [DD] [HH:[MM:]]ss[."
+"uuuuuu] format."
+msgstr ""
 
-#: partsmanagement/models.py:190
-msgid "Part"
-msgstr "Teil"
-
-#: partsmanagement/models.py:191 templates/pmgmt/detail.html:6
-#: templates/pmgmt/list.html:6
-msgid "Parts"
-msgstr "Teile"
-
-#: partsmanagement/models.py:196
-msgid "Subject"
-msgstr "Kurzbeschreibung"
-
-#: partsmanagement/models.py:199
-msgid "Created by"
-msgstr "Erstellt von"
-
-#: partsmanagement/models.py:200
-msgid "Amount"
-msgstr "Menge"
-
-#: partsmanagement/models.py:204
-msgid "Transaction Date"
-msgstr "Transaktionsdaten"
-
-#: partsmanagement/models.py:209
-msgid "Comment"
-msgstr "Kommentar"
-
-#: partsmanagement/models.py:228
-msgid "Transaction"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1654
+#, fuzzy
+#| msgid "Transaction"
+msgid "Duration"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:229 templates/pmgmt/trans_list.html:6
-msgid "Transactions"
-msgstr "Transaktionen"
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1705
+#, fuzzy
+#| msgid "Confirm your email address"
+msgid "Email address"
+msgstr "Bestätige Deine Email-Adresse"
 
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1729
+msgid "File path"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1796
+#, python-format
+msgid "'%(value)s' value must be a float."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1798
+msgid "Floating point number"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1899
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1914
+msgid "IPv4 address"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:1950
+msgid "IP address"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2029
+#, python-format
+msgid "'%(value)s' value must be either None, True or False."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2031
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2091
+msgid "Positive integer"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2103
+msgid "Positive small integer"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2116
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2145
+msgid "Small integer"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2152
+msgid "Text"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2175
+#, python-format
+msgid ""
+"'%(value)s' value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2177
+#, python-format
+msgid ""
+"'%(value)s' value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2180
+msgid "Time"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2308
+msgid "URL"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2331
+msgid "Raw binary data"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/__init__.py:2375
+#, python-format
+msgid "'%(value)s' is not a valid UUID."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/files.py:239
+msgid "File"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/files.py:389
+msgid "Image"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/related.py:1796
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/related.py:1798
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/related.py:2028
+msgid "One-to-one relationship"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/db/models/fields/related.py:2118
+msgid "Many-to-many relationship"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:64
+msgid "This field is required."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:237
+msgid "Enter a whole number."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:280
+#: lib/python2.7/site-packages/django/forms/fields.py:317
+msgid "Enter a number."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:319
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:323
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:327
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:438
+#: lib/python2.7/site-packages/django/forms/fields.py:1193
+msgid "Enter a valid date."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:462
+#: lib/python2.7/site-packages/django/forms/fields.py:1194
+msgid "Enter a valid time."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:484
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:525
+msgid "Enter a valid duration."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:591
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:592
+msgid "No file was submitted."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:593
+msgid "The submitted file is empty."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:595
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:598
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:660
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:827
+#: lib/python2.7/site-packages/django/forms/fields.py:921
+#: lib/python2.7/site-packages/django/forms/models.py:1234
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:922
+#: lib/python2.7/site-packages/django/forms/fields.py:1037
+#: lib/python2.7/site-packages/django/forms/models.py:1233
+msgid "Enter a list of values."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:1038
+msgid "Enter a complete value."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/fields.py:1264
+msgid "Enter a valid UUID."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: lib/python2.7/site-packages/django/forms/forms.py:129
+msgid ":"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/forms.py:214
 #: partuniverse/semantic_forms.py:27
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
 msgstr "(Hidden field %(name)s) %(error)s"
 
-#: templates/about.html:5
-msgid ""
-"\n"
-"<h1>About</h1>\n"
-"<h2>Licence</h2>\n"
-"<p>The software is distributed under terms of AGPLv3+.</p>\n"
-"<h2>Source Code</h2>\n"
-"<p>You can fetch the source code from <a href=\"https://github.com/frlan/"
-"partuniverse\">github.com</a></p>\n"
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: lib/python2.7/site-packages/django/forms/forms.py:659
+msgid ":?.!"
 msgstr ""
-"\n"
-"<h1>&Uuml;ber</h1>\n"
-"<h2>Lizenz</h2>\n"
-"<p>Die Software wurde unter den Bedingungen der AGPLv3+ veröffentlicht.</p>\n"
-"<h2>Quellcode</h2>\n"
-"<p>Du kannst die Quellen von <a href=\"https://github.com/frlan/partuniverse"
-"\">github.com</a> herunterladen.</p>\n"
 
-#: templates/account/delete.html:6 templates/account/password_change.html:8
-#: templates/account/settings.html:6 templates/base.html:16
+#: lib/python2.7/site-packages/django/forms/formsets.py:96
+msgid "ManagementForm data is missing or has been tampered with"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/formsets.py:333
+#, python-format
+msgid "Please submit %d or fewer forms."
+msgid_plural "Please submit %d or fewer forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/formsets.py:340
+#, python-format
+msgid "Please submit %d or more forms."
+msgid_plural "Please submit %d or more forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/forms/formsets.py:368
+#: lib/python2.7/site-packages/django/forms/formsets.py:370
+msgid "Order"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/formsets.py:372
+#: templates/pmgmt/list.html:47
+msgid "Delete"
+msgstr "Löschen"
+
+#: lib/python2.7/site-packages/django/forms/models.py:712
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:716
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:722
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:730
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:1053
+msgid "The inline foreign key did not match the parent instance primary key."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:1119
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/models.py:1236
+#, python-format
+msgid "\"%(pk)s\" is not a valid value for a primary key."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/utils.py:165
+#, python-format
+msgid ""
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:345
+msgid "Currently"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:346
+msgid "Change"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:347
+msgid "Clear"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:555
+#: partsmanagement/models.py:37
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:556
+msgid "Yes"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/forms/widgets.py:557
+msgid "No"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:865
+msgid "yes,no,maybe"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:894
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:906
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:908
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:910
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:912
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:914
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/template/defaultfilters.py:916
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:61
+msgid "p.m."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:62
+msgid "a.m."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:67
+msgid "PM"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:68
+msgid "AM"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:151
+msgid "midnight"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dateformat.py:153
+msgid "noon"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:11
+msgid "Sat"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "January"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "February"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "March"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "April"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "May"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:18
+msgid "June"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "July"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "August"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "September"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "October"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:19
+msgid "November"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:20
+msgid "December"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "jan"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "feb"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "mar"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "apr"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "may"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:23
+msgid "jun"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "jul"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "aug"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "sep"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "oct"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "nov"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:24
+msgid "dec"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:35
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:36
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:37
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:38
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:39
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:40
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:41
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:42
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:49
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:50
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:51
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:52
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:53
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:54
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:55
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/dates.py:56
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/ipv6.py:10
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/text.py:79
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s..."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/text.py:248
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: lib/python2.7/site-packages/django/utils/text.py:267
+#: lib/python2.7/site-packages/django/utils/timesince.py:58
+msgid ", "
+msgstr ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:15
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/python2.7/site-packages/django/utils/timesince.py:47
+msgid "0 minutes"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:107
+msgid "Forbidden"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:108
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:112
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer "
+"header' to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:117
+msgid ""
+"If you have configured your browser to disable 'Referer' headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for 'same-"
+"origin' requests."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:122
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:127
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for 'same-origin' requests."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/csrf.py:132
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/debug.py:583
+msgid "Welcome to Django"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/debug.py:584
+msgid "It worked!"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/debug.py:585
+msgid "Congratulations on your first Django-powered page."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/debug.py:586
+msgid ""
+"Of course, you haven't actually done any work yet. Next, start your first "
+"app by running <code>python manage.py startapp [app_label]</code>."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/debug.py:588
+msgid ""
+"You're seeing this message because you have <code>DEBUG = True</code> in "
+"your Django settings file and you haven't configured any URLs. Get to work!"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:48
+msgid "No year specified"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:104
+msgid "No month specified"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:163
+msgid "No day specified"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:219
+msgid "No week specified"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:378
+#: lib/python2.7/site-packages/django/views/generic/dates.py:406
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:660
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/dates.py:694
+#, python-format
+msgid "Invalid date string '%(datestr)s' given format '%(format)s'"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/detail.py:55
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/list.py:76
+msgid "Page is not 'last', nor can it be converted to an int."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/list.py:81
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/generic/list.py:172
+#, python-format
+msgid "Empty list and '%(class_name)s.allow_empty' is False."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/static.py:58
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/static.py:60
+#, python-format
+msgid "\"%(path)s\" does not exist"
+msgstr ""
+
+#: lib/python2.7/site-packages/django/views/static.py:100
+#, python-format
+msgid "Index of %(directory)s"
+msgstr "Index von %(directory)s"
+
+#: partsmanagement/exceptions.py:16
+msgid "An fatal error has been occurred"
+msgstr "Ein gravierender Fehler ist aufgetreten."
+
+#: partsmanagement/exceptions.py:24
+msgid "Exception: Parts cannot be combined"
+msgstr "Fehler: Diese Teile können nicht kombiniert werden"
+
+#: partsmanagement/models.py:22
+msgid "Length"
+msgstr "Längen"
+
+#: partsmanagement/models.py:23
+msgid "meters"
+msgstr "Meter"
+
+#: partsmanagement/models.py:24
+msgid "centimeters"
+msgstr "Centimeter"
+
+#: partsmanagement/models.py:27
+msgid "Volume"
+msgstr "Volumen"
+
+#: partsmanagement/models.py:28
+msgid "litres"
+msgstr "Liter"
+
+#: partsmanagement/models.py:29
+msgid "cubicmeters"
+msgstr "Kubikmeter"
+
+#: partsmanagement/models.py:30
+msgid "cubic centimeters"
+msgstr "Kubikcentimeter"
+
+#: partsmanagement/models.py:33
+msgid "Piece"
+msgstr "Stück"
+
+#: partsmanagement/models.py:34
+msgid "piece"
+msgstr "Stück"
+
+#: partsmanagement/models.py:37 templates/pmgmt/detail.html:37
+#: templates/pmgmt/storage/list.html:40
+#: templates/pmgmt/storageitem/detail.html:27
+msgid "n/A"
+msgstr "n/V"
+
+#: partsmanagement/models.py:63 templates/pmgmt/storage/detail.html:28
+msgid "Storage Type"
+msgstr "Lagertyp"
+
+#: partsmanagement/models.py:64
+msgid "Storage Types"
+msgstr "Lagertypen"
+
+#: partsmanagement/models.py:76
+msgid "Parent storage"
+msgstr "Übergeorndetes Lager"
+
+#: partsmanagement/models.py:77 partsmanagement/models.py:189
+#: partsmanagement/models.py:306
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: partsmanagement/models.py:79 partsmanagement/models.py:135
+#: partsmanagement/models.py:161 templates/pmgmt/storage/detail.html:32
+msgid "Description"
+msgstr "Beschreibung"
+
+#: partsmanagement/models.py:91
+msgid "Storage Place"
+msgstr "Lagerplatz"
+
+#: partsmanagement/models.py:92
+msgid "Storage Places"
+msgstr "Lagerplätze"
+
+#: partsmanagement/models.py:101 partsmanagement/models.py:119
+#: partsmanagement/models.py:188
+msgid "Added by"
+msgstr "Hinzugefügt von"
+
+#: partsmanagement/models.py:107 partsmanagement/models.py:176
+#: templates/pmgmt/list.html:31
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: partsmanagement/models.py:108 templates/base.html:35
+#: templates/pmgmt/manufacturer/add.html:7
+#: templates/pmgmt/manufacturer/detail.html:7
+#: templates/pmgmt/manufacturer/list.html:7
+#: templates/pmgmt/manufacturer/update.html:7
+msgid "Manufacturers"
+msgstr "Hersteller"
+
+#: partsmanagement/models.py:116 partsmanagement/models.py:185
+msgid "Creation time"
+msgstr "Angelegt am"
+
+#: partsmanagement/models.py:125 partsmanagement/models.py:180
+msgid "Distributor"
+msgstr "Lieferant"
+
+#: partsmanagement/models.py:126 templates/base.html:43
+#: templates/pmgmt/distributor/add.html:7
+#: templates/pmgmt/distributor/detail.html:7
+#: templates/pmgmt/distributor/list.html:7
+#: templates/pmgmt/distributor/update.html:7
+msgid "Distributors"
+msgstr "Lieferanten"
+
+#: partsmanagement/models.py:148 partsmanagement/models.py:184
+msgid "Category"
+msgstr "Kategorie"
+
+#: partsmanagement/models.py:149
+msgid "Categories"
+msgstr "Kategorien"
+
+#: partsmanagement/models.py:155
+msgid "Name of part"
+msgstr "Name des Teils"
+
+#: partsmanagement/models.py:156
+msgid "SKU"
+msgstr "SKU"
+
+#: partsmanagement/models.py:165
+msgid "Minimal stock"
+msgstr "Mindestlagerbestand"
+
+#: partsmanagement/models.py:170
+msgid "Messuring unit"
+msgstr "Maßeinheit"
+
+#: partsmanagement/models.py:293 templates/pmgmt/storageitem/detail.html:18
+#: templates/pmgmt/storageitem/list.html:29
+msgid "Part"
+msgstr "Teil"
+
+#: partsmanagement/models.py:294 templates/base.html:17
+#: templates/pmgmt/add.html:7 templates/pmgmt/delete.html:7
+#: templates/pmgmt/detail.html:6 templates/pmgmt/list.html:7
+msgid "Parts"
+msgstr "Teile"
+
+#: partsmanagement/models.py:301
+msgid "Parts inside storage"
+msgstr "Teile innerhalb des Lagers"
+
+#: partsmanagement/models.py:314
+msgid "Storage Item"
+msgstr "Einlagerung"
+
+#: partsmanagement/models.py:315 templates/pmgmt/storageitem/detail.html:6
+#: templates/pmgmt/storageitem/list.html:7
+#: templates/pmgmt/storageitem/update.html:7
+msgid "Storage Items"
+msgstr "Einlagerung"
+
+#: partsmanagement/models.py:321
+msgid "Subject"
+msgstr "Kurzbeschreibung"
+
+#: partsmanagement/models.py:324
+msgid "Created by"
+msgstr "Erstellt von"
+
+#: partsmanagement/models.py:325
+msgid "Amount"
+msgstr "Menge"
+
+#: partsmanagement/models.py:329
+msgid "Transaction Date"
+msgstr "Transaktionsdaten"
+
+#: partsmanagement/models.py:334
+msgid "Comment"
+msgstr "Kommentar"
+
+#: partsmanagement/models.py:351
+msgid "Transaction"
+msgstr "Transaktion"
+
+#: partsmanagement/models.py:352 templates/base.html:27
+#: templates/pmgmt/trans_list.html:7
+msgid "Transactions"
+msgstr "Transaktionen"
+
+#: templates/about.html:6 templates/about.html.py:9 templates/about.html:11
+#: templates/base.html:59 templates/base.html.py:62
+msgid "About"
+msgstr "Über"
+
+#: templates/about.html:14
+msgid "Licence"
+msgstr "Lizenz"
+
+#: templates/about.html:15
+msgid "The software is distributed under terms of AGPLv3+."
+msgstr "Die Software ist under den Bedingungen "
+
+#: templates/about.html:16
+msgid "Source Code"
+msgstr "Quellcode"
+
+#: templates/about.html:17
+msgid ""
+"You can fetch the source code from <a href=\"https://github.com/frlan/"
+"partuniverse\">github.com</a>"
+msgstr ""
+"Du kannst Dir die Quellen von <a href=\"http://github.com/frlan/partuniverse\">github.com</a> herunterladen."
+
+#: templates/account/delete.html:7 templates/account/password_change.html:7
+#: templates/account/settings.html:7 templates/base.html:60
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/account/delete.html:8 templates/account/settings.html:26
+#: templates/account/delete.html:9 templates/account/settings.html:31
 msgid "Delete your account"
 msgstr "Benutzerkonto löschen"
 
-#: templates/account/delete.html:11 templates/account/settings.html:24
+#: templates/account/delete.html:12 templates/account/delete.html.py:14
+#: templates/account/settings.html:29
 msgid "Delete Account"
 msgstr "Nutzeraccount löschen"
 
-#: templates/account/delete.html:13
+#: templates/account/delete.html:17
 msgid ""
 "If you go ahead and delete your account, your  personal information will be "
 "purged</b>"
@@ -322,15 +1453,12 @@ msgstr "Email bestätigt"
 msgid "You have confirmed <b>%(email)s</b>"
 msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 
-#: templates/account/login.html:6 templates/account/login.html.py:13
+#: templates/account/login.html:7 templates/account/login.html.py:10
+#: templates/account/login.html:12 templates/account/login.html.py:18
 msgid "Log in"
 msgstr "Einloggen"
 
-#: templates/account/login.html:9
-msgid "Please login with an existing account:"
-msgstr "Bitte logge Dich mit einem Benutzeraccount ein."
-
-#: templates/account/login.html:13
+#: templates/account/login.html:18 templates/account/password_reset.html:12
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
@@ -343,25 +1471,25 @@ msgstr "Ausloggen"
 msgid "Are you sure you want to log out?"
 msgstr "Möchtest Du Dich wirklich ausloggen?"
 
-#: templates/account/password_change.html:6
-msgid "Change password"
-msgstr "Passwort ändern"
-
-#: templates/account/password_change.html:10
-#: templates/account/settings.html:21
+#: templates/account/password_change.html:9 templates/account/settings.html:26
 msgid "Change your password here"
 msgstr "Ändere Dein Passwort hier"
 
-#: templates/account/password_change.html:15
-msgid "Please enter you old and your new password"
+#: templates/account/password_change.html:12
+#: templates/account/password_change.html:14
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: templates/account/password_change.html:17
+msgid "Please enter you current and your new password"
 msgstr "Bitte gib Dein altes und Dein neues Passwort ein"
 
 #: templates/account/password_reset.html:7
-#: templates/account/password_reset.html:13
+#: templates/account/password_reset.html:9
 msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
-#: templates/account/password_reset.html:15
+#: templates/account/password_reset.html:20
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
@@ -369,11 +1497,11 @@ msgstr ""
 "Passowrt vergessen? Gebe Deine Email-Adresse unten ein und wir werden Dir "
 "eine Mail zusenden, die es Dir erlaubt, ein neues Passwort zu setzen."
 
-#: templates/account/password_reset.html:19
+#: templates/account/password_reset.html:24
 msgid "Reset my password"
 msgstr "Mein Passowrt zurück setzen"
 
-#: templates/account/password_reset.html:23
+#: templates/account/password_reset.html:28
 #, python-format
 msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
@@ -421,7 +1549,7 @@ msgid "Set your new password"
 msgstr "Setze Dein neues Passwort"
 
 #: templates/account/password_reset_token.html:16
-#: templates/account/settings.html:15
+#: templates/account/settings.html:20
 msgid "Save"
 msgstr "Speichern"
 
@@ -440,23 +1568,24 @@ msgstr ""
 "sein, dass er schon einmal verwendet wurde. Bitte frage einen <a href="
 "\"%(url)s\">neuen Link</a> an."
 
-#: templates/account/settings.html:9
+#: templates/account/settings.html:10 templates/account/settings.html.py:12
 msgid "Account settings"
 msgstr "Benutzerkonto-Einstellungen"
 
-#: templates/account/settings.html:10
+#: templates/account/settings.html:15
 msgid "General Account Settings"
 msgstr "Benutzerkonto-Einstellungen"
 
-#: templates/account/settings.html:11
+#: templates/account/settings.html:16
 msgid "Change here your account data:"
 msgstr "Aktualisiere Deine Accountdaten hier:"
 
-#: templates/account/settings.html:18
+#: templates/account/settings.html:23
 msgid "Password"
 msgstr "Passwort"
 
-#: templates/account/signup.html:6 templates/account/signup.html.py:17
+#: templates/account/signup.html:7 templates/account/signup.html.py:10
+#: templates/account/signup.html:12 templates/account/signup.html.py:21
 #: templates/account/signup_closed.html:6
 msgid "Sign up"
 msgstr "Registrieren"
@@ -473,104 +1602,142 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:15 templates/base.html.py:19 templates/base.html:30
+#: templates/base.html:14 templates/base.html.py:75
 msgid "Home"
 msgstr "Start"
 
-#: templates/base.html:17
-msgid "Logged in as:"
-msgstr "Eingeloggt als:"
-
-#: templates/base.html:17
-msgid "Logout"
-msgstr "Ausloggen"
-
-#: templates/base.html:20
-msgid "Login"
-msgstr "Einloggen"
-
-#: templates/base.html:21
-msgid "Register"
-msgstr "Registrieren"
-
-#: templates/base.html:23
-msgid "About"
-msgstr "Über"
-
-#: templates/index.html:6
-msgid "This is an approach for keeping an overview over your parts."
-msgstr ""
-"Dies ist ein Versuch, um einen Überblick über die vorhanden Teile zu "
-"erlangen."
-
-#: templates/index.html:7
-msgid "Please follow links below to navigate:"
-msgstr "Die folgenden Links helfen Dir zu navigieren"
-
-#: templates/index.html:9
-msgid "List of Parts"
+#: templates/base.html:20 templates/pmgmt/list.html:10
+#: templates/pmgmt/list.html.py:12
+msgid "List of parts"
 msgstr "Teileliste"
 
-#: templates/index.html:11
-msgid "Add a new transaction"
-msgstr "Eine neue Transaktion starten"
-
-#: templates/index.html:12
+#: templates/base.html:21 templates/pmgmt/add.html:12
+#: templates/pmgmt/add.html.py:14
 msgid "Add a new part"
 msgstr "Ein neues Teil anlegen"
 
-#: templates/index.html:13
-msgid "Add a new storage"
-msgstr "Einen neuen Lagerort anlegen"
+#: templates/base.html:22 templates/pmgmt/storageitem/list.html:10
+#: templates/pmgmt/storageitem/list.html:12
+msgid "List of storages items"
+msgstr "Liste der Lieferanten"
 
-#: templates/index.html:15
-msgid "Show all tranactions"
-msgstr "Alle Transaktionen anzeigen"
+#: templates/base.html:23
+msgid "Add a storage item"
+msgstr "Eine Einlagerung auswählen"
 
-#: templates/index.html:16
-msgid "Show all parts needs reordering"
-msgstr "Zeige alle Teile, die nachbestellt werden müssen"
+#: templates/base.html:30 templates/pmgmt/trans_list.html:10
+#: templates/pmgmt/trans_list.html.py:12
 
-#: templates/index.html:17
-msgid "List of Manufacturers"
+msgid "List of transactions"
+msgstr "Transaktionsliste"
+
+#: templates/base.html:31
+msgid "Add a new transaction"
+msgstr "Eine neue Transaktion starten"
+
+#: templates/base.html:38 templates/pmgmt/manufacturer/list.html:10
+#: templates/pmgmt/manufacturer/list.html:12
+msgid "List of manufacturers"
 msgstr "Liste der Hersteller"
 
-#: templates/index.html:18
-msgid "List of Distributors"
+#: templates/base.html:39 templates/pmgmt/manufacturer/add.html:12
+#: templates/pmgmt/manufacturer/add.html:14
+msgid "Add a new manufacturer"
+msgstr "Neuer Hersteller"
+
+#: templates/base.html:46 templates/pmgmt/distributor/list.html:10
+#: templates/pmgmt/distributor/list.html:12
+msgid "List of distributors"
 msgstr "Liste der Lieferantanten"
 
-#: templates/pmgmt/delete.html:6
+#: templates/base.html:47 templates/pmgmt/distributor/add.html:12
+#: templates/pmgmt/distributor/add.html:14
+msgid "Add a new distributor"
+msgstr "Neuer Lieferant"
+
+#: templates/base.html:51 templates/pmgmt/storage/detail.html:7
+#: templates/pmgmt/storage/list.html:8 templates/pmgmt/storage/update.html:7
+msgid "Storages"
+msgstr "Lager"
+
+#: templates/base.html:54 templates/pmgmt/storage/list.html:11
+#: templates/pmgmt/storage/list.html:13
+msgid "List of storages"
+msgstr "Liste der Lager"
+
+#: templates/base.html:55 templates/pmgmt/storage/add.html:11
+#: templates/pmgmt/storage/add.html:13
+msgid "Add a new storage"
+msgstr "Ein neues Lager anlegen"
+
+#: templates/base.html:58
+msgid "Logged in as:"
+msgstr "Eingeloggt als:"
+
+#: templates/base.html:58
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: templates/base.html:63
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/base.html:64
+msgid "Login"
+msgstr "Einloggen"
+
+#: templates/dashboard/needs_restocking.html:11
+#: templates/pmgmt/distributor/list.html:23 templates/pmgmt/list.html:28
+#: templates/pmgmt/manufacturer/list.html:23
+msgid "Name"
+msgstr "Name"
+
+#: templates/dashboard/needs_restocking.html:12 templates/pmgmt/list.html:30
+msgid "In Stock"
+msgstr "Lagerbestand"
+
+#: templates/dashboard/needs_restocking.html:25
+msgid "All parts are in stock!"
+msgstr "Alle Teile sind hinreichend vorhanden!"
+
+#: templates/pmgmt/add.html:9 templates/pmgmt/distributor/add.html:9
+#: templates/pmgmt/manufacturer/add.html:9 templates/pmgmt/storage/add.html:8
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: templates/pmgmt/delete.html:12 templates/pmgmt/delete.html.py:14
 msgid "Delete a part"
 msgstr "Ein Teil löschen"
 
-#: templates/pmgmt/delete.html:8 templates/pmgmt/distributor/delete.html:8
+#: templates/pmgmt/delete.html:17 templates/pmgmt/distributor/delete.html:8
 #: templates/pmgmt/manufacturer/delete.html:8
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "\t\tAre you sure you want to delete »%(object)s«?\n"
-#| "\t   "
 msgid ""
 "\n"
 "\t\tAre you sure you want to delete »%(object)s«?\n"
 "\t   "
 msgstr ""
 "\n"
-"\t\tMöchtest Du {{ object }} wirklich löschen?\n"
+"\t\tMöchtest Du »%(object)s« wirklich löschen?\n"
 "\t"
 
-#: templates/pmgmt/detail.html:15
-#| msgid "Item out of stock or below minimum stock"
+#: templates/pmgmt/detail.html:18
+msgid ""
+"This part has been marked as disbaled. Please contact your admin for details."
+msgstr "Dieses Teil wurde als deaktiviert markiert. Bitte kontaktiere Deinen Admin für Details."
+
+#: templates/pmgmt/detail.html:23
 msgid "The item is out of stock or below its minimum stock"
 msgstr ""
 "Das Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
 
-#: templates/pmgmt/detail.html:31 templates/pmgmt/distributor/detail.html:16
-#: templates/pmgmt/manufacturer/detail.html:16
+#: templates/pmgmt/detail.html:48 templates/pmgmt/distributor/detail.html:27
+#: templates/pmgmt/manufacturer/detail.html:26
+#: templates/pmgmt/storage/detail.html:42
+#: templates/pmgmt/storageitem/detail.html:33
 msgid "Update item"
 msgstr "Teil editieren"
 
-#: templates/pmgmt/detail.html:32
+#: templates/pmgmt/detail.html:50
 msgid "Delete item"
 msgstr "Teil löschen"
 
@@ -578,73 +1745,152 @@ msgstr "Teil löschen"
 msgid "Delete a distributor"
 msgstr "Lieferant löschen"
 
-#: templates/pmgmt/distributor/list.html:6
-msgid "A list with all distributors ... "
-msgstr "Eine Liste mit allen Herstellern ..."
-
-#: templates/pmgmt/distributor/list.html:7
-#: templates/pmgmt/manufacturer/list.html:7
-msgid "Add a new"
-msgstr "Hinzufügen"
-
-#: templates/pmgmt/distributor/list.html:12 templates/pmgmt/list.html:14
-#: templates/pmgmt/manufacturer/list.html:12
-msgid "Name"
-msgstr "Name"
-
-#: templates/pmgmt/distributor/list.html:20 templates/pmgmt/list.html:29
-#: templates/pmgmt/manufacturer/list.html:21
+#: templates/pmgmt/distributor/list.html:31 templates/pmgmt/list.html:46
+#: templates/pmgmt/manufacturer/list.html:31
+#: templates/pmgmt/storage/list.html:45
+#: templates/pmgmt/storageitem/list.html:46
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: templates/pmgmt/distributor/list.html:27 templates/pmgmt/list.html:37
-#: templates/pmgmt/manufacturer/list.html:28
+#: templates/pmgmt/distributor/list.html:38 templates/pmgmt/list.html:56
+#: templates/pmgmt/manufacturer/list.html:38
+#: templates/pmgmt/storage/list.html:54
+#: templates/pmgmt/storageitem/list.html:56
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
 
-#: templates/pmgmt/list.html:9
-msgid "A list with all items ... "
-msgstr "Eine Liste mit bekannten Teilen ..."
+#: templates/pmgmt/distributor/update.html:12
+#: templates/pmgmt/distributor/update.html:14
+msgid "Update distributor"
+msgstr "Lieferant aktualisieren"
 
-#: templates/pmgmt/list.html:15
+#: templates/pmgmt/list.html:29
 msgid "Minimum"
 msgstr "Minimum"
-
-#: templates/pmgmt/list.html:16
-msgid "In Stock"
-msgstr "Lagerbestand"
-
-#: templates/pmgmt/list.html:30
-msgid "Delete"
-msgstr "Löschen"
 
 #: templates/pmgmt/manufacturer/delete.html:6
 msgid "Delete a manufacturer"
 msgstr "Hersteller löschen"
 
-#: templates/pmgmt/manufacturer/list.html:6
-msgid "A list with all manufacturers ... "
-msgstr "Eine Liste mit bekannten Herstellern ..."
+#: templates/pmgmt/manufacturer/update.html:12
+#: templates/pmgmt/manufacturer/update.html:14
+msgid "Update part"
+msgstr "Teil editieren"
 
-#: templates/pmgmt/storage/add.html:5
+#: templates/pmgmt/storage/add.html:6
+#: templates/pmgmt/storageitem/detail.html:22
+#: templates/pmgmt/storageitem/list.html:30
+msgid "Storage"
+msgstr "Lager"
+
+#: templates/pmgmt/storage/add.html:16
 msgid "Use this to add new storage places e.g. new shelf."
-msgstr ""
+msgstr "Hier kannst Du neue Lager wie z.B. ein Fach im Bücherregal hinzufügen."
 
-#: templates/pmgmt/trans_list.html:12
+#: templates/pmgmt/storage/detail.html:24 templates/pmgmt/storage/list.html:30
+msgid "Storage Name"
+msgstr "Lagername"
+
+#: templates/pmgmt/storage/detail.html:34
+msgid "no Details"
+msgstr "Keine Details"
+
+#: templates/pmgmt/storage/list.html:31
+msgid "Storage Typ"
+msgstr "Lagertyp"
+
+#: templates/pmgmt/storage/list.html:32
+msgid "Assigned To"
+msgstr "Zugeordnet zu"
+
+#: templates/pmgmt/storage/update.html:9 templates/pmgmt/storage/update.html:12
+#: templates/pmgmt/storage/update.html:14
+#, python-format
+msgid "Update of „%(name)s“"
+msgstr "Aktaulisierung von »%(name)s«"
+
+#: templates/pmgmt/storageitem/add.html:6
+msgid "Storage Item Add"
+msgstr "Lager"
+
+#: templates/pmgmt/storageitem/add.html:9
+#: templates/pmgmt/storageitem/add.html:11
+
+msgid "Add a storages item"
+msgstr "Eine neue Einlagerung anlegen"
+
+#: templates/pmgmt/storageitem/add.html:14
+msgid ""
+"Use this to add new storage items, which are parts on a decent storage place"
+msgstr "Hier kannst du neue Einlagerungen anlegen. Eine Einlagerung besteht aus einem bestimmten Teil an einem bestimmten Ort/in einem bestimmten Lager."
+
+#: templates/pmgmt/storageitem/detail.html:26
+#| msgid "In Stock"
+msgid "On Stock"
+msgstr "Im Bestand"
+
+#: templates/pmgmt/storageitem/list.html:31
+msgid "Reported On Stock"
+msgstr "Bestand gemeldet"
+
+#: templates/pmgmt/storageitem/list.html:47
+msgid "Merge Storage item"
+msgstr "Einlagerungen verschmelzen"
+
+#: templates/pmgmt/storageitem/merge.html:9
+#: templates/pmgmt/storageitem/update.html:16
+msgid ""
+"Changes here will not change die internal ID of a storage item, but it will "
+"change the name you will see inside the application."
+msgstr "Eine Änderung hier wird die interne ID einer Einlagerung ändern, nur den angezeigten Namen."
+
+#: templates/pmgmt/trans_list.html:18
 msgid "What"
 msgstr "Was"
 
-#: templates/pmgmt/trans_list.html:13
+#: templates/pmgmt/trans_list.html:19
 msgid "Why"
 msgstr "Warum"
 
-#: templates/pmgmt/trans_list.html:14
+#: templates/pmgmt/trans_list.html:20
 msgid "How much"
 msgstr "Wie viel"
 
-#: templates/pmgmt/trans_list.html:15
+#: templates/pmgmt/trans_list.html:21
 msgid "When"
 msgstr "Wann"
+
+#~ msgid "The width is: %(width)s"
+#~ msgstr "Die Breite ist:  %(width)s"
+
+#~ msgid "Please login with an existing account:"
+#~ msgstr "Bitte logge Dich mit einem Benutzeraccount ein."
+
+#~ msgid "This is an approach for keeping an overview over your parts."
+#~ msgstr ""
+#~ "Dies ist ein Versuch, um einen Überblick über die vorhanden Teile zu "
+#~ "erlangen."
+
+#~ msgid "Please follow links below to navigate:"
+#~ msgstr "Die folgenden Links helfen Dir zu navigieren"
+
+#~ msgid "Show all tranactions"
+#~ msgstr "Alle Transaktionen anzeigen"
+
+#~ msgid "Show all parts needs reordering"
+#~ msgstr "Zeige alle Teile, die nachbestellt werden müssen"
+
+#~ msgid "A list with all distributors ... "
+#~ msgstr "Eine Liste mit allen Herstellern ..."
+
+#~ msgid "Add a new"
+#~ msgstr "Hinzufügen"
+
+#~ msgid "A list with all items ... "
+#~ msgstr "Eine Liste mit bekannten Teilen ..."
+
+#~ msgid "A list with all manufacturers ... "
+#~ msgstr "Eine Liste mit bekannten Herstellern ..."
 
 #~ msgid "Unit"
 #~ msgstr "Einheit"
