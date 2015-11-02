@@ -2,3 +2,4 @@ Django
 coverage
 argparse
 django-user-accounts
+gunicorn
