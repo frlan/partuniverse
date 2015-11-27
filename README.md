@@ -3,6 +3,15 @@
 Another approach to keep track of parts not only inside a hacker space
 but at a more general storage.
 
+## Discussion and help
+
+To discuss about partuniverse or get help, join our mailing list at [lstsrv.org](https://lstsrv.org/mailman/listinfo/partuniverse)
+
+
+## Bugreporting
+
+Please report bugs and feature wishes to the project page at [github](https://github.com/frlan/partuniverse/issues)
+
 ## Installation
 
 ### Dependencies
