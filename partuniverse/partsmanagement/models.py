@@ -37,6 +37,12 @@ UNIT_CHOICES = (
     (_('n/A'), _('Unknown')),
 )
 
+STATE_CHOICES = (
+    ('paid', _('Paid')),
+    ('open', _('Open')),
+    ('res', _('Reserverd'))
+)
+
 
 def get_all_storage_item_parts_with_on_stock_and_min_stock():
     """ Returns a list of list with all Parts having a StorageItem
@@ -335,6 +341,11 @@ class Transaction(models.Model):
         blank=True,
         null=True,
         max_length=200)
+    state = models.CharField(_("State"),
+        max_length=6,
+        choices=STATE_CHOICES,
+        blank=True,
+        default='---')
 
     def save(self, *args, **kwargs):
         tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
