@@ -326,26 +326,31 @@ class Transaction(models.Model):
 
     subject = models.CharField(_("Subject"),
         max_length=100)
-    created_by = models.ForeignKey(User,
-        verbose_name=_("Created by"))
+    storage_item = models.ForeignKey(StorageItem,null=True, blank=True)
     amount = models.DecimalField(_("Amount"),
         max_digits=10,
         decimal_places=4)
-    storage_item = models.ForeignKey(StorageItem,null=True, blank=True)
+    comment = models.TextField(_("Comment"),
+        blank=True,
+        null=True,
+        max_length=200)
     date = models.DateField(_("Transaction Date"),
         blank=False,
         null=False,
         auto_now_add=True,
         db_index=True)
-    comment = models.TextField(_("Comment"),
-        blank=True,
-        null=True,
-        max_length=200)
     state = models.CharField(_("State"),
         max_length=6,
         choices=STATE_CHOICES,
         blank=True,
         default='---')
+    created_by = models.ForeignKey(User,
+        verbose_name=_("Created by"))
+    created_date = models.TimeField(_("Creation timestamp"),
+        blank=False,
+        null=False,
+        auto_now_add=True,
+        db_index=True)
 
     def save(self, *args, **kwargs):
         tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
