@@ -8,9 +8,12 @@ from django.utils import timezone
 from .models import *
 from .views import *
 
+
 ########################################################################
 # Category
 ########################################################################
+
+
 class CategoryTestCase(TestCase):
     """ Test to check whether category name is printed correctly.
         If there is a parent, it should be also printed seperated by a : """
@@ -32,6 +35,8 @@ class CategoryTestCase(TestCase):
 ########################################################################
 # Transaction
 ########################################################################
+
+
 class TransactionInventoryChange(TestCase):
     """ This is a test to check whether a new transaction is increasing
         on_stock or decreasing on_stock of a particular storage item """
@@ -41,31 +46,39 @@ class TransactionInventoryChange(TestCase):
         self.user = User.objects.create_user(
             username='jacob',
             email='jacob@foo.baa',
-            password='top_secret')
+            password='top_secret'
+        )
         self.manu = Manufacturer.objects.create(
             name=u'Test Manufacturer 1',
-            created_by=self.user)
+            created_by=self.user
+        )
         self.storagetype = StorageType.objects.create(name=u"Testtype")
         self.storageplace = StoragePlace.objects.create(
-            name = u'Test Storage',
-            storage_type = self.storagetype)
-        self.part1 = Part.objects.create(name=u'Test Part 1 with unicode µä³½',
+            name=u'Test Storage',
+            storage_type=self.storagetype
+        )
+        self.part1 = Part.objects.create(
+            name=u'Test Part 1 with unicode µä³½',
             unit='m',
             creation_time=timezone.now(),
-            created_by=self.user)
-        self.part2 = Part.objects.create(name=u'Test Part 2',
+            created_by=self.user
+        )
+        self.part2 = Part.objects.create(
+            name=u'Test Part 2',
             unit='m',
             creation_time=timezone.now(),
-            created_by=self.user)
+            created_by=self.user
+        )
         self.storage_item1 = StorageItem.objects.create(
             part=self.part1,
             storage=self.storageplace,
-            on_stock=100)
+            on_stock=100
+        )
         self.storage_item1 = StorageItem.objects.create(
             part=self.part2,
             storage=self.storageplace,
-            on_stock=100)
-
+            on_stock=100
+        )
 
     def test_transaction_decrease_on_stock(self):
         trans = Transaction.objects.create(
@@ -88,6 +101,7 @@ class TransactionInventoryChange(TestCase):
 
         self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 110)
 
+
 class TransactionInventoryChangeOnUpdate(TestCase):
     """
     This test will check, whether inventory is adjusted correct, when a
@@ -96,34 +110,28 @@ class TransactionInventoryChangeOnUpdate(TestCase):
 
     def setUp(self):
         self.cat = Category.objects.create(name=u'Category 1')
-        self.user = User.objects.create_user(
-            username='jacob',
-            email='jacob@foo.baa',
-            password='top_secret')
-        self.manu = Manufacturer.objects.create(
-            name=u'Test Manufacturer 1',
-            created_by=self.user)
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
+        self.manu = Manufacturer.objects.create(name=u'Test Manufacturer 1',
+                                                created_by=self.user)
         self.storagetype = StorageType.objects.create(name=u"Testtype")
-        self.storageplace = StoragePlace.objects.create(
-            name = u'Test Storage',
-            storage_type = self.storagetype)
+        self.storageplace = StoragePlace.objects.create(name=u'Test Storage',
+                                                        storage_type=self.storagetype)
         self.part1 = Part.objects.create(name=u'Test Part 1 with unicode µä³½',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
         self.part2 = Part.objects.create(name=u'Test Part 2',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part1,
-            storage=self.storageplace,
-            on_stock=100)
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace,
-            on_stock=100)
-
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
+        self.storage_item1 = StorageItem.objects.create(part=self.part2,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
 
     def test_transaction_update(self):
         # First create a transaction which can be changed
@@ -138,7 +146,7 @@ class TransactionInventoryChangeOnUpdate(TestCase):
         # The amound of storage item1 should be 90 at this point
         # Now the transaction is updated
 
-        trans.amount=10
+        trans.amount = 10
         trans.save()
 
         # The amount should now be 110
@@ -155,41 +163,37 @@ class PartListWithOnStockValueFromSI(TestCase):
         self.cat = Category.objects.create(name=u'Category 1')
 
         # Setting up test user
-        self.user = User.objects.create_user(
-            username='jacob', email='jacob@foo.baa', password='top_secret')
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
 
         # Basis setting of storage
         self.storagetype = StorageType.objects.create(name=u"Testtype")
-        self.storageplace1 = StoragePlace.objects.create(
-            name = u'Test Storage1',
-            storage_type = self.storagetype)
-        self.storageplace2 = StoragePlace.objects.create(
-            name = u'Test Storage2',
-            storage_type = self.storagetype)
+        self.storageplace1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                         storage_type=self.storagetype)
+        self.storageplace2 = StoragePlace.objects.create(name=u'Test Storage2',
+                                                         storage_type=self.storagetype)
 
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part1,
-            storage=self.storageplace1,
-            on_stock=25)
-        self.storage_item2a = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace1,
-            on_stock=7)
-        self.storage_item2b = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace2,
-            on_stock=3)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace1,
+                                                        on_stock=25)
+        self.storage_item2a = StorageItem.objects.create(part=self.part2,
+                                                         storage=self.storageplace1,
+                                                         on_stock=7)
+        self.storage_item2b = StorageItem.objects.create(part=self.part2,
+                                                         storage=self.storageplace2,
+                                                         on_stock=3)
 
     def test_part_list_with_on_stock_value(self):
         # Defining goal list
@@ -213,55 +217,51 @@ class PartGetOnStockAmount(TestCase):
         self.cat = Category.objects.create(name=u'Category 1')
 
         # Setting up test user
-        self.user = User.objects.create_user(
-            username='jacob', email='jacob@foo.baa', password='top_secret')
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
 
         # Basis setting of storage
         self.storagetype = StorageType.objects.create(name=u"Testtype")
-        self.storageplace1 = StoragePlace.objects.create(
-            name = u'Test Storage1',
-            storage_type = self.storagetype)
-        self.storageplace2 = StoragePlace.objects.create(
-            name = u'Test Storage2',
-            storage_type = self.storagetype)
+        self.storageplace1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                         storage_type=self.storagetype)
+        self.storageplace2 = StoragePlace.objects.create(name=u'Test Storage2',
+                                                         storage_type=self.storagetype)
 
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part3 = Part.objects.create(name=u'Test Part 3',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part4 = Part.objects.create(name=u'Test Part 4',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         # Assigning Parts to StoragePlace aka creating StorageItem
         # Part 1: 1 StorageItem
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part1,
-            storage=self.storageplace1,
-            on_stock=25)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace1,
+                                                        on_stock=25)
 
         # Part 2: Two items needed
-        self.storage_item2a = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace1,
-            on_stock=7)
-        self.storage_item2b = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace2,
-            on_stock=3)
+        self.storage_item2a = StorageItem.objects.create(part=self.part2,
+                                                         storage=self.storageplace1,
+                                                         on_stock=7)
+        self.storage_item2b = StorageItem.objects.create(part=self.part2,
+                                                         storage=self.storageplace2,
+                                                         on_stock=3)
 
         # Part 3: No Item needed -- just not stored somewhere
         # --
@@ -302,85 +302,72 @@ class ItemOutOfStockTestCase(TestCase):
 
         # Basis setting of storage
         self.storagetype = StorageType.objects.create(name=u"Testtype")
-        self.storageplace1 = StoragePlace.objects.create(
-            name = u'Test Storage1',
-            storage_type = self.storagetype)
-        self.storageplace2 = StoragePlace.objects.create(
-            name = u'Test Storage2',
-            storage_type = self.storagetype)
-        self.storageplace3 = StoragePlace.objects.create(
-            name = u'Test Storage3',
-            storage_type = self.storagetype)
-        self.storageplace4 = StoragePlace.objects.create(
-            name = u'Test Storage4',
-            storage_type = self.storagetype)
-        self.storageplace5 = StoragePlace.objects.create(
-            name = u'Test Storage5',
-            storage_type = self.storagetype)
+        self.storageplace1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                         storage_type=self.storagetype)
+        self.storageplace2 = StoragePlace.objects.create(name=u'Test Storage2',
+                                                         storage_type=self.storagetype)
+        self.storageplace3 = StoragePlace.objects.create(name=u'Test Storage3',
+                                                         storage_type=self.storagetype)
+        self.storageplace4 = StoragePlace.objects.create(name=u'Test Storage4',
+                                                         storage_type=self.storagetype)
+        self.storageplace5 = StoragePlace.objects.create(name=u'Test Storage5',
+                                                         storage_type=self.storagetype)
 
         # on_stock > min_stock
         self.part1 = Part.objects.create(name=u'Test Part 1',
-            unit='m',
-            min_stock = 50,
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         min_stock=50,
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part1,
-            storage=self.storageplace1,
-            on_stock=100)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace1,
+                                                        on_stock=100)
 
         # on_stock < min_stock
         self.part2 = Part.objects.create(name=u'Test Part 2',
-            unit='m',
-            min_stock = 150,
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         min_stock=150,
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
-        self.storage_item2 = StorageItem.objects.create(
-            part=self.part2,
-            storage=self.storageplace2,
-            on_stock=100)
-
+        self.storage_item2 = StorageItem.objects.create(part=self.part2,
+                                                        storage=self.storageplace2,
+                                                        on_stock=100)
 
         # on_stock = min_stock
         self.part3 = Part.objects.create(name=u'Test Part 3',
-            unit='m',
-            min_stock = 100,
-            creation_time=timezone.now(),
-            created_by=self.user)
-        self.storage_item3 = StorageItem.objects.create(
-            part=self.part3,
-            storage=self.storageplace3,
-            on_stock=100)
+                                         unit='m',
+                                         min_stock=100,
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item3 = StorageItem.objects.create(part=self.part3,
+                                                        storage=self.storageplace3,
+                                                        on_stock=100)
 
         # on_stock = 0
         self.part4 = Part.objects.create(name=u'Test Part 4',
-            unit='m',
-            min_stock = 0,
-            creation_time=timezone.now(),
-            created_by=self.user)
-        self.storage_item4 = StorageItem.objects.create(
-            part=self.part4,
-            storage=self.storageplace4,
-            on_stock=0)
+                                         unit='m',
+                                         min_stock=0,
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item4 = StorageItem.objects.create(part=self.part4,
+                                                        storage=self.storageplace4,
+                                                        on_stock=0)
 
         # on_stock not defined
         # min_stock not defined
         self.part5 = Part.objects.create(name=u'Test Part 5',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
-        self.storage_item5 = StorageItem.objects.create(
-            part=self.part5,
-            storage=self.storageplace5)
-
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item5 = StorageItem.objects.create(part=self.part5,
+                                                        storage=self.storageplace5)
 
     def test_item_out_of_stock(self):
         """ Testcase for on_stock = 0 """
         self.assertFalse(Part.objects.get(name=u'Test Part 4').is_on_stock())
         self.assertFalse(Part.objects.get(name=u'Test Part 5').is_on_stock())
-
 
     def test_item_not_out_of_stock(self):
         """ Testcase for on_stock > 0 """
@@ -425,30 +412,30 @@ class StorageItemsMergeTestCase(TestCase):
         # Basis setting of storage
         self.storagetype = StorageType.objects.create(name=u"Testtype")
         self.storageplace1 = StoragePlace.objects.create(
-            name = u'Test Storage1',
-            storage_type = self.storagetype)
+            name=u'Test Storage1',
+            storage_type=self.storagetype)
         self.storageplace2 = StoragePlace.objects.create(
-            name = u'Test Storage2',
-            storage_type = self.storagetype)
+            name=u'Test Storage2',
+            storage_type=self.storagetype)
         self.storageplace3 = StoragePlace.objects.create(
-            name = u'Test Storage3',
-            storage_type = self.storagetype)
+            name=u'Test Storage3',
+            storage_type=self.storagetype)
 
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         self.part3 = Part.objects.create(name=u'Test Part 3',
-            unit='m',
-            creation_time=timezone.now(),
-            created_by=self.user)
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
 
         # Setting up storage items
         self.storage_item1 = StorageItem.objects.create(
@@ -468,11 +455,11 @@ class StorageItemsMergeTestCase(TestCase):
             on_stock=100)
 
         # And some items for checking None-behavior of merging function
-        self.storage_item_none1 =  StorageItem.objects.create(
+        self.storage_item_none1 = StorageItem.objects.create(
             part=self.part3,
             storage=self.storageplace1)
 
-        self.storage_item_none2 =  StorageItem.objects.create(
+        self.storage_item_none2 = StorageItem.objects.create(
             part=self.part3,
             storage=self.storageplace2)
 
@@ -536,11 +523,11 @@ class StorageItemsMergeTestCase(TestCase):
         except:
             self.assertFalse(True)
 
-
-
 ########################################################################
 # Storage
 ########################################################################
+
+
 class StrorageParentTestCase(TestCase):
     """ Test to check whether storage name is printed correctly.
         If there is a parent, it should be also printed seperated by the

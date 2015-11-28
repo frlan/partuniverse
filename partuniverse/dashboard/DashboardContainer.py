@@ -3,22 +3,22 @@ from django.template import RequestContext, loader
 from dashboard.DashboardItem import DashboardItem
 from django.utils.safestring import mark_safe
 
+
 class DashboardContainer:
     columns = 3
     rows = 3
     items = []
     request = None
 
-    def __init__(self,request):
+    def __init__(self, request):
         self.request = request
         self.items = []
         for i in range(self.rows):
-            self.items.insert(i,[])
+            self.items.insert(i, [])
             for j in range(self.columns):
-                self.items[i].insert(j,None)
+                self.items[i].insert(j, None)
 
-
-    def add(self,item):
+    def add(self, item):
         counter_inner = 0
         counter_outer = 0
         for i in self.items:
@@ -49,6 +49,3 @@ class DashboardContainer:
             row_html = template_row.render(context)
             rows = rows + row_html
         return mark_safe(rows)
-
-
-

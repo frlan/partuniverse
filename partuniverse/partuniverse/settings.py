@@ -10,6 +10,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+# monkey patching BaseForm
+from django.forms import BaseForm
+from .semantic_forms import as_semantic
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SITE_ID = 1
@@ -100,11 +105,6 @@ STATIC_URL = '/static/'
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
-# monkey patching BaseForm
-
-from django.forms import BaseForm
-from .semantic_forms import as_semantic
-
 BaseForm.as_semantic = as_semantic
 
 ########################################################################
@@ -125,9 +125,9 @@ LOGGING = {
         }
     },
     'handlers': {
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
         'mail_admins': {
@@ -138,13 +138,13 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers':['console'],
-            'level':'DEBUG',
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'django': {
-            'handlers':['console'],
+            'handlers': ['console'],
             'propagate': True,
-            'level':'INFO',
+            'level': 'INFO',
         },
         'django.request': {
             'handlers': ['mail_admins'],

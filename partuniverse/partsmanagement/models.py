@@ -18,21 +18,18 @@ logger = logging.getLogger(__name__)
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
 UNIT_CHOICES = (
-    ( _('Length'), (
-            ('m', _('meters')),
-            ('cm',_('centimeters'))
-        )
-    ),
+    (_('Length'), (
+                  ('m', _('meters')),
+                  ('cm', _('centimeters'))
+    )),
     (_('Volume'), (
-            ('l', _('litres')),
-            ('m³', _('cubicmeters')),
-            ('ccm', _('cubic centimeters'))
-        )
-    ),
-    ( _('Piece'), (
-            ('pc', _('piece')),
-        )
-    ),
+                  ('l', _('litres')),
+                  ('m³', _('cubicmeters')),
+                  ('ccm', _('cubic centimeters'))
+    )),
+    (_('Piece'), (
+                 ('pc', _('piece')),
+    )),
     (_('n/A'), _('Unknown')),
 )
 
@@ -77,16 +74,18 @@ class StoragePlace(models.Model):
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(max_length=50)
     storage_type = models.ForeignKey(StorageType)
-    parent = models.ForeignKey("self", null=True, blank=True,
-        verbose_name=_("Parent storage"))
+    parent = models.ForeignKey("self",
+                               null=True,
+                               blank=True,
+                               verbose_name=_("Parent storage"))
     disabled = models.BooleanField(_("Disabled"),
-        default=False)
+                                   default=False)
     description = models.TextField(_("Description"),
-        blank=True,
-        null=True)
+                                   blank=True,
+                                   null=True)
 
     def __unicode__(self):
-        if self.parent == None:
+        if self.parent is None:
             return self.name
         else:
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
@@ -102,7 +101,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=50)
     creation_time = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User,
-                    verbose_name=_("Added by"))
+                                   verbose_name=_("Added by"))
 
     def __unicode__(self):
         return self.name
@@ -118,9 +117,9 @@ class Distributor(models.Model):
     name = models.CharField(max_length=50)
 
     creation_time = models.DateTimeField(_("Creation time"),
-                    auto_now_add=True)
+                                         auto_now_add=True)
     created_by = models.ForeignKey(User,
-                    verbose_name=_("Added by"))
+                                   verbose_name=_("Added by"))
 
     def __unicode__(self):
         return self.name
@@ -137,17 +136,18 @@ class Category(models.Model):
     name = models.CharField(max_length=50)
     parent = models.ForeignKey("self", null=True, blank=True)
     description = models.TextField(_("Description"),
-        blank=True,
-        null=True)
+                                   blank=True,
+                                   null=True)
 
     def __unicode__(self):
-        if self.parent == None:
+        if self.parent is None:
             return self.name
         else:
             #tmp = str(self.parent, 'utf-8') + settings.PARENT_DELIMITER + str(self.name, 'utf-8')
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
-    class Meta:
+
+class Meta:
         unique_together = ("name", "parent")
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
@@ -158,44 +158,44 @@ class Part(models.Model):
 
     name = models.CharField(_("Name of part"), max_length=255)
     sku = models.CharField(_("SKU"),
-        max_length=60,
-        blank=True,
-        null=True,
-        unique=True)
+                           max_length=60,
+                           blank=True,
+                           null=True,
+                           unique=True)
     description = models.TextField(_("Description"),
-        blank=True,
-        null=True)
+                                   blank=True,
+                                   null=True)
     min_stock = models.DecimalField(
         _("Minimal stock"),
         max_digits=10,
         decimal_places=4,
         null=True,
-        blank=True)
+        blank=True
+    )
     unit = models.CharField(_("Messuring unit"),
-        max_length=3,
-        choices=UNIT_CHOICES,
-        blank=False,
-        default='---')
+                            max_length=3,
+                            choices=UNIT_CHOICES,
+                            blank=False,
+                            default='---')
     manufacturer = models.ForeignKey(Manufacturer,
-                    verbose_name=_("Manufacturer"),
-                    null=True,
-                    blank=True)
+                                     verbose_name=_("Manufacturer"),
+                                     null=True,
+                                     blank=True)
     distributor = models.ForeignKey(Distributor,
-                    verbose_name=_("Distributor"),
-                    null=True,
-                    blank=True)
+                                    verbose_name=_("Distributor"),
+                                    null=True,
+                                    blank=True)
     categories = models.ManyToManyField(Category,
-                    verbose_name=_("Category"))
+                                        verbose_name=_("Category"))
     creation_time = models.DateTimeField(_("Creation time"),
-                    auto_now_add=True)
+                                         auto_now_add=True)
     created_by = models.ForeignKey(User,
-                    verbose_name=_("Added by"))
+                                   verbose_name=_("Added by"))
     disabled = models.BooleanField(_("Disabled"),
-        default=False)
+                                   default=False)
 
     def __unicode__(self):
         return str(self.name, 'utf-8')
-
 
     def get_on_stock(self):
         """ Returns the amount of items which are on stock over all storages """
@@ -215,8 +215,7 @@ class Part(models.Model):
             If either on_stock or min_stock is not defined, it will
             return False """
         currently_on_stock = self.get_on_stock()
-        if (self.min_stock is not None and
-            currently_on_stock < self.min_stock):
+        if (self.min_stock is not None and currently_on_stock < self.min_stock):
             return True
         else:
             return False
@@ -283,7 +282,7 @@ class Part(models.Model):
             si2.delete()
 
 
-    class Meta:
+class Meta:
         verbose_name = _("Part")
         verbose_name_plural = _("Parts")
 
@@ -296,9 +295,10 @@ class StorageItem(models.Model):
         max_digits=10,
         decimal_places=4,
         null=True,
-        blank=True)
+        blank=True
+    )
     disabled = models.BooleanField(_("Disabled"),
-        default=False)
+                                   default=False)
 
     def __unicode__(self):
         return (u'%s; %s' % (self.part, self.storage))
@@ -313,43 +313,43 @@ class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
     subject = models.CharField(_("Subject"),
-        max_length=100)
-    storage_item = models.ForeignKey(StorageItem,null=True, blank=True)
+                               max_length=100)
+    storage_item = models.ForeignKey(StorageItem, null=True, blank=True)
     amount = models.DecimalField(_("Amount"),
-        max_digits=10,
-        decimal_places=4)
+                                 max_digits=10,
+                                 decimal_places=4)
     comment = models.TextField(_("Comment"),
-        blank=True,
-        null=True,
-        max_length=200)
+                               blank=True,
+                               null=True,
+                               max_length=200)
     date = models.DateField(_("Transaction Date"),
-        blank=False,
-        null=False,
-        auto_now_add=True,
-        db_index=True)
+                            blank=False,
+                            null=False,
+                            auto_now_add=True,
+                            db_index=True)
     state = models.CharField(_("State"),
-        max_length=6,
-        choices=STATE_CHOICES,
-        blank=True,
-        default='---')
+                             max_length=6,
+                             choices=STATE_CHOICES,
+                             blank=True,
+                             default='---')
     created_by = models.ForeignKey(User,
-        verbose_name=_("Created by"))
+                                   verbose_name=_("Created by"))
     created_date = models.TimeField(_("Creation timestamp"),
-        blank=False,
-        null=False,
-        auto_now_add=True,
-        db_index=True)
+                                    blank=False,
+                                    null=False,
+                                    auto_now_add=True,
+                                    db_index=True)
 
     def save(self, *args, **kwargs):
         tmp_storage_item = StorageItem.objects.get(pk=self.storage_item.id)
         try:
             old_transaction = Transaction.objects.get(pk=self.id)
-            if old_transaction.amount and tmp_storage_item.on_stock != None:
+            if old_transaction.amount and tmp_storage_item.on_stock is not None:
                 tmp_storage_item.on_stock = tmp_storage_item.on_stock - old_transaction.amount
         except ObjectDoesNotExist:
             pass
 
-        if tmp_storage_item.on_stock != None:
+        if tmp_storage_item.on_stock is not None:
             tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
         tmp_storage_item.save()
         super(Transaction, self).save(*args, **kwargs)

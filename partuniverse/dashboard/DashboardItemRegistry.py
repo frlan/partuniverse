@@ -10,14 +10,15 @@ from django.utils import six
 
 from dashboard.DashboardItem import DashboardItem
 
+
 class DashboardItemRegistryClass:
     items = []
 
-    def add(self,item):
+    def add(self, item):
         self.items.append(item)
         return self
 
-    def get(self,id):
+    def get(self, id):
         for item in self.items:
             if item.id == id:
                 return item
