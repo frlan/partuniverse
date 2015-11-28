@@ -255,18 +255,18 @@ class Part(models.Model):
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
             raise PartsmanagementException(
-                'One of the storage items seems to not exists: %s, %s' % (si1, si2)
+                u'One of the storage items seems to not exists: %s, %s' % (si1, si2)
             )
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
-                'Cannot merge not idendical parts. Parts »%s« and »%s« are not idendical' % (si1.part, si2.part))
+                u'Cannot merge not idendical parts. Parts »%s« and »%s« are not idendical' % (si1.part, si2.part))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
         if si1.id == si2.id:
             raise PartsmanagementException(
-                'StorageItems are idendical. Nothing to merge'
+                u'StorageItems are idendical. Nothing to merge'
             )
 
         # Special behavior for on_stock is None storage items
