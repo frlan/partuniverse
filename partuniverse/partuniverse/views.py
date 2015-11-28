@@ -5,6 +5,7 @@ from dashboard.DashboardItemRegistry import DashboardItemRegistry
 from dashboard.DashboardContainer import DashboardContainer
 from dashboard.DashboardItemRegistry import DashboardItemRegistry
 
+
 def dashboard(request):
     template = loader.get_template('index.html')
     dashboard = DashboardContainer(request)

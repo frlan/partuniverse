@@ -49,15 +49,15 @@ class PartsReorderList(ListView):
 
 class PartsAddView(CreateView):
     model = Part
-    success_url=reverse_lazy('part_list')
-    template_name='pmgmt/add.html'
-    fields = (  'name',
-                'sku',
-                'min_stock',
-                'unit',
-                'manufacturer',
-                'distributor',
-                'categories' )
+    success_url = reverse_lazy('part_list')
+    template_name = 'pmgmt/add.html'
+    fields = ('name',
+              'sku',
+              'min_stock',
+              'unit',
+              'manufacturer',
+              'distributor',
+              'categories')
 
     def form_valid(self, form):
         user = self.request.user
@@ -68,7 +68,7 @@ class PartsAddView(CreateView):
 
 class PartDeleteView(DeleteView):
     model = Part
-    success_url=reverse_lazy('part_list')
+    success_url = reverse_lazy('part_list')
     template_name = 'pmgmt/delete.html'
 
 
@@ -79,16 +79,16 @@ class PartDetailView(DetailView):
 
 class PartUpdateView(UpdateView):
     template_name = "pmgmt/update.html"
-    success_url=reverse_lazy('part_list')
+    success_url = reverse_lazy('part_list')
     model = Part
     # We don't want to amke all fields editable via
     # normal frontend.
-    fields = (  'name',
-                'min_stock',
-                'unit',
-                'manufacturer',
-                'distributor',
-                'categories' )
+    fields = ('name',
+              'min_stock',
+              'unit',
+              'manufacturer',
+              'distributor',
+              'categories')
 
 
 ########################################################################
@@ -99,15 +99,16 @@ class TransactionListView(ListView):
     model = Transaction
     template_name = 'pmgmt/trans_list.html'
 
+
 class TransactionAddView(CreateView):
 
     model = Transaction
-    success_url=reverse_lazy('transaction_list')
-    template_name='pmgmt/add.html'
-    fields = (  'subject',
-                'storage_item',
-                'amount',
-                'comment')
+    success_url = reverse_lazy('transaction_list')
+    template_name = 'pmgmt/add.html'
+    fields = ('subject',
+              'storage_item',
+              'amount',
+              'comment')
 
     def form_valid(self, form):
         user = self.request.user
@@ -119,11 +120,12 @@ class TransactionAddView(CreateView):
 # Manufacturer
 ########################################################################
 
+
 class ManufacturerAddView(CreateView):
     model = Manufacturer
-    success_url=reverse_lazy('manufacturer_list')
-    template_name='pmgmt/manufacturer/add.html'
-    fields = ( 'name', )
+    success_url = reverse_lazy('manufacturer_list')
+    template_name = 'pmgmt/manufacturer/add.html'
+    fields = ('name',)
 
     def form_valid(self, form):
         user = self.request.user
@@ -138,7 +140,7 @@ class ManufacturerUpdateView(UpdateView):
     model = Manufacturer
     # We don't want to make all fields editable via
     # normal frontend.
-    fields = (  'name', )
+    fields = ('name',)
 
 
 class ManufacturerListView(ListView):
@@ -160,11 +162,12 @@ class ManufacturerDeleteView(DeleteView):
 # Distributor
 ########################################################################
 
+
 class DistributorAddView(CreateView):
     model = Distributor
     success_url = reverse_lazy('distributor_list')
     template_name = 'pmgmt/distributor/add.html'
-    fields = ( 'name', )
+    fields = ('name',)
 
     def form_valid(self, form):
         user = self.request.user
@@ -179,7 +182,7 @@ class DistributorUpdateView(UpdateView):
     model = Distributor
     # We don't want to make all fields editable via
     # normal frontend.
-    fields = (  'name', )
+    fields = ('name',)
 
 
 class DistributorListView(ListView):
@@ -206,26 +209,30 @@ class DistributorDeleteView(DeleteView):
 class StorageItemAddView(CreateView):
     model = StorageItem
     success_url = reverse_lazy('storage_item_list')
-    fields = (  'part',
-                'storage',
-                'on_stock')
+    fields = ('part',
+              'storage',
+              'on_stock')
     template_name = 'pmgmt/storageitem/add.html'
+
 
 class StorageItemListView(ListView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/list.html'
 
+
 class StorageItemDetailView(DetailView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/detail.html'
 
+
 class StorageItemUpdateView(UpdateView):
     model = StorageItem
-    fields = (  'part',
-                'storage',
-                'on_stock')
+    fields = ('part',
+              'storage',
+              'on_stock')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
+
 
 class StorageItemMergeView(FormView):
     form_class = MergeStorageItemsForm
@@ -241,13 +248,14 @@ class StorageItemMergeView(FormView):
 # StoragePlace
 ########################################################################
 
+
 class StoragePlaceAddView(CreateView):
     model = StoragePlace
     success_url = reverse_lazy('storage_list')
-    fields = (  'name',
-                'storage_type',
-                'description',
-                'parent')
+    fields = ('name',
+              'storage_type',
+              'description',
+              'parent')
     template_name = 'pmgmt/storage/add.html'
 
 
@@ -264,8 +272,8 @@ class StoragePlaceDetailView(DetailView):
 class StoragePlaceUpdateView(UpdateView):
     model = StoragePlace
     template_name = 'pmgmt/storage/update.html'
-    fields = (  'name',
-                'storage_type',
-                'description',
-                'parent')
+    fields = ('name',
+              'storage_type',
+              'description',
+              'parent')
     success_url = reverse_lazy('storage_list')

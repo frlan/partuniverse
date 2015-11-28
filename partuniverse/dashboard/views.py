@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, loader
 from dashboard.DashboardContainer import DashboardContainer
 
+
 def index(request):
     template = loader.get_template('dashboard/container.html')
     dashboard = DashboardContainer(request)

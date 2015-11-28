@@ -4,8 +4,8 @@ class DashboardItem:
     description = ""
     container = None
 
-    def __init__(self,container):
+    def __init__(self, container):
         self.container = container
 
     def render(self):
-        raise NotImplementedError( "Should have implemented this" )
+        raise NotImplementedError("Should have implemented this")
