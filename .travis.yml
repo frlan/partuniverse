@@ -13,6 +13,6 @@ install:
   - pip install -r requirements.txt
   - pip install pep8 --use-mirrors
 before_script:
-  - "pep8 --exclude=migrations --ignore=E501,E225 src"
+  - "pep8 --exclude=migrations --ignore=E501,E225 partuniverse"
 # command to run tests
 script: bash test.sh
