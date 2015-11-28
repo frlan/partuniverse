@@ -7,7 +7,6 @@ but at a more general storage.
 
 To discuss about partuniverse or get help, join our mailing list at [lstsrv.org](https://lstsrv.org/mailman/listinfo/partuniverse)
 
-
 ## Bugreporting
 
 Please report bugs and feature wishes to the project page at [github](https://github.com/frlan/partuniverse/issues)
@@ -123,7 +122,13 @@ text editor -- like Geany which is also having some translations
 plugin.
 
 
-## Hacking
+## Hacking & Contribution
+
+If like to contribute, please send a pull reuqest via
+[github](https://github.com/frlan/partuniverse/). When hacking, start
+with adding a test first. So if you want to fix a bug, create a test
+for that bug first. It's faster to check whether the bug is fixed and
+prevents the bug from happen again.
 
 ### Testing
 
