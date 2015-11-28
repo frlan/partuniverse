@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 
 # Exceptions
 from .exceptions import PartsNotFitException, PartsmanagementException
@@ -257,6 +258,7 @@ class Part(models.Model):
             raise PartsmanagementException(
                 u'One of the storage items seems to not exists: %s, %s' % (si1, si2)
             )
+
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
@@ -353,7 +355,14 @@ class Transaction(models.Model):
         db_index=True)
 
     def save(self, *args, **kwargs):
-        tmp_storage_item = StorageItem.objects.get(pk = self.storage_item.id)
+        tmp_storage_item = StorageItem.objects.get(pk=self.storage_item.id)
+        try:
+            old_transaction = Transaction.objects.get(pk=self.id)
+            if old_transaction.amount and tmp_storage_item.on_stock != None:
+                tmp_storage_item.on_stock = tmp_storage_item.on_stock - old_transaction.amount
+        except ObjectDoesNotExist:
+            pass
+
         if tmp_storage_item.on_stock != None:
             tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
         tmp_storage_item.save()
