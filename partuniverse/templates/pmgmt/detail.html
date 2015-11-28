@@ -24,23 +24,45 @@
 </div>
 {% endif %}
 
-<table class="ui definition table">
-  <colgroup>
-    <col width="15%">
-    <col>
-  </colgroup>
-    {% for verbose_name, value in object.get_fields %}
-    {% if value %}
-    <tr>
-    <td>{{ verbose_name }}</td>
-    {% if value == "None" %}
-        <td>{% trans "n/A" %}</td>
+<h1>{{ object }}</h1>
+
+<table class="ui table segment">
+<tr>
+    <th>{% trans "Name" %}</th>
+    <td>{{object.name}}</td>
+</tr>
+<tr>
+    <th>{% trans "SKU" %}</th>
+    {% if object.sku %}
+        <td>{{object.sku}}</td>
     {% else %}
-        <td>{{ value }} </td>
+        <td>&nbsp;</td>
     {% endif %}
-    </tr>
+</tr>
+<tr>
+    <th>{% trans "Measuring unit" %}</th>
+    <td>{{object.unit}}</td>
+</tr>
+<tr>
+    <th>{% trans "Distributor" %}</th>
+    {% if object.distributor %}
+        <td>{{object.distributor}}</td>
+    {% else %}
+        <td>{% trans "No Information" %}</td>
     {% endif %}
-    {% endfor %}
+</tr>
+<tr>
+    <th>{% trans "Manufacturer" %}</th>
+    {% if object.manufacturer %}
+        <td>{{object.manufacturer}}</td>
+    {% else %}
+        <td>{% trans "No Information" %}</td>
+    {% endif %}
+</tr>
+<tr>
+    <th>{% trans "Created by" %}</th>
+    <td>{{object.created_by}}</td>
+</tr>
 </table>
 
 <p>

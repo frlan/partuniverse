@@ -210,17 +210,6 @@ class Part(models.Model):
                 sum_amount = sum_amount + si.on_stock
         return sum_amount
 
-    # Based upon a post at http://stackoverflow.com/a/2217558/2915834
-    # Modified to make it better readable for n00bz and exclude disabled
-    # field or maybe others in future.
-    def get_fields(self):
-        tmp = []
-        for field in Part._meta.fields:
-            if field.name is not 'disabled':
-                tmp.append((field.verbose_name, field.value_to_string(self)))
-        return tmp
-        #return [(field.verbose_name, field.value_to_string(self)) for field in Part._meta.fields]
-
     def is_below_min_stock(self):
         """ Returns True, if the item is below minimum stock.
             Will returns False if on_stock >= min_stock

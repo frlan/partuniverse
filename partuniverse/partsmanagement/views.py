@@ -75,6 +75,15 @@ class PartDeleteView(DeleteView):
 class PartDetailView(DetailView):
     template_name = "pmgmt/detail.html"
     model = Part
+    fields = ('name',
+            'sku',
+            'min_stock',
+            'unit',
+            'manufacturer',
+            'distributor',
+            'categories',
+            'created_by')
+
 
 
 class PartUpdateView(UpdateView):
