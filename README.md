@@ -40,11 +40,11 @@ This will create a folder inside the the partuniverse folder and
 install the basic virtualenv into it -- Python, pip.
 
 
-Once inside the virtualenv, you have to install the needed packages.
+Once you have created the virtualenv, you have to install the needed packages.
 This can be done by:
 
 	$ cd partuniverse
-	$ pip install -r ../requirements.txt
+	$ bin/pip install -r ../requirements.txt
 
 ### Running
 
