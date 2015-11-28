@@ -194,7 +194,7 @@ class Part(models.Model):
         default=False)
 
     def __unicode__(self):
-        return unicode(self.name)
+        return str(self.name, 'utf-8')
 
 
     def get_on_stock(self):
