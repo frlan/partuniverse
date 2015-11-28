@@ -89,8 +89,7 @@ class StoragePlace(models.Model):
         if self.parent == None:
             return self.name
         else:
-            tmp = unicode(unicode(self.parent) + settings.PARENT_DELIMITER + unicode(self.name))
-            return tmp
+            return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
     class Meta:
         verbose_name = _("Storage Place")
@@ -145,8 +144,8 @@ class Category(models.Model):
         if self.parent == None:
             return self.name
         else:
-            tmp = unicode(unicode(self.parent) + settings.PARENT_DELIMITER + unicode(self.name))
-            return tmp
+            #tmp = str(self.parent, 'utf-8') + settings.PARENT_DELIMITER + str(self.name, 'utf-8')
+            return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
     class Meta:
         unique_together = ("name", "parent")
@@ -302,7 +301,7 @@ class StorageItem(models.Model):
         default=False)
 
     def __unicode__(self):
-        return unicode(self.part) + ": " + unicode(self.storage)
+        return (u'%s; %s' % (self.part, self.storage))
 
     class Meta:
         unique_together = ("part", "storage")
@@ -356,8 +355,7 @@ class Transaction(models.Model):
         super(Transaction, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        tmp = self.subject + " " + str(self.storage_item) + " " + str(self.date)
-        return unicode(tmp)
+        return (u'%s %s %s' % (self.subject, self.storage_item, self.date))
 
     class Meta:
         verbose_name = _("Transaction")
