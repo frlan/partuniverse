@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load url from future %}
+
+{% block breadcrumbs %}
+<a href="{% url "manufacturer_list" %}" class="section">{% trans "Manufacturers" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url 'manufacturer_add' %}">{% trans "Add" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Add a new manufacturer" %}{% endblock %}
+
+{% block heading %}{% trans "Add a new manufacturer" %}{% endblock %}
+
+{% block content %}
+<form method="post" class="ui form" >
+{% csrf_token %}
+{{form.as_semantic}}
+<input type="submit" value="Submit" class="ui purple button">
+</form>
+{% endblock %}

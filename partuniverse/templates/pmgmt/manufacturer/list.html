@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "manufacturer_list" %}" class="active section">{% trans "Manufacturers" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of manufacturers" %}{% endblock %}
+
+{% block heading %}{% trans "List of manufacturers" %}{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<table class="ui table segment">
+  <colgroup>
+    <col>
+    <col width="8%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr>
+      <td><a href="/pmgmt/manufacturer/{{item.id}}">{{ item.name }}</a></td>
+      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "manufacturer_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
+{% endblock %}

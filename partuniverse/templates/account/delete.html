@@ -3,15 +3,22 @@
 {% load i18n %}
 {% load url from future %}
 
+{% block breadcrumbs %}
+<a class="section" href="{% url "account_settings" %}">{% trans "Settings" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href=" {% url "account_delete" %}"> {% trans "Delete your account" %} </a>
+{% endblock %}
+
+{% block head_title %}{% trans "Delete Account" %}{% endblock %}
+
+{% block heading %}{% trans "Delete Account" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Delete Account" %}</h1>
+<p>{% trans "If you go ahead and delete your account, your  personal information will be purged</b>" %}</p>
 
-    <p>{% trans "If you go ahead and delete your account, your  personal information will be purged</b>" %}</p>
-
-    <form method="post" action="{% url "account_delete" %}" autocapitalize="off">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Delete My Account</button>
-    </form>
+<form method="post" action="{% url "account_delete" %}" autocapitalize="off">
+  {% csrf_token %}
+  <button type="submit" class="ui purple button ">Delete My Account</button>
+</form>
 
 {% endblock %}

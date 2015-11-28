@@ -1,0 +1,27 @@
+{% load i18n %}
+
+{% if parts|length > 0 %}
+<table class="ui table segment">
+  <colgroup>
+    <col width="70%">
+    <col width="30%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+      <th>{% trans "In Stock" %}</th>
+  </thead>
+  <tbody>
+    {% for part in parts %}
+    <tr>
+      <td><a href="{% url "part_detail" part.id%}">{{ part.name }}</a></td>
+      <td>{{ part.on_stock }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="ui segment">
+  <p>{% trans "All parts are in stock!" %}</p>
+</div>
+{% endif %}

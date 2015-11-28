@@ -1,4 +1,5 @@
 Django
+coverage
 argparse
-wsgiref
 django-user-accounts
+gunicorn

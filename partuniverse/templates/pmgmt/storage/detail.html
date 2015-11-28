@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "storage_list" %}" class="section">{% trans "Storages" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url "storage_detail"  object.id %}">{{ object.name }}</a>
+{% endblock %}
+
+{% block head_title %}{{ object.name }}{% endblock %}
+
+{% block heading %}{{ object.name }}{% endblock %}
+
+{% block content %}
+
+<table class="ui definition table">
+  <colgroup>
+    <col width="14%">
+    <col>
+  </colgroup>
+  <tr>
+    <td>{% trans "Storage Name" %}</td>
+    <td>{{object.name}}</td>
+  </tr>
+  <tr>
+    <td>{% trans "Storage Type" %}</td>
+    <td>{{object.storage_type}}</td>
+  </tr>
+  <tr>
+      <td>{% trans "Description" %}</td>
+      {% if object.description == None %}
+          <td>{% trans "no Details" %}
+      {% else %}
+          <td>{{object.description}}</td>
+      {% endif %}
+
+  </tr>
+</table>
+
+<p><a class="ui tiny button purple" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a>
+</p>
+
+
+{% endblock %}

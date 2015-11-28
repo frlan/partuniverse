@@ -1,0 +1,36 @@
+# Local configuration file for prod environment
+# Adjust as you need
+
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'am+mtwaazf9uxu@x#2x396!1oey(+g)usvapj4g#v%-l)y2(hc'
+
+# Emailsettings
+DEFAULT_FROM_EMAIL = 'partuniverse@example.com'
+
+
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+#SQLite
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+#PostgreSQL
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'partuniverse',
+#        'USER': 'partuniverse',
+#        'PASSWORD': '',
+#        'HOST': '',
+#        'PORT': '5432',
+#    }
+#}
+

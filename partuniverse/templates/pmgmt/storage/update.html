@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "storage_list" %}" class="section">{% trans "Storages" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url 'storage_update' object.id %}">{% blocktrans with name=object.name %}Update of „{{ name }}“{% endblocktrans %}</a>
+{% endblock %}
+
+{% block head_title %}{% blocktrans with name=object.name %}Update of „{{ name }}“{% endblocktrans %}{% endblock %}
+
+{% block heading %}{% blocktrans with name=object.name %}Update of „{{ name }}“{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<form class="ui form" method="post">
+	{% csrf_token %}
+	{{ form.as_semantic }}
+	<input class="ui purple button" type="submit" value="Submit">
+</form>
+{% endblock %}

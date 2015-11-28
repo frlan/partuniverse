@@ -1,0 +1,7 @@
+{% load dashboard_helpers %}
+
+<div class="ui {{ dashboard.columns|asStringLiteral }} column grid stackable">
+  {% for column in columns %}
+    {{ column }}
+  {% endfor %}
+</div>

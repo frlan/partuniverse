@@ -2,10 +2,23 @@
 
 {% load url from future %}
 {% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Delete a part" %}{% endblock %}
+
+{% block heading %}{% trans "Delete a part" %}{% endblock %}
+
 {% block content %}
-<h2>{% trans "Delete a part" %}</h2>
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
+    <p>{% blocktrans %}
+		Are you sure you want to delete »{{ object }}«?
+	   {% endblocktrans %}</p>
+
+<form class="ui form" method="post">{% csrf_token %}
+    <input class="ui negative button" type="submit" value="Confirm" />
 </form>
 {% endblock %}

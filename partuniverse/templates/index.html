@@ -1,15 +1,15 @@
 {% extends "base.html" %}
+
+{% load i18n %}
 {% load url from future %}
+
+{% block heading %}Welcome to partuniverse{% endblock %}
+
 {% block content %}
-	<h1>Welcome</h1>
-	<p>This is an approach for keeping an overview over your parts.</p>
-	<p>Please links below to navigate:</p>
-	<ul>
-		<li><a href="{% url "partslist" %}">List of Parts</a></li>
-		{% if user.is_authenticated %}
-		<li><a href="{% url "transaction_new" %}">Add a new transaction</a></li>
-		{% endif %}
-		<li><a href="{% url "transaction_list" %}">Show all tranactions</a></li>
-	</ul>
+{% if user.is_authenticated %}
+{{ dashboard.render }}
+{% else %}
+<p>put your mission statement here</p>
+{% endif %}
 
 {% endblock %}

@@ -1,12 +1,21 @@
-from django import forms
+# -*- coding: utf-8 -*-
+
 from django.contrib.auth.decorators import login_required
+from django import forms
 from django.shortcuts import render, redirect
 
+
 # Models we need
-from .models import Part
+from .models import Part, StorageItem
 
-class PartAddForm(forms.ModelForm):
+#i18n (just in case)
+from django.utils.translation import ugettext_lazy as _
 
-	class Meta:
-		model = Part
-		exclude = ('user')
+# Logging
+import logging
+logger = logging.getLogger(__name__)
+
+class MergeStorageItemsForm(forms.Form):
+    storageitem1 = forms.ModelChoiceField(queryset=StorageItem.objects.all())
+
+

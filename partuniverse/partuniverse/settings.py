@@ -14,16 +14,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SITE_ID = 1
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'am+mtwaazf9uxu@x#2x396!1oey(+g)usvapj4g#v%-l)y2(hc'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -45,26 +37,27 @@ TEMPLATE_DIRS = (
 # Application definition
 
 INSTALLED_APPS = (
-	'django.contrib.admin',
-	'django.contrib.auth',
-	'django.contrib.contenttypes',
-	'django.contrib.sessions',
-	'django.contrib.messages',
-	'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
     'django.contrib.sites',
-	'account',
-    'partsmanagement'
+    'account',
+    'partsmanagement',
+    'dashboard',
 )
 
 MIDDLEWARE_CLASSES = (
-	'django.contrib.sessions.middleware.SessionMiddleware',
-	'django.middleware.locale.LocaleMiddleware',
-	'django.middleware.common.CommonMiddleware',
-	'django.middleware.csrf.CsrfViewMiddleware',
-	'django.contrib.auth.middleware.AuthenticationMiddleware',
-	'django.contrib.messages.middleware.MessageMiddleware',
-	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-	'account.middleware.LocaleMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.LocaleMiddleware',
     'account.middleware.TimezoneMiddleware',
 )
 
@@ -72,16 +65,6 @@ ROOT_URLCONF = 'partuniverse.urls'
 
 WSGI_APPLICATION = 'partuniverse.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -96,20 +79,86 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static/all"),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
-
-# Temp. no real mail sending out
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # django-user-accounts
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+
+# monkey patching BaseForm
+
+from django.forms import BaseForm
+from .semantic_forms import as_semantic
+
+BaseForm.as_semantic = as_semantic
+
+########################################################################
+# Logging
+########################################################################
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(name)s %(process)d %(threadName)s %(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'mail_admins': {
+            'level': 'WARN',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false']
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers':['console'],
+            'level':'DEBUG',
+        },
+        'django': {
+            'handlers':['console'],
+            'propagate': True,
+            'level':'INFO',
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
+
+########################################################################
+# Delimiter for hirachial stuff
+########################################################################
+
+PARENT_DELIMITER = "->"
 
 ##################
 # LOCAL SETTINGS #
@@ -118,6 +167,6 @@ ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 # ignored in your version control system allowing for settings to be
 # defined per machine.
 try:
-	from local_settings import *
+    from .local_settings import *
 except ImportError:
-	pass
+    pass

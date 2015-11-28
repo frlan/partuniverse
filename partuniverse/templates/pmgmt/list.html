@@ -2,35 +2,57 @@
 
 {% load url from future %}
 {% load i18n %}
-{% block content %}
-<p>A list with all items ... </p>
-	{% if object_list %}
-	<table>
-		<thead>
-			<tr>
-				<td>Name</td>
-				<td>Minimum</td>
-				<td>In Stock</td>
-				<td>Manufacturer</td>
-			</tr>
-		</thead>
-		<tbody>
-			{% for item in object_list %}
-			<tr>
-				<td><a href="/pmgmt/{{item.id}}">{{ item.name }}</a></td>
-				<td>{{ item.min_stock}}</td>
-				<td>{{ item.on_stock }}</td>
-				<td>{{ item.manufacturer }}</td>
-				{% if user.is_authenticated %}
-				<td><a href="/pmgmt/{{item.id}}/update/">{% trans "Update" %}</a></td>
-				<td><a href="/pmgmt/{{item.id}}/delete/">{% trans "Delete" %}</a></td>
-				{% endif %}
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
 
-    {% else %}
-    <p>No data available at the moment </p>
+{% block breadcrumbs %}
+<a href="{% url "part_list" %}" class="active section">{% trans "Parts" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of parts" %}{% endblock %}
+
+{% block heading %}{% trans "List of parts" %}{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<table class="ui table segment">
+  <colgroup>
+    <col>
+    <col width="10%">
+    <col width="10%">
+    <col width="18%">
+    {% if user.is_authenticated %}
+    <col width="25%">
     {% endif %}
+  </colgroup>
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+      <th>{% trans "Minimum" %}</th>
+      <th>{% trans "In Stock" %}</th>
+      <th>{% trans "Manufacturer" %}</th>
+      {% if user.is_authenticated %}
+      <th></th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
+      <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>
+      <td>{{ item.min_stock|default:"" }}</td>
+      <td>{{ item.get_on_stock|default:"" }}</td>
+      <td>{{ item.manufacturer|default:"" }}</td>
+      {% if user.is_authenticated %}
+      <td>
+        <a class="ui tiny button purple" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
+        <a class="ui tiny button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
 {% endblock %}

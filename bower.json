@@ -1,0 +1,22 @@
+{
+  "name": "partuniverse",
+  "version": "0.2.0",
+  "homepage": "https://github.com/frlan/partuniverse",
+  "directory": "partuniverse/static/all",
+  "authors": [
+    "Frank Lanitz <frank@frank.uvena.de>",
+    "Tim Schumacher <tim@datenknoten.me>"
+  ],
+  "description": "Another approach to keep track of parts inside a hacker space or more general storage.",
+  "license": "AGPL v3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic-ui": "~1.12.3"
+  }
+}
