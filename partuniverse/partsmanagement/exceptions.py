@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-
 #i18n (just in case)
 from django.utils.translation import ugettext_lazy as _
 
 # Logging
 import logging
 logger = logging.getLogger(__name__)
+
 
 class PartsmanagementException(Exception):
     """

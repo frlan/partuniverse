@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.test import TestCase
-from django.utils import timezone
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-
-# For splitting of e.g. categories
-from django.conf import settings
+from django.test import TestCase
+from django.utils import timezone
 
 from .models import *
 from .views import *

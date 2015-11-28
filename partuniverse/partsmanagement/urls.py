@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
-from django.views.generic import TemplateView
+from django.contrib import admin
 from django.core.urlresolvers import reverse
-
-#i18n
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic import TemplateView
+
 
 from .views import *
 
