@@ -4,8 +4,8 @@ from dashboard.DashboardItem import DashboardItem
 from django.template import RequestContext, loader
 from django.utils.safestring import mark_safe
 from django.db.models import F
-
 from partsmanagement.models import Part
+
 
 class NeedsRestockingDashboardItem(DashboardItem):
     id = "needs_restocking"
@@ -13,7 +13,7 @@ class NeedsRestockingDashboardItem(DashboardItem):
     description = "Display a table with parts which have low stock."
 
     def render(self):
-        #parts = Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
+        # parts = Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
         parts = []
         for i in Part.objects.all():
             if (i.is_below_min_stock() == True):
@@ -25,4 +25,3 @@ class NeedsRestockingDashboardItem(DashboardItem):
         return mark_safe(template.render(context))
 
 DashboardItemRegistry.add(NeedsRestockingDashboardItem)
-
