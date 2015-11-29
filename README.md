@@ -1,5 +1,7 @@
 # Partuniverse
 
+[![Build Status](https://travis-ci.org/frlan/partuniverse.svg?branch=master)](https://travis-ci.org/frlan/partuniverse)
+
 Another approach to keep track of parts not only inside a hacker space
 but at a more general storage.
 
@@ -26,7 +28,6 @@ Partuniverse depends on:
 
 For detailed list of python dependencies, have a look at
 requirements.txt next to this file.
-
 
 ### Virtualenv
 
