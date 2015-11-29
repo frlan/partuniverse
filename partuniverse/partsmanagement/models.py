@@ -147,10 +147,10 @@ class Category(models.Model):
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
 
-class Meta:
-        unique_together = ("name", "parent")
-        verbose_name = _("Category")
-        verbose_name_plural = _("Categories")
+    class Meta:
+            unique_together = ("name", "parent")
+            verbose_name = _("Category")
+            verbose_name_plural = _("Categories")
 
 
 class Part(models.Model):
@@ -282,9 +282,9 @@ class Part(models.Model):
             si2.delete()
 
 
-class Meta:
-        verbose_name = _("Part")
-        verbose_name_plural = _("Parts")
+    class Meta:
+            verbose_name = _("Part")
+            verbose_name_plural = _("Parts")
 
 
 class StorageItem(models.Model):
