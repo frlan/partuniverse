@@ -85,7 +85,6 @@ class PartDetailView(DetailView):
               'created_by')
 
 
-
 class PartUpdateView(UpdateView):
     template_name = "pmgmt/update.html"
     success_url = reverse_lazy('part_list')
