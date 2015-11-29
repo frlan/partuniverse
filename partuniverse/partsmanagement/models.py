@@ -143,7 +143,6 @@ class Category(models.Model):
         if self.parent is None:
             return self.name
         else:
-            #tmp = str(self.parent, 'utf-8') + settings.PARENT_DELIMITER + str(self.name, 'utf-8')
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
 
@@ -195,7 +194,7 @@ class Part(models.Model):
                                    default=False)
 
     def __unicode__(self):
-        return str(self.name, 'utf-8')
+        return (u'%s' % self.name)
 
     def get_on_stock(self):
         """ Returns the amount of items which are on stock over all storages """
