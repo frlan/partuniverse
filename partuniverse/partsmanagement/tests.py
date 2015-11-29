@@ -32,6 +32,50 @@ class CategoryTestCase(TestCase):
         self.assertEqual(self.cat3.__unicode__(), cat_result3)
 
 
+class CategoryParents(TestCase):
+    """
+    Checks, whether the category is aware of its parants
+    """
+    def setUp(self):
+        self.cat1 = Category.objects.create(name=u'Category 1')
+        self.cat2 = Category.objects.create(name=u'Category 2', parent=self.cat1)
+        self.cat3 = Category.objects.create(name=u'Category 3', parent=self.cat2)
+
+    def test_category_parents(self):
+        # Building up expected resultset
+        result = []
+        result.append(self.cat3)
+        result.append(self.cat2)
+        result.append(self.cat1)
+
+        # Running the actual check
+        self.assertEqual(result, self.cat3.get_parents())
+
+
+class CategoryWithCircleSelf(TestCase):
+    def setUp(self):
+        self.cat1 = Category.objects.create(name=u'Category 1')
+        self.cat2 = Category.objects.create(name=u'Category 2', parent=self.cat1)
+        self.cat3 = Category.objects.create(name=u'Category 3', parent=self.cat2)
+
+    def test_category_with_circles_self(self):
+        self.cat2.parent = self.cat2
+        with self.assertRaises(CircleDetectedException):
+            self.cat2.save()
+
+
+class CategoryWithCircleAnsistor(TestCase):
+    def setUp(self):
+        self.cat1 = Category.objects.create(name=u'Category 1')
+        self.cat2 = Category.objects.create(name=u'Category 2', parent=self.cat1)
+        self.cat3 = Category.objects.create(name=u'Category 3', parent=self.cat2)
+
+    def test_category_with_circles_ansistors(self):
+        self.cat2.parent = self.cat3
+        with self.assertRaises(CircleDetectedException):
+            self.cat2.save()
+
+
 ########################################################################
 # Transaction
 ########################################################################

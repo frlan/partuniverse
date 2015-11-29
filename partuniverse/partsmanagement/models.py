@@ -8,7 +8,7 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
 # Exceptions
-from .exceptions import PartsNotFitException, PartsmanagementException
+from .exceptions import PartsNotFitException, PartsmanagementException, CircleDetectedException
 
 # Logging
 import logging
@@ -145,6 +145,23 @@ class Category(models.Model):
         else:
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
+    def get_parents(self):
+        """ Returns a list with parants of that category"""
+        result = []
+        result.append(self)
+        if self.parent is not None:
+            result = result + self.parent.get_parents()
+        return result
+
+    def save(self, *args, **kwargs):
+        try:
+            if self.parent is not None:
+                ansistor = Category.objects.get(pk=self.parent.id)
+                if self in ansistor.get_parents():
+                    raise CircleDetectedException("%s is causing a circle" % self.name)
+        except ObjectDoesNotExist:
+            pass
+        super(Category, self).save(*args, **kwargs)
 
     class Meta:
             unique_together = ("name", "parent")

@@ -22,3 +22,11 @@ class PartsNotFitException(PartsmanagementException):
     """
     def __init__(self, error):
         logger.error(_(u"Exception: Parts cannot be combined: %s" % error))
+
+
+class CircleDetectedException(PartsmanagementException):
+    """
+    Used in case of a chained list is showing some circles
+    """
+    def __init__(self, error):
+        logger.error(_(u"Circle detected: %s" % error))
