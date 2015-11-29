@@ -297,7 +297,6 @@ class Part(models.Model):
             si1.save()
             si2.delete()
 
-
     class Meta:
             verbose_name = _("Part")
             verbose_name_plural = _("Parts")
