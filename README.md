@@ -94,9 +94,9 @@ Now do the following steps:
 2.  Set the owner of /run/partuniverse to partuniverse
 3.  Collect static files by running
     `bin/python manage.py collectstatic` inside partuniversde project folder
-4.  Copy `utils/partuniverse.service` to `/etc/systemd/system`.
-5.  Copy `utils/partuniverse.socket` to `/etc/systemd/system`.
-6.  Copy `utils/nginx-host.conf` to an appropriate place and edit it to
+4.  Copy `utils/service/spartuniverse.service` to `/etc/systemd/system`.
+5.  Copy `utils/service/partuniverse.socket` to `/etc/systemd/system`.
+6.  Copy `utils/service/nginx-host.conf` to an appropriate place and edit it to
     your liking, you should get the idea once you look at it.
 7.  Reload the systemd config: systemctl daemon-reload
 8.  Start the partuniverse service: systemctl start partuniverse
