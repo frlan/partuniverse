@@ -10,6 +10,7 @@ from django.views.generic.base import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
+from django.http import HttpResponseRedirect
 
 # Importing models
 from partsmanagement.models import *
@@ -70,6 +71,12 @@ class PartDeleteView(DeleteView):
     model = Part
     success_url = reverse_lazy('part_list')
     template_name = 'pmgmt/delete.html'
+
+    def post(self, request, *args, **kwargs):
+        if 'confirm' in request.POST:
+            return super(PartDeleteView, self).post(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(self.success_url)
 
 
 class PartDetailView(DetailView):

@@ -15,10 +15,12 @@
 
 {% block content %}
     <p>{% blocktrans %}
-		Are you sure you want to delete »{{ object }}«?
-	   {% endblocktrans %}</p>
+                Are you sure you want to delete »{{ object }}«?
+           {% endblocktrans %}</p>
 
-<form class="ui form" method="post">{% csrf_token %}
-    <input class="ui negative button" type="submit" value="Confirm" />
+<form class="ui form" method="post">
+    <button class="ui positive button" name="cancel" type="submit" value="Cancel">{% trans "Cancel" %}</button>
+    <button class="ui negative button" name="confirm" type="submit" value="Confirm">{% trans "Confirm" %}</button>
+    {% csrf_token %}
 </form>
 {% endblock %}
