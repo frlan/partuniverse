@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Sum
@@ -89,6 +90,19 @@ class StoragePlace(models.Model):
             return self.name
         else:
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
+
+    def get_parents(self):
+        """ Returns a list with parants of that category"""
+        result = []
+        result.append(self)
+        if self.parent is not None:
+            result = result + self.parent.get_parents()
+        return result
+
+    def clean(self):
+        if self.parent in self.get_parents():
+            raise ValidationError(
+                {'parent': _('You must not have yourself as one of the ansistors')})
 
     class Meta:
         verbose_name = _("Storage Place")
