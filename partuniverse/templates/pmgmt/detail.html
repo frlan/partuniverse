@@ -60,6 +60,10 @@
     {% endif %}
 </tr>
 <tr>
+    <th>{% trans "Categories" %}</th>
+    <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
+</tr>
+<tr>
     <th>{% trans "Created by" %}</th>
     <td>{{object.created_by}}</td>
 </tr>
