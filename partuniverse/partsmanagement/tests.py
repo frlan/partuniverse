@@ -265,13 +265,13 @@ class StoragePlaceCircle(TestCase):
     def test_circle_detection_with_indirect_circle(self):
         st = StorageType.objects.create(name=u"Testtype")
         place1 = StoragePlace.objects.create(name=u'Test Storage1',
-                                                   storage_type=st)
+                                             storage_type=st)
 
         place2 = StoragePlace.objects.create(name=u'Test Storage2',
-                                                   storage_type=st)
+                                             storage_type=st)
 
         place3 = StoragePlace.objects.create(name=u'Test Storage3',
-                                                   storage_type=st)
+                                             storage_type=st)
         place1.parent = place3
 
         with self.assertRaises(ValidationError):
