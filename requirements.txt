@@ -1,4 +1,4 @@
-Django
+Django==1.8.7
 coverage
 argparse
 django-user-accounts
