@@ -268,10 +268,13 @@ class StoragePlaceCircle(TestCase):
                                              storage_type=st)
 
         place2 = StoragePlace.objects.create(name=u'Test Storage2',
-                                             storage_type=st)
+                                             storage_type=st,
+                                             parent=place1)
 
         place3 = StoragePlace.objects.create(name=u'Test Storage3',
-                                             storage_type=st)
+                                             storage_type=st,
+                                             parent=place2)
+
         place1.parent = place3
 
         with self.assertRaises(ValidationError):
