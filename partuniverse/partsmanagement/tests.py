@@ -253,30 +253,30 @@ class StoragePlaceCircle(TestCase):
         Testcase to check whether model's validation method is catching
         possible circles.
     """
+    def setUp(self):
+        self.st = StorageType.objects.create(name=u"Testtype")
+
     def test_circle_detection_with_direct_circle(self):
         # Setting up basics
-        st = StorageType.objects.create(name=u"Testtype")
+
         place1 = StoragePlace.objects.create(name=u'Test Storage1',
-                                             storage_type=st)
+                                             storage_type=self.st)
         place1.parent = place1
         with self.assertRaises(ValidationError):
             place1.clean()
 
     def test_circle_detection_with_indirect_circle(self):
-        st = StorageType.objects.create(name=u"Testtype")
         place1 = StoragePlace.objects.create(name=u'Test Storage1',
-                                             storage_type=st)
+                                             storage_type=self.st)
 
         place2 = StoragePlace.objects.create(name=u'Test Storage2',
-                                             storage_type=st,
+                                             storage_type=self.st,
                                              parent=place1)
 
         place3 = StoragePlace.objects.create(name=u'Test Storage3',
-                                             storage_type=st,
+                                             storage_type=self.st,
                                              parent=place2)
-
         place1.parent = place3
-
         with self.assertRaises(ValidationError):
             place1.clean()
 
