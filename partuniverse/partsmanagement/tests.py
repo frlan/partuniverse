@@ -248,6 +248,36 @@ class PartListWithOnStockValueFromSI(TestCase):
         self.assertEqual(get_all_storage_item_parts_with_on_stock_and_min_stock(), expected_resultset)
 
 
+class StoragePlaceCircle(TestCase):
+    """
+        Testcase to check whether model's validation method is catching
+        possible circles.
+    """
+    def test_circle_detection_with_direct_circle(self):
+        # Setting up basics
+        st = StorageType.objects.create(name=u"Testtype")
+        place1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                   storage_type=st)
+        place1.parent = place1
+        with self.assertRaises(ValidationError):
+            place1.clean()
+
+    def test_circle_detection_with_indirect_circle(self):
+        st = StorageType.objects.create(name=u"Testtype")
+        place1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                   storage_type=st)
+
+        place2 = StoragePlace.objects.create(name=u'Test Storage2',
+                                                   storage_type=st)
+
+        place3 = StoragePlace.objects.create(name=u'Test Storage3',
+                                                   storage_type=st)
+        place1.parent = place3
+
+        with self.assertRaises(ValidationError):
+            place1.clean()
+
+
 class PartGetOnStockAmount(TestCase):
     """ Checking for currently amount of on stock items for a special part
         Testcase include these scenario:
