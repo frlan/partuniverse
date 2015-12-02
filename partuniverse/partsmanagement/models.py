@@ -95,8 +95,8 @@ class StoragePlace(models.Model):
         """ Returns a list with parants of that category"""
         result = []
         result.append(self)
-        if self.parent is not None:
-            result = result + self.parent.get_parents()
+        if self.parent is not None and self.parent not in result:
+                result = result + self.parent.get_parents()
         return result
 
     def clean(self):
