@@ -130,6 +130,11 @@ with adding a test first. So if you want to fix a bug, create a test
 for that bug first. It's faster to check whether the bug is fixed and
 prevents the bug from happen again.
 
+### Code style
+
+Please use [pep8](https://www.python.org/dev/peps/pep-0008/) for coding.
+
+
 ### Testing
 
 To test your changes, you can use Django's test framework
