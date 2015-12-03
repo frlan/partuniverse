@@ -44,10 +44,9 @@ class CategoryParents(TestCase):
     def test_category_parents(self):
         # Building up expected resultset
         result = []
-        result.append(self.cat3)
-        result.append(self.cat2)
-        result.append(self.cat1)
-
+        result.append(self.cat3.id)
+        result.append(self.cat2.id)
+        result.append(self.cat1.id)
         # Running the actual check
         self.assertEqual(result, self.cat3.get_parents())
 
@@ -60,8 +59,8 @@ class CategoryWithCircleSelf(TestCase):
 
     def test_category_with_circles_self(self):
         self.cat2.parent = self.cat2
-        with self.assertRaises(CircleDetectedException):
-            self.cat2.save()
+        with self.assertRaises(ValidationError):
+            self.cat2.clean()
 
 
 class CategoryWithCircleAnsistor(TestCase):
@@ -72,8 +71,8 @@ class CategoryWithCircleAnsistor(TestCase):
 
     def test_category_with_circles_ansistors(self):
         self.cat2.parent = self.cat3
-        with self.assertRaises(CircleDetectedException):
-            self.cat2.save()
+        with self.assertRaises(ValidationError):
+            self.cat2.clean()
 
 
 ########################################################################

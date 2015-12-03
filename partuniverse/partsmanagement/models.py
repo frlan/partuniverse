@@ -174,22 +174,36 @@ class Category(models.Model):
             return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
 
     def get_parents(self):
-        """ Returns a list with parants of that category"""
+        """ Returns a list with parants of that StoragePare incl itself"""
         result = []
-        result.append(self)
-        if self.parent is not None:
-            result = result + self.parent.get_parents()
+        next = self
+        print "zuvor %s" % self
+        while True:
+            print "aktuelles next %s" % next
+            if next.parent is not None:
+                print "späteres next %s" % next.parent
+            if next.id in result:
+                raise(CircleDetectedException(
+                    _('There seems to be a circle inside ansistors at %s.'% self.id)))
+            else:
+                result.append(next.id)
+                if next.parent is not None:
+                    next = next.parent
+                else:
+                    break
         return result
 
-    def save(self, *args, **kwargs):
-        try:
-            if self.parent is not None:
-                ansistor = Category.objects.get(pk=self.parent.id)
-                if self in ansistor.get_parents():
-                    raise CircleDetectedException("%s is causing a circle" % self.name)
-        except ObjectDoesNotExist:
-            pass
-        super(Category, self).save(*args, **kwargs)
+    def clean(self):
+        # If there is an ID, we can check for ID and don't care about
+        # the rest as it's a new object
+        if self.id and self.parent:
+            try:
+                print self.parent.get_parents()
+            except CircleDetectedException:
+                raise ValidationError(
+                    {'parent': _('The storage cannot be one of its ansistors')}
+                )
+
 
     class Meta:
             unique_together = ("name", "parent")
