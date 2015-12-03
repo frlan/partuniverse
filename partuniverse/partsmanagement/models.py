@@ -98,7 +98,7 @@ class StoragePlace(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ansistors at %s.'% self.id)))
+                    _('There seems to be a circle inside ansistors at %s.' % self.id)))
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -184,7 +184,7 @@ class Category(models.Model):
                 print "späteres next %s" % next.parent
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ansistors at %s.'% self.id)))
+                    _('There seems to be a circle inside ansistors at %s.' % self.id)))
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -203,7 +203,6 @@ class Category(models.Model):
                 raise ValidationError(
                     {'parent': _('The storage cannot be one of its ansistors')}
                 )
-
 
     class Meta:
             unique_together = ("name", "parent")
