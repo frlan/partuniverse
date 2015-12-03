@@ -103,6 +103,8 @@ class StoragePlace(models.Model):
                 result.append(next.id)
                 if next.parent is not None:
                     next = next.parent
+                else:
+                    break
         return result
 
     def clean(self):
