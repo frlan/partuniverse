@@ -112,7 +112,7 @@ class StoragePlace(models.Model):
         # the rest as it's a new object
         if self.id and self.parent:
             try:
-                print self.parent.get_parents()
+                self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
                     {'parent': _('The storage cannot be one of its ansistors')}
@@ -177,11 +177,7 @@ class Category(models.Model):
         """ Returns a list with parants of that StoragePare incl itself"""
         result = []
         next = self
-        print "zuvor %s" % self
         while True:
-            print "aktuelles next %s" % next
-            if next.parent is not None:
-                print "späteres next %s" % next.parent
             if next.id in result:
                 raise(CircleDetectedException(
                     _('There seems to be a circle inside ansistors at %s.' % self.id)))
@@ -198,7 +194,7 @@ class Category(models.Model):
         # the rest as it's a new object
         if self.id and self.parent:
             try:
-                print self.parent.get_parents()
+                self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
                     {'parent': _('The storage cannot be one of its ansistors')}
