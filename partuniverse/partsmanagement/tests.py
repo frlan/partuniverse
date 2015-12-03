@@ -257,8 +257,9 @@ class StoragePlaceCircle(TestCase):
         self.st = StorageType.objects.create(name=u"Testtype")
 
     def test_circle_detection_with_direct_circle(self):
-        # Setting up basics
-
+        """
+            Checking wether it detects that the parent is the storage itself
+        """
         place1 = StoragePlace.objects.create(name=u'Test Storage1',
                                              storage_type=self.st)
         place1.parent = place1
@@ -266,6 +267,9 @@ class StoragePlaceCircle(TestCase):
             place1.clean()
 
     def test_circle_detection_with_indirect_circle(self):
+        """
+            Checking for an by edit indroduced circle
+        """
         place1 = StoragePlace.objects.create(name=u'Test Storage1',
                                              storage_type=self.st)
 
