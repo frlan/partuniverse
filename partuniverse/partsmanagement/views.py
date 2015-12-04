@@ -112,14 +112,14 @@ class PartUpdateView(UpdateView):
 
 class TransactionListView(ListView):
     model = Transaction
-    template_name = 'pmgmt/trans_list.html'
+    template_name = 'pmgmt/transaction/list.html'
 
 
 class TransactionAddView(CreateView):
 
     model = Transaction
     success_url = reverse_lazy('transaction_list')
-    template_name = 'pmgmt/add.html'
+    template_name = 'pmgmt/transaction/add.html'
     fields = ('subject',
               'storage_item',
               'amount',
