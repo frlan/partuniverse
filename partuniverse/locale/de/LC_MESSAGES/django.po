@@ -239,14 +239,13 @@ msgstr "Transaktionsdaten"
 
 #: partsmanagement/models.py:382 templates/pmgmt/transaction/list.html:19
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #: partsmanagement/models.py:388 templates/pmgmt/detail.html:67
 msgid "Created by"
 msgstr "Erstellt von"
 
 #: partsmanagement/models.py:389
-#, fuzzy
 #| msgid "Creation time"
 msgid "Creation timestamp"
 msgstr "Angelegt am"
@@ -678,7 +677,6 @@ msgid "Delete a part"
 msgstr "Ein Teil löschen"
 
 #: templates/pmgmt/delete.html:17
-#, fuzzy, python-format
 #| msgid ""
 #| "\n"
 #| "\t\tAre you sure you want to delete »%(object)s«?\n"
@@ -694,7 +692,7 @@ msgstr ""
 
 #: templates/pmgmt/delete.html:22
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: templates/pmgmt/detail.html:18
 msgid ""
@@ -709,21 +707,20 @@ msgstr ""
 "Das Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
 
 #: templates/pmgmt/detail.html:43
-#, fuzzy
 #| msgid "Messuring unit"
 msgid "Measuring unit"
 msgstr "Maßeinheit"
 
 #: templates/pmgmt/detail.html:51 templates/pmgmt/detail.html.py:59
 msgid "No Information"
-msgstr ""
+msgstr "Keine Informationen"
 
 #: templates/pmgmt/detail.html:74 templates/pmgmt/distributor/detail.html:27
 #: templates/pmgmt/manufacturer/detail.html:26
 #: templates/pmgmt/storage/detail.html:42
 #: templates/pmgmt/storageitem/detail.html:33
 msgid "Update item"
-msgstr "Teil editieren"
+msgstr "Aktualisieren"
 
 #: templates/pmgmt/detail.html:76
 msgid "Delete item"
@@ -865,88 +862,3 @@ msgstr "Wie viel"
 #: templates/pmgmt/transaction/list.html:22
 msgid "When"
 msgstr "Wann"
-
-#~ msgid "Messages"
-#~ msgstr "Meldungen"
-
-#~ msgid "Site Maps"
-#~ msgstr "Inhalt"
-
-#~ msgid "Static Files"
-#~ msgstr "Statische Dateien"
-
-#~ msgid "Syndication"
-#~ msgstr "Zusammenfassung"
-
-#~ msgid "Web Design"
-#~ msgstr "Web Design"
-
-#~ msgid "Enter a valid value."
-#~ msgstr "Gib einen gültigen Wert ein."
-
-#~ msgid "Enter a valid URL."
-#~ msgstr "Gib eine gültige URL ein."
-
-#~ msgid "Enter a valid integer."
-#~ msgstr "Gib eine gültige Ganzzahl ein."
-
-#~| msgid "Confirm your email address"
-#~ msgid "Enter a valid email address."
-#~ msgstr "Bestätige Deine Email-Adresse."
-
-#~ msgid "Enter a valid IPv4 address."
-#~ msgstr "Gib eine gültige IPv4-Adresse ein."
-
-#~ msgid "Enter a valid IPv6 address."
-#~ msgstr "Gib eine gültige IPv6-Adresse ein."
-
-#~ msgid "Enter a valid IPv4 or IPv6 address."
-#~ msgstr "Gib entweder eine gütlige IPv4- oder IPv6-Adresse ein."
-
-#, fuzzy
-#~| msgid "Transaction"
-#~ msgid "Duration"
-#~ msgstr "Transaktion"
-
-#, fuzzy
-#~| msgid "Confirm your email address"
-#~ msgid "Email address"
-#~ msgstr "Bestätige Deine Email-Adresse"
-
-#~ msgid "Index of %(directory)s"
-#~ msgstr "Index von %(directory)s"
-
-#~ msgid "The width is: %(width)s"
-#~ msgstr "Die Breite ist:  %(width)s"
-
-#~ msgid "Please login with an existing account:"
-#~ msgstr "Bitte logge Dich mit einem Benutzeraccount ein."
-
-#~ msgid "This is an approach for keeping an overview over your parts."
-#~ msgstr ""
-#~ "Dies ist ein Versuch, um einen Überblick über die vorhanden Teile zu "
-#~ "erlangen."
-
-#~ msgid "Please follow links below to navigate:"
-#~ msgstr "Die folgenden Links helfen Dir zu navigieren"
-
-#~ msgid "Show all tranactions"
-#~ msgstr "Alle Transaktionen anzeigen"
-
-#~ msgid "Show all parts needs reordering"
-#~ msgstr "Zeige alle Teile, die nachbestellt werden müssen"
-
-#~ msgid "A list with all distributors ... "
-#~ msgstr "Eine Liste mit allen Herstellern ..."
-
-#~ msgid "Add a new"
-#~ msgstr "Hinzufügen"
-
-#~ msgid "A list with all items ... "
-#~ msgstr "Eine Liste mit bekannten Teilen ..."
-
-#~ msgid "A list with all manufacturers ... "
-#~ msgstr "Eine Liste mit bekannten Herstellern ..."
-
-#~ msgid "Unit"
-#~ msgstr "Einheit"
