@@ -22,6 +22,17 @@ from .forms import *
 import logging
 logger = logging.getLogger(__name__)
 
+########################################################################
+# Category
+########################################################################
+
+class CategoryList(ListView):
+    model = Category
+    template_name = 'pmgmt/category/list.html'
+
+
+class PartsPerCategoryList(ListView):
+    pass
 
 ########################################################################
 # Part

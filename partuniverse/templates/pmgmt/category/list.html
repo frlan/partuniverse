@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "category_list" %}" class="active section">{% trans "Categories" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of categories" %}{% endblock %}
+
+{% block heading %}{% trans "List of categories" %}{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<table class="ui table segment">
+  <thead>
+    <tr>
+      <th>{% trans "Name" %}</th>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+        <tr><td>{{item.name}}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
+{% endblock %}

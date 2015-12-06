@@ -24,6 +24,8 @@ urlpatterns = patterns('',
                            name='part_delete'),
                        url(r'^(?P<pk>[\w]+)/update/$', login_required(PartUpdateView.as_view()),
                            name='part_update'),
+                       # Category
+                       url(r'^category/list', CategoryList.as_view(), name='category_list'),
                        # Transactions
                        url(r'^transaction/list', TransactionListView.as_view(), name='transaction_list'),
                        url(r'^transaction/add$', login_required(TransactionAddView.as_view()),
