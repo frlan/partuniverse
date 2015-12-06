@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 # Category
 ########################################################################
 
+
 class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
@@ -37,6 +38,8 @@ class PartsPerCategoryList(ListView):
 ########################################################################
 # Part
 ########################################################################
+
+
 class PartsList(ListView):
     model = Part
     template_name = 'pmgmt/list.html'
