@@ -234,10 +234,9 @@ class Part(models.Model):
                             blank=False,
                             default='---')
     url = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    pic = models.ImageField(
-                    null=True,
-                    blank=True,
-                    upload_to='uploads/')
+    pic = models.ImageField(null=True,
+                            blank=True,
+                            upload_to='uploads/')
     manufacturer = models.ForeignKey(Manufacturer,
                                      verbose_name=_("Manufacturer"),
                                      null=True,
