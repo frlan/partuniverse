@@ -89,6 +89,8 @@ LOCALE_PATHS = (
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# Setting here to make ci tests running
+MEDIA_URL = 'http://localhost:8000/img/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
