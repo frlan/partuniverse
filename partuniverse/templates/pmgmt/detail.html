@@ -32,6 +32,10 @@
     <td>{{object.name}}</td>
 </tr>
 <tr>
+    <th>{% trans "Image" %}</th>
+    <td><img src="{{object.pic.url}}"></td>
+</tr>
+<tr>
     <th>{% trans "SKU" %}</th>
     {% if object.sku %}
         <td>{{object.sku}}</td>

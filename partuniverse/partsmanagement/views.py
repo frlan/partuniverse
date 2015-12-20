@@ -99,6 +99,7 @@ class PartDetailView(DetailView):
     fields = ('name',
               'sku',
               'min_stock',
+              'pic'
               'unit',
               'manufacturer',
               'distributor',

@@ -34,3 +34,5 @@ DATABASES = {
 #    }
 #}
 
+# MEDIA_URL = 'http://localhost:8000/img/'
+

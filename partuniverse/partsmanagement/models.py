@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
+from django.core.files import File
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Sum
@@ -230,6 +231,11 @@ class Part(models.Model):
                             choices=UNIT_CHOICES,
                             blank=False,
                             default='---')
+    url = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    pic = models.ImageField(
+                    null=True,
+                    blank=True,
+                    upload_to='uploads/')
     manufacturer = models.ForeignKey(Manufacturer,
                                      verbose_name=_("Manufacturer"),
                                      null=True,
@@ -333,6 +339,17 @@ class Part(models.Model):
             si1.on_stock = si2.on_stock
             si1.save()
             si2.delete()
+
+    def cache(self):
+        """Store image locally if we have a URL"""
+
+        if self.url and not self.pic:
+            result = urllib.urlretrieve(self.url)
+            self.pic.save(
+                    os.path.basename(self.url),
+                    File(open(result[0]))
+                    )
+            self.save()
 
     class Meta:
             verbose_name = _("Part")
