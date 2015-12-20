@@ -18,9 +18,14 @@ urlpatterns = patterns('',
                        # url(r'^blog/', include('blog.urls')),
 
                        url(r'^admin/', include(admin.site.urls)),
-                       url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
-                       url(r'^img/(.*)$', 'django.views.static.serve', {'document_root' : settings.MEDIA_ROOT}),
+                       url(r'^about/$',
+                           TemplateView.as_view(template_name='about.html'),
+                           name='about'),
+                       url(r'^img/(.*)$',
+                           'django.views.static.serve',
+                           {'document_root': settings.MEDIA_ROOT}),
                        url(r'^$', partuniverse_view.dashboard, name='home'),
                        url(r'^pmgmt/', include('partsmanagement.urls')),
                        url(r"^accounts/", include("account.urls")),
-                       ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                       ) + static(settings.MEDIA_URL,
+                                  document_root=settings.MEDIA_ROOT)
