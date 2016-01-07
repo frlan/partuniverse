@@ -52,4 +52,5 @@
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>
 {% endif %}
+<p><a class="ui tiny purple button" accesskey="a" href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></p>
 {% endblock %}
