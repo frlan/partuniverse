@@ -1,3 +1,12 @@
-<div class="column">
-  {{ item.render }}
-</div>
+{% with item.render as content %}
+{% if content != "" %}
+  <div class="ui card">
+    <div class="content">
+      {{ content }}
+    </div>
+    <div class="extra content">
+      {{ item.name }}
+    </div>
+  </div>
+{% endif %}
+{% endwith %}

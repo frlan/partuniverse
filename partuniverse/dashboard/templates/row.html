@@ -1,6 +1,6 @@
 {% load dashboard_helpers %}
 
-<div class="ui {{ dashboard.columns|asStringLiteral }} column grid stackable">
+<div class="ui fluid cards">
   {% for column in columns %}
     {{ column }}
   {% endfor %}
