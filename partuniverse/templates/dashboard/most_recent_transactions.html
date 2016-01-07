@@ -1,0 +1,30 @@
+{% load i18n %}
+
+{% if transactions|length > 0 %}
+<table class="ui compact table">
+  <colgroup>
+    <col width="40%">
+    <col width="40%">
+    <col width="20%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>{% trans "What "%}
+      <th>{% trans "Why" %}</th>
+      <th>{% trans "Amount" %}</th>
+  </thead>
+  <tbody>
+    {% for transaction in transactions %}
+    <tr>
+      <td>{{ transaction.storage_item.part }}</td>
+      <td>{{ transaction.subject }}</td>
+      <td>{{ transaction.amount }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="ui segment">
+  <p>{% trans "No transactions." %}</p>
+</div>
+{% endif %}

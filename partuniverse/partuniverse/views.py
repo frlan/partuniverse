@@ -10,6 +10,7 @@ def dashboard(request):
     template = loader.get_template('index.html')
     dashboard = DashboardContainer(request)
     dashboard.add(DashboardItemRegistry.get('needs_restocking'))
+    dashboard.add(DashboardItemRegistry.get('most_recent_transactions'))
     context = RequestContext(request, {
         'dashboard': dashboard,
     })
