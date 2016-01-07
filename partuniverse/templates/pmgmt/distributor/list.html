@@ -27,7 +27,7 @@
     {% for item in object_list %}
     <tr>
       <td><a href="{% url "distributor_detail" item.id %}">{{ item.name }}</a></td>
-      <td>{% if user.is_authenticated %}<a class="ui tiny button purple" href="{% url "distributor_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+      <td>{% if user.is_authenticated %}<a class="ui button purple" href="{% url "distributor_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
     </tr>
     {% endfor %}
   </tbody>
@@ -36,5 +36,5 @@
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>
 {% endif %}
-<p><a class="ui tiny purple button" accesskey="a" href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></p>
+<p><a class="ui purple button" accesskey="a" href="{% url "distributor_add" %}">{% trans "Add a new distributor" %}</a></p>
 {% endblock %}

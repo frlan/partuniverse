@@ -23,6 +23,6 @@
 {% endfor %}
 
 {% if user.is_authenticated %}
-<p><a class="ui tiny button purple" href="{% url "distributor_update" object.id %}">{% trans "Update item" %}</a></p>
+<p><a class="ui button purple" href="{% url "distributor_update" object.id %}">{% trans "Update item" %}</a></p>
 {% endif %}
 {% endblock %}

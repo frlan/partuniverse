@@ -9,7 +9,7 @@
 <form class="ui form segment" method="POST" action="{% url "account_logout" %}">
   {% csrf_token %}
   <p>{% trans "Are you sure you want to log out?" %}</p>
-  <button type="submit" class="ui tiny button purple">{% trans "Log out" %}</button>
+  <button type="submit" class="ui button purple">{% trans "Log out" %}</button>
 </form>
 
 {% endblock %}
