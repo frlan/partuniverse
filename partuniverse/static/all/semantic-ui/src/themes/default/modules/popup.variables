@@ -10,9 +10,9 @@
 @background: @white;
 
 @maxWidth: 250px;
-@borderColor: #CCCCCC;
+@borderColor: @solidBorderColor;
 @borderWidth: 1px;
-@boxShadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+@boxShadow: @floatingShadow;
 @color: @textColor;
 
 @verticalPadding: 0.833em;
@@ -51,6 +51,11 @@
 @arrowStroke: @borderWidth;
 @arrowColor: darken(@borderColor, 10);
 
+/* Arrow color by position */
+@arrowTopBackground: @arrowBackground;
+@arrowCenterBackground: @arrowBackground;
+@arrowBottomBackground: @arrowBackground;
+
 @arrowBoxShadow: @arrowStroke @arrowStroke 0px 0px @arrowColor;
 @leftArrowBoxShadow: @arrowStroke -@arrowStroke 0px 0px @arrowColor;
 @rightArrowBoxShadow: -@arrowStroke @arrowStroke 0px 0px @arrowColor;
@@ -86,10 +91,9 @@
 
 @invertedHeaderBackground: none;
 @invertedHeaderColor: @white;
-@invertedArrowColor: @black;
+@invertedArrowColor: @invertedBackground;
 
-/* Sizes */
-@small: 0.785714rem;
-@medium: 0.85714rem;
-@large: 1rem;
-@huge: 1.14285rem;
+/* Arrow color by position */
+@invertedArrowTopBackground: @invertedBackground;
+@invertedArrowCenterBackground: @invertedBackground;
+@invertedArrowBottomBackground: @invertedBackground;

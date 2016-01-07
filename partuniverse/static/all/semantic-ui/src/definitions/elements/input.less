@@ -3,7 +3,7 @@
  * http://github.com/semantic-org/semantic-ui/
  *
  *
- * Copyright 2014 Contributors
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -30,13 +30,15 @@
 
 .ui.input {
   position: relative;
+  font-weight: normal;
+  font-style: normal;
   display: inline-flex;
   color: @inputColor;
 }
 .ui.input input {
   margin: 0em;
   max-width: 100%;
-  flex: 0 1 auto;
+  flex: 1 0 auto;
   outline: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: @textAlign;
@@ -75,6 +77,19 @@
 /*******************************
             States
 *******************************/
+
+/*--------------------
+        Disabled
+---------------------*/
+
+.ui.disabled.input,
+.ui.input input[disabled] {
+  opacity: @disabledOpacity;
+}
+
+.ui.disabled.input input {
+  pointer-events: none;
+}
 
 /*--------------------
         Active
@@ -140,15 +155,15 @@
   box-shadow: @focusBoxShadow;
 }
 .ui.input.focus input::-webkit-input-placeholder,
-.ui.input input:focus input::-webkit-input-placeholder {
+.ui.input input:focus::-webkit-input-placeholder {
   color: @placeholderFocusColor;
 }
 .ui.input.focus input::-moz-placeholder,
-.ui.input input:focus input::-moz-placeholder {
+.ui.input input:focus::-moz-placeholder {
   color: @placeholderFocusColor;
 }
 .ui.input.focus input::-ms-input-placeholder,
-.ui.input input:focus input::-ms-input-placeholder {
+.ui.input input:focus::-ms-input-placeholder {
   color: @placeholderFocusColor;
 }
 
@@ -166,24 +181,24 @@
 }
 
 /* Error Placeholder */
-.ui.input.error input ::-webkit-input-placeholder {
+.ui.input.error input::-webkit-input-placeholder {
   color: @placeholderErrorColor;
 }
-.ui.input.error input ::-moz-placeholder {
+.ui.input.error input::-moz-placeholder {
   color: @placeholderErrorColor;
 }
-.ui.input.error input ::-ms-input-placeholder {
+.ui.input.error input::-ms-input-placeholder {
   color: @placeholderErrorColor;
 }
 
 /* Focused Error Placeholder */
-.ui.input.error input :focus::-webkit-input-placeholder {
+.ui.input.error input:focus::-webkit-input-placeholder {
   color: @placeholderErrorFocusColor;
 }
-.ui.input.error input :focus::-moz-placeholder {
+.ui.input.error input:focus::-moz-placeholder {
   color: @placeholderErrorFocusColor;
 }
-.ui.input.error input :focus::-ms-input-placeholder {
+.ui.input.error input:focus::-ms-input-placeholder {
   color: @placeholderErrorFocusColor;
 }
 
@@ -242,6 +257,7 @@
 .ui.icon.input > i.icon {
   cursor: default;
   position: absolute;
+  line-height: 1;
   text-align: center;
   top: 0px;
   right: 0px;
@@ -252,6 +268,9 @@
   opacity: @iconOpacity;
   border-radius: 0em @borderRadius @borderRadius 0em;
   transition: @iconTransition;
+}
+.ui.icon.input > i.icon:not(.link) {
+  pointer-events: none;
 }
 .ui.icon.input input {
   padding-right: @iconMargin !important;
@@ -302,35 +321,41 @@
 .ui.labeled.input > .label {
   flex: 0 0 auto;
   margin: 0;
-  font-size: @medium;
+  font-size: @relativeMedium;
 }
 .ui.labeled.input > .label:not(.corner) {
   padding-top: @verticalPadding;
   padding-bottom: @verticalPadding;
 }
 
-/* Label on Left */
-.ui.labeled.input:not([class*="corner labeled"]):not([class*="right labeled"]) > input {
-  border-left: none;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-.ui.labeled.input:not([class*="corner labeled"]):not([class*="right labeled"]) > .label {
+/* Regular Label on Left */
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left-color: transparent;
+}
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child + input:focus {
+  border-left-color: @focusBorderColor;
+}
 
-/* Label on Right */
-.ui[class*="right labeled"].input  > input {
-  border-right: none;
+/* Regular Label on Right */
+.ui[class*="right labeled"].input input {
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
+  border-right-color: transparent !important;
 }
-.ui[class*="right labeled"].input > .label {
+.ui[class*="right labeled"].input input + .label {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 
+.ui[class*="right labeled"].input input:focus {
+  border-right-color: @focusBorderColor !important;
+}
 
 /* Corner Label */
 .ui.labeled.input .corner.label {
@@ -339,17 +364,39 @@
   font-size: @labelCornerSize;
   border-radius: 0em @borderRadius 0em 0em;
 }
-.ui.labeled.input input {
-  padding-right: @labeledMargin !important;
-}
 
 /* Spacing with corner label */
-.ui[class*="corner labeled"].icon.input:not(.left) > input {
+.ui[class*="corner labeled"]:not([class*="left corner labeled"]).labeled.input input {
+  padding-right: @labeledMargin !important;
+}
+.ui[class*="corner labeled"].icon.input:not([class*="left corner labeled"]) > input {
   padding-right: @labeledIconInputMargin !important;
 }
-.ui[class*="corner labeled"].icon.input:not(.left) > .icon {
+.ui[class*="corner labeled"].icon.input:not([class*="left corner labeled"]) > .icon {
   margin-right: @labeledIconMargin;
 }
+
+/* Left Labeled */
+.ui[class*="left corner labeled"].labeled.input input {
+  padding-left: @labeledMargin !important;
+}
+.ui[class*="left corner labeled"].icon.input > input {
+  padding-left: @labeledIconInputMargin !important;
+}
+.ui[class*="left corner labeled"].icon.input > .icon {
+  margin-left: @labeledIconMargin;
+}
+
+/* Corner Label Position  */
+.ui.input > .ui.corner.label {
+  top: @borderWidth;
+  right: @borderWidth;
+}
+.ui.input > .ui.left.corner.label {
+  right: auto;
+  left: @borderWidth;
+}
+
 
 /*--------------------
         Action
@@ -370,26 +417,45 @@
 
 /* Button on Right */
 .ui.action.input:not([class*="left action"]) > input {
-  border-right: none;
   border-top-right-radius: 0px !important;
   border-bottom-right-radius: 0px !important;
+  border-right-color: transparent !important;
 }
+.ui.action.input:not([class*="left action"]) > .dropdown,
 .ui.action.input:not([class*="left action"]) > .button,
 .ui.action.input:not([class*="left action"]) > .buttons > .button {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-radius: 0px;
+}
+.ui.action.input:not([class*="left action"]) > .dropdown:last-child,
+.ui.action.input:not([class*="left action"]) > .button:last-child,
+.ui.action.input:not([class*="left action"]) > .buttons:last-child > .button {
+  border-radius: 0px @borderRadius @borderRadius 0px;
+}
+
+/* Input Focus */
+.ui.action.input:not([class*="left action"]) input:focus {
+  border-right-color: @focusBorderColor !important;
 }
 
 /* Button on Left */
+.ui[class*="left action"].input > input {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-left-color: transparent !important;
+}
+.ui[class*="left action"].input > .dropdown,
 .ui[class*="left action"].input > .button,
 .ui[class*="left action"].input > .buttons > .button {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-radius: 0px;
 }
-.ui[class*="left action"].input  > input {
-  border-left: none;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+.ui[class*="left action"].input > .dropdown:first-child,
+.ui[class*="left action"].input > .button:first-child,
+.ui[class*="left action"].input > .buttons:first-child > .button {
+  border-radius: @borderRadius 0px 0px @borderRadius;
+}
+/* Input Focus */
+.ui[class*="left action"].input > input:focus {
+  border-left-color: @focusBorderColor !important;
 }
 
 /*--------------------
@@ -409,7 +475,7 @@
   display: flex;
 }
 .ui.fluid.input > input {
-  width: 100% !important;
+  width: 0px !important;
 }
 
 /*--------------------

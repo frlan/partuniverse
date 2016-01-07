@@ -1,9 +1,9 @@
 /*!
- * # Semantic UI 1.12.3 - Popup
+ * # Semantic UI 2.1.7 - Popup
  * http://github.com/semantic-org/semantic-ui/
  *
  *
- * Copyright 2014 Contributors
+ * Copyright 2015 Contributors
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
  *
@@ -19,16 +19,22 @@
   position: absolute;
   top: 0px;
   right: 0px;
+  
+/* Fixes content being squished when inline (moz only) */
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
   z-index: 1900;
-  border: 1px solid #cccccc;
+  border: 1px solid #D4D4D5;
+  line-height: 1.4285em;
   max-width: 250px;
-  background-color: #ffffff;
+  background: #FFFFFF;
   padding: 0.833em 1em;
   font-weight: normal;
   font-style: normal;
-  color: rgba(0, 0, 0, 0.8);
-  border-radius: 0.2857rem;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem;
+  box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.08);
 }
 .ui.popup > .header {
   padding: 0em;
@@ -45,12 +51,12 @@
   content: '';
   width: 0.75em;
   height: 0.75em;
-  background: #ffffff;
+  background: #FFFFFF;
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
   z-index: 2;
-  box-shadow: 1px 1px 0px 0px #b3b3b3;
+  box-shadow: 1px 1px 0px 0px #bababc;
 }
 
 
@@ -66,17 +72,59 @@
 .ui.popup {
   margin: 0em;
 }
-.ui.popup.bottom {
-  margin: 0.75em 0em 0em;
-}
-.ui.popup.top {
+
+/* Extending from Top */
+.ui.top.popup {
   margin: 0em 0em 0.75em;
 }
-.ui.popup.left.center {
-  margin: 0em 0.75em 0em 0em;
+.ui.top.left.popup {
+  -webkit-transform-origin: left bottom;
+      -ms-transform-origin: left bottom;
+          transform-origin: left bottom;
 }
-.ui.popup.right.center {
+.ui.top.center.popup {
+  -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
+          transform-origin: center bottom;
+}
+.ui.top.right.popup {
+  -webkit-transform-origin: right bottom;
+      -ms-transform-origin: right bottom;
+          transform-origin: right bottom;
+}
+
+/* Extending from Vertical Center */
+.ui.left.center.popup {
+  margin: 0em 0.75em 0em 0em;
+  -webkit-transform-origin: right 50%;
+      -ms-transform-origin: right 50%;
+          transform-origin: right 50%;
+}
+.ui.right.center.popup {
   margin: 0em 0em 0em 0.75em;
+  -webkit-transform-origin: left 50%;
+      -ms-transform-origin: left 50%;
+          transform-origin: left 50%;
+}
+
+/* Extending from Bottom */
+.ui.bottom.popup {
+  margin: 0.75em 0em 0em;
+}
+.ui.bottom.left.popup {
+  -webkit-transform-origin: left top;
+      -ms-transform-origin: left top;
+          transform-origin: left top;
+}
+.ui.bottom.center.popup {
+  -webkit-transform-origin: center top;
+      -ms-transform-origin: center top;
+          transform-origin: center top;
+}
+.ui.bottom.right.popup {
+  -webkit-transform-origin: right top;
+      -ms-transform-origin: right top;
+          transform-origin: right top;
 }
 
 /*--------------
@@ -92,29 +140,31 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  box-shadow: -1px -1px 0px 0px #b3b3b3;
+  box-shadow: -1px -1px 0px 0px #bababc;
 }
 .ui.bottom.left.popup {
   margin-left: 0em;
 }
+/*rtl:rename*/
 .ui.bottom.left.popup:before {
   top: -0.325em;
   left: 1em;
   right: auto;
   bottom: auto;
   margin-left: 0em;
-  box-shadow: -1px -1px 0px 0px #b3b3b3;
+  box-shadow: -1px -1px 0px 0px #bababc;
 }
 .ui.bottom.right.popup {
   margin-right: 0em;
 }
+/*rtl:rename*/
 .ui.bottom.right.popup:before {
   top: -0.325em;
   right: 1em;
   bottom: auto;
   left: auto;
   margin-left: 0em;
-  box-shadow: -1px -1px 0px 0px #b3b3b3;
+  box-shadow: -1px -1px 0px 0px #bababc;
 }
 
 /*--- Above ---*/
@@ -129,6 +179,7 @@
 .ui.top.left.popup {
   margin-left: 0em;
 }
+/*rtl:rename*/
 .ui.top.left.popup:before {
   bottom: -0.325em;
   left: 1em;
@@ -139,6 +190,7 @@
 .ui.top.right.popup {
   margin-right: 0em;
 }
+/*rtl:rename*/
 .ui.top.right.popup:before {
   bottom: -0.325em;
   right: 1em;
@@ -149,24 +201,50 @@
 
 /*--- Left Center ---*/
 
+/*rtl:rename*/
 .ui.left.center.popup:before {
   top: 50%;
   right: -0.325em;
   bottom: auto;
   left: auto;
   margin-top: -0.325em;
-  box-shadow: 1px -1px 0px 0px #b3b3b3;
+  box-shadow: 1px -1px 0px 0px #bababc;
 }
 
 /*--- Right Center  ---*/
 
+/*rtl:rename*/
 .ui.right.center.popup:before {
   top: 50%;
   left: -0.325em;
   bottom: auto;
   right: auto;
   margin-top: -0.325em;
-  box-shadow: -1px 1px 0px 0px #b3b3b3;
+  box-shadow: -1px 1px 0px 0px #bababc;
+}
+
+/* Arrow Color By Location */
+.ui.bottom.popup:before {
+  background: #FFFFFF;
+}
+.ui.right.center.popup:before,
+.ui.left.center.popup:before {
+  background: #FFFFFF;
+}
+.ui.top.popup:before {
+  background: #FFFFFF;
+}
+
+/* Inverted Arrow Color */
+.ui.inverted.bottom.popup:before {
+  background: #1B1C1D;
+}
+.ui.inverted.right.center.popup:before,
+.ui.inverted.left.center.popup:before {
+  background: #1B1C1D;
+}
+.ui.inverted.top.popup:before {
+  background: #1B1C1D;
 }
 
 
@@ -177,7 +255,6 @@
 
 /* Immediate Nested Grid */
 .ui.popup > .ui.grid:not(.padded) {
-  width: -webkit-calc(100% + 1.75rem);
   width: calc(100% + 1.75rem);
   margin: -0.7rem -0.875rem;
 }
@@ -195,6 +272,12 @@
 .ui.animating.popup,
 .ui.visible.popup {
   display: block;
+}
+.ui.visible.popup {
+  -webkit-transform: translateZ(0px);
+          transform: translateZ(0px);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 
@@ -221,6 +304,12 @@
 .ui[class*="very wide"].popup {
   max-width: 550px;
 }
+@media only screen and (max-width: 767px) {
+  .ui.wide.popup,
+  .ui[class*="very wide"].popup {
+    max-width: 250px;
+  }
+}
 
 /*--------------
      Fluid
@@ -238,17 +327,17 @@
 
 /* Inverted colors  */
 .ui.inverted.popup {
-  background: #1b1c1d;
-  color: #ffffff;
+  background: #1B1C1D;
+  color: #FFFFFF;
   border: none;
   box-shadow: none;
 }
 .ui.inverted.popup .header {
   background-color: none;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 .ui.inverted.popup:before {
-  background-color: #1b1c1d;
+  background-color: #1B1C1D;
   box-shadow: none !important;
 }
 
@@ -264,17 +353,23 @@
      Sizes
 ---------------*/
 
+.ui.mini.popup {
+  font-size: 0.71428571rem;
+}
+.ui.tiny.popup {
+  font-size: 0.85714286rem;
+}
 .ui.small.popup {
-  font-size: 0.785714rem;
+  font-size: 0.92857143rem;
 }
 .ui.popup {
-  font-size: 0.85714rem;
-}
-.ui.large.popup {
   font-size: 1rem;
 }
+.ui.large.popup {
+  font-size: 1.14285714rem;
+}
 .ui.huge.popup {
-  font-size: 1.14285rem;
+  font-size: 1.42857143rem;
 }
 
 
