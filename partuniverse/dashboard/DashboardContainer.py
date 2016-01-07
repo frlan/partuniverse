@@ -33,6 +33,7 @@ class DashboardContainer:
     def render(self):
         template_row = loader.get_template('row.html')
         template_column = loader.get_template('column.html')
+        template_container = loader.get_template('container.html')
         rows = ""
         for row in self.items:
             columns = []
@@ -48,4 +49,9 @@ class DashboardContainer:
             })
             row_html = template_row.render(context)
             rows = rows + row_html
-        return mark_safe(rows)
+        context = RequestContext(self.request, {
+                'rows': mark_safe(rows),
+                'dashboard': self,
+            })
+        output = template_container.render(context)
+        return mark_safe(output)
