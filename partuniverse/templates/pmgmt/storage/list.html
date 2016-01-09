@@ -12,6 +12,13 @@
 {% block heading %}{% trans "List of storages" %}{% endblock %}
 
 {% block content %}
+<a
+   accesskey="a"
+   class="ui right purple ribbon label"
+   href="{% url "storage_add"%}"
+   >
+  <i class="icon add"></i> Add
+</a>
 {% if object_list %}
 <table class="ui table">
   <colgroup>
@@ -52,5 +59,4 @@
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>
 {% endif %}
-<p><a class="ui purple button" accesskey="a" href="{% url "storage_add" %}">{% trans "Add a new storage" %}</a></p>
 {% endblock %}

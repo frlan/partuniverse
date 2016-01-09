@@ -11,6 +11,14 @@
 {% block heading %}{% trans "List of categories" %}{% endblock %}
 
 {% block content %}
+<a
+   accesskey="a"
+   class="ui right purple ribbon label"
+   href="{#{% url "category_add"%}#}"
+   >
+  <i class="icon add"></i> Add
+</a>
+
 {% if object_list %}
 <table class="ui table segment">
   <thead>

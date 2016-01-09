@@ -11,6 +11,13 @@
 {% block heading %}{% trans "List of transactions" %}{% endblock %}
 
 {% block content %}
+<a
+   accesskey="a"
+   class="ui right purple ribbon label"
+   href="{% url "transaction_add"%}"
+   >
+  <i class="icon add"></i> Add
+</a>
 <table class="ui table segment">
   <thead>
     <tr>
