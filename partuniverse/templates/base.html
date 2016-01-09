@@ -12,27 +12,30 @@
     <header class="ui one column page grid">
       <div class="ui column">
         <div class="ui menu">
-          <div class="title item"><a href="{% url "home" %}">{% trans "Home" %}</a></div>
+          <a
+             class="title item"
+             href="{% url "home" %}">
+            {% trans "Home" %}
+          </a>
           {% if user.is_authenticated %}
-          <div class="ui simple dropdown item">
+          <a
+             class="item"
+             accesskey="p"
+             href="{% url "part_list" %}">
             {% trans "Parts" %}
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item" href="{% url "part_list" %}">{% trans "List of parts" %}</a>
-              <a class="item" href="{% url "part_add" %}">{% trans "Add a new part" %}</a>
-              <div class="ui divider"></div>
-              <a class="item" href="{% url "storage_item_list" %}">{% trans "List of storages items" %}</a>
-              <a class="item" href="{% url "storage_item_add" %}">{% trans "Add a storage item" %}</a>
-            </div>
-          </div>
-          <div class="ui simple dropdown item">
+          </a>
+          <a
+             class="item"
+             accesskey="s"
+             href="{% url "storage_item_list" %}">
+            {% trans "Storage items" %}
+          </a>
+          <a
+             class="item"
+             accesskey="t"
+             href="{% url "transaction_list" %}">
             {% trans "Transactions" %}
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item" href="{% url "transaction_list" %}">{% trans "List of transactions" %}</a>
-              <a class="item" href="{% url "transaction_add" %}">{% trans "Add a new transaction" %}</a>
-            </div>
-          </div>
+          </a>
           <div class="right menu">
             <div class="ui simple dropdown item">
               {% trans "Manage" %}
@@ -58,9 +61,18 @@
             </a>
           </div>
           {% else %}
-          <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
-          <div class="item right"><a href="{% url "account_signup" %}">{% trans "Register" %}</a></div>
-          <div class="item right"><a href="{% url "account_login" %}">{% trans "Login" %}</a></div>
+          <div class="right menu">
+            <a
+               class="item"
+               href="{% url "account_login" %}">
+              {% trans "Login" %}
+            </a>
+            <a
+               class="item"
+               href="{% url "account_signup" %}">
+              {% trans "Register" %}
+            </a>
+          </div>
           {% endif %}
         </div>
       </div>
@@ -82,9 +94,29 @@
       </div>
     </div>
     {% block footer %}
-    <!-- <div> -->
-    <!--   <a href="{% url "home" %}">Home</a> -->
-    <!-- </div> -->
+    <footer class="ui one column page grid">
+      <div class="column">
+        <div class="ui three column celled grid">
+          <div class="row">
+            <div class="column">
+              <a
+                 href="{% url "about" %}">
+                {% trans "About" %}
+              </a>        
+            </div>
+            <div class="column">
+
+            </div>
+            <div class="column">
+              <a
+                 href="https://github.com/frlan/partuniverse">
+                <i class="ui icon github"></i> Github
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
     {% endblock footer %}
     <script src="{% static "jquery/dist/jquery.js" %}"></script>
     <script src="{% static "semantic-ui/dist/semantic.js" %}"></script>
