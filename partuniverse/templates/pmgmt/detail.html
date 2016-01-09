@@ -30,10 +30,12 @@
     <th>{% trans "Name" %}</th>
     <td>{{object.name}}</td>
 </tr>
+{% if object.pic %}
 <tr>
     <th>{% trans "Image" %}</th>
     <td><img src="{{object.pic.url}}"></td>
 </tr>
+{% endif %}
 <tr>
     <th>{% trans "SKU" %}</th>
     {% if object.sku %}
