@@ -388,7 +388,7 @@ class Transaction(models.Model):
                                blank=True,
                                null=True,
                                max_length=200)
-    date = models.DateField(_("Transaction Date"),
+    date = models.DateTimeField(_("Transaction Date"),
                             blank=False,
                             null=False,
                             auto_now_add=True,
