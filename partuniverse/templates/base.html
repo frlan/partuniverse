@@ -100,19 +100,29 @@
         <div class="ui three column celled grid">
           <div class="row">
             <div class="column">
-              <a
-                 href="{% url "about" %}">
-                {% trans "About" %}
-              </a>        
+
             </div>
             <div class="column">
 
             </div>
             <div class="column">
-              <a
-                 href="https://github.com/frlan/partuniverse">
-                <i class="ui icon github"></i> Github
-              </a>
+              <div class="ui fluid text vertical menu">
+                <a
+                   class="item"
+                   href="">
+                  {% trans "Help" %}
+                </a>
+                <a
+                   class="item"
+                   href="{% url "about" %}">
+                  {% trans "About" %}
+                </a>
+                <a
+                   class="item"
+                   href="https://github.com/frlan/partuniverse">
+                  <i class="ui icon github"></i> Github
+                </a>
+              </div>
             </div>
           </div>
         </div>
