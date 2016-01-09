@@ -18,7 +18,7 @@
       </div>
       <div class="description">
         <p>
-          {{ transaction.created_by }} {% if transaction.amount > 0 %}added {{ transaction.amount|abs|apnumber }} {{ transaction.storage_item.part }} to{% else %}took {{ transaction.amount|abs|apnumber }} {{ transaction.storage_item.part }} from{% endif %} {{ transaction.storage_item.storage }}
+          {{ transaction.created_by }} {% if transaction.amount > 0 %}added {{ transaction.amount|abs|floatformat }} {{ transaction.storage_item.part.unit }} {{ transaction.storage_item.part }} to{% else %}took {{ transaction.amount|abs|floatformat }} {{ transaction.storage_item.part.unit }} {{ transaction.storage_item.part }} from{% endif %} {{ transaction.storage_item.storage }}
         </p>
         {% if transaction.comment|length > 0 %}<p>
           {{ transaction.comment }}
