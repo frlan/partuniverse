@@ -391,7 +391,6 @@ class Transaction(models.Model):
     date = models.DateTimeField(_("Transaction Date"),
                             blank=False,
                             null=False,
-                            auto_now_add=True,
                             db_index=True)
     state = models.CharField(_("State"),
                              max_length=6,

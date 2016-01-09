@@ -154,6 +154,7 @@ class TransactionAddView(CreateView):
     fields = ('subject',
               'storage_item',
               'amount',
+              'date',
               'comment')
 
     def form_valid(self, form):
