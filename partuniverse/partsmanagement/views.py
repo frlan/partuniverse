@@ -7,7 +7,10 @@ from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.views.generic.edit import FormView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.http import HttpResponseRedirect
@@ -31,6 +34,7 @@ class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
 
+
 class CategoryAddView(CreateView):
     model = Category
     success_url = reverse_lazy('category_list')
@@ -42,9 +46,6 @@ class CategoryAddView(CreateView):
         form.instance.created_by = user
         form.instance.creation_time = now()
         return super(CategoryAddView, self).form_valid(form)
-
-class PartsPerCategoryList(ListView):
-    pass
 
 ########################################################################
 # Part
@@ -68,9 +69,13 @@ class PartsReorderList(ListView):
     # performant for lot of items instead
     def get_queryset(self):
         # Should be translated to something like:
-        # SELECT * FROM "PARTS" WHERE NOT (on_stock > 0 AND on_stock >= min_stock)
+        # SELECT *
+        # FROM "PARTS"
+        # WHERE NOT (on_stock > 0
+        #   AND on_stock >= min_stock)
         # TODO: Check on database level
-        return Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
+        return Part.objects.exclude(on_stock__gt='0',
+                                    on_stock__gte=F('min_stock'))
 
 
 class PartsAddView(CreateView):
@@ -282,7 +287,9 @@ class StorageItemMergeView(FormView):
 
     def form_valid(self, form):
         si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        si.part.merge_storage_items(si, StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+        si.part.merge_storage_items(
+            si,
+            StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
         return super(StorageItemMergeView, self).form_valid(form)
 
 ########################################################################
