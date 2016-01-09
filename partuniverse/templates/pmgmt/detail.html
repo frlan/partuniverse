@@ -74,9 +74,9 @@
 
 <p>
 {% if object.disabled == False %}
-  <a class="ui purple button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
+  <a class="ui blue button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
 {% endif %}
-<a class="ui purple button" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
+<a class="ui blue button" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
 </p>
 
 

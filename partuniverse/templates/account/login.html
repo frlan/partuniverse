@@ -14,7 +14,7 @@
 <form method="POST" action="{% url "account_login" %}" autocapitalize="off" class="ui form">
   {% csrf_token %}
   {{ form.as_semantic }}
-  <button class="ui purple button" type="submit">{% trans "Log in" %}</button> <a class="ui purple button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
+  <button class="ui blue button" type="submit">{% trans "Log in" %}</button> <a class="ui purple button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
 </form>
 
 {% endblock %}

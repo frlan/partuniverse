@@ -16,7 +16,7 @@
 <form class="ui form" method="POST" action="{% url "account_settings" %}">
   {% csrf_token %}
   {{ form.as_semantic }}
-  <button class="ui purple button" type="submit"> {% trans "Save" %}</button>
+  <button class="ui blue button" type="submit"> {% trans "Save" %}</button>
 </form>
 
 <h2 class="ui header dividing">{% trans "Password" %}</h2>

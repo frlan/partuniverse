@@ -13,7 +13,7 @@
 {% block content %}
 <a
    accesskey="a"
-   class="ui right purple ribbon label"
+   class="ui right blue ribbon label"
    href="{% url "part_add"%}"
    >
   <i class="icon add"></i> Add
@@ -49,8 +49,8 @@
       <td>{{ item.manufacturer|default:"" }}</td>
       {% if user.is_authenticated %}
       <td>
-        <a class="ui button purple" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
-        <a class="ui button purple" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+        <a class="ui button blue" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
+        <a class="ui button blue" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
       </td>
       {% endif %}
     </tr>
