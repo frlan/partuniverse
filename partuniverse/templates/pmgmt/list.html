@@ -44,8 +44,8 @@
     {% for item in object_list %}
     <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
       <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>
-      <td>{{ item.min_stock|default:"" }}</td>
-      <td>{{ item.get_on_stock|default:"" }}</td>
+      <td>{{ item.min_stock|default:""|floatformat}}</td>
+      <td>{{ item.get_on_stock|default:""|floatformat }}</td>
       <td>{{ item.manufacturer|default:"" }}</td>
       {% if user.is_authenticated %}
       <td>

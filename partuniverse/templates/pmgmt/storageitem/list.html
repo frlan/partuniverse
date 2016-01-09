@@ -45,7 +45,7 @@
     {% for item in object_list %}
       <td><a href="{% url "part_detail" item.part.id %}">{{ item.part }}</a></td>
       <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage.name }}</a></td>
-      {% if item.on_stock == None %}<td>---</td>{% else %}<td>{{item.on_stock}}</td>{% endif %}
+      <td>{{ item.on_stock|default:"---"|floatformat }}</td>
       <td>
         <a class="ui button blue" href="{% url "storage_item_detail" item.id %}"/>Detail</a>
         {% if user.is_authenticated %}
