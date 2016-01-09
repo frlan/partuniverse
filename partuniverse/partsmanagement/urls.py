@@ -26,6 +26,7 @@ urlpatterns = patterns('',
                            name='part_update'),
                        # Category
                        url(r'^category/list', CategoryList.as_view(), name='category_list'),
+                       url(r'^category/add', CategoryAddView.as_view(), name='category_add'),
                        # Transactions
                        url(r'^transaction/list', TransactionListView.as_view(), name='transaction_list'),
                        url(r'^transaction/add$', login_required(TransactionAddView.as_view()),

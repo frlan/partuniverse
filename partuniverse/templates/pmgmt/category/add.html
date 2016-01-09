@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "category_list" %}" class="section">{% trans "Category" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section">{% trans "Add" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Add a new category" %}{% endblock %}
+
+{% block heading %}{% trans "Add a new category" %}{% endblock %}
+
+{% block content %}
+<form method="post" class="ui form" >
+  {% csrf_token %}
+  {{ form.as_semantic }}
+  <input class="ui blue button" type="submit" value="Submit">
+</form>
+{% endblock %}
