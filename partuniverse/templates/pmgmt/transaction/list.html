@@ -39,7 +39,7 @@
           <td>{{ item.state }} </td>
       {% endif %}
       <td>{{ item.subject }}</td>
-      <td>{{ item.amount }}</td>
+      <td>{{ item.amount|floatformat }}</td>
       <td>{{ item.date }}</td>
     </tr>
     {% endfor %}
