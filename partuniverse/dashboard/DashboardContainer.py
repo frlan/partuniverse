@@ -50,8 +50,7 @@ class DashboardContainer:
             row_html = template_row.render(context)
             rows = rows + row_html
         context = RequestContext(self.request, {
-                'rows': mark_safe(rows),
-                'dashboard': self,
-            })
+                                 'rows': mark_safe(rows),
+                                 'dashboard': self})
         output = template_container.render(context)
         return mark_safe(output)
