@@ -44,12 +44,18 @@
                 <a class="item" href="{% url "storage_list" %}">{% trans "Storages" %}</a>
               </div>
             </div>
-            <div class="item">
-              <a href="{% url "account_settings" %}" title="{% trans "Edit user settings" %}"><i class="ui icon user"></i> {{ user.username }}</a>
-            </div>
-            <div class="item">
-              <a href="{% url "account_logout" %}" title="{% trans "Logout" %}"><i class="ui icon sign out"></i></a>
-            </div>
+            <a
+               class="item"
+               href="{% url "account_settings" %}"
+               title="{% trans "Edit user settings" %}">
+              <i class="ui icon user"></i> {{ user.username }}
+            </a>
+            <a
+               class="item"
+               href="{% url "account_logout" %}"
+               title="{% trans "Logout" %}">
+              <i class="ui icon sign out"></i>
+            </a>
           </div>
           {% else %}
           <div class="item right"><a href="{% url "about" %}">{% trans "About" %}</a></div>
