@@ -16,6 +16,7 @@ from .exceptions import PartsNotFitException, PartsmanagementException, CircleDe
 import logging
 logger = logging.getLogger(__name__)
 
+from datetime import datetime
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
@@ -391,6 +392,7 @@ class Transaction(models.Model):
     date = models.DateTimeField(_("Transaction Date"),
                             blank=False,
                             null=False,
+                            default=datetime.now,
                             db_index=True)
     state = models.CharField(_("State"),
                              max_length=6,
