@@ -5,3 +5,5 @@ django-user-accounts
 gunicorn
 Pillow
 django-mathfilters
+django-appconf
+pytz
