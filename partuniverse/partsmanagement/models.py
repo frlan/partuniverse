@@ -10,13 +10,16 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
 # Exceptions
-from .exceptions import PartsNotFitException, PartsmanagementException, CircleDetectedException
+from .exceptions import (
+                         PartsNotFitException,
+                         PartsmanagementException,
+                         CircleDetectedException)
+from datetime import datetime
 
 # Logging
 import logging
 logger = logging.getLogger(__name__)
 
-from datetime import datetime
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
@@ -390,10 +393,10 @@ class Transaction(models.Model):
                                null=True,
                                max_length=200)
     date = models.DateTimeField(_("Transaction Date"),
-                            blank=False,
-                            null=False,
-                            default=datetime.now,
-                            db_index=True)
+                                blank=False,
+                                null=False,
+                                default=datetime.now,
+                                db_index=True)
     state = models.CharField(_("State"),
                              max_length=6,
                              choices=STATE_CHOICES,
