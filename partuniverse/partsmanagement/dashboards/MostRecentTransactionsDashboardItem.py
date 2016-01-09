@@ -14,7 +14,7 @@ class MostRecentTransactionsDashboardItem(DashboardItem):
 
     def render(self):
         # parts = Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
-        transactions = Transaction.objects.order_by('date')[:5].all()
+        transactions = Transaction.objects.order_by('-date')[:5].all()
         template = loader.get_template('dashboard/most_recent_transactions.html')
         context = RequestContext(self.container.request, {
             'transactions': transactions,

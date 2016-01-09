@@ -4,4 +4,4 @@ argparse
 django-user-accounts
 gunicorn
 Pillow
-
+django-mathfilters
