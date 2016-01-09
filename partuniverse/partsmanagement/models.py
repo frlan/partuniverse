@@ -11,9 +11,10 @@ from django.utils.translation import ugettext_lazy as _
 
 # Exceptions
 from .exceptions import (
-                         PartsNotFitException,
-                         PartsmanagementException,
-                         CircleDetectedException)
+    PartsNotFitException,
+    PartsmanagementException,
+    CircleDetectedException
+)
 from datetime import datetime
 
 # Logging
