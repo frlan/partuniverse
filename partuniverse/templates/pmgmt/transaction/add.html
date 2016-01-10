@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% block breadcrumbs %}
 <a href="{% url "transaction_list" %}" class="section">{% trans "Transactions" %}</a>
@@ -11,6 +12,15 @@
 {% block head_title %}{% trans "Add a new transaction" %}{% endblock %}
 
 {% block heading %}{% trans "Add a new transaction" %}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{% static "datetimepicker/jquery.datetimepicker.js" %}"></script>
+<script src="{% static "custom/datepicker.js" %}"></script>
+{% endblock %}
 
 {% block content %}
 <form method="post" class="ui form">

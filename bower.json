@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "semantic-ui": "~2.1"
+    "semantic-ui": "~2.1",
+    "datetimepicker": "xdan/datetimepicker#~2.4"
   }
 }

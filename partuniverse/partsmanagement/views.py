@@ -14,6 +14,7 @@ from django.views.generic.edit import FormView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.http import HttpResponseRedirect
+from django.forms.widgets import DateTimeInput
 
 # Importing models
 from partsmanagement.models import *
@@ -147,14 +148,19 @@ class TransactionListView(ListView):
 
 
 class TransactionAddView(CreateView):
-
     model = Transaction
     success_url = reverse_lazy('transaction_list')
     template_name = 'pmgmt/transaction/add.html'
     fields = ('subject',
               'storage_item',
               'amount',
+              'date',
               'comment')
+
+    def get_form(self, form_class):
+        form = super(TransactionAddView, self).get_form(form_class)
+        form.fields['date'].widget = DateTimeInput(attrs={'type':"datetime-local",'icon':'calendar'})
+        return form
 
     def form_valid(self, form):
         user = self.request.user

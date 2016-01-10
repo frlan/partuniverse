@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "semantic-ui/dist/semantic.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/all.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/dashboard.css" %}">
+    {% block stylesheets %}{% endblock %}
     <!-- link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}" -->
   </head>
   <body>
@@ -117,5 +118,6 @@
     <script src="{% static "jquery/dist/jquery.js" %}"></script>
     <script src="{% static "semantic-ui/dist/semantic.js" %}"></script>
     <script src="{% static "custom/semantic.js" %}"></script>
+    {% block javascripts %}{% endblock %}
   </body>
 </html>

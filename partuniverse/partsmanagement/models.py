@@ -10,7 +10,12 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
 # Exceptions
-from .exceptions import PartsNotFitException, PartsmanagementException, CircleDetectedException
+from .exceptions import (
+    PartsNotFitException,
+    PartsmanagementException,
+    CircleDetectedException
+)
+from datetime import datetime
 
 # Logging
 import logging
@@ -388,11 +393,11 @@ class Transaction(models.Model):
                                blank=True,
                                null=True,
                                max_length=200)
-    date = models.DateField(_("Transaction Date"),
-                            blank=False,
-                            null=False,
-                            auto_now_add=True,
-                            db_index=True)
+    date = models.DateTimeField(_("Transaction Date"),
+                                blank=False,
+                                null=False,
+                                default=datetime.now,
+                                db_index=True)
     state = models.CharField(_("State"),
                              max_length=6,
                              choices=STATE_CHOICES,
