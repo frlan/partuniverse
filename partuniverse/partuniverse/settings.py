@@ -10,10 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-# monkey patching BaseForm
-from django.forms import BaseForm
-from .semantic_forms import as_semantic
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -109,8 +105,6 @@ STATIC_URL = '/static/'
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
-
-BaseForm.as_semantic = as_semantic
 
 ########################################################################
 # Logging
