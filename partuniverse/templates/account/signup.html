@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block breadcrumbs %}
 <a class="active item" href=" {% url "account_signup" %}"> {% trans "Sign up" %} </a>
@@ -13,7 +14,7 @@
 {% block content %}
 <form class="ui form" id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
     {% csrf_token %}
-    {{ form.as_semantic }}
+    {{ form|semanticui }}
     {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}

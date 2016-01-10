@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block content %}
 <h1>{{ object }}</h1>
 <p>{% trans "Changes here will not change die internal ID of a storage item, but it will change the name you will see inside the application." %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
-  {{ form.as_semantic }}
+  {{ form|semanticui }}
   <input class="ui button blue" type="submit" value="Submit">
 </form>
 {% endblock %}

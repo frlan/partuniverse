@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load staticfiles %}
+{% load semanticui %}
 
 {% block breadcrumbs %}
 <a href="{% url "transaction_list" %}" class="section">{% trans "Transactions" %}</a>
@@ -25,7 +26,7 @@
 {% block content %}
 <form method="post" class="ui form">
   {% csrf_token %}
-  {{form.as_semantic}}
+  {{ form|semanticui }}
   <input class="ui blue button" type="submit" value="Submit">
 </form>
 {% endblock %}

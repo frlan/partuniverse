@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block breadcrumbs %}
 <a href="{% url "storage_item_add" %}" class="active section">{% trans "Storage Item Add" %}</a>
@@ -14,7 +15,7 @@
 <p>{% trans "Use this to add new storage items, which are parts on a decent storage place" %}</p>
 <form method="post" class="ui form" >
   {% csrf_token %}
-  {{ form.as_semantic }}
+  {{ form|semanticui }}
   <input class="ui blue button" type="submit" value="Submit">
 </form>
 {% endblock %}

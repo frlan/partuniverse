@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block breadcrumbs %}
 <a class="active section" href=" {% url "account_login" %}"> {% trans "Log in" %} </a>
@@ -13,7 +14,7 @@
 {% block content %}
 <form method="POST" action="{% url "account_login" %}" autocapitalize="off" class="ui form">
   {% csrf_token %}
-  {{ form.as_semantic }}
+  {{ form|semanticui }}
   <button class="ui blue button" type="submit">{% trans "Log in" %}</button> <a class="ui blue button" href="{% url "account_password_reset" %}">{% trans "Forgot your password?" %}</a>
 </form>
 

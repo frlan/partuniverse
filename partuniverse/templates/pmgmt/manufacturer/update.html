@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block breadcrumbs %}
 <a href="{% url "manufacturer_list" %}" class="section">{% trans "Manufacturers" %}</a>
@@ -16,7 +17,7 @@
 <form class="ui form" method="post">
 	{% csrf_token %}
 	<table>
-		{{ form.as_semantic }}
+		{{ form|semanticui }}
 	</table>
 	<input class="ui blue button" type="submit" value="Submit">
 </form>

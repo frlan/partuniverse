@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load semanticui %}
 
 {% block content %}
 <form method="post" class="ui form segment">
   {% csrf_token %}
-  {{ form.as_semantic }}
+  {{ form|semanticui }}
   <input class="ui button blue" type="submit" value="Submit">
 </form>
 {% endblock %}
