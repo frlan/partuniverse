@@ -159,7 +159,12 @@ class TransactionAddView(CreateView):
 
     def get_form(self, form_class):
         form = super(TransactionAddView, self).get_form(form_class)
-        form.fields['date'].widget = DateTimeInput(attrs={'type':"datetime-local",'icon':'calendar'})
+        form.fields['date'].widget = DateTimeInput(
+            attrs={
+                'type': "datetime-local",
+                'icon': 'calendar'
+            }
+        )
         return form
 
     def form_valid(self, form):
