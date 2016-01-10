@@ -63,7 +63,10 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
 class StorageType(models.Model):
     """ Defining a general typ of storage """
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(
+               max_length=50,
+               help_text=_("The name for a storage type. Should be unique")
+           )
 
     def __unicode__(self):
         return self.name
@@ -79,17 +82,29 @@ class StoragePlace(models.Model):
         e.g. a shelf."""
 
     # The Name could be e.g. cordinates or something else meaningfull
-    name = models.CharField(max_length=50)
-    storage_type = models.ForeignKey(StorageType)
-    parent = models.ForeignKey("self",
-                               null=True,
-                               blank=True,
-                               verbose_name=_("Parent storage"))
+    name = models.CharField(
+                max_length=50,
+                help_text=_("A name for the storage place."
+                            "E.g. coordinates inside a book shelve.")
+           )
+    storage_type = models.ForeignKey(
+                        StorageType,
+                        help_text=_("Of which type is the storage place")
+                    )
+    parent = models.ForeignKey(
+                "self",
+                null=True,
+                blank=True,
+                verbose_name=_("Parent storage"),
+                help_text=_("The storage the currenct is part of")
+             )
     disabled = models.BooleanField(_("Disabled"),
-                                   default=False)
+                                   default=False,
+                                   help_text=_("Whether a storage is active"))
     description = models.TextField(_("Description"),
                                    blank=True,
-                                   null=True)
+                                   null=True,
+                                   help_text=_("A short description"))
 
     def __unicode__(self):
         if self.parent is None:
