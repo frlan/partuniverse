@@ -67,7 +67,7 @@ class StorageType(models.Model):
     name = models.CharField(
             max_length=50,
             help_text=_("The name for a storage type. Should be unique")
-           )
+        )
 
     def __unicode__(self):
         return self.name
@@ -84,28 +84,32 @@ class StoragePlace(models.Model):
 
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(
-                max_length=50,
-                help_text=_("A name for the storage place."
-                            "E.g. coordinates inside a book shelve.")
-           )
+            max_length=50,
+            help_text=_("A name for the storage place."
+                        "E.g. coordinates inside a book shelve.")
+        )
     storage_type = models.ForeignKey(
-                        StorageType,
-                        help_text=_("Of which type is the storage place.")
-                    )
+            StorageType,
+            help_text=_("Of which type is the storage place.")
+        )
     parent = models.ForeignKey(
-                "self",
-                null=True,
-                blank=True,
-                verbose_name=_("Parent storage"),
-                help_text=_("The storage the currenct is part of.")
-             )
-    disabled = models.BooleanField(_("Disabled"),
-                                   default=False,
-                                   help_text=_("Whether a storage is active"))
-    description = models.TextField(_("Description"),
-                                   blank=True,
-                                   null=True,
-                                   help_text=_("A short description"))
+            "self",
+            null=True,
+            blank=True,
+            verbose_name=_("Parent storage"),
+            help_text=_("The storage the currenct is part of.")
+        )
+    disabled = models.BooleanField(
+            _("Disabled"),
+            default=False,
+            help_text=_("Whether a storage is active.")
+        )
+    description = models.TextField(
+            _("Description"),
+            blank=True,
+            null=True,
+            help_text=_("A short description.")
+        )
 
     def __unicode__(self):
         if self.parent is None:
@@ -152,18 +156,18 @@ class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
     name = models.CharField(
-                max_length=50,
-                help_text=_("Name of the manufacturer.")
-            )
+            max_length=50,
+            help_text=_("Name of the manufacturer.")
+        )
     creation_time = models.DateTimeField(
-                        auto_now_add=True
-                        help_text=_("Timestamp the manufacturer was created at")
-                    )
+            auto_now_add=True
+            help_text=_("Timestamp the manufacturer was created at")
+        )
     created_by = models.ForeignKey(
-                        User,
-                        verbose_name=_("Added by"),
-                        help_text=_("The user the manufacturer was created by")
-                    )
+            User,
+            verbose_name=_("Added by"),
+            help_text=_("The user the manufacturer was created by")
+        )
 
     def __unicode__(self):
         return self.name
@@ -177,20 +181,20 @@ class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
     name = models.CharField(
-                max_length=50
-                help_text=_("Name of the distributor")
-            )
+            max_length=50
+            help_text=_("Name of the distributor")
+        )
 
     creation_time = models.DateTimeField(
-                        _("Creation time"),
-                        auto_now_add=True,
-                        help_text=_("Timestamp the distributor was created at")
-                    )
+            _("Creation time"),
+            auto_now_add=True,
+            help_text=_("Timestamp the distributor was created at.")
+        )
     created_by = models.ForeignKey(
-                        User,
-                        verbose_name=_("Added by"),
-                        help_text=_("User who created the distributor.")
-                    )
+            User,
+            verbose_name=_("Added by"),
+            help_text=_("User who created the distributor.")
+        )
 
     def __unicode__(self):
         return self.name
@@ -205,21 +209,21 @@ class Category(models.Model):
     E.g. resistor """
 
     name = models.CharField(
-                max_length=50,
-                help_text=_("Name of the category")
-            )
+            max_length=50,
+            help_text=_("Name of the category.")
+        )
     parent = models.ForeignKey(
-                "self",
-                null=True,
-                blank=True,
-                help_text=_("If having a subcateogry, the parent.")
-            )
+            "self",
+            null=True,
+            blank=True,
+            help_text=_("If having a subcateogry, the parent.")
+        )
     description = models.TextField(
-                    _("Description"),
-                    blank=True,
-                    null=True,
-                    help_text=_("A chance to summarize usage of category")
-                )
+            _("Description"),
+            blank=True,
+            null=True,
+            help_text=_("A chance to summarize usage of category.")
+        )
 
     def __unicode__(self):
         if self.parent is None:
@@ -268,93 +272,87 @@ class Part(models.Model):
     """ Representing a special kind of parts """
 
     name = models.CharField(
-                _("Name of part"),
-                max_length=255,
-                help_text=_("Name of the part")
-            )
+            _("Name of part"),
+            max_length=255,
+            help_text=_("Name of the part.")
+        )
     sku = models.CharField(
-                    _("SKU"),
-                    max_length=60,
-                    blank=True,
-                    null=True,
-                    unique=True,
-                    help_text=_("A installation unique"
-                                "idendifier for the part.")
-                )
+            _("SKU"),
+            max_length=60,
+            blank=True,
+            null=True,
+            unique=True,
+            help_text=_("A installation unique idendifier for the part.")
+        )
     description = models.TextField(
-                            _("Description"),
-                            blank=True,
-                            null=True,
-                            help_text=_("A long text description of the part")
-                        )
+            _("Description"),
+            blank=True,
+            null=True,
+            help_text=_("A long text description of the part")
+        )
     min_stock = models.DecimalField(
-                    _("Minimal stock"),
-                    max_digits=10,
-                    decimal_places=4,
-                    null=True,
-                    blank=True,
-                    help_text=_("Set a minimum that should be stored")
-                )
+            _("Minimal stock"),
+            max_digits=10,
+            decimal_places=4,
+            null=True,
+            blank=True,
+            help_text=_("Set a minimum that should be stored.")
+        )
     unit = models.CharField(
-                        _("Messuring unit"),
-                        max_length=3,
-                        choices=UNIT_CHOICES,
-                        blank=False,
-                        default='---',
-                        help_text=_("The unit quantities are in.")
-                    )
+            _("Messuring unit"),
+            max_length=3,
+            choices=UNIT_CHOICES,
+            blank=False,
+            default='---',
+            help_text=_("The unit quantities are in.")
+        )
     url = models.CharField(
-                    max_length=255,
-                    unique=True,
-                    null=True,
-                    blank=True,
-                    help_text=_("The URL of the original image.")
-                )
+            max_length=255,
+            unique=True,
+            null=True,
+            blank=True,
+            help_text=_("The URL of the original image.")
+        )
     pic = models.ImageField(
-                    null=True,
-                    blank=True,
-                    upload_to='uploads/',
-                    help_text=_("The actual image.")
-                )
+            null=True,
+            blank=True,
+            upload_to='uploads/',
+            help_text=_("The actual image.")
+        )
     manufacturer = models.ForeignKey(
-                                Manufacturer,
-                                verbose_name=_("Manufacturer"),
-                                null=True,
-                                blank=True,
-                                help_text=_("The manufacturer of the part.")
-                            )
+            Manufacturer,
+            verbose_name=_("Manufacturer"),
+            null=True,
+            blank=True,
+            help_text=_("The manufacturer of the part.")
+        )
     distributor = models.ForeignKey(
-                                Distributor,
-                                verbose_name=_("Distributor"),
-                                null=True,
-                                blank=True,
-                                help_text=_("The usual distributor"
-                                            " of the part.")
-                            )
+            Distributor,
+            verbose_name=_("Distributor"),
+            null=True,
+            blank=True,
+            help_text=_("The usual distributor of the part.")
+        )
     categories = models.ManyToManyField(
-                                Category,
-                                verbose_name=_("Category")
-                                help_text=_("A list of categories the"
-                                            " part is in")
-                            )
+            Category,
+            verbose_name=_("Category")
+            help_text=_("A list of categories the part is in.")
+        )
     creation_time = models.DateTimeField(
-                                _("Creation time"),
-                                auto_now_add=True,
-                                help_text=_("Timestamp the part "
-                                            "was created on.")
-                            )
+            _("Creation time"),
+            auto_now_add=True,
+            help_text=_("Timestamp the part was created on.")
+        )
     created_by = models.ForeignKey(
-                                User,
-                                verbose_name=_("Added by")
-                                help_text=_("The user the part was "
-                                            "created by.")
-                            )
+            User,
+            verbose_name=_("Added by")
+            help_text=_("The user the part was created by.")
+        )
     disabled = models.BooleanField(
-                                _("Disabled"),
-                                default=False,
-                                help_text=_("Whether the part is active"
-                                            "or not.")
-                            )
+            _("Disabled"),
+            default=False,
+            help_text=_("Whether the part is active or not.")
+        )
 
     def __unicode__(self):
         return (u'%s' % self.name)
@@ -460,17 +458,27 @@ class Part(models.Model):
 
 
 class StorageItem(models.Model):
-    part = models.ForeignKey(Part)
-    storage = models.ForeignKey(StoragePlace)
+    part = models.ForeignKey(
+            Part,
+            help_text=_("The part stored at this spot.")
+        )
+    storage = models.ForeignKey(
+            StoragePlace,
+            help_text=_("The storage the part is stored in.")
+        )
     on_stock = models.DecimalField(
-        _("Parts inside storage"),
-        max_digits=10,
-        decimal_places=4,
-        null=True,
-        blank=True
-    )
-    disabled = models.BooleanField(_("Disabled"),
-                                   default=False)
+            _("Parts inside storage"),
+            max_digits=10,
+            decimal_places=4,
+            null=True,
+            blank=True,
+            help_text=_("The amount currently stored.")
+        )
+    disabled = models.BooleanField(
+            _("Disabled"),
+            default=False,
+            help_text=_("Whether the storage item is active.")
+        )
 
     def __unicode__(self):
         return (u'%s; %s' % (self.part, self.storage))
@@ -485,63 +493,60 @@ class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
     subject = models.CharField(
-                            _("Subject"),
-                            max_length=100,
-                            help_text=_("A short conclusion "
-                                        "of the transaction.")
-                        )
+        _("Subject"),
+        max_length=100,
+        help_text=_("A short conclusion "
+                    "of the transaction.")
+    )
     storage_item = models.ForeignKey(
-                                StorageItem,
-                                null=True,
-                                blank=True,
-                                help_text=_("The part-storage relation "
-                                            "the transaction was applied on.")
-                            )
+        StorageItem,
+        null=True,
+        blank=True,
+        help_text=_("The part-storage relation "
+                    "the transaction was applied on.")
+    )
     amount = models.DecimalField(
-                            _("Amount"),
-                            max_digits=10,
-                            decimal_places=4,
-                            help_text=_("The quantity transferred.")
-                        )
+        _("Amount"),
+        max_digits=10,
+        decimal_places=4,
+        help_text=_("The quantity transferred.")
+    )
     comment = models.TextField(
-                            _("Comment"),
-                            blank=True,
-                            null=True,
-                            max_length=200,
-                            help_text=_("A short conclusion.")
-                         )
+        _("Comment"),
+        blank=True,
+        null=True,
+        max_length=200,
+        help_text=_("A short conclusion.")
+     )
     date = models.DateTimeField(
-                            _("Transaction Date"),
-                            blank=False,
-                            null=False,
-                            default=datetime.now,
-                            db_index=True,
-                            help_text=_("The data the transaction "
-                                        "take part")
-                        )
+        _("Transaction Date"),
+        blank=False,
+        null=False,
+        default=datetime.now,
+        db_index=True,
+        help_text=_("The data the transaction take part.")
+    )
     state = models.CharField(
-                        _("State"),
-                        max_length=6,
-                        choices=STATE_CHOICES,
-                        blank=True,
-                        default='---'
-                        help_text=_("The status a transaction is in.")
-                    )
+        _("State"),
+        max_length=6,
+        choices=STATE_CHOICES,
+        blank=True,
+        default='---'
+        help_text=_("The status a transaction is in.")
+    )
     created_by = models.ForeignKey(
-                            User,
-                            verbose_name=_("Created by")
-                            help_text=_("The user which created "
-                                        "the transaction.")
-                        )
+        User,
+        verbose_name=_("Created by")
+        help_text=_("The user which created the transaction.")
+    )
     created_date = models.TimeField(
-                                _("Creation timestamp"),
-                                blank=False,
-                                null=False,
-                                auto_now_add=True,
-                                db_index=True,
-                                help_text=_("The timestamp transaction has "
-                                            "been entered.")
-                            )
+        _("Creation timestamp"),
+        blank=False,
+        null=False,
+        auto_now_add=True,
+        db_index=True,
+        help_text=_("The timestamp transaction has been entered.")
+    )
 
     def save(self, *args, **kwargs):
         tmp_storage_item = StorageItem.objects.get(pk=self.storage_item.id)
