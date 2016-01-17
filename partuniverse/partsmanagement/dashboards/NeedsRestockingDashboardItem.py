@@ -16,7 +16,7 @@ class NeedsRestockingDashboardItem(DashboardItem):
         # parts = Part.objects.exclude(on_stock__gt='0', on_stock__gte=F('min_stock'))
         parts = []
         for i in Part.objects.all():
-            if (i.is_below_min_stock() == True):
+            if (i.is_below_min_stock() is True):
                 parts.append(i)
         template = loader.get_template('dashboard/needs_restocking.html')
         context = RequestContext(self.container.request, {
