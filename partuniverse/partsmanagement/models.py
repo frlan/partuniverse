@@ -51,7 +51,8 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
     """ Returns a list of list with all Parts having a StorageItem
         with its min_stock value. """
     result_list = []
-    for i in StorageItem.objects.values("part").annotate(Sum("on_stock")).order_by('part'):
+    for i in StorageItem.objects.values("part").annotate(
+            Sum("on_stock")).order_by('part'):
         tmp = []
         tmp.append(i['part'])
         tmp.append(i['on_stock__sum'])
@@ -64,8 +65,8 @@ class StorageType(models.Model):
     """ Defining a general typ of storage """
 
     name = models.CharField(
-               max_length=50,
-               help_text=_("The name for a storage type. Should be unique")
+            max_length=50,
+            help_text=_("The name for a storage type. Should be unique")
            )
 
     def __unicode__(self):
@@ -89,14 +90,14 @@ class StoragePlace(models.Model):
            )
     storage_type = models.ForeignKey(
                         StorageType,
-                        help_text=_("Of which type is the storage place")
+                        help_text=_("Of which type is the storage place.")
                     )
     parent = models.ForeignKey(
                 "self",
                 null=True,
                 blank=True,
                 verbose_name=_("Parent storage"),
-                help_text=_("The storage the currenct is part of")
+                help_text=_("The storage the currenct is part of.")
              )
     disabled = models.BooleanField(_("Disabled"),
                                    default=False,
@@ -121,7 +122,8 @@ class StoragePlace(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ansistors at %s.' % self.id)))
+                    _('There seems to be a circle inside ansistors at %s.' % (self.id)))
+                )
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -149,10 +151,19 @@ class StoragePlace(models.Model):
 class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
-    name = models.CharField(max_length=50)
-    creation_time = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User,
-                                   verbose_name=_("Added by"))
+    name = models.CharField(
+                max_length=50,
+                help_text=_("Name of the manufacturer.")
+            )
+    creation_time = models.DateTimeField(
+                        auto_now_add=True
+                        help_text=_("Timestamp the manufacturer was created at")
+                    )
+    created_by = models.ForeignKey(
+                        User,
+                        verbose_name=_("Added by"),
+                        help_text=_("The user the manufacturer was created by")
+                    )
 
     def __unicode__(self):
         return self.name
@@ -165,12 +176,21 @@ class Manufacturer(models.Model):
 class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
-    name = models.CharField(max_length=50)
+    name = models.CharField(
+                max_length=50
+                help_text=_("Name of the distributor")
+            )
 
-    creation_time = models.DateTimeField(_("Creation time"),
-                                         auto_now_add=True)
-    created_by = models.ForeignKey(User,
-                                   verbose_name=_("Added by"))
+    creation_time = models.DateTimeField(
+                        _("Creation time"),
+                        auto_now_add=True,
+                        help_text=_("Timestamp the distributor was created at")
+                    )
+    created_by = models.ForeignKey(
+                        User,
+                        verbose_name=_("Added by"),
+                        help_text=_("User who created the distributor.")
+                    )
 
     def __unicode__(self):
         return self.name
@@ -184,17 +204,32 @@ class Category(models.Model):
     """ Representing a category a part might contains to.
     E.g. resistor """
 
-    name = models.CharField(max_length=50)
-    parent = models.ForeignKey("self", null=True, blank=True)
-    description = models.TextField(_("Description"),
-                                   blank=True,
-                                   null=True)
+    name = models.CharField(
+                max_length=50,
+                help_text=_("Name of the category")
+            )
+    parent = models.ForeignKey(
+                "self",
+                null=True,
+                blank=True,
+                help_text=_("If having a subcateogry, the parent.")
+            )
+    description = models.TextField(
+                    _("Description"),
+                    blank=True,
+                    null=True,
+                    help_text=_("A chance to summarize usage of category")
+                )
 
     def __unicode__(self):
         if self.parent is None:
             return self.name
         else:
-            return (u'%s%s%s' % (self.parent.__unicode__(), settings.PARENT_DELIMITER, self.name))
+            return (u'%s%s%s' % (
+                self.parent.__unicode__(),
+                settings.PARENT_DELIMITER,
+                self.name)
+            )
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
@@ -232,47 +267,94 @@ class Category(models.Model):
 class Part(models.Model):
     """ Representing a special kind of parts """
 
-    name = models.CharField(_("Name of part"), max_length=255)
-    sku = models.CharField(_("SKU"),
-                           max_length=60,
-                           blank=True,
-                           null=True,
-                           unique=True)
-    description = models.TextField(_("Description"),
-                                   blank=True,
-                                   null=True)
-    min_stock = models.DecimalField(
-        _("Minimal stock"),
-        max_digits=10,
-        decimal_places=4,
-        null=True,
-        blank=True
-    )
-    unit = models.CharField(_("Messuring unit"),
-                            max_length=3,
-                            choices=UNIT_CHOICES,
-                            blank=False,
-                            default='---')
-    url = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    pic = models.ImageField(null=True,
+    name = models.CharField(
+                _("Name of part"),
+                max_length=255,
+                help_text=_("Name of the part")
+            )
+    sku = models.CharField(
+                    _("SKU"),
+                    max_length=60,
+                    blank=True,
+                    null=True,
+                    unique=True,
+                    help_text=_("A installation unique"
+                                "idendifier for the part.")
+                )
+    description = models.TextField(
+                            _("Description"),
                             blank=True,
-                            upload_to='uploads/')
-    manufacturer = models.ForeignKey(Manufacturer,
-                                     verbose_name=_("Manufacturer"),
-                                     null=True,
-                                     blank=True)
-    distributor = models.ForeignKey(Distributor,
-                                    verbose_name=_("Distributor"),
-                                    null=True,
-                                    blank=True)
-    categories = models.ManyToManyField(Category,
-                                        verbose_name=_("Category"))
-    creation_time = models.DateTimeField(_("Creation time"),
-                                         auto_now_add=True)
-    created_by = models.ForeignKey(User,
-                                   verbose_name=_("Added by"))
-    disabled = models.BooleanField(_("Disabled"),
-                                   default=False)
+                            null=True,
+                            help_text=_("A long text description of the part")
+                        )
+    min_stock = models.DecimalField(
+                    _("Minimal stock"),
+                    max_digits=10,
+                    decimal_places=4,
+                    null=True,
+                    blank=True,
+                    help_text=_("Set a minimum that should be stored")
+                )
+    unit = models.CharField(
+                        _("Messuring unit"),
+                        max_length=3,
+                        choices=UNIT_CHOICES,
+                        blank=False,
+                        default='---',
+                        help_text=_("The unit quantities are in.")
+                    )
+    url = models.CharField(
+                    max_length=255,
+                    unique=True,
+                    null=True,
+                    blank=True,
+                    help_text=_("The URL of the original image.")
+                )
+    pic = models.ImageField(
+                    null=True,
+                    blank=True,
+                    upload_to='uploads/',
+                    help_text=_("The actual image.")
+                )
+    manufacturer = models.ForeignKey(
+                                Manufacturer,
+                                verbose_name=_("Manufacturer"),
+                                null=True,
+                                blank=True,
+                                help_text=_("The manufacturer of the part.")
+                            )
+    distributor = models.ForeignKey(
+                                Distributor,
+                                verbose_name=_("Distributor"),
+                                null=True,
+                                blank=True,
+                                help_text=_("The usual distributor"
+                                            " of the part.")
+                            )
+    categories = models.ManyToManyField(
+                                Category,
+                                verbose_name=_("Category")
+                                help_text=_("A list of categories the"
+                                            " part is in")
+                            )
+    creation_time = models.DateTimeField(
+                                _("Creation time"),
+                                auto_now_add=True,
+                                help_text=_("Timestamp the part "
+                                            "was created on.")
+                            )
+    created_by = models.ForeignKey(
+                                User,
+                                verbose_name=_("Added by")
+                                help_text=_("The user the part was "
+                                            "created by.")
+                            )
+    disabled = models.BooleanField(
+                                _("Disabled"),
+                                default=False,
+                                help_text=_("Whether the part is active"
+                                            "or not.")
+                            )
 
     def __unicode__(self):
         return (u'%s' % self.name)
@@ -321,7 +403,11 @@ class Part(models.Model):
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
             raise PartsmanagementException(
-                u'One of the storage items seems to not exists: %s, %s' % (si1, si2))
+                u'One of the storage items seems to not exists: %s, %s' % (
+                    si1,
+                    si2
+                )
+            )
 
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
@@ -398,40 +484,72 @@ class StorageItem(models.Model):
 class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
-    subject = models.CharField(_("Subject"),
-                               max_length=100)
-    storage_item = models.ForeignKey(StorageItem, null=True, blank=True)
-    amount = models.DecimalField(_("Amount"),
-                                 max_digits=10,
-                                 decimal_places=4)
-    comment = models.TextField(_("Comment"),
-                               blank=True,
-                               null=True,
-                               max_length=200)
-    date = models.DateTimeField(_("Transaction Date"),
+    subject = models.CharField(
+                            _("Subject"),
+                            max_length=100,
+                            help_text=_("A short conclusion "
+                                        "of the transaction.")
+                        )
+    storage_item = models.ForeignKey(
+                                StorageItem,
+                                null=True,
+                                blank=True,
+                                help_text=_("The part-storage relation "
+                                            "the transaction was applied on.")
+                            )
+    amount = models.DecimalField(
+                            _("Amount"),
+                            max_digits=10,
+                            decimal_places=4,
+                            help_text=_("The quantity transferred.")
+                        )
+    comment = models.TextField(
+                            _("Comment"),
+                            blank=True,
+                            null=True,
+                            max_length=200,
+                            help_text=_("A short conclusion.")
+                         )
+    date = models.DateTimeField(
+                            _("Transaction Date"),
+                            blank=False,
+                            null=False,
+                            default=datetime.now,
+                            db_index=True,
+                            help_text=_("The data the transaction "
+                                        "take part")
+                        )
+    state = models.CharField(
+                        _("State"),
+                        max_length=6,
+                        choices=STATE_CHOICES,
+                        blank=True,
+                        default='---'
+                        help_text=_("The status a transaction is in.")
+                    )
+    created_by = models.ForeignKey(
+                            User,
+                            verbose_name=_("Created by")
+                            help_text=_("The user which created "
+                                        "the transaction.")
+                        )
+    created_date = models.TimeField(
+                                _("Creation timestamp"),
                                 blank=False,
                                 null=False,
-                                default=datetime.now,
-                                db_index=True)
-    state = models.CharField(_("State"),
-                             max_length=6,
-                             choices=STATE_CHOICES,
-                             blank=True,
-                             default='---')
-    created_by = models.ForeignKey(User,
-                                   verbose_name=_("Created by"))
-    created_date = models.TimeField(_("Creation timestamp"),
-                                    blank=False,
-                                    null=False,
-                                    auto_now_add=True,
-                                    db_index=True)
+                                auto_now_add=True,
+                                db_index=True,
+                                help_text=_("The timestamp transaction has "
+                                            "been entered.")
+                            )
 
     def save(self, *args, **kwargs):
         tmp_storage_item = StorageItem.objects.get(pk=self.storage_item.id)
         try:
             old_transaction = Transaction.objects.get(pk=self.id)
             if old_transaction.amount and tmp_storage_item.on_stock is not None:
-                tmp_storage_item.on_stock = tmp_storage_item.on_stock - old_transaction.amount
+                tmp_storage_item.on_stock = (
+                    tmp_storage_item.on_stock - old_transaction.amount)
         except ObjectDoesNotExist:
             pass
 
