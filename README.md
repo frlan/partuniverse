@@ -133,6 +133,7 @@ prevents the bug from happen again.
 ### Code style
 
 Please use [pep8](https://www.python.org/dev/peps/pep-0008/) for coding.
+As a little support tool you might can give [autopep8](https://pypi.python.org/pypi/autopep8) a try.
 
 
 ### Testing
