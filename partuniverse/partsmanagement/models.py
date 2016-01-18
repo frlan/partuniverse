@@ -97,7 +97,7 @@ class StoragePlace(models.Model):
         null=True,
         blank=True,
         verbose_name=_("Parent storage"),
-        help_text=_("The storage the currenct is part of.")
+        help_text=_("The storage the current storage is part of.")
     )
     disabled = models.BooleanField(
         _("Disabled"),
@@ -126,7 +126,7 @@ class StoragePlace(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ansistors at %s.' % (self.id)))
+                    _('There seems to be a circle inside ancestors at %s.' % (self.id)))
                 )
             else:
                 result.append(next.id)
@@ -144,7 +144,7 @@ class StoragePlace(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {'parent': _('The storage cannot be one of its ansistors')}
+                    {'parent': _('The storage cannot be one of its ancestors')}
                 )
 
     class Meta:
@@ -242,7 +242,7 @@ class Category(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ansistors of %s.' % self.id)))
+                    _('There seems to be a circle inside ancestors of %s.' % self.id)))
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -259,7 +259,7 @@ class Category(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {'parent': _('The storage cannot be one of its ansistors')}
+                    {'parent': _('The storage cannot be one of its ancestors.')}
                 )
 
     class Meta:
