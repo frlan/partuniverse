@@ -279,8 +279,6 @@ class Part(models.Model):
     sku = models.CharField(
         _("SKU"),
         max_length=60,
-        blank=True,
-        null=True,
         unique=True,
         help_text=_("A installation unique idendifier for the part.")
     )
