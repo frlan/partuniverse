@@ -102,12 +102,14 @@ class TransactionInventoryChange(TestCase):
         )
         self.part1 = Part.objects.create(
             name=u'Test Part 1 with unicode µä³½',
+            sku=u'tp1',
             unit='m',
             creation_time=timezone.now(),
             created_by=self.user
         )
         self.part2 = Part.objects.create(
             name=u'Test Part 2',
+            sku=u'tp2',
             unit='m',
             creation_time=timezone.now(),
             created_by=self.user
@@ -162,10 +164,12 @@ class TransactionInventoryChangeOnUpdate(TestCase):
         self.storageplace = StoragePlace.objects.create(name=u'Test Storage',
                                                         storage_type=self.storagetype)
         self.part1 = Part.objects.create(name=u'Test Part 1 with unicode µä³½',
+                                         sku=u'tp1',
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
         self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -219,11 +223,13 @@ class PartListWithOnStockValueFromSI(TestCase):
 
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         sku=u'tp1',
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -311,20 +317,24 @@ class PartGetOnStockAmount(TestCase):
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
                                          unit='m',
+                                         sku=u'tp1',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
                                          unit='m',
+                                         sku=u'tp2',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part3 = Part.objects.create(name=u'Test Part 3',
                                          unit='m',
+                                         sku=u'tp3',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part4 = Part.objects.create(name=u'Test Part 4',
+                                         sku=u'tp4',
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -396,6 +406,7 @@ class ItemOutOfStockTestCase(TestCase):
         # on_stock > min_stock
         self.part1 = Part.objects.create(name=u'Test Part 1',
                                          unit='m',
+                                         sku=u'tp1',
                                          min_stock=50,
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -407,6 +418,7 @@ class ItemOutOfStockTestCase(TestCase):
         # on_stock < min_stock
         self.part2 = Part.objects.create(name=u'Test Part 2',
                                          unit='m',
+                                         sku=u'tp2',
                                          min_stock=150,
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -418,6 +430,7 @@ class ItemOutOfStockTestCase(TestCase):
         # on_stock = min_stock
         self.part3 = Part.objects.create(name=u'Test Part 3',
                                          unit='m',
+                                         sku=u'tp3',
                                          min_stock=100,
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -428,6 +441,7 @@ class ItemOutOfStockTestCase(TestCase):
         # on_stock = 0
         self.part4 = Part.objects.create(name=u'Test Part 4',
                                          unit='m',
+                                         sku=u'tp4',
                                          min_stock=0,
                                          creation_time=timezone.now(),
                                          created_by=self.user)
@@ -439,6 +453,7 @@ class ItemOutOfStockTestCase(TestCase):
         # min_stock not defined
         self.part5 = Part.objects.create(name=u'Test Part 5',
                                          unit='m',
+                                         sku=u'tp5',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
         self.storage_item5 = StorageItem.objects.create(part=self.part5,
@@ -504,16 +519,19 @@ class StorageItemsMergeTestCase(TestCase):
         # Some items
         self.part1 = Part.objects.create(name=u'Test Part 1',
                                          unit='m',
+                                         sku=u'tp1',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part2 = Part.objects.create(name=u'Test Part 2',
                                          unit='m',
+                                         sku=u'tp2',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
         self.part3 = Part.objects.create(name=u'Test Part 3',
                                          unit='m',
+                                         sku=u'tp3',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
