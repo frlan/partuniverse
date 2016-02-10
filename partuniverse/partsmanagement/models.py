@@ -308,7 +308,6 @@ class Part(models.Model):
     )
     url = models.CharField(
         max_length=255,
-        unique=True,
         null=True,
         blank=True,
         help_text=_("The URL of the original image.")
