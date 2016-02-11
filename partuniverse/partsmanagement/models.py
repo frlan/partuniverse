@@ -567,3 +567,103 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = _("Transaction")
         verbose_name_plural = _("Transactions")
+
+
+class Publisher(models.Model):
+    name = models.CharField(
+        _("Name"),
+        max_length=100,
+        help_text=_("The name of the publisher")
+    )
+    place = models.CharField(
+        _("Place"),
+        max_length=100,
+        help_text=_("The place, where the publisher publishes its"
+                    " publications."),
+        blank=True,
+        null=True
+    )
+
+    def __unicode__(self):
+        return (u'{}, {}'.format(self.name, self.place))
+
+
+class Person(models.Model):
+    first_name = models.CharField(
+        _("First name"),
+        max_length=100,
+        help_text=_("The first name of author")
+    )
+    last_name = models.CharField(
+        _("Last name"),
+        max_length=100,
+        help_text=_("The last name of the publisher")
+    )
+
+    def __unicode__(self):
+        return (u'{}, {}'.format(self.last_name, self.first_name))
+
+
+class Book(models.Model):
+
+    title = models.CharField(
+        _("Title"),
+        max_length=100,
+        help_text=_("The title of a book."),
+        null=False,
+        blank=False,
+        unique=True
+    )
+    author = models.ManyToManyField(
+        Person,
+        related_name='+',
+        verbose_name=_("Authors"),
+        help_text=_("The list of authors of the book.")
+    )
+    translator = models.ManyToManyField(
+        Person,
+        related_name='+',
+        verbose_name=_("Translators"),
+        help_text=_("The list of translators of the book."),
+        blank=True,
+        null=True
+    )
+    publisher = models.ForeignKey(
+        Publisher,
+        verbose_name=_("Publisher"),
+        help_text=_("The publisher of a book.")
+    )
+    year = models.DateField(
+        _('Publishing year'),
+        help_text=_("The publishing year.")
+    )
+    isbn10 = models.CharField(
+        _("ISBN-10"),
+        max_length=10,
+        blank=True,
+        null=True
+    )
+    isbn13 = models.CharField(
+        _("ISBN-13"),
+        max_length=10,
+        blank=True,
+        null=True
+
+    )
+    language = models.CharField(
+        _("Publishing language"),
+        max_length=6,
+        help_text=_("Language media is in. Use ISO-codes here."),
+        blank=True,
+        null=True
+    )
+    comment = models.TextField(
+        _("Comment"),
+        blank=True,
+        null=True,
+        max_length=200,
+        help_text=_("A short conclusion.")
+    )
+
+    def __unicode__(self):
+        return (u'{}').format(self.title)
