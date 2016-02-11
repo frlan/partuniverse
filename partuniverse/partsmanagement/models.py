@@ -625,8 +625,7 @@ class Book(models.Model):
         related_name='+',
         verbose_name=_("Translators"),
         help_text=_("The list of translators of the book."),
-        blank=True,
-        null=True
+        blank=True
     )
     publisher = models.ForeignKey(
         Publisher,
