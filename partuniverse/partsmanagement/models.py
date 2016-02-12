@@ -644,7 +644,7 @@ class Book(models.Model):
     )
     isbn13 = models.CharField(
         _("ISBN-13"),
-        max_length=10,
+        max_length=13,
         blank=True,
         null=True
 
