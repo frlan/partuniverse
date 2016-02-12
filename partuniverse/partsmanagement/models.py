@@ -75,6 +75,7 @@ class StorageType(models.Model):
     class Meta:
         verbose_name = _("Storage Type")
         verbose_name_plural = _("Storage Types")
+        ordering = ['name']
 
 
 class StoragePlace(models.Model):
@@ -150,6 +151,7 @@ class StoragePlace(models.Model):
     class Meta:
         verbose_name = _("Storage Place")
         verbose_name_plural = _("Storage Places")
+        ordering = ['name']
 
 
 class Manufacturer(models.Model):
@@ -175,6 +177,7 @@ class Manufacturer(models.Model):
     class Meta:
         verbose_name = _("Manufacturer")
         verbose_name_plural = _("Manufacturers")
+        ordering = ['name']
 
 
 class Distributor(models.Model):
@@ -202,6 +205,7 @@ class Distributor(models.Model):
     class Meta:
         verbose_name = _("Distributor")
         verbose_name_plural = _("Distributors")
+        ordering = ['name']
 
 
 class Category(models.Model):
@@ -266,6 +270,7 @@ class Category(models.Model):
         unique_together = ("name", "parent")
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+        ordering = ['name']
 
 
 class Part(models.Model):
@@ -453,6 +458,7 @@ class Part(models.Model):
     class Meta:
         verbose_name = _("Part")
         verbose_name_plural = _("Parts")
+        ordering = ['name']
 
 
 class StorageItem(models.Model):
@@ -485,6 +491,7 @@ class StorageItem(models.Model):
         unique_together = ("part", "storage")
         verbose_name = _("Storage Item")
         verbose_name_plural = _("Storage Items")
+        ordering = ['storage', 'part']
 
 
 class Transaction(models.Model):
@@ -567,3 +574,4 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = _("Transaction")
         verbose_name_plural = _("Transactions")
+        ordering = ['date']
