@@ -632,9 +632,12 @@ class Book(models.Model):
         verbose_name=_("Publisher"),
         help_text=_("The publisher of a book.")
     )
-    year = models.DateField(
+    year = models.IntegerField(
         _('Publishing year'),
-        help_text=_("The publishing year.")
+        help_text=_("The publishing year."),
+        null=True,
+        blank=True,
+        max_length=4
     )
     isbn10 = models.CharField(
         _("ISBN-10"),
