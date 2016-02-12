@@ -637,7 +637,6 @@ class Book(models.Model):
         help_text=_("The publishing year."),
         null=True,
         blank=True,
-        max_length=4
     )
     isbn10 = models.CharField(
         _("ISBN-10"),
