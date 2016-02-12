@@ -595,12 +595,15 @@ class Person(models.Model):
     first_name = models.CharField(
         _("First name"),
         max_length=100,
-        help_text=_("The first name of author")
+        help_text=_("The first name of author"),
+        null=True,
+        blank=True
     )
     last_name = models.CharField(
         _("Last name"),
         max_length=100,
-        help_text=_("The last name of the publisher")
+        help_text=_("The last name of the publisher."
+                    "Or, if there is only one name.")
     )
 
     def __unicode__(self):
