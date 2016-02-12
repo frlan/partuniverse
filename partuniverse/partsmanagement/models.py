@@ -9,6 +9,8 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
+from polymorphic.models import PolymorphicModel
+
 # Exceptions
 from .exceptions import (
     PartsNotFitException,
@@ -268,7 +270,7 @@ class Category(models.Model):
         verbose_name_plural = _("Categories")
 
 
-class Part(models.Model):
+class Part(PolymorphicModel):
     """ Representing a special kind of parts """
 
     name = models.CharField(
@@ -567,6 +569,7 @@ class Transaction(models.Model):
     class Meta:
         verbose_name = _("Transaction")
         verbose_name_plural = _("Transactions")
+        ordering = ['date']
 
 
 class Publisher(models.Model):
@@ -613,7 +616,7 @@ class Person(models.Model):
         ordering = ['last_name', 'first_name']
 
 
-class Book(models.Model):
+class Book(Part):
 
     title = models.CharField(
         _("Title"),
@@ -621,7 +624,8 @@ class Book(models.Model):
         help_text=_("The title of a book."),
         null=False,
         blank=False,
-        unique=True
+        unique=True,
+        default='No title'
     )
     subtitle = models.CharField(
         _("Subtitle"),
@@ -646,7 +650,8 @@ class Book(models.Model):
     publisher = models.ForeignKey(
         Publisher,
         verbose_name=_("Publisher"),
-        help_text=_("The publisher of a book.")
+        help_text=_("The publisher of a book."),
+        default=None
     )
     year = models.IntegerField(
         _('Publishing year'),
