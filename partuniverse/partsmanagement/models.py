@@ -587,6 +587,9 @@ class Publisher(models.Model):
     def __unicode__(self):
         return (u'{}, {}'.format(self.name, self.place))
 
+    class Meta:
+        ordering = ['name', 'place']
+
 
 class Person(models.Model):
     first_name = models.CharField(
@@ -602,6 +605,9 @@ class Person(models.Model):
 
     def __unicode__(self):
         return (u'{}, {}'.format(self.last_name, self.first_name))
+
+    class Meta:
+        ordering = ['last_name', 'first_name']
 
 
 class Book(models.Model):
@@ -675,3 +681,6 @@ class Book(models.Model):
 
     def __unicode__(self):
         return (u'{}').format(self.title)
+
+    class Meta:
+        ordering = ['title']
