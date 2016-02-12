@@ -614,6 +614,13 @@ class Book(models.Model):
         blank=False,
         unique=True
     )
+    subtitle = models.CharField(
+        _("Subtitle"),
+        max_length=250,
+        help_text=_("The subtitle of a book if there is some"),
+        null=True,
+        blank=True
+    )
     author = models.ManyToManyField(
         Person,
         related_name='+',
@@ -636,7 +643,7 @@ class Book(models.Model):
         _('Publishing year'),
         help_text=_("The publishing year."),
         null=True,
-        blank=True,
+        blank=True
     )
     isbn10 = models.CharField(
         _("ISBN-10"),
