@@ -8,3 +8,4 @@ django-mathfilters
 django-appconf
 pytz
 django-semanticui-form
+django-polymorphic
