@@ -128,3 +128,4 @@ class Book(partsmanagement.models.Part):
 
     class Meta:
         ordering = ['title']
+        unique_together = ("title", "isbn10", "isbn13")
