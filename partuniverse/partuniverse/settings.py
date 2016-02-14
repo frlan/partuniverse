@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'partsmanagement',
     'dashboard',
     'polymorphic',
+    'bookcollection'
 )
 
 MIDDLEWARE_CLASSES = (
