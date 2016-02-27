@@ -31,8 +31,10 @@ requirements.txt next to this file.
 
 ### Virtualenv
 
-Create a virtualenv for partuniverse
+Create a virtualenv inside partuniverse subfolder inside your git checkout:
 
+	$ pwd
+	/path/to/your/sources/
 	$ cd partuniverse
 	$ virtuelenv .
 
@@ -76,7 +78,7 @@ If everything worked well, you can start the server (in debug mode):
 
 	$ bin/python manage.py runserver
 
-### Running a production instance behind nginx
+### Running a production instance behind Nginx
 
 This part assumes the following steps:
 
