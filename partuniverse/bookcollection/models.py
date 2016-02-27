@@ -77,6 +77,13 @@ class Book(partsmanagement.models.Part):
         null=True,
         blank=True
     )
+    edition = models.CharField(
+        _("Edition"),
+        max_length=75,
+        help_text=_("The edition of the book. E.g. »3rd edition«"),
+        null=True,
+        blank=True
+    )
     author = models.ManyToManyField(
         Person,
         related_name='+',
