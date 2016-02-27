@@ -14,6 +14,13 @@ class Publisher(models.Model):
         max_length=100,
         help_text=_("The name of the publisher")
     )
+    long_name = models.CharField(
+        _("Long name"),
+        max_length=512,
+        help_text=_("The complete name of a publsiher"),
+        blank=True,
+        null=True
+    )
     place = models.CharField(
         _("Place"),
         max_length=100,
