@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -95,6 +96,13 @@ class Book(partsmanagement.models.Part):
         related_name='+',
         verbose_name=_("Translators"),
         help_text=_("The list of translators of the book."),
+        blank=True
+    )
+    editor = models.ManyToManyField(
+        Person,
+        related_name='+',
+        verbose_name=_('Editor'),
+        help_text=_("The editor of a book or the collection."),
         blank=True
     )
     publisher = models.ForeignKey(
