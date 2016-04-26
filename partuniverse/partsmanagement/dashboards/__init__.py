@@ -1,2 +1,3 @@
 from partsmanagement.dashboards import NeedsRestockingDashboardItem
 from partsmanagement.dashboards import MostRecentTransactionsDashboardItem
+from partsmanagement.dashboards import MostRecentPartsDashboardItem
