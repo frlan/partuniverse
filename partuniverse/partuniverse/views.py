@@ -11,6 +11,7 @@ def dashboard(request):
     dashboard = DashboardContainer(request)
     dashboard.add(DashboardItemRegistry.get('needs_restocking'))
     dashboard.add(DashboardItemRegistry.get('most_recent_transactions'))
+    dashboard.add(DashboardItemRegistry.get('most_recent_parts'))
     context = RequestContext(request, {
         'dashboard': dashboard,
     })
