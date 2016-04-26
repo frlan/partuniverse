@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% load humanize %}
+{% load mathfilters %}
+
+{% if parts|length > 0 %}
+<div class="ui divided items">
+  {% for part in partss %}
+  <div class="item">
+    <div class="content">
+      <div class="header">
+        {{ part.name }}
+      </div>
+      <div class="meta">
+        <span class="date">
+          {{ part.creation_time }}
+        </span>
+      </div>
+      <div class="description">
+        <p>
+          {{ part.created_by }}
+        </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<div class="ui segment">
+  <p>{% trans "No transactions." %}</p>
+</div>
+{% endif %}
