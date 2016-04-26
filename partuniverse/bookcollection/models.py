@@ -101,7 +101,7 @@ class Book(partsmanagement.models.Part):
     editor = models.ManyToManyField(
         Person,
         related_name='+',
-        verbose_name=_('Editor'),
+        verbose_name=_('Editors'),
         help_text=_("The editor of a book or the collection."),
         blank=True
     )
