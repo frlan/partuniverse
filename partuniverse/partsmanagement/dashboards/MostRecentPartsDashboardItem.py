@@ -13,7 +13,7 @@ class MostRecentPartsDashboardItem(DashboardItem):
     description = "Display a table with the most recent created/updated parts."
 
     def render(self):
-        parts = Part.objects.order_by('-date')[:5].all()
+        parts = Part.objects.order_by('-creation_time')[:5].all()
         template = loader.get_template('dashboard/most_recent_parts.html')
         context = RequestContext(self.container.request, {
             'parts': parts,
