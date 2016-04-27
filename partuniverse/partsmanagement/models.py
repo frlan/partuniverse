@@ -69,7 +69,7 @@ class StorageType(models.Model):
         help_text=_("The name for a storage type. Should be unique")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -112,7 +112,7 @@ class StoragePlace(models.Model):
         help_text=_("A short description.")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         if self.parent is None:
             return self.name
         else:
@@ -171,7 +171,7 @@ class Manufacturer(models.Model):
         help_text=_("The user the manufacturer was created by")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -199,7 +199,7 @@ class Distributor(models.Model):
         help_text=_("User who created the distributor.")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -229,7 +229,7 @@ class Category(models.Model):
         help_text=_("A chance to summarize usage of category.")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         if self.parent is None:
             return self.name
         else:
@@ -356,7 +356,7 @@ class Part(models.Model):
         help_text=_("Whether the part is active or not.")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return (u'%s' % self.name)
 
     def get_on_stock(self):
@@ -484,7 +484,7 @@ class StorageItem(models.Model):
         help_text=_("Whether the storage item is active.")
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return (u'%s; %s' % (self.part, self.storage))
 
     class Meta:
@@ -568,7 +568,7 @@ class Transaction(models.Model):
         tmp_storage_item.save()
         super(Transaction, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return (u'%s %s %s' % (self.subject, self.storage_item, self.date))
 
     class Meta:
