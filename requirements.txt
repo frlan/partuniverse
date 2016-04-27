@@ -1,4 +1,4 @@
-Django==1.9.1
+Django==1.9.5
 coverage
 argparse
 django-user-accounts
@@ -8,3 +8,4 @@ django-mathfilters
 django-appconf
 pytz
 django-semanticui-form
+django-polymorphic

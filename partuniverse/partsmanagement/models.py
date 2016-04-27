@@ -9,6 +9,8 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 
+from polymorphic.models import PolymorphicModel
+
 # Exceptions
 from .exceptions import (
     PartsNotFitException,
@@ -273,7 +275,7 @@ class Category(models.Model):
         ordering = ['name']
 
 
-class Part(models.Model):
+class Part(PolymorphicModel):
     """ Representing a special kind of parts """
 
     name = models.CharField(
