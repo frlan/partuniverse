@@ -6,6 +6,18 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
+def forwards_func(apps, schema_editor):
+    MyModel = apps.get_model('partsmanagement', 'Part')
+    ContentType = apps.get_model('contenttypes', 'ContentType')
+
+    new_ct = ContentType.objects.get_for_model(MyModel)
+    MyModel.objects.filter(polymorphic_ctype__isnull=True).update(polymorphic_ctype=new_ct)
+
+
+def backwards_func(apps, schema_editor):
+    pass
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -19,4 +31,5 @@ class Migration(migrations.Migration):
             name='polymorphic_ctype',
             field=models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='polymorphic_partsmanagement.part_set+', to='contenttypes.ContentType'),
         ),
+        migrations.RunPython(forwards_func, backwards_func),
     ]
