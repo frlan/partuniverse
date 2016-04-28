@@ -1,11 +1,11 @@
-Django==1.9.5
-coverage
 argparse
+coverage
+Django==1.9.5
+django-appconf
+django-mathfilters
+django-polymorphic
+django-semanticui-form
 django-user-accounts
 gunicorn
 Pillow
-django-mathfilters
-django-appconf
 pytz
-django-semanticui-form
-django-polymorphic
