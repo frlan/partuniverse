@@ -38,33 +38,33 @@ TEMPLATE_DIRS = (
 # Application definition
 
 INSTALLED_APPS = (
-    'account',
-    'bookcollection'
-    'dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.humanize',
-    'django.contrib.messages',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mathfilters',
-    'partsmanagement',
-    'polymorphic',
+    'django.contrib.sites',
+    'django.contrib.humanize',
     'semanticuiform',
+    'mathfilters',
+    'account',
+    'partsmanagement',
+    'dashboard',
+    'polymorphic',
+    'bookcollection'
 )
 
 MIDDLEWARE_CLASSES = (
-    'account.middleware.LocaleMiddleware',
-    'account.middleware.TimezoneMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'partuniverse.urls'
