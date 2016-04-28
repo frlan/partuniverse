@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-import partsmanagement
-
+from partsmanagement.models import Part
 from django.utils.translation import ugettext_lazy as _
 from polymorphic.models import PolymorphicModel
 
@@ -60,7 +59,7 @@ class Person(models.Model):
         ordering = ['last_name', 'first_name']
 
 
-class Book(partsmanagement.models.Part):
+class Book(Part):
 
     title = models.CharField(
         _("Title"),
