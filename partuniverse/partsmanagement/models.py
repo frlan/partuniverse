@@ -116,7 +116,7 @@ class StoragePlace(models.Model):
         if self.parent is None:
             return self.name
         else:
-            return (u'%s%s%s' % (self.parent.__unicode__(),
+            return (u'%s%s%s' % (self.parent.__str__(),
                                  settings.PARENT_DELIMITER,
                                  self.name))
 
