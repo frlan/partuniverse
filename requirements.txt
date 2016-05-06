@@ -1,7 +1,8 @@
 argparse
 coverage
-Django==1.9.5
+Django==1.9.6
 django-appconf
+django-import-export
 django-mathfilters
 django-polymorphic
 django-semanticui-form
