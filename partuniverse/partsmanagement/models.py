@@ -234,7 +234,7 @@ class Category(models.Model):
             return self.name
         else:
             return (u'%s%s%s' % (
-                self.parent.__unicode__(),
+                self.parent.__str__(),
                 settings.PARENT_DELIMITER,
                 self.name)
             )
