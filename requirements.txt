@@ -4,7 +4,7 @@ Django==1.9.6
 django-appconf
 django-import-export
 django-mathfilters
-django-polymorphic
+django-polymorphic=0.9.2
 django-semanticui-form
 django-user-accounts
 gunicorn
