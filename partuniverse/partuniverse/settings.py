@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'semanticuiform',
+    'import_export',
     'mathfilters',
     'account',
     'partsmanagement',

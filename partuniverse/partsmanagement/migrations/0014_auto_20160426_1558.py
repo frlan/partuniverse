@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import datetime
+import uuid
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
@@ -156,7 +157,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='part',
             name='url',
-            field=models.CharField(blank=True, help_text='The URL of the original image.', max_length=255, null=True),
+            field=models.CharField(unique=False, default=uuid.uuid4, blank=True, help_text='The URL of the original image.', max_length=255, null=True),
         ),
         migrations.AlterField(
             model_name='storageitem',
