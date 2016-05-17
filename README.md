@@ -123,6 +123,47 @@ For translation the files you can use for example poedit or just any
 text editor -- like Geany which is also having some translations
 plugin.
 
+## Concepts
+
+You can drill down the basic idea into one sentence: Everything is a
+storage place and everything is a part. But let's have a deeper look.
+
+### The part
+
+A part describes a more or less abstract item. It consists at minimum
+of a name and a SKU (Stock Keeping Unit) -- something like an internal
+part number. It's not a specific item but a group of items. In general
+a part is storing general information, but not quantity or where to
+find it inside the storage.
+
+Differing parts by e.g. different serial numbers is currently not yet
+implemented.
+
+
+### The storage item
+
+Having a part, the storage item is the combination of a particular
+storage place and a quantity of items stored at that point.
+
+### A storage place
+
+A storage place can be everything where you can put things in. This could be a
+
+* room
+* shelve
+* box
+* gas tank
+* country
+* a person
+* ....
+
+A storage place is having a type as well as can be chained. So you
+might create a storage »room«, putting a storage place »shelve« into
+it. This shelve may contain several boxes ....
+
+Also a storage place can be relocated including all storage places and
+storage items connected.
+
 
 ## Hacking & Contribution
 
