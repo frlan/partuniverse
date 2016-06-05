@@ -1,6 +1,6 @@
 argparse
 coverage
-Django==1.9.6
+Django==1.9.7
 django-appconf
 django-import-export
 django-mathfilters
