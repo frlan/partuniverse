@@ -16,7 +16,7 @@ from .exceptions import (
     CircleDetectedException
 )
 from datetime import datetime
-
+from hashlib import sha256
 # Logging
 import logging
 logger = logging.getLogger(__name__)
@@ -285,7 +285,9 @@ class Part(models.Model):
         _("SKU"),
         max_length=60,
         unique=True,
-        help_text=_("A installation unique idendifier for the part.")
+        help_text=_("A installation unique idendifier for the part."),
+        null=True,
+        blank=True
     )
     description = models.TextField(
         _("Description"),
@@ -358,6 +360,11 @@ class Part(models.Model):
 
     def __str__(self):
         return (u'%s' % self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.sku:
+            self.sku = '{}-{}'.format(sha256(self.name).hexdigest(), datetime.now())
+        super(Part, self).save(*args, **kwargs)
 
     def get_on_stock(self):
         """ Returns the amount of items which are on stock over all storages """
