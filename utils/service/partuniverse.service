@@ -1,6 +1,3 @@
-#
-# A systemd service definition for partuniverse
-#
 [Unit]
 Description=partuniverse service definition
 Requires=nginx.service partuniverse.socket
@@ -9,9 +6,12 @@ After=network.target
 
 [Service]
 PIDFile=/run/partuniverse/pid
+PermissionsStartOnly=true
 User=partuniverse
 Group=partuniverse
 WorkingDirectory=/home/partuniverse/partuniverse/partuniverse
+ExecStartPre=/bin/mkdir /run/partuniverse
+ExecStartPre=/bin/chown -R partuniverse:partuniverse /run/partuniverse
 ExecStart=/home/partuniverse/partuniverse/bin/gunicorn --pid /run/partuniverse/pid partuniverse.wsgi:application --bind 127.0.0.1:8005
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
