@@ -644,3 +644,21 @@ class StrorageParentTestCase(TestCase):
         self.assertEqual(self.stor1.__str__(), stor_result1)
         self.assertEqual(self.stor2.__str__(), stor_result2)
         self.assertEqual(self.stor3.__str__(), stor_result3)
+
+
+########################################################################
+# Manufacturer
+########################################################################
+class ManufacturerWithUnicodeTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret'
+        )
+        self.manu = Manufacturer.objects.create(
+            name=u'Maü¼fakturer',
+            created_by=self.user)
+
+    def test_manufakturer_name(self):
+        print(self.manu)
