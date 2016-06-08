@@ -661,7 +661,7 @@ class ManufacturerWithUnicodeTestCase(TestCase):
             created_by=self.user)
 
     def test_manufakturer_name(self):
-        print(self.manu)
+        print(self.manu.__str__())
 
 
 ########################################################################
@@ -679,4 +679,4 @@ class DistributorWithUnicodeTestCase(TestCase):
             created_by=self.user)
 
     def test_manufakturer_name(self):
-        print(self.manu)
+        print(self.manu.__str__())
