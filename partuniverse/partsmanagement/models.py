@@ -172,7 +172,7 @@ class Manufacturer(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return (u'%s' % (self.name))
 
     class Meta:
         verbose_name = _("Manufacturer")
@@ -200,7 +200,7 @@ class Distributor(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return (u'%s' % (self.name))
 
     class Meta:
         verbose_name = _("Distributor")
@@ -231,7 +231,7 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return self.name
+            return (u'%s' % (self.name))
         else:
             return (u'%s%s%s' % (
                 self.parent.__str__(),
