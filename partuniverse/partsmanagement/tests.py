@@ -662,3 +662,21 @@ class ManufacturerWithUnicodeTestCase(TestCase):
 
     def test_manufakturer_name(self):
         print(self.manu)
+
+
+########################################################################
+# Distributor
+########################################################################
+class DistributorWithUnicodeTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret'
+        )
+        self.manu = Distributor.objects.create(
+            name=u'Distribü³r',
+            created_by=self.user)
+
+    def test_manufakturer_name(self):
+        print(self.manu)
