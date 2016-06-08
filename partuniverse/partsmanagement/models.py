@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 # Exceptions
 from .exceptions import (
@@ -61,6 +62,7 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
     return result_list
 
 
+@python_2_unicode_compatible
 class StorageType(models.Model):
     """ Defining a general typ of storage """
 
@@ -70,7 +72,7 @@ class StorageType(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return ('%s' % self.name)
 
     class Meta:
         verbose_name = _("Storage Type")
@@ -78,6 +80,7 @@ class StorageType(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class StoragePlace(models.Model):
     """ Representing the general storage place. This can be either a
         general storage or a particular place inside a storage as
@@ -114,11 +117,11 @@ class StoragePlace(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return self.name
+            return ('%s' % self.name)
         else:
-            return (u'%s%s%s' % (self.parent.__str__(),
-                                 settings.PARENT_DELIMITER,
-                                 self.name))
+            return ('%s%s%s' % (self.parent.__str__(),
+                                settings.PARENT_DELIMITER,
+                                self.name))
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
@@ -154,6 +157,7 @@ class StoragePlace(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
@@ -172,7 +176,7 @@ class Manufacturer(models.Model):
     )
 
     def __str__(self):
-        return (u'%s' % (self.name))
+        return ('%s' % self.name)
 
     class Meta:
         verbose_name = _("Manufacturer")
@@ -180,6 +184,7 @@ class Manufacturer(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
@@ -200,7 +205,7 @@ class Distributor(models.Model):
     )
 
     def __str__(self):
-        return (u'%s' % (self.name))
+        return ('%s' % self.name)
 
     class Meta:
         verbose_name = _("Distributor")
@@ -208,6 +213,7 @@ class Distributor(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     """ Representing a category a part might contains to.
     E.g. resistor """
@@ -231,9 +237,9 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return (u'%s' % (self.name))
+            return ('{}'.format(self.name))
         else:
-            return (u'%s%s%s' % (
+            return ('%s%s%s' % (
                 self.parent.__str__(),
                 settings.PARENT_DELIMITER,
                 self.name)
@@ -273,6 +279,7 @@ class Category(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class Part(models.Model):
     """ Representing a special kind of parts """
 
@@ -359,11 +366,14 @@ class Part(models.Model):
     )
 
     def __str__(self):
-        return (u'%s' % self.name)
+        return ('%s' % self.name)
 
     def save(self, *args, **kwargs):
         if not self.sku:
-            self.sku = '{}-{}'.format(sha256(self.name).hexdigest(), datetime.now())
+            self.sku = '{}-{}'.format(
+                sha256(self.name.encode('utf-8')).hexdigest(),
+                datetime.now()
+            )
         super(Part, self).save(*args, **kwargs)
 
     def get_on_stock(self):
@@ -468,6 +478,7 @@ class Part(models.Model):
         ordering = ['name']
 
 
+@python_2_unicode_compatible
 class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
@@ -492,7 +503,7 @@ class StorageItem(models.Model):
     )
 
     def __str__(self):
-        return (u'%s; %s' % (self.part, self.storage))
+        return ('%s; %s' % (self.part, self.storage))
 
     class Meta:
         unique_together = ("part", "storage")
@@ -501,6 +512,7 @@ class StorageItem(models.Model):
         ordering = ['storage', 'part']
 
 
+@python_2_unicode_compatible
 class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
@@ -576,7 +588,7 @@ class Transaction(models.Model):
         super(Transaction, self).save(*args, **kwargs)
 
     def __str__(self):
-        return (u'%s %s %s' % (self.subject, self.storage_item, self.date))
+        return ('%s %s %s' % (self.subject, self.storage_item, self.date))
 
     class Meta:
         verbose_name = _("Transaction")
