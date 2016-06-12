@@ -667,7 +667,7 @@ class Stocktaking(TestCase):
         except:
             self.assertTrue(True)
 
-    def test_new_zeor_amount(self):
+    def test_new_zero_amount(self):
         self.storage_item1.stock_report(0)
         self.assertEqual(
             StorageItem.objects.get(pk=self.storage_item1).on_stock == 0
