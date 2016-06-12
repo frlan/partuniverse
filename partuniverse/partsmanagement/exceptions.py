@@ -30,3 +30,13 @@ class CircleDetectedException(PartsmanagementException):
     """
     def __init__(self, error):
         logger.error(_(u"Circle detected: %s" % error))
+
+
+class StorageItemBelowZeroException(PartsmanagementException):
+    """
+    Used in case of trying to set a StorageItem with an negative amount
+    of items
+    """
+    def __init__(self, error):
+        logger.error(_(u("Amount of items inside a storage cannot be under 0:",
+            "%s") % error))
