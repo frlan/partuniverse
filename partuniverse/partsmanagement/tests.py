@@ -647,14 +647,24 @@ class Stocktaking(TestCase):
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
-        # Setting up storage item
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         unit='m',
+                                         sku=u'tp2',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        # Setting up storage items
         self.storage_item1 = StorageItem.objects.create(
             part=self.part1,
             storage=self.storageplace1,
             on_stock=25)
+        self.storage_item2 = StorageItem.objects.create(
+            part=self.part2,
+            storage=self.storageplace1,
+            on_stock=None)
 
     def test_new_amount_on_stock(self):
-        self.storage_item1.stock_report(50)
+        self.storage_item1.stock_report(50, requested_user=self.user)
         self.assertEqual(
             StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 50
         )
@@ -662,15 +672,29 @@ class Stocktaking(TestCase):
     def test_new_negativ_amount(self):
         # We expect an exception in case of a negative value here
         try:
-            self.storage_item1.stock_report(-50)
+            self.storage_item1.stock_report(-50, requested_user=self.user)
             self.assertFalse(True)
         except:
             self.assertTrue(True)
 
     def test_new_zero_amount(self):
-        self.storage_item1.stock_report(0)
+        self.storage_item1.stock_report(0, requested_user=self.user)
         self.assertEqual(
             StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 0
+        )
+
+    def test_with_none_on_stock_and_reporting_zero(self):
+        self.storage_item1.stock_report(0, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock,
+            None
+        )
+
+    def test_with_none_on_stock_and_reporting_above_zero(self):
+        self.storage_item1.stock_report(10, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock,
+            10
         )
 
 
