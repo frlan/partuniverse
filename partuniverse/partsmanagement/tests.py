@@ -656,7 +656,7 @@ class Stocktaking(TestCase):
     def test_new_amount_on_stock(self):
         self.storage_item1.stock_report(50)
         self.assertEqual(
-            StorageItem.objects.get(pk=self.storage_item1).on_stock == 50
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 50
         )
 
     def test_new_negativ_amount(self):
@@ -670,7 +670,7 @@ class Stocktaking(TestCase):
     def test_new_zero_amount(self):
         self.storage_item1.stock_report(0)
         self.assertEqual(
-            StorageItem.objects.get(pk=self.storage_item1).on_stock == 0
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 0
         )
 
 
