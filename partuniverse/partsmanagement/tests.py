@@ -621,11 +621,62 @@ class StorageItemsMergeTestCase(TestCase):
         except:
             self.assertFalse(True)
 
+
+class Stocktaking(TestCase):
+    """
+        This check tests the stocktaking interface of a storage item
+    """
+    def setUp(self):
+        # Setting up a category
+        self.cat = Category.objects.create(name=u'Category 1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+        # Basis setting of storage
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace1 = StoragePlace.objects.create(
+            name=u'Test Storage1',
+            storage_type=self.storagetype)
+
+        # Some items
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         unit='m',
+                                         sku=u'tp1',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        # Setting up storage item
+        self.storage_item1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace1,
+            on_stock=25)
+
+    def test_new_amount_on_stock(self):
+        self.storage_item1.stock_report(50)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1).on_stock == 50
+        )
+
+    def test_new_negativ_amount(self):
+        # We expect an exception in case of a negative value here
+        try:
+            self.storage_item1.stock_report(-50)
+            self.assertFalse(True)
+        except:
+            self.assertTrue(True)
+
+    def test_new_zeor_amount(self):
+        self.storage_item1.stock_report(0)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1).on_stock == 0
+        )
+
+
 ########################################################################
 # Storage
 ########################################################################
-
-
 class StrorageParentTestCase(TestCase):
     """ Test to check whether storage name is printed correctly.
         If there is a parent, it should be also printed seperated by the
