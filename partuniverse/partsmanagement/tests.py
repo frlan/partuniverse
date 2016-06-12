@@ -12,8 +12,6 @@ from .views import *
 ########################################################################
 # Category
 ########################################################################
-
-
 class CategoryTestCase(TestCase):
     """ Test to check whether category name is printed correctly.
         If there is a parent, it should be also printed seperated by a : """
@@ -78,8 +76,6 @@ class CategoryWithCircleAnsistor(TestCase):
 ########################################################################
 # Transaction
 ########################################################################
-
-
 class TransactionInventoryChange(TestCase):
     """ This is a test to check whether a new transaction is increasing
         on_stock or decreasing on_stock of a particular storage item """
@@ -203,8 +199,12 @@ class TransactionInventoryChangeOnUpdate(TestCase):
 ########################################################################
 # Part related
 ########################################################################
-
 class PartListWithOnStockValueFromSI(TestCase):
+    """
+        This test shall test, whether the method
+        get_all_storage_item_parts_with_on_stock_and_min_stock():
+        correct returns Parts that are in stock.
+    """
     def setUp(self):
         # Setting up categories
         self.cat = Category.objects.create(name=u'Category 1')
