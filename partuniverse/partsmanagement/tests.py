@@ -646,10 +646,14 @@ class Stocktaking(TestCase):
                                          sku=u'tp1',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
-
         self.part2 = Part.objects.create(name=u'Test Part 2',
                                          unit='m',
                                          sku=u'tp2',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.part3 = Part.objects.create(name=u'Test Part 3',
+                                         unit='m',
+                                         sku=u'tp3',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
 
@@ -660,6 +664,10 @@ class Stocktaking(TestCase):
             on_stock=25)
         self.storage_item2 = StorageItem.objects.create(
             part=self.part2,
+            storage=self.storageplace1,
+            on_stock=None)
+        self.storage_item3 = StorageItem.objects.create(
+            part=self.part3,
             storage=self.storageplace1,
             on_stock=None)
 
@@ -684,16 +692,16 @@ class Stocktaking(TestCase):
         )
 
     def test_with_none_on_stock_and_reporting_zero(self):
-        self.storage_item1.stock_report(0, requested_user=self.user)
+        self.storage_item2.stock_report(0, requested_user=self.user)
         self.assertEqual(
-            StorageItem.objects.get(pk=self.storage_item1.id).on_stock,
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock,
             None
         )
 
     def test_with_none_on_stock_and_reporting_above_zero(self):
-        self.storage_item1.stock_report(10, requested_user=self.user)
+        self.storage_item3.stock_report(10, requested_user=self.user)
         self.assertEqual(
-            StorageItem.objects.get(pk=self.storage_item1.id).on_stock,
+            StorageItem.objects.get(pk=self.storage_item3.id).on_stock,
             10
         )
 
