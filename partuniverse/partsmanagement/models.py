@@ -504,7 +504,7 @@ class StorageItem(models.Model):
     )
 
     def __str__(self):
-        return ('%s; %s' % (self.part, self.storage))
+        return (u'%s; %s' % (self.part, self.storage))
 
     def stock_report(self, new_on_stock, requested_user):
         if new_on_stock < 0:
