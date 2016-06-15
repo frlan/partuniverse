@@ -9,6 +9,7 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils import timezone
 
 # Exceptions
 from .exceptions import (
@@ -505,6 +506,28 @@ class StorageItem(models.Model):
     def __str__(self):
         return ('%s; %s' % (self.part, self.storage))
 
+    def stock_report(self, new_on_stock, requested_user):
+        if new_on_stock < 0:
+            raise StorageItemBelowZeroException(
+                u("Tried to set {} amount below 0" % self.name)
+            )
+
+        if new_on_stock >= 0:
+            if self.on_stock is None and new_on_stock == 0:
+                return
+            elif self.on_stock is None:
+                difference = new_on_stock
+            else:
+                difference = new_on_stock - self.on_stock
+
+            trans = Transaction.objects.create(
+                subject=_(u'Difference from Stocktaking'),
+                created_by=requested_user,
+                amount=difference,
+                storage_item=self,
+                date=timezone.now()
+            )
+
     class Meta:
         unique_together = ("part", "storage")
         verbose_name = _("Storage Item")
@@ -584,6 +607,8 @@ class Transaction(models.Model):
 
         if tmp_storage_item.on_stock is not None:
             tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
+        elif self.amount is not None:
+            tmp_storage_item.on_stock = self.amount
         tmp_storage_item.save()
         super(Transaction, self).save(*args, **kwargs)
 
