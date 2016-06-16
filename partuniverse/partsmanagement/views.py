@@ -15,7 +15,8 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from django.http import HttpResponseRedirect
 from django.forms.widgets import DateTimeInput
-
+from django.views.generic.detail import SingleObjectTemplateResponseMixin
+from decimal import *
 # Importing models
 from partsmanagement.models import *
 
@@ -48,11 +49,10 @@ class CategoryAddView(CreateView):
         form.instance.creation_time = now()
         return super(CategoryAddView, self).form_valid(form)
 
+
 ########################################################################
 # Part
 ########################################################################
-
-
 class PartsList(ListView):
     model = Part
     template_name = 'pmgmt/list.html'
@@ -259,10 +259,8 @@ class DistributorDeleteView(DeleteView):
 
 
 ########################################################################
-# Storage
+# StorageItem
 ########################################################################
-
-
 class StorageItemAddView(CreateView):
     model = StorageItem
     success_url = reverse_lazy('storage_item_list')
@@ -291,6 +289,20 @@ class StorageItemUpdateView(UpdateView):
     success_url = reverse_lazy('storage_item_list')
 
 
+class StorageItemStockTakingView(FormView):
+    form_class = StockTakingForm
+    success_url = reverse_lazy('storage_item_list')
+    template_name = 'pmgmt/storageitem/stocktaking.html'
+
+    def form_valid(self, form):
+        si = StorageItem.objects.get(pk=self.kwargs["pk"])
+        print si
+        print self.request.POST
+        print self.request.user
+        si.stock_report(Decimal(self.request.POST["amount"]), self.request.user)
+        return super(StorageItemStockTakingView, self).form_valid(form)
+
+
 class StorageItemMergeView(FormView):
     form_class = MergeStorageItemsForm
     success_url = reverse_lazy('storage_item_list')
@@ -303,11 +315,10 @@ class StorageItemMergeView(FormView):
             StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
         return super(StorageItemMergeView, self).form_valid(form)
 
+
 ########################################################################
 # StoragePlace
 ########################################################################
-
-
 class StoragePlaceAddView(CreateView):
     model = StoragePlace
     success_url = reverse_lazy('storage_list')
