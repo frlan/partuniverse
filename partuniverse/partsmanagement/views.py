@@ -27,11 +27,10 @@ from .forms import *
 import logging
 logger = logging.getLogger(__name__)
 
+
 ########################################################################
 # Category
 ########################################################################
-
-
 class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
@@ -141,7 +140,6 @@ class PartUpdateView(UpdateView):
 ########################################################################
 # Transaction
 ########################################################################
-
 class TransactionListView(ListView):
     model = Transaction
     template_name = 'pmgmt/transaction/list.html'
@@ -173,11 +171,10 @@ class TransactionAddView(CreateView):
         form.instance.timestamp = now()
         return super(TransactionAddView, self).form_valid(form)
 
+
 ########################################################################
 # Manufacturer
 ########################################################################
-
-
 class ManufacturerAddView(CreateView):
     model = Manufacturer
     success_url = reverse_lazy('manufacturer_list')
@@ -215,11 +212,10 @@ class ManufacturerDeleteView(DeleteView):
     success_url = reverse_lazy('manufacturer_list')
     template_name = 'pmgmt/manufacturer/delete.html'
 
+
 ########################################################################
 # Distributor
 ########################################################################
-
-
 class DistributorAddView(CreateView):
     model = Distributor
     success_url = reverse_lazy('distributor_list')
@@ -283,8 +279,7 @@ class StorageItemDetailView(DetailView):
 class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
-              'storage',
-              'on_stock')
+              'storage')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 
