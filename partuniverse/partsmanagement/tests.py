@@ -12,8 +12,6 @@ from .views import *
 ########################################################################
 # Category
 ########################################################################
-
-
 class CategoryTestCase(TestCase):
     """ Test to check whether category name is printed correctly.
         If there is a parent, it should be also printed seperated by a : """
@@ -78,8 +76,6 @@ class CategoryWithCircleAnsistor(TestCase):
 ########################################################################
 # Transaction
 ########################################################################
-
-
 class TransactionInventoryChange(TestCase):
     """ This is a test to check whether a new transaction is increasing
         on_stock or decreasing on_stock of a particular storage item """
@@ -203,8 +199,12 @@ class TransactionInventoryChangeOnUpdate(TestCase):
 ########################################################################
 # Part related
 ########################################################################
-
 class PartListWithOnStockValueFromSI(TestCase):
+    """
+        This test shall test, whether the method
+        get_all_storage_item_parts_with_on_stock_and_min_stock():
+        correct returns Parts that are in stock.
+    """
     def setUp(self):
         # Setting up categories
         self.cat = Category.objects.create(name=u'Category 1')
@@ -621,11 +621,94 @@ class StorageItemsMergeTestCase(TestCase):
         except:
             self.assertFalse(True)
 
+
+class Stocktaking(TestCase):
+    """
+        This check tests the stocktaking interface of a storage item
+    """
+    def setUp(self):
+        # Setting up a category
+        self.cat = Category.objects.create(name=u'Category 1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+        # Basis setting of storage
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace1 = StoragePlace.objects.create(
+            name=u'Test Storage1',
+            storage_type=self.storagetype)
+
+        # Some items
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         unit='m',
+                                         sku=u'tp1',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         unit='m',
+                                         sku=u'tp2',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.part3 = Part.objects.create(name=u'Test Part 3',
+                                         unit='m',
+                                         sku=u'tp3',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        # Setting up storage items
+        self.storage_item1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace1,
+            on_stock=25)
+        self.storage_item2 = StorageItem.objects.create(
+            part=self.part2,
+            storage=self.storageplace1,
+            on_stock=None)
+        self.storage_item3 = StorageItem.objects.create(
+            part=self.part3,
+            storage=self.storageplace1,
+            on_stock=None)
+
+    def test_new_amount_on_stock(self):
+        self.storage_item1.stock_report(50, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 50
+        )
+
+    def test_new_negativ_amount(self):
+        # We expect an exception in case of a negative value here
+        try:
+            self.storage_item1.stock_report(-50, requested_user=self.user)
+            self.assertFalse(True)
+        except:
+            self.assertTrue(True)
+
+    def test_new_zero_amount(self):
+        self.storage_item1.stock_report(0, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 0
+        )
+
+    def test_with_none_on_stock_and_reporting_zero(self):
+        self.storage_item2.stock_report(0, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock,
+            None
+        )
+
+    def test_with_none_on_stock_and_reporting_above_zero(self):
+        self.storage_item3.stock_report(10, requested_user=self.user)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item3.id).on_stock,
+            10
+        )
+
+
 ########################################################################
 # Storage
 ########################################################################
-
-
 class StrorageParentTestCase(TestCase):
     """ Test to check whether storage name is printed correctly.
         If there is a parent, it should be also printed seperated by the

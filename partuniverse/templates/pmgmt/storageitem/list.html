@@ -51,6 +51,7 @@
         {% if user.is_authenticated %}
         <a class="ui button blue" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>
         <a class="ui button blue" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a>
+        <a class="ui button blue" href="{% url "storage_item_stocktaking" item.id  %}">{% trans "Stock taking" %}</a>
         {% endif %}
       </td>
     </tr>

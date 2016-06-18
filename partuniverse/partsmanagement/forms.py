@@ -18,3 +18,15 @@ logger = logging.getLogger(__name__)
 
 class MergeStorageItemsForm(forms.Form):
     storageitem1 = forms.ModelChoiceField(queryset=StorageItem.objects.all())
+
+
+class StockTakingForm(forms.Form):
+    amount = forms.DecimalField(
+                _("Parts now inside storage"),
+                max_digits=10,
+                decimal_places=4,
+                help_text=_("The amount stored for future.")
+            )
+
+    def form_valid(self):
+        print self.__dict__
