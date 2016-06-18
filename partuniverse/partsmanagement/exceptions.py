@@ -38,5 +38,9 @@ class StorageItemBelowZeroException(PartsmanagementException):
     of items
     """
     def __init__(self, error):
-        logger.error(_(u("Amount of items inside a storage cannot be under 0:",
-            "%s") % error))
+        logger.error(
+            _(
+                u("Amount of items inside a storage cannot be under 0:",
+                   "%s") % error
+            )
+        )
