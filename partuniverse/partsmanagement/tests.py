@@ -25,9 +25,9 @@ class CategoryTestCase(TestCase):
         cat_result1 = u'Category 1'
         cat_result2 = u'Category 1' + settings.PARENT_DELIMITER + u'Category ü'
         cat_result3 = u'Category 1' + settings.PARENT_DELIMITER + u'Category ü' + settings.PARENT_DELIMITER + u'Category 3'
-        self.assertEqual(self.cat1.__str__(), cat_result1)
-        self.assertEqual(self.cat2.__str__(), cat_result2)
-        self.assertEqual(self.cat3.__str__(), cat_result3)
+        self.assertEqual(u'%s' % self.cat1, cat_result1)
+        self.assertEqual(u'%s' % self.cat2, cat_result2)
+        self.assertEqual(u'%s' % self.cat2, cat_result2)
 
 
 class CategoryParents(TestCase):
@@ -724,9 +724,9 @@ class StrorageParentTestCase(TestCase):
         stor_result1 = u'Storage Lvl 1'
         stor_result2 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2'
         stor_result3 = u'Storage Lvl 1' + settings.PARENT_DELIMITER + u'Storage Lvl 2' + settings.PARENT_DELIMITER + u'Storage Lvl 3 with unicode µä³½'
-        self.assertEqual(self.stor1.__str__(), stor_result1)
-        self.assertEqual(self.stor2.__str__(), stor_result2)
-        self.assertEqual(self.stor3.__str__(), stor_result3)
+        self.assertEqual(u'%s' % self.stor1, stor_result1)
+        self.assertEqual(u'%s' % self.stor2, stor_result2)
+        self.assertEqual(u'%s' % self.stor3, stor_result3)
 
 
 ########################################################################
