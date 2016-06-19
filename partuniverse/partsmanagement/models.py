@@ -118,9 +118,9 @@ class StoragePlace(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return ('%s' % self.name)
+            return (u'%s' % self.name)
         else:
-            return ('%s%s%s' % (self.parent.__str__(),
+            return (u'%s%s%s' % (self.parent,
                                 settings.PARENT_DELIMITER,
                                 self.name))
 
@@ -206,7 +206,7 @@ class Distributor(models.Model):
     )
 
     def __str__(self):
-        return ('%s' % self.name)
+        return (u'%s' % self.name)
 
     class Meta:
         verbose_name = _("Distributor")
@@ -238,10 +238,10 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return ('{}'.format(self.name))
+            return (u'{}'.format(self.name))
         else:
             return ('%s%s%s' % (
-                self.parent.__str__(),
+                self.parent,
                 settings.PARENT_DELIMITER,
                 self.name)
             )
