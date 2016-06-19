@@ -27,6 +27,3 @@ class StockTakingForm(forms.Form):
         max_digits=10,
         decimal_places=4,
         help_text=_("The amount of currently inside storage place."))
-
-    def form_valid(self):
-        print self.__dict__
