@@ -168,12 +168,12 @@ class Manufacturer(models.Model):
     )
     creation_time = models.DateTimeField(
         auto_now_add=True,
-        help_text=_("Timestamp the manufacturer was created at")
+        help_text=_("Timestamp the manufacturer was created at.")
     )
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Added by"),
-        help_text=_("The user the manufacturer was created by")
+        help_text=_("The user the manufacturer was created by.")
     )
 
     def __str__(self):
@@ -233,7 +233,7 @@ class Category(models.Model):
         _("Description"),
         blank=True,
         null=True,
-        help_text=_("A chance to summarize usage of category.")
+        help_text=_("A short summarize of this category.")
     )
 
     def __str__(self):
@@ -270,7 +270,7 @@ class Category(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {'parent': _('The storage cannot be one of its ancestors.')}
+                    {'parent': _('The category cannot be one of its ancestors.')}
                 )
 
     class Meta:
