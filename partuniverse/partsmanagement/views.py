@@ -291,9 +291,6 @@ class StorageItemStockTakingView(FormView):
 
     def form_valid(self, form):
         si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        print si
-        print self.request.POST
-        print self.request.user
         si.stock_report(Decimal(self.request.POST["amount"]), self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
