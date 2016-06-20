@@ -86,7 +86,7 @@ class PartsAddView(CreateView):
               'sku',
               'min_stock',
               'unit',
-              'price'
+              'price',
               'manufacturer',
               'distributor',
               'categories')
