@@ -73,7 +73,7 @@ class StorageType(models.Model):
     )
 
     def __str__(self):
-        return ('%s' % self.name)
+        return (u'%s' % self.name)
 
     class Meta:
         verbose_name = _("Storage Type")
@@ -241,7 +241,7 @@ class Category(models.Model):
         if self.parent is None:
             return (u'{}'.format(self.name))
         else:
-            return ('%s%s%s' % (
+            return (u'%s%s%s' % (
                 self.parent,
                 settings.PARENT_DELIMITER,
                 self.name)
