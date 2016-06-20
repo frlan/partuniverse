@@ -320,17 +320,17 @@ class Part(models.Model):
         default='---',
         help_text=_("The unit quantities are in.")
     )
-    url = models.CharField(
-        max_length=255,
-        null=True,
-        blank=True,
-        help_text=_("The URL of the original image.")
-    )
     pic = models.ImageField(
         null=True,
         blank=True,
         upload_to='uploads/',
         help_text=_("The actual image.")
+    )
+    image_url = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=_("The URL of the original image.")
     )
     manufacturer = models.ForeignKey(
         Manufacturer,
@@ -476,9 +476,9 @@ class Part(models.Model):
     def cache(self):
         """Store image locally if we have a URL"""
 
-        if self.url and not self.pic:
-            result = urllib.urlretrieve(self.url)
-            self.pic.save(os.path.basename(self.url),
+        if self.image_url and not self.pic:
+            result = urllib.urlretrieve(self.image_url)
+            self.pic.save(os.path.basename(self.image_url),
                           File(open(result[0])))
             self.save()
 
