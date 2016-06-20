@@ -346,6 +346,14 @@ class Part(models.Model):
         blank=True,
         help_text=_("The usual distributor of the part.")
     )
+    price = models.DecimalField(
+        _("Cost of the part"),
+        help_text=_("The cost/price for the part"),
+        null=True,
+        blank=True,
+        max_digits=6,
+        decimal_places=2
+    )
     categories = models.ManyToManyField(
         Category,
         verbose_name=_("Category"),

@@ -86,6 +86,7 @@ class PartsAddView(CreateView):
               'sku',
               'min_stock',
               'unit',
+              'price'
               'manufacturer',
               'distributor',
               'categories')
@@ -117,6 +118,7 @@ class PartDetailView(DetailView):
               'min_stock',
               'pic'
               'unit',
+              'price'
               'manufacturer',
               'distributor',
               'categories',
@@ -132,6 +134,7 @@ class PartUpdateView(UpdateView):
     fields = ('name',
               'min_stock',
               'unit',
+              'price'
               'manufacturer',
               'distributor',
               'categories')
