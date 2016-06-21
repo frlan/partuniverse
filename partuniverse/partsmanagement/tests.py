@@ -132,7 +132,6 @@ class TransactionInventoryChange(TestCase):
         )
         self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 90)
 
-
     def test_transaction_increase_on_stock(self):
         trans = Transaction.objects.create(
             subject=u'Testtransaction 1 with Unicode µä³½',
@@ -221,7 +220,6 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
         self.storage_item2 = StorageItem.objects.create(part=self.part2,
                                                         storage=self.storageplace,
                                                         on_stock=100)
-
 
     def test_transaction_update(self):
         # First create a transaction which can be changed
@@ -792,7 +790,8 @@ class ManufacturerWithUnicodeTestCase(TestCase):
             created_by=self.user)
 
     def test_manufakturer_name(self):
-        print(self.manu.__str__())
+        man_result = u'Maü¼fakturer'
+        self.assertEqual(u'%s' % self.manu, man_result)
 
 
 ########################################################################
