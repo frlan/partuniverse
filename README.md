@@ -23,11 +23,12 @@ Partuniverse depends on:
 - A database server supported by django (PostgreSQL recommended) and
   its development libraries --
   SQLlite -- the default -- should be fine for the very beginning
+- [Install](https://pillow.readthedocs.io/en/3.0.0/installation.html#linux-installation) development headers for the pillow.
 
 
 ### Buildout
 
-Install the dependcies via [zc.buildout](http://www.buildout.org/en/latest/):
+The [zc.buildout](http://www.buildout.org/en/latest/) and all the dependcies will be installed via its bootstrap script:
 
         $ pwd
         /path/to/your/sources/
