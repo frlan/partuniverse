@@ -164,15 +164,7 @@ class TransactionInventoryChangeOnUpdate(TestCase):
                                          unit='m',
                                          creation_time=timezone.now(),
                                          created_by=self.user)
-        self.part2 = Part.objects.create(name=u'Test Part 2',
-                                         sku=u'tp2',
-                                         unit='m',
-                                         creation_time=timezone.now(),
-                                         created_by=self.user)
         self.storage_item1 = StorageItem.objects.create(part=self.part1,
-                                                        storage=self.storageplace,
-                                                        on_stock=100)
-        self.storage_item1 = StorageItem.objects.create(part=self.part2,
                                                         storage=self.storageplace,
                                                         on_stock=100)
 
