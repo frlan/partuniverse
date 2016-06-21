@@ -118,7 +118,7 @@ class PartDetailView(DetailView):
               'min_stock',
               'pic'
               'unit',
-              'price'
+              'price',
               'manufacturer',
               'distributor',
               'categories',
