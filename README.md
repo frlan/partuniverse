@@ -20,33 +20,19 @@ Please report bugs and feature wishes to the project page at [github](https://gi
 Partuniverse depends on:
 
 - Django and therefore Python
-- Virtuelenv
 - A database server supported by django (PostgreSQL recommended) and
   its development libraries --
   SQLlite -- the default -- should be fine for the very beginning
 
 
-For detailed list of python dependencies, have a look at
-requirements.txt next to this file.
+### Buildout
 
-### Virtualenv
-
-Create a virtualenv inside partuniverse subfolder inside your git checkout:
+Install the dependcies via [zc.buildout](http://www.buildout.org/en/latest/):
 
         $ pwd
         /path/to/your/sources/
-        $ cd partuniverse
-        $ virtuelenv .
-
-This will create a folder inside the the partuniverse folder and
-install the basic virtualenv into it -- Python, pip.
-
-
-Once you have created the virtualenv, you have to install the needed packages.
-This can be done by:
-
-        $ cd partuniverse
-        $ bin/pip install -r ../requirements.txt
+        $ python bootstrap-buildout.py
+        $ ./bin/buildout
 
 ### Running
 
@@ -65,18 +51,16 @@ template for your production environment whereas
 `local_settings.py.tpl_dev` is targeting your local developing work.
 After this has been done, go ahead setting up your application.
 
-Being inside the virtual environment, go into the folder where you have
-checked out the sources. Within the folder you will find a partuniverse
-folder. Change into it. Run this as following:
+Go into the folder where you have checked out the sources.
 
-        $ bin/python manage.py syncdb
+First you will have to create the Database:
 
-This will initiate the database bhind and as you for creating a user
-you will need e.g. to access admin backend.
+        $ ./bin/django migrate
+
 
 If everything worked well, you can start the server (in debug mode):
 
-        $ bin/python manage.py runserver
+        $ ./bin/django runserver
 
 ### Running a production instance behind Nginx
 
@@ -88,14 +72,14 @@ This part assumes the following steps:
   `/home/partuniverse/partuniverse`
 * You are using systemd
 * You have already recommpilled translations by running
-  `python manage.py compilemessages`
+  `./bin/django compilemessages`
 
 Now do the following steps:
 
 1.  Create the directory /run/partuniverse
 2.  Set the owner of /run/partuniverse to partuniverse
 3.  Collect static files by running
-    `bin/python manage.py collectstatic` inside partuniversde project folder
+    `./bin/django collectstatic` inside partuniversde project folder
 4.  Copy `utils/service/spartuniverse.service` to `/etc/systemd/system`.
 5.  Copy `utils/service/partuniverse.socket` to `/etc/systemd/system`.
 6.  Copy `utils/service/nginx-host.conf` to an appropriate place and edit it to
@@ -113,11 +97,11 @@ You will find the tranlstions files inside
 locales/LC_MESSAGES/django.po encoded with gettext's po file format.
 To update translation file you can run
 
-        $ bin/python manage.py makemessages --all
+        $ ./bin/django makemessages --all
 
 After this has been done, translations needs to be recompiled with
 
-        $ bin/python manage.py compilemessages
+        $ ./bin/django compilemessages
 
 For translation the files you can use for example poedit or just any
 text editor -- like Geany which is also having some translations
@@ -185,7 +169,7 @@ To test your changes, you can use Django's test framework
 
 To run all available tests:
 
-        $ bin/python manage.py test
+        $ ./bin/django test
 
 Please add new tests for each feature you are adding to suitable
 test-files.
