@@ -134,7 +134,7 @@ class PartUpdateView(UpdateView):
     fields = ('name',
               'min_stock',
               'unit',
-              'price'
+              'price',
               'manufacturer',
               'distributor',
               'categories')
