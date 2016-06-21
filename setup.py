@@ -4,7 +4,7 @@ setup(
     name = "partuniverse",
     version = "1.0",
     url = 'http://github.com/frlan/partuniverse',
-    license = 'BSD',
+    license = 'AGPLv3+',
     description = "Part Mangement",
     author = 'Frank Lanitz',
     packages = find_packages('partuniverse'),
