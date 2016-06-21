@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
+from decimal import Decimal
 
 from .models import *
 from .views import *
@@ -131,6 +132,7 @@ class TransactionInventoryChange(TestCase):
         )
         self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 90)
 
+
     def test_transaction_increase_on_stock(self):
         trans = Transaction.objects.create(
             subject=u'Testtransaction 1 with Unicode µä³½',
@@ -185,7 +187,6 @@ class TransactionInventoryChangeOnUpdate(TestCase):
             storage_item=self.storage_item1,
             date=timezone.now(),
         )
-        trans.save()
         # The amound of storage item1 should be 90 at this point
         # Now the transaction is updated
 
@@ -212,7 +213,7 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
         self.storagetype = StorageType.objects.create(name=u"Testtype")
         self.storageplace = StoragePlace.objects.create(name=u'Test Storage',
                                                         storage_type=self.storagetype)
-        self.part1 = Part.objects.create(name=u'Test Part 1 with unicode µä³½',
+        self.part1 = Part.objects.create(name=u'Test Part 1',
                                          sku=u'tp1',
                                          unit='m',
                                          creation_time=timezone.now(),
@@ -229,6 +230,7 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
                                                         storage=self.storageplace,
                                                         on_stock=100)
 
+
     def test_transaction_update(self):
         # First create a transaction which can be changed
         trans = Transaction.objects.create(
@@ -238,15 +240,16 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
             storage_item=self.storage_item1,
             date=timezone.now(),
         )
-        trans.save()
         # The amound of storage item1 should be 90 at this point
 
         # Now the transaction is updated
         trans.storage_item = self.storage_item2
         trans.save()
 
-        self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 90)
-        self.assertEqual(int(StorageItem.objects.get(self.storage_item2.id).on_stock), 100)
+        self.assertEqual(int(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock), 90)
+        self.assertEqual(int(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 100)
 
 
 ########################################################################
