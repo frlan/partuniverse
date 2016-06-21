@@ -19,6 +19,8 @@ from .exceptions import (
 )
 from datetime import datetime
 from hashlib import sha256
+from decimal import Decimal
+
 # Logging
 import logging
 logger = logging.getLogger(__name__)
@@ -132,7 +134,8 @@ class StoragePlace(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ancestors at %s.' % (self.id)))
+                    _('There seems to be a circle inside ancestors at %s.'
+                    % (self.id)))
                 )
             else:
                 result.append(next.id)
@@ -604,21 +607,51 @@ class Transaction(models.Model):
         help_text=_("The timestamp transaction has been entered.")
     )
 
+    def __create_revert(self, old_transaction):
+        revert_tran = Transaction.objects.create(
+            subject=_(u'reverted {}'.format(old_transaction.subject)),
+            created_by=old_transaction.created_by,
+            amount=old_transaction.amount * -1,
+            storage_item=old_transaction.storage_item,
+            date=timezone.now()
+        )
+
     def save(self, *args, **kwargs):
-        tmp_storage_item = StorageItem.objects.get(pk=self.storage_item.id)
+        # Trying to get origin transaction if there is one
         try:
-            old_transaction = Transaction.objects.get(pk=self.id)
-            if old_transaction.amount and tmp_storage_item.on_stock is not None:
-                tmp_storage_item.on_stock = (
-                    tmp_storage_item.on_stock - old_transaction.amount)
+            if self.id:
+                old_transaction = Transaction.objects.get(pk=self.id)
+                # Checking whether StorageItem has changed and create new
+                # Transactions to represent this
+                if old_transaction.storage_item.id is not self.storage_item.id:
+                    self.__create_revert(old_transaction)
+                    new_tran = Transaction.objects.create(
+                        subject=_(u'moved {}'.format(old_transaction.subject)),
+                        created_by=old_transaction.created_by,
+                        amount=old_transaction.amount,
+                        storage_item=self.storage_item,
+                        date=timezone.now()
+                    )
+                if old_transaction.amount != self.amount:
+                    si = StorageItem.objects.get(pk=self.storage_item.id)
+                    if si.on_stock is not None:
+                        si.on_stock = (
+                            si.on_stock - old_transaction.amount) + self.amount
+                    elif self.amount:
+                        si.on_stock = self.amount
+                    si.save()
+            if not self.id:
+                # We got a new Transaction
+                si = StorageItem.objects.get(pk=self.storage_item.id)
+                if si.on_stock is not None:
+                    si.on_stock = si.on_stock + Decimal(self.amount)
+                elif self.amount is not None:
+                    si.on_stock = Decimal(self.amount)
+                si.save()
+
         except ObjectDoesNotExist:
             pass
 
-        if tmp_storage_item.on_stock is not None:
-            tmp_storage_item.on_stock = tmp_storage_item.on_stock + self.amount
-        elif self.amount is not None:
-            tmp_storage_item.on_stock = self.amount
-        tmp_storage_item.save()
         super(Transaction, self).save(*args, **kwargs)
 
     def __str__(self):
