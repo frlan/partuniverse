@@ -7,9 +7,9 @@
 <a class="active section" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
 {% endblock %}
 
-{% block head_title %}{{ object.name }}{% endblock %}
+{% block head_title %} {% if object.manufacturer %} {{ object.manufacturer }} - {% endif %}{{ object.name }}{% endblock %}
 
-{% block heading %}{{ object.name }}{% endblock %}
+{% block heading %} {% if object.manufacturer %} {{ object.manufacturer }} - {% endif %}{{ object.name }}{% endblock %}
 
 {% block content %}
 {% if object.disabled == True %}
