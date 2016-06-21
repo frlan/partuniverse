@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
+from decimal import Decimal
 
 from .models import *
 from .views import *
@@ -131,6 +132,7 @@ class TransactionInventoryChange(TestCase):
         )
         self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 90)
 
+
     def test_transaction_increase_on_stock(self):
         trans = Transaction.objects.create(
             subject=u'Testtransaction 1 with Unicode µä³½',
@@ -177,7 +179,6 @@ class TransactionInventoryChangeOnUpdate(TestCase):
             storage_item=self.storage_item1,
             date=timezone.now(),
         )
-        trans.save()
         # The amound of storage item1 should be 90 at this point
         # Now the transaction is updated
 
@@ -186,6 +187,61 @@ class TransactionInventoryChangeOnUpdate(TestCase):
 
         # The amount should now be 110
         self.assertEqual(int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 110)
+
+
+class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
+    """
+    This test will check, whether inventory is adjusted correct, when a
+    transaction is updated by changing the storage items
+    """
+
+    def setUp(self):
+        self.cat = Category.objects.create(name=u'Category 1')
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
+        self.manu = Manufacturer.objects.create(name=u'Test Manufacturer 1',
+                                                created_by=self.user)
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace = StoragePlace.objects.create(name=u'Test Storage',
+                                                        storage_type=self.storagetype)
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         sku=u'tp1',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
+        self.storage_item2 = StorageItem.objects.create(part=self.part2,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
+
+
+    def test_transaction_update(self):
+        # First create a transaction which can be changed
+        trans = Transaction.objects.create(
+            subject=u'Testtransaction 1',
+            created_by=self.user,
+            amount=-10,
+            storage_item=self.storage_item1,
+            date=timezone.now(),
+        )
+        # The amound of storage item1 should be 90 at this point
+
+        # Now the transaction is updated
+        trans.storage_item = self.storage_item2
+        trans.save()
+
+        self.assertEqual(int(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock), 90)
+        self.assertEqual(int(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 100)
 
 
 ########################################################################
