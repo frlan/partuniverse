@@ -4,9 +4,7 @@
 
 {% block breadcrumbs %}
 <a href="{% url "storage_item_list" %}" class="item">{% trans "Storage Items" %}</a>
-<div class="item">
-  <i class="right chevron icon divider"></i>
-</div>
+<i class="right chevron icon divider"></i>
 <a class="active item" href="{% url "storage_item_detail" object.id%}">{{ object }}</a>
 
 {% endblock %}
