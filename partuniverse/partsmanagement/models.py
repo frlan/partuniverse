@@ -133,10 +133,11 @@ class StoragePlace(models.Model):
         next = self
         while True:
             if next.id in result:
-                raise(CircleDetectedException(
-                    _('There seems to be a circle inside ancestors at %s.'
-                    % (self.id)))
-                )
+                raise(
+                    CircleDetectedException(
+                        _('There seems to be a circle inside ancestors at %s.'
+                        % (self.id)))
+                    )
             else:
                 result.append(next.id)
                 if next.parent is not None:
