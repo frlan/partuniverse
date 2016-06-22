@@ -89,7 +89,8 @@ class PartsAddView(CreateView):
               'price',
               'manufacturer',
               'distributor',
-              'categories')
+              'categories',
+              'pic')
 
     def form_valid(self, form):
         user = self.request.user
@@ -137,7 +138,8 @@ class PartUpdateView(UpdateView):
               'price',
               'manufacturer',
               'distributor',
-              'categories')
+              'categories',
+              'pic')
 
 
 ########################################################################

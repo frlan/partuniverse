@@ -14,7 +14,7 @@
 {% block heading %}{% trans "Add a new part" %}{% endblock %}
 
 {% block content %}
-<form method="post" class="ui form">
+<form method="post" class="ui form" enctype="multipart/form-data">
   {% csrf_token %}
   {{form|semanticui}}
   <input class="ui blue button" type="submit" value="Submit">

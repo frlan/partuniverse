@@ -3,8 +3,20 @@
 {% load i18n %}
 {% load semanticui %}
 
+{% block breadcrumbs %}
+<a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="section" href="{% url "part_detail" object.id %}">{{ object.name }}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
+{% endblock %}
+
+{% block head_title %} {% if object.manufacturer %} {{ object.manufacturer }} - {% endif %}{{ object.name }}{% endblock %}
+
+{% block heading %} {% if object.manufacturer %} {{ object.manufacturer }} - {% endif %}{{ object.name }}{% endblock %}
+
 {% block content %}
-<form method="post" class="ui form segment">
+<form method="post" class="ui form segment" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form|semanticui }}
   <input class="ui button blue" type="submit" value="Submit">
