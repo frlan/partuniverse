@@ -22,18 +22,13 @@
     <p>{% trans "The item is out of stock or below its minimum stock" %}</p>
 </div>
 {% endif %}
-
+<div class="ui stackable {% if object.pic %}two{% else %}one{% endif %} column grid">
+  <div class="column">
 <table class="ui definition table segment">
 <tr>
     <td>{% trans "Name" %}</td>
     <td>{{object.name}}</td>
 </tr>
-{% if object.pic %}
-<tr>
-    <td>{% trans "Image" %}</td>
-    <td><img class="ui fluid image small" src="{{object.pic.url}}"></td>
-</tr>
-{% endif %}
 <tr>
     <td>{% trans "SKU" %}</td>
     {% if object.sku %}
@@ -71,7 +66,14 @@
     <td>{{object.created_by}}</td>
 </tr>
 </table>
-
+  </div>
+{% if object.pic %}
+<div class="column">
+    <img class="ui fluid rounded image" src="{{object.pic.url}}">
+</div>
+{% endif %}
+</div>
+<div class="ui clearing hidden divider"></div>
 <p>
 {% if object.disabled == False %}
   <a class="ui blue button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
