@@ -617,9 +617,11 @@ class Transaction(models.Model):
         )
 
     def save(self, *args, **kwargs):
-        # Trying to get origin transaction if there is one
         try:
+            # Try to check whether we are editing an existing transaction or
+            # we need a new one.
             if self.id:
+                # Trying to get origin transaction if there is one
                 old_transaction = Transaction.objects.get(pk=self.id)
                 # Checking whether StorageItem has changed and create new
                 # Transactions to represent this
