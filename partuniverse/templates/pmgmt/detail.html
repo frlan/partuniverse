@@ -23,19 +23,19 @@
 </div>
 {% endif %}
 
-<table class="ui table segment">
+<table class="ui definition table segment">
 <tr>
-    <th>{% trans "Name" %}</th>
+    <td>{% trans "Name" %}</td>
     <td>{{object.name}}</td>
 </tr>
 {% if object.pic %}
 <tr>
-    <th>{% trans "Image" %}</th>
+    <td>{% trans "Image" %}</td>
     <td><img class="ui fluid image small" src="{{object.pic.url}}"></td>
 </tr>
 {% endif %}
 <tr>
-    <th>{% trans "SKU" %}</th>
+    <td>{% trans "SKU" %}</td>
     {% if object.sku %}
         <td>{{object.sku}}</td>
     {% else %}
@@ -43,11 +43,11 @@
     {% endif %}
 </tr>
 <tr>
-    <th>{% trans "Measuring unit" %}</th>
+    <td>{% trans "Measuring unit" %}</td>
     <td>{{object.unit}}</td>
 </tr>
 <tr>
-    <th>{% trans "Distributor" %}</th>
+    <td>{% trans "Distributor" %}</td>
     {% if object.distributor %}
         <td>{{object.distributor}}</td>
     {% else %}
@@ -55,7 +55,7 @@
     {% endif %}
 </tr>
 <tr>
-    <th>{% trans "Manufacturer" %}</th>
+    <td>{% trans "Manufacturer" %}</td>
     {% if object.manufacturer %}
         <td>{{object.manufacturer}}</td>
     {% else %}
@@ -63,11 +63,11 @@
     {% endif %}
 </tr>
 <tr>
-    <th>{% trans "Categories" %}</th>
+    <td>{% trans "Categories" %}</td>
     <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
 </tr>
 <tr>
-    <th>{% trans "Created by" %}</th>
+    <td>{% trans "Created by" %}</td>
     <td>{{object.created_by}}</td>
 </tr>
 </table>
