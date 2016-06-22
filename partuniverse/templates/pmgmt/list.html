@@ -21,16 +21,18 @@
 {% if object_list %}
 <table class="ui table segment">
   <colgroup>
+    <col width="15%">
     <col>
     <col width="10%">
     <col width="10%">
     <col width="18%">
     {% if user.is_authenticated %}
-    <col width="25%">
+    <col width="20%">
     {% endif %}
   </colgroup>
   <thead>
     <tr>
+      <th>&nbsp;</th>
       <th>{% trans "Name" %}</th>
       <th>{% trans "Minimum" %}</th>
       <th>{% trans "In Stock" %}</th>
@@ -43,6 +45,15 @@
   <tbody>
     {% for item in object_list %}
     <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
+      <td>
+        {% if item.pic %}
+          <a href="{% url "part_detail" item.id %}">
+            <img class="ui fluid rounded image" src="{{item.pic.url}}">
+          </a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+      </td>
       <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>
       <td>{{ item.min_stock|default:""|floatformat}}</td>
       <td>{{ item.get_on_stock|default:""|floatformat }}</td>
