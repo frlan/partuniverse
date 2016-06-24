@@ -158,6 +158,14 @@ with adding a test first. So if you want to fix a bug, create a test
 for that bug first. It's faster to check whether the bug is fixed and
 prevents the bug from happen again.
 
+### Branching
+
+Before start coding, make your own fork of partuniverse. This can be 
+done either at github or any other public git repo. Once you have done
+this, please develope one feature within one branch. Try to avoid hacking 
+on your master branch. Having feature-branches allows easier merges/discussion/*.
+When finishing your featre, please send a pull request or a patchset via mail.
+
 ### Code style
 
 Please use [pep8](https://www.python.org/dev/peps/pep-0008/) for coding.
