@@ -18,8 +18,9 @@ from .exceptions import (
     CircleDetectedException
 )
 from datetime import datetime
-from hashlib import sha256
 from decimal import Decimal
+
+import uuid
 
 # Logging
 import logging
@@ -383,10 +384,7 @@ class Part(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.sku:
-            self.sku = '{}-{}'.format(
-                sha256(self.name.encode('utf-8')).hexdigest(),
-                datetime.now()
-            )
+            self.sku = uuid.uuid1()
         super(Part, self).save(*args, **kwargs)
 
     def get_on_stock(self):
