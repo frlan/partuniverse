@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
 from decimal import Decimal
+import uuid
+
 
 from .models import *
 from .views import *
@@ -240,6 +242,73 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
             StorageItem.objects.get(pk=self.storage_item2.id).on_stock), 90)
         self.assertEqual(int(
             StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 100)
+
+
+class TransactionAllreadyRevertedTest(TestCase):
+    def setUp(self):
+        self.cat = Category.objects.create(name=u'Category 1')
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
+        self.manu = Manufacturer.objects.create(name=u'Test Manufacturer 1',
+                                                created_by=self.user)
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace = StoragePlace.objects.create(name=u'Test Storage',
+                                                        storage_type=self.storagetype)
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         sku=u'tp1',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
+        self.storage_item2 = StorageItem.objects.create(part=self.part2,
+                                                        storage=self.storageplace,
+                                                        on_stock=100)
+
+    def test_transaction_update(self):
+        # First create a transaction which can be changed
+        trans = Transaction.objects.create(
+            subject=u'Testtransaction 1',
+            created_by=self.user,
+            amount=-10,
+            storage_item=self.storage_item1,
+            date=timezone.now(),
+        )
+
+        trans.storage_item = self.storage_item2
+        trans.save()
+        trans.storage_item = self.storage_item1
+        trans.save()
+
+        # Checking whether orignal transaction still have it's old StorageItem
+        self.assertEqual(
+            Transaction.objects.get(pk=trans.id).storage_item.id,
+            StorageItem.objects.get(pk=self.storage_item1.id).id
+        )
+        # Checking whether new on_stock-values are fitting
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 100)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock, 90)
+
+        # Revert-transaction most likely will have pk2 and should be
+        # si=1
+        self.assertEqual(
+            Transaction.objects.get(pk=2).storage_item.id,
+            StorageItem.objects.get(pk=self.storage_item1.id).id
+        )
+        # New transaction (moved) will have pk3 and si=2
+        self.assertEqual(
+            Transaction.objects.get(pk=3).storage_item.id,
+            StorageItem.objects.get(pk=self.storage_item2.id).id
+        )
 
 
 ########################################################################
