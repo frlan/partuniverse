@@ -629,7 +629,10 @@ class Transaction(models.Model):
             self.reverted = True
             self.save()
         else:
-            raise TransactionAllreadyRevertedException('foo')
+            raise TransactionAllreadyRevertedException(
+                _(u'Transaktion »{}'
+                ' was alliiere reverted.'.format(self))
+            )
 
     def save(self, *args, **kwargs):
         try:
