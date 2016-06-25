@@ -249,7 +249,7 @@ class DistributorListView(ListView):
 
 
 class DistributorView(DetailView):
-    template_name = "pmgmt/distributor/detail.html"
+    template_name = 'pmgmt/distributor/detail.html'
     model = Distributor
 
 
