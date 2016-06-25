@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
 from decimal import Decimal
+import uuid
+
 
 from .models import *
 from .views import *
@@ -285,8 +287,26 @@ class TransactionAllreadyRevertedTest(TestCase):
         trans.storage_item = self.storage_item1
         trans.save()
 
+        # Checking whether orignal transaction still have it's old StorageItem
         self.assertEqual(
             Transaction.objects.get(pk=trans.id).storage_item.id,
+            StorageItem.objects.get(pk=self.storage_item1.id).id
+        )
+        # Checking whether new on_stock-values are fitting
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 100)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock, 90)
+
+        # Revert-transaction most likely will have pk2 and should be
+        # si=1
+        self.assertEqual(
+            Transaction.objects.get(pk=2).storage_item.id,
+            StorageItem.objects.get(pk=self.storage_item1.id).id
+        )
+        # New transaction (moved) will have pk3 and si=2
+        self.assertEqual(
+            Transaction.objects.get(pk=3).storage_item.id,
             StorageItem.objects.get(pk=self.storage_item2.id).id
         )
 
