@@ -202,6 +202,12 @@ class Distributor(models.Model):
         max_length=50,
         help_text=_("Name of the distributor")
     )
+    logo = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/logos/',
+        help_text=_("The logo of the company.")
+    )
 
     creation_time = models.DateTimeField(
         _("Creation time"),
