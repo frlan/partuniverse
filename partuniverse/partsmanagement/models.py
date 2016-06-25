@@ -11,11 +11,15 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
 
+import pdb
+import pprint
+
 # Exceptions
 from .exceptions import (
     PartsNotFitException,
     PartsmanagementException,
-    CircleDetectedException
+    CircleDetectedException,
+    TransactionAllreadyRevertedException
 )
 from datetime import datetime
 from hashlib import sha256
@@ -383,10 +387,7 @@ class Part(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.sku:
-            self.sku = '{}-{}'.format(
-                sha256(self.name.encode('utf-8')).hexdigest(),
-                datetime.now()
-            )
+            self.sku = uuid.uuid1()
         super(Part, self).save(*args, **kwargs)
 
     def get_on_stock(self):
@@ -607,14 +608,27 @@ class Transaction(models.Model):
         help_text=_("The timestamp transaction has been entered.")
     )
 
-    def __create_revert(self, old_transaction):
-        revert_tran = Transaction.objects.create(
-            subject=_(u'reverted {}'.format(old_transaction.subject)),
-            created_by=old_transaction.created_by,
-            amount=old_transaction.amount * -1,
-            storage_item=old_transaction.storage_item,
-            date=timezone.now()
-        )
+    reverted = models.BooleanField(
+        _("Reverted"),
+        default=False,
+        help_text=_(
+            "To control whether transaction has been already "
+            "reverted and cannot be reverted again.")
+    )
+
+    def __create_revert(self):
+        if self.reverted is False:
+            revert_tran = Transaction.objects.create(
+                subject=_(u'reverted {}'.format(self.subject)),
+                created_by=self.created_by,
+                amount=self.amount * -1,
+                storage_item=self.storage_item,
+                date=timezone.now()
+            )
+            self.reverted = True
+            self.save()
+        else:
+            raise TransactionAllreadyRevertedException('foo')
 
     def save(self, *args, **kwargs):
         try:
@@ -626,7 +640,7 @@ class Transaction(models.Model):
                 # Checking whether StorageItem has changed and create new
                 # Transactions to represent this
                 if old_transaction.storage_item.id is not self.storage_item.id:
-                    self.__create_revert(old_transaction)
+                    old_transaction.__create_revert()
                     new_tran = Transaction.objects.create(
                         subject=_(u'moved {}'.format(old_transaction.subject)),
                         created_by=old_transaction.created_by,
@@ -634,6 +648,10 @@ class Transaction(models.Model):
                         storage_item=self.storage_item,
                         date=timezone.now()
                     )
+                    # We are done here. Now old transaction is reverted,
+                    # Transaction with updated data is created.
+                    # No need for calling some extra save()
+                    return
                 if old_transaction.amount != self.amount:
                     si = StorageItem.objects.get(pk=self.storage_item.id)
                     if si.on_stock is not None:
