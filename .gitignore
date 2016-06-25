@@ -61,3 +61,6 @@ db.sqlite3
 bin/
 include/
 local/
+
+# Media
+partuniverse/media/uploads/
