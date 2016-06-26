@@ -15,10 +15,10 @@
 
 {% block content %}
 <form class="ui form" method="post" enctype="multipart/form-data">>
-	{% csrf_token %}
-	<table>
-		{{ form|semanticui }}
-	</table>
-	<input class="ui blue button " type="submit" value="Submit">
+    {% csrf_token %}
+    <table>
+        {{ form|semanticui }}
+    </table>
+    <input class="ui blue button " type="submit" value="Submit">
 </form>
 {% endblock %}
