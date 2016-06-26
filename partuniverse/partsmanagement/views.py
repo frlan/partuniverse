@@ -225,7 +225,7 @@ class DistributorAddView(CreateView):
     model = Distributor
     success_url = reverse_lazy('distributor_list')
     template_name = 'pmgmt/distributor/add.html'
-    fields = ('name', 'logo')
+    fields = ('name', 'logo', 'url')
 
     def form_valid(self, form):
         user = self.request.user
@@ -240,7 +240,7 @@ class DistributorUpdateView(UpdateView):
     model = Distributor
     # We don't want to make all fields editable via
     # normal frontend.
-    fields = ('name', 'logo')
+    fields = ('name', 'logo', 'url')
 
 
 class DistributorListView(ListView):

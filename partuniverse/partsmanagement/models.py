@@ -208,6 +208,11 @@ class Distributor(models.Model):
         upload_to='uploads/logos/',
         help_text=_("The logo of the company.")
     )
+    url = models.URLField(
+        null=True,
+        blank=True,
+        help_text=_("The URL to homepage of distributor")
+    )
 
     creation_time = models.DateTimeField(
         _("Creation time"),

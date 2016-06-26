@@ -19,10 +19,16 @@
     <td>{% trans "Name" %}</td>
     <td>{{object.name}}</td>
 </tr>
+{% if object.url %}
+<tr>
+    <td>{% trans "URL" %}</td>
+    <td><a href="{{object.url}}">{{object.url}}</a></td>
+</tr>
+{% endif %}
 </table>
 {% if object.logo %}
 <div class="column">
-    <img class="ui fluid rounded image" src="{{object.logo.url}}">
+    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
 </div>
 {% endif %}
 
