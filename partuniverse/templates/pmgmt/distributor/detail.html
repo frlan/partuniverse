@@ -14,6 +14,12 @@
 
 {% block content %}
 
+{% if object.logo %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
+</div>
+{% endif %}
+
 <table class="ui definition table segment">
 <tr>
     <td>{% trans "Name" %}</td>
@@ -26,12 +32,6 @@
 </tr>
 {% endif %}
 </table>
-{% if object.logo %}
-<div class="column">
-    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
-</div>
-{% endif %}
-
 
 {% if user.is_authenticated %}
 <p><a class="ui button blue" href="{% url "distributor_update" object.id %}">{% trans "Update item" %}</a></p>
