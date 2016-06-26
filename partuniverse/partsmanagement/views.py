@@ -184,7 +184,7 @@ class ManufacturerAddView(CreateView):
     model = Manufacturer
     success_url = reverse_lazy('manufacturer_list')
     template_name = 'pmgmt/manufacturer/add.html'
-    fields = ('name',)
+    fields = ('name', 'logo', 'url')
 
     def form_valid(self, form):
         user = self.request.user
@@ -199,7 +199,7 @@ class ManufacturerUpdateView(UpdateView):
     model = Manufacturer
     # We don't want to make all fields editable via
     # normal frontend.
-    fields = ('name',)
+    fields = ('name', 'logo', 'url')
 
 
 class ManufacturerListView(ListView):

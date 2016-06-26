@@ -175,6 +175,17 @@ class Manufacturer(models.Model):
         max_length=50,
         help_text=_("Name of the manufacturer.")
     )
+    logo = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/logos/',
+        help_text=_("The logo of the company.")
+    )
+    url = models.URLField(
+        null=True,
+        blank=True,
+        help_text=_("The URL to homepage of manufacturer.")
+    )
     creation_time = models.DateTimeField(
         auto_now_add=True,
         help_text=_("Timestamp the manufacturer was created at.")
@@ -211,7 +222,7 @@ class Distributor(models.Model):
     url = models.URLField(
         null=True,
         blank=True,
-        help_text=_("The URL to homepage of distributor")
+        help_text=_("The URL to homepage of distributor.")
     )
 
     creation_time = models.DateTimeField(
