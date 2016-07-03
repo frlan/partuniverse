@@ -14,6 +14,8 @@ from django.utils import timezone
 import pdb
 import pprint
 
+import os
+
 # Exceptions
 from .exceptions import (
     PartsNotFitException,
@@ -353,7 +355,7 @@ class Part(models.Model):
     pic = models.ImageField(
         null=True,
         blank=True,
-        upload_to='uploads/',
+        upload_to=os.path.join('part'),
         help_text=_("The actual image.")
     )
     image_url = models.CharField(
