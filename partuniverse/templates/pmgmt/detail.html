@@ -42,6 +42,14 @@
     <td>{{object.unit}}</td>
 </tr>
 <tr>
+    <td>{% trans "Costs" %}</td>
+    {% if object.sku %}
+        <td>{{object.price}}</td>
+    {% else %}
+        <td>&nbsp;</td>
+    {% endif %}
+</tr>
+<tr>
     <td>{% trans "Distributor" %}</td>
     {% if object.distributor %}
         <td>{{object.distributor}}</td>
