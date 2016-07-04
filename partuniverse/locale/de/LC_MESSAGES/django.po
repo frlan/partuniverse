@@ -395,7 +395,7 @@ msgstr "Einlagerung"
 #: templates/pmgmt/storageitem/list.html:6
 #: templates/pmgmt/storageitem/update.html:7
 msgid "Storage Items"
-msgstr "Einlagerung"
+msgstr "Einlagerungen"
 
 #: partsmanagement/models.py:563
 msgid "Subject"
@@ -407,7 +407,7 @@ msgstr "Eine kurze Zusammenfassung für die Transaktion."
 
 #: partsmanagement/models.py:572
 msgid "The part-storage relation the transaction was applied on."
-msgstr "Die Teile-Lager-Kombination, auf die bei der Transaktion zurück gegriffen wurde."
+msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
 #: partsmanagement/models.py:576
 msgid "Amount"
@@ -800,7 +800,7 @@ msgstr "Start"
 #: templates/base.html:32
 #| msgid "Storage Items"
 msgid "Storage items"
-msgstr "Teil--Lager-Kombination"
+msgstr "Einlagerungen"
 
 #: templates/base.html:42
 msgid "Manage"
@@ -1051,7 +1051,7 @@ msgstr "Aktaulisierung von »%(name)s«"
 
 #: templates/pmgmt/storageitem/add.html:7
 msgid "Storage Item Add"
-msgstr "Lager"
+msgstr "Einlagerung hinzufügen"
 
 #: templates/pmgmt/storageitem/add.html:10
 #: templates/pmgmt/storageitem/add.html:12
