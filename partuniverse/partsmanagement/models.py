@@ -118,6 +118,12 @@ class StoragePlace(models.Model):
         default=False,
         help_text=_("Whether a storage is active.")
     )
+    pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/storageplaces/',
+        help_text=_("So does look the place in real.")
+    )
     description = models.TextField(
         _("Description"),
         blank=True,

@@ -14,6 +14,12 @@
 
 {% block content %}
 
+{% if object.pic %}
+<div class="column">
+    <img class="ui fluid rounded image" src="{{object.pic.url}}">
+</div>
+{% endif %}
+
 <table class="ui definition table">
   <colgroup>
     <col width="14%">

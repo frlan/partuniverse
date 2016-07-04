@@ -14,7 +14,7 @@
 {% block heading %}{% blocktrans with name=object.name %}Update of „{{ name }}“{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<form class="ui form" method="post">
+<form class="ui form" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form|semanticui }}
 	<input class="ui blue button" type="submit" value="Submit">

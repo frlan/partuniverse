@@ -15,7 +15,7 @@
 
 {% block content %}
 <p>{% trans "Use this to add new storage places e.g. new shelf." %}</p>
-<form method="post" class="ui form" >
+<form method="post" class="ui form" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form|semanticui }}
   <input class="ui button blue" type="submit" value="Submit">

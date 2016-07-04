@@ -322,6 +322,7 @@ class StoragePlaceAddView(CreateView):
     fields = ('name',
               'storage_type',
               'description',
+              'pic',
               'parent')
     template_name = 'pmgmt/storage/add.html'
 
@@ -342,5 +343,6 @@ class StoragePlaceUpdateView(UpdateView):
     fields = ('name',
               'storage_type',
               'description',
+              'pic',
               'parent')
     success_url = reverse_lazy('storage_list')
