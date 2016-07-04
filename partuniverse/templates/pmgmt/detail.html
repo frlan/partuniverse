@@ -66,6 +66,14 @@
     {% endif %}
 </tr>
 <tr>
+    <td>{% trans "Description" %}</td>
+    {% if object.description %}
+        <td>{{object.description}}</td>
+    {% else %}
+        <td>{% trans "No description available." %}</td>
+    {% endif %}
+</tr>
+<tr>
     <td>{% trans "Categories" %}</td>
     <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
 </tr>
