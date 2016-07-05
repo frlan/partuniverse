@@ -346,3 +346,30 @@ class StoragePlaceUpdateView(UpdateView):
               'pic',
               'parent')
     success_url = reverse_lazy('storage_list')
+
+
+########################################################################
+# Storage Type
+########################################################################
+class StorageTypeAddView(CreateView):
+    model = StorageType
+    success_url = reverse_lazy('storage_type_list')
+    fields = ('name',)
+    template_name = 'pmgmt/storagetype/add.html'
+
+
+class StorageTypeListView(ListView):
+    model = StorageType
+    template_name = 'pmgmt/storagetype/list.html'
+
+
+class StorageTypeDetailView(DetailView):
+    model = StorageType
+    template_name = 'pmgmt/storagetype/detail.html'
+
+
+class StorageTypeUpdateView(UpdateView):
+    model = StorageType
+    template_name = 'pmgmt/storagetype/update.html'
+    fields = ('name',)
+    success_url = reverse_lazy('storage_type_list')

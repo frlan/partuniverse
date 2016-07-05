@@ -74,4 +74,16 @@ urlpatterns = patterns('',
                            name='storage_detail'),
                        url(r'^storage/(?P<pk>[\w]+)/update/$', login_required(
                            StoragePlaceUpdateView.as_view()), name='storage_update'),
+                       # Storage Types
+                       url(r'^storagetype/list', StorageTypeListView.as_view(),
+                           name='storage_type_list'),
+                       url(r'^storagetype/add',
+                           login_required(StorageTypeAddView.as_view()),
+                           name='storage_type_add'),
+                       url(r'^storagetype/(?P<pk>[\w]+)$',
+                           StorageTypeDetailView.as_view(),
+                           name='storage_type_detail'),
+                       url(r'^storagetype/(?P<pk>[\w]+)/update/$',
+                           login_required(StorageTypeUpdateView.as_view()),
+                           name='storage_type_update'),
                        )
