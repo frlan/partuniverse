@@ -54,7 +54,7 @@ class CategoryAddView(CreateView):
 ########################################################################
 class PartsList(ListView):
     model = Part
-    template_name = 'pmgmt/list.html'
+    template_name = 'pmgmt/part/list.html'
 
     def get_queryset(self):
         return Part.objects.exclude(disabled='True')
@@ -62,7 +62,7 @@ class PartsList(ListView):
 
 class PartsReorderList(ListView):
     # model = Part
-    template_name = 'pmgmt/list.html'
+    template_name = 'pmgmt/part/list.html'
     context_object_name = 'reorder_items'
 
     # This is not using new generated functions, but should be much more
@@ -81,7 +81,7 @@ class PartsReorderList(ListView):
 class PartsAddView(CreateView):
     model = Part
     success_url = reverse_lazy('part_list')
-    template_name = 'pmgmt/add.html'
+    template_name = 'pmgmt/part/add.html'
     fields = ('name',
               'sku',
               'min_stock',
@@ -102,7 +102,7 @@ class PartsAddView(CreateView):
 class PartDeleteView(DeleteView):
     model = Part
     success_url = reverse_lazy('part_list')
-    template_name = 'pmgmt/delete.html'
+    template_name = 'pmgmt/part/delete.html'
 
     def post(self, request, *args, **kwargs):
         if 'confirm' in request.POST:
@@ -112,7 +112,7 @@ class PartDeleteView(DeleteView):
 
 
 class PartDetailView(DetailView):
-    template_name = "pmgmt/detail.html"
+    template_name = "pmgmt/part/detail.html"
     model = Part
     fields = ('name',
               'sku',
@@ -127,7 +127,7 @@ class PartDetailView(DetailView):
 
 
 class PartUpdateView(UpdateView):
-    template_name = "pmgmt/update.html"
+    template_name = "pmgmt/part/update.html"
     success_url = reverse_lazy('part_list')
     model = Part
     # We don't want to make all fields editable via
