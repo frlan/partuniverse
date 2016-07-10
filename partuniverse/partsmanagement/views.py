@@ -133,6 +133,7 @@ class PartUpdateView(UpdateView):
     # We don't want to make all fields editable via
     # normal frontend.
     fields = ('name',
+              'description',
               'min_stock',
               'unit',
               'price',
