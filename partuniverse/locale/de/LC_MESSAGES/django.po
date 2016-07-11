@@ -623,7 +623,7 @@ msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>?"
 
 #: templates/account/email_confirm.html:12 templates/pmgmt/delete.html:22
 msgid "Confirm"
-msgstr "Bestätigun"
+msgstr "Bestätigen"
 
 #: templates/account/email_confirmation_sent.html:5
 #: templates/account/email_confirmation_sent.html:8
