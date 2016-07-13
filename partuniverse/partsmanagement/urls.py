@@ -31,6 +31,8 @@ urlpatterns = patterns('',
                        url(r'^transaction/list', TransactionListView.as_view(), name='transaction_list'),
                        url(r'^transaction/add$', login_required(TransactionAddView.as_view()),
                            name='transaction_add'),
+                       url(r'^transaction/(?P<pk>[\w]+)$', TransactionView.as_view(),
+                           name='transaction_detail'),
                        # Manufacturer
                        url(r'^manufacturer/list', ManufacturerListView.as_view(),
                            name='manufacturer_list'),

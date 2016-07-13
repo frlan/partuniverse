@@ -38,7 +38,7 @@
       {% else %}
           <td>{{ item.state }} </td>
       {% endif %}
-      <td>{{ item.subject }}</td>
+      <td><a href="{% url "transaction_detail" item.id%}">{{ item.subject }}</a></td>
       <td>{{ item.amount|floatformat }}</td>
       <td>{{ item.date }}</td>
     </tr>

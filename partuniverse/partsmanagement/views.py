@@ -178,6 +178,12 @@ class TransactionAddView(CreateView):
         return super(TransactionAddView, self).form_valid(form)
 
 
+class TransactionView(DetailView):
+
+    template_name = "pmgmt/transaction/detail.html"
+    model = Transaction
+
+
 ########################################################################
 # Manufacturer
 ########################################################################
