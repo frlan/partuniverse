@@ -9,7 +9,7 @@
   <div class="item">
     <div class="content">
       <div class="header">
-        {{ transaction.subject }}
+        <a href="{% url "transaction_detail" transaction.id %}">{{ transaction.subject }}</a>
       </div>
       <div class="meta">
         <span class="date">
