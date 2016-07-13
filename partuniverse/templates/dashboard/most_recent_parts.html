@@ -9,7 +9,7 @@
   <div class="item">
     <div class="content">
       <div class="header">
-        {{ part.name }}
+        <a href="{% url "part_detail" part.id %}">{{ part.name }}</a>
       </div>
       <div class="meta">
         <span class="date">
