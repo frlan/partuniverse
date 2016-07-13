@@ -5,6 +5,7 @@
 
 {% if transactions|length > 0 %}
 <div class="ui divided items">
+  <h4>{% trans "Recent transactions" %}</h4>
   {% for transaction in transactions %}
   <div class="item">
     <div class="content">
