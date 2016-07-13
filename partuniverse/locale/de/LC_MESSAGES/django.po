@@ -1032,7 +1032,7 @@ msgstr ""
 #: templates/pmgmt/part/detail.html:22
 msgid "The item is out of stock or below its minimum stock"
 msgstr ""
-"Das Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
+"Dieses Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
 
 #: templates/pmgmt/part/detail.html:41
 msgid "Measuring unit"
