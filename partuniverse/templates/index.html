@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block heading %}Welcome to partuniverse{% endblock %}
+{% block heading %}{% trans "Welcome to partuniverse" %}{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
