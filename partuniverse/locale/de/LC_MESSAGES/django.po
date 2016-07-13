@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-06 19:48+0000\n"
+"POT-Creation-Date: 2016-07-13 21:42+0200\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -24,6 +24,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: partsmanagement/dashboards/MostRecentPartsDashboardItem.py:13
+msgid "Most recent Parts"
+msgstr "Neuste Teile"
+
+#: partsmanagement/dashboards/MostRecentPartsDashboardItem.py:14
+msgid "Displays a table with the most recent created/updated parts."
+msgstr ""
+"Zeigt eine Übersicht mit den zuletzt angelegten/aktualisierten Teilen an."
+
+#: partsmanagement/dashboards/MostRecentTransactionsDashboardItem.py:13
+msgid "Most recent Transactions"
+msgstr "Neuste Transaktionen"
+
+#: partsmanagement/dashboards/MostRecentTransactionsDashboardItem.py:14
+msgid "Displays a table with the most recent transactions."
+msgstr ""
+"Zeigt eine Übersicht mit den zuletzt angelegten/aktualisierten Teilen an."
+
+#: partsmanagement/dashboards/NeedsRestockingDashboardItem.py:13
+msgid "Parts with low stock"
+msgstr "Teile mit geringen Bestand"
+
+#: partsmanagement/dashboards/NeedsRestockingDashboardItem.py:14
+msgid "Displays a table with parts which have low stock."
+msgstr "Zeigt eine Übersicht mit Teilen an, die einen zu geringen Bestand haben."
 
 #: partsmanagement/exceptions.py:16
 #, python-format
@@ -154,7 +180,7 @@ msgid "So does look the place in real."
 msgstr "So sieht der Lagerplatz »in echt« aus."
 
 #: partsmanagement/models.py:128 partsmanagement/models.py:272
-#: partsmanagement/models.py:340 templates/pmgmt/detail.html:69
+#: partsmanagement/models.py:340 templates/pmgmt/part/detail.html:69
 #: templates/pmgmt/storage/detail.html:37
 msgid "Description"
 msgstr "Beschreibung"
@@ -207,7 +233,7 @@ msgid "The user the manufacturer was created by."
 msgstr "Der Nutzer, von dem der Hersteller angelegt wurde."
 
 #: partsmanagement/models.py:211 partsmanagement/models.py:375
-#: templates/pmgmt/detail.html:61 templates/pmgmt/list.html:39
+#: templates/pmgmt/part/detail.html:61 templates/pmgmt/part/list.html:39
 msgid "Manufacturer"
 msgstr "Hersteller"
 
@@ -240,7 +266,7 @@ msgid "User who created the distributor."
 msgstr "Nutzer der den Lieferanten als gelöscht markiert hat."
 
 #: partsmanagement/models.py:251 partsmanagement/models.py:382
-#: templates/pmgmt/detail.html:53
+#: templates/pmgmt/part/detail.html:53
 msgid "Distributor"
 msgstr "Lieferant"
 
@@ -280,7 +306,7 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: partsmanagement/models.py:318 templates/base.html:45
-#: templates/pmgmt/category/list.html:6 templates/pmgmt/detail.html:77
+#: templates/pmgmt/category/list.html:6 templates/pmgmt/part/detail.html:77
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -292,7 +318,7 @@ msgstr "Name des Teils"
 msgid "Name of the part."
 msgstr "Name des Teils"
 
-#: partsmanagement/models.py:332 templates/pmgmt/detail.html:33
+#: partsmanagement/models.py:332 templates/pmgmt/part/detail.html:33
 msgid "SKU"
 msgstr "SKU"
 
@@ -366,9 +392,9 @@ msgid "Part"
 msgstr "Teil"
 
 #: partsmanagement/models.py:522 templates/base.html:26
-#: templates/pmgmt/add.html:7 templates/pmgmt/delete.html:6
-#: templates/pmgmt/detail.html:5 templates/pmgmt/list.html:6
-#: templates/pmgmt/update.html:7
+#: templates/pmgmt/part/add.html:7 templates/pmgmt/part/delete.html:6
+#: templates/pmgmt/part/detail.html:5 templates/pmgmt/part/list.html:6
+#: templates/pmgmt/part/update.html:7
 msgid "Parts"
 msgstr "Teile"
 
@@ -450,7 +476,7 @@ msgstr "Status"
 msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
-#: partsmanagement/models.py:630 templates/pmgmt/detail.html:81
+#: partsmanagement/models.py:630 templates/pmgmt/part/detail.html:81
 msgid "Created by"
 msgstr "Erstellt von"
 
@@ -621,16 +647,16 @@ msgstr "Bestätigung Email"
 msgid "Confirm email address <b>%(email)s</b>?"
 msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>?"
 
-#: templates/account/email_confirm.html:12 templates/pmgmt/delete.html:22
+#: templates/account/email_confirm.html:12 templates/pmgmt/part/delete.html:22
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: templates/account/email_confirmation_sent.html:5
-#: templates/account/email_confirmation_sent.html:8
+#: templates/account/email_confirmation_sent.html:7
+#: templates/account/email_confirmation_sent.html:10
 msgid "Confirm your email address"
 msgstr "Bestätige Deine Email-Adresse"
 
-#: templates/account/email_confirmation_sent.html:10
+#: templates/account/email_confirmation_sent.html:12
 #, python-format
 msgid ""
 "We have sent you an email to <b>%(email)s</b> for verification. Follow the "
@@ -855,15 +881,17 @@ msgid "Need restocking"
 msgstr "Benötigt Nachbestellung"
 
 #: templates/dashboard/needs_restocking.html:12
-#: templates/pmgmt/category/list.html:26 templates/pmgmt/detail.html:29
+#: templates/pmgmt/category/list.html:26
 #: templates/pmgmt/distributor/detail.html:25
-#: templates/pmgmt/distributor/list.html:29 templates/pmgmt/list.html:36
+#: templates/pmgmt/distributor/list.html:29
 #: templates/pmgmt/manufacturer/detail.html:25
 #: templates/pmgmt/manufacturer/list.html:29
+#: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html:36
 msgid "Name"
 msgstr "Name"
 
-#: templates/dashboard/needs_restocking.html:13 templates/pmgmt/list.html:38
+#: templates/dashboard/needs_restocking.html:13
+#: templates/pmgmt/part/list.html:38
 msgid "In Stock"
 msgstr "Lagerbestand"
 
@@ -871,17 +899,16 @@ msgstr "Lagerbestand"
 msgid "All parts are in stock!"
 msgstr "Alle Teile sind hinreichend vorhanden!"
 
-#: templates/pmgmt/add.html:9 templates/pmgmt/category/add.html:9
-#: templates/pmgmt/distributor/add.html:9
-#: templates/pmgmt/manufacturer/add.html:9 templates/pmgmt/storage/add.html:9
-#: templates/pmgmt/storagetype/add.html:9
+#: templates/index.html:5
+msgid "Welcome to partuniverse"
+msgstr "Willkommen bei Partuniverse"
+
+#: templates/pmgmt/category/add.html:9 templates/pmgmt/distributor/add.html:9
+#: templates/pmgmt/manufacturer/add.html:9 templates/pmgmt/part/add.html:9
+#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storagetype/add.html:9
 #: templates/pmgmt/transaction/add.html:10
 msgid "Add"
 msgstr "Hinzufügen"
-
-#: templates/pmgmt/add.html:12 templates/pmgmt/add.html:14
-msgid "Add a new part"
-msgstr "Ein neues Teil anlegen"
 
 #: templates/pmgmt/category/add.html:12 templates/pmgmt/category/add.html:14
 msgid "Add a new category"
@@ -892,71 +919,13 @@ msgid "List of categories"
 msgstr "Liste der Kategorien"
 
 #: templates/pmgmt/category/list.html:36
-#: templates/pmgmt/distributor/list.html:44 templates/pmgmt/list.html:73
-#: templates/pmgmt/manufacturer/list.html:44
+#: templates/pmgmt/distributor/list.html:44
+#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:73
 #: templates/pmgmt/storage/list.html:60
 #: templates/pmgmt/storageitem/list.html:70
 #: templates/pmgmt/storagetype/list.html:53
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
-
-#: templates/pmgmt/delete.html:11 templates/pmgmt/delete.html:13
-msgid "Delete a part"
-msgstr "Ein Teil löschen"
-
-#: templates/pmgmt/delete.html:16
-#, python-format
-msgid ""
-"\n"
-"                Are you sure you want to delete »%(object)s«?\n"
-"           "
-msgstr ""
-"\n"
-"\t\tMöchtest Du »%(object)s« wirklich löschen?\n"
-"\t"
-
-#: templates/pmgmt/delete.html:21
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: templates/pmgmt/detail.html:17
-msgid ""
-"This part has been marked as disbaled. Please contact your admin for details."
-msgstr ""
-"Dieses Teil wurde als deaktiviert markiert. Bitte kontaktiere Deinen Admin "
-"für Details."
-
-#: templates/pmgmt/detail.html:22
-msgid "The item is out of stock or below its minimum stock"
-msgstr ""
-"Das Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
-
-#: templates/pmgmt/detail.html:41
-msgid "Measuring unit"
-msgstr "Maßeinheit"
-
-#: templates/pmgmt/detail.html:45
-msgid "Costs"
-msgstr "Kosten"
-
-#: templates/pmgmt/detail.html:57 templates/pmgmt/detail.html:65
-msgid "No Information"
-msgstr "Keine Informationen"
-
-#: templates/pmgmt/detail.html:73
-msgid "No description available."
-msgstr "Keine Beschreibung verfügbar."
-
-#: templates/pmgmt/detail.html:95 templates/pmgmt/distributor/detail.html:37
-#: templates/pmgmt/storage/detail.html:47
-#: templates/pmgmt/storageitem/detail.html:32
-#: templates/pmgmt/storagetype/detail.html:34 templates/pmgmt/update.html:11
-msgid "Update item"
-msgstr "Aktualisieren"
-
-#: templates/pmgmt/detail.html:97
-msgid "Delete item"
-msgstr "Teil löschen"
 
 #: templates/pmgmt/distributor/add.html:12
 #: templates/pmgmt/distributor/add.html:14
@@ -984,13 +953,21 @@ msgstr ""
 msgid "URL"
 msgstr "URL"
 
+#: templates/pmgmt/distributor/detail.html:37
+#: templates/pmgmt/part/detail.html:95 templates/pmgmt/part/update.html:11
+#: templates/pmgmt/storage/detail.html:47
+#: templates/pmgmt/storageitem/detail.html:32
+#: templates/pmgmt/storagetype/detail.html:34
+msgid "Update item"
+msgstr "Aktualisieren"
+
 #: templates/pmgmt/distributor/list.html:9
 #: templates/pmgmt/distributor/list.html:11
 msgid "List of distributors"
 msgstr "Liste der Lieferantanten"
 
-#: templates/pmgmt/distributor/list.html:37 templates/pmgmt/list.html:63
-#: templates/pmgmt/manufacturer/list.html:37
+#: templates/pmgmt/distributor/list.html:37
+#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:63
 #: templates/pmgmt/storage/list.html:51
 #: templates/pmgmt/storageitem/list.html:56
 #: templates/pmgmt/storagetype/list.html:44
@@ -1001,18 +978,6 @@ msgstr "Aktualisieren"
 #: templates/pmgmt/distributor/update.html:14
 msgid "Update distributor"
 msgstr "Lieferant aktualisieren"
-
-#: templates/pmgmt/list.html:9 templates/pmgmt/list.html:11
-msgid "List of parts"
-msgstr "Teileliste"
-
-#: templates/pmgmt/list.html:37
-msgid "Minimum"
-msgstr "Minimum"
-
-#: templates/pmgmt/list.html:64
-msgid "Delete"
-msgstr "Löschen"
 
 #: templates/pmgmt/manufacturer/add.html:12
 #: templates/pmgmt/manufacturer/add.html:14
@@ -1033,6 +998,73 @@ msgstr "Hersteller aktualisieren"
 #: templates/pmgmt/manufacturer/list.html:11
 msgid "List of manufacturers"
 msgstr "Liste der Hersteller"
+
+#: templates/pmgmt/part/add.html:12 templates/pmgmt/part/add.html:14
+msgid "Add a new part"
+msgstr "Ein neues Teil anlegen"
+
+#: templates/pmgmt/part/delete.html:11 templates/pmgmt/part/delete.html:13
+msgid "Delete a part"
+msgstr "Ein Teil löschen"
+
+#: templates/pmgmt/part/delete.html:16
+#, python-format
+msgid ""
+"\n"
+"                Are you sure you want to delete »%(object)s«?\n"
+"           "
+msgstr ""
+"\n"
+"\t\tMöchtest Du »%(object)s« wirklich löschen?\n"
+"\t"
+
+#: templates/pmgmt/part/delete.html:21
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/pmgmt/part/detail.html:17
+msgid ""
+"This part has been marked as disbaled. Please contact your admin for details."
+msgstr ""
+"Dieses Teil wurde als deaktiviert markiert. Bitte kontaktiere Deinen Admin "
+"für Details."
+
+#: templates/pmgmt/part/detail.html:22
+msgid "The item is out of stock or below its minimum stock"
+msgstr ""
+"Das Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
+
+#: templates/pmgmt/part/detail.html:41
+msgid "Measuring unit"
+msgstr "Maßeinheit"
+
+#: templates/pmgmt/part/detail.html:45
+msgid "Costs"
+msgstr "Kosten"
+
+#: templates/pmgmt/part/detail.html:57 templates/pmgmt/part/detail.html:65
+msgid "No Information"
+msgstr "Keine Informationen"
+
+#: templates/pmgmt/part/detail.html:73
+msgid "No description available."
+msgstr "Keine Beschreibung verfügbar."
+
+#: templates/pmgmt/part/detail.html:97
+msgid "Delete item"
+msgstr "Teil löschen"
+
+#: templates/pmgmt/part/list.html:9 templates/pmgmt/part/list.html:11
+msgid "List of parts"
+msgstr "Teileliste"
+
+#: templates/pmgmt/part/list.html:37
+msgid "Minimum"
+msgstr "Minimum"
+
+#: templates/pmgmt/part/list.html:64
+msgid "Delete"
+msgstr "Löschen"
 
 #: templates/pmgmt/storage/add.html:7
 #: templates/pmgmt/storageitem/detail.html:20
@@ -1137,18 +1169,15 @@ msgstr ""
 
 #: templates/pmgmt/storagetype/detail.html:29
 #: templates/pmgmt/storagetype/list.html:34
-#| msgid "Storage Type"
 msgid "Storage Type Name"
 msgstr "Lagertyp Name"
 
 #: templates/pmgmt/storagetype/list.html:7
-#| msgid "Storage Types"
 msgid "Storages types"
 msgstr "Lagertypen"
 
 #: templates/pmgmt/storagetype/list.html:10
 #: templates/pmgmt/storagetype/list.html:12
-#| msgid "List of storages items"
 msgid "List of storages types"
 msgstr "Liste der Lagertypen"
 
