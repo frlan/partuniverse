@@ -60,8 +60,18 @@
       <td>{{ item.manufacturer|default:"" }}</td>
       {% if user.is_authenticated %}
       <td>
-        <a class="ui button blue" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
-        <a class="ui button blue" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+        <div class="ui inverted blue menu">
+          <div class="ui fluid simple dropdown item">
+            <a style="width: 100%;" href="{% url "part_detail" item.id %}"/>Detail</a>
+
+
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
+              <a class="item" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+            </div>
+          </div>
+        </div>
       </td>
       {% endif %}
     </tr>
