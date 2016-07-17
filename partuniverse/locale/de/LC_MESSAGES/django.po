@@ -640,12 +640,12 @@ msgstr "[%(site_name)s] Passwort zurücksetzen"
 #: templates/account/email_confirm.html:5
 #: templates/account/email_confirm.html:8
 msgid "Confirm Email"
-msgstr "Bestätigung Email"
+msgstr "Bestätigung Deiner Email"
 
 #: templates/account/email_confirm.html:11
 #, python-format
 msgid "Confirm email address <b>%(email)s</b>?"
-msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>?"
+msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>."
 
 #: templates/account/email_confirm.html:12 templates/pmgmt/part/delete.html:22
 msgid "Confirm"
@@ -664,11 +664,12 @@ msgid ""
 "within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
 "\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Wir haben Dir eine Email an <b>%(email)s</b> zur bestätigung gesended. Folge "
-"der Anleitung in dieser Mail um den Registrierungsprozess abzuschließen. "
-"Solltest Du keine Email erhalten innerhalb der nächsten Minuten, "
-"kontaktieren uns bitte unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
-"%(THEME_CONTACT_EMAIL)s</a>."
+"Wir haben Dir eine Email an <b>%(email)s</b> zur Bestätigung gesendet."
+" <br> Folge der Anleitung in dieser Mail, um den "
+"Registrierungsprozess abzuschließen. Solltest Du keine Email "
+"innerhalb der nächsten Minuten erhalten, kontaktieren uns bitte unter "
+"<a href=\"mailto:"
+"%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: templates/account/email_confirmed.html:5
 #: templates/account/email_confirmed.html:8
