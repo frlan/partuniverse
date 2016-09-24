@@ -11,8 +11,7 @@ from django.views.generic import TemplateView
 
 from .views import *
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # Some general url pattern
     url(r'^list/', PartsList.as_view(), name='part_list'),
     url(r'^add/', login_required(PartsAddView.as_view()),
@@ -91,4 +90,5 @@ urlpatterns = patterns(
         name='storage_type_detail'),
     url(r'^storagetype/(?P<pk>[\w]+)/update/$',
         login_required(StorageTypeUpdateView.as_view()),
-        name='storage_type_update'))
+        name='storage_type_update')
+    ]
