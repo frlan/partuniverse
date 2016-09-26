@@ -619,7 +619,6 @@ msgid "Change password email notification"
 msgstr "Passwort geändert Bestätigung"
 
 #: templates/account/email/password_reset.txt:1
-#, fuzzy, python-format
 #| msgid ""
 #| "You're receiving this email because you or someone else has requested a "
 #| "password for your user account at %(site_name)s.\n"
@@ -887,7 +886,6 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: templates/dashboard/most_recent_parts.html:8
-#, fuzzy
 #| msgid "Most recent Parts"
 msgid "Recent parts"
 msgstr "Neuste Teile"
@@ -897,7 +895,6 @@ msgid "No new parts."
 msgstr "Keine neuen Teile."
 
 #: templates/dashboard/most_recent_transactions.html:8
-#, fuzzy
 #| msgid "Most recent Transactions"
 msgid "Recent transactions"
 msgstr "Neuste Transaktionen"
@@ -1218,16 +1215,14 @@ msgid "Add a new transaction"
 msgstr "Eine neue Transaktion starten"
 
 #: templates/pmgmt/transaction/detail.html:37
-#, fuzzy
 #| msgid "State"
 msgid "Status"
 msgstr "Status"
 
 #: templates/pmgmt/transaction/detail.html:45
-#, fuzzy
 #| msgid "Transaction Date"
 msgid "Transaction date"
-msgstr "Transaktionsdaten"
+msgstr "Transaktionsdatum"
 
 #: templates/pmgmt/transaction/list.html:9
 #: templates/pmgmt/transaction/list.html:11
