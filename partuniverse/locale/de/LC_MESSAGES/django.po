@@ -626,11 +626,13 @@ msgid ""
 "\n"
 "%(password_reset_url)s\n"
 msgstr ""
-"Du erhälst Diese Email, weil jemand ein neues Passwort für die Seite "
-"%(site_name)s angefordert hat. \n"
-" Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt "
-"hast. Um Dein Passwort zu ändern, klicken auf diesen Link: \n"
+"Du erhälst diese Email, weil jemand ein neues Passwort für die Seite "
+"%(site_name)s angefordert hat. \n\n"
+"Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt "
+"hast. Um Dein Passwort zu ändern, klicke auf diesen Link: \n"
 "%(password_reset_url)s\n"
+"\n\n"
+"Dein Adminteam"
 
 #: templates/account/email/password_reset_subject.txt:1
 #, python-format
