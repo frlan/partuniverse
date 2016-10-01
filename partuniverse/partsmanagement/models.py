@@ -717,6 +717,7 @@ class Transaction(models.Model):
         ordering = ['date']
 
 
+@python_2_unicode_compatible
 class WishListItem(models.Model):
     created_by = models.ForeignKey(
         User,
@@ -751,9 +752,17 @@ class WishListItem(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        if self.title:
+            return u"{}: {}".format(self.title, self.quantity)
+        elif self.part:
+            return u"{}: {}".format(self.part.name, self.quantity)
+        elif self.description:
+            return u"{}: {}".format(self.description[:25], self.quantity)
+        else:
+            return _("WhishList item")
 
 
+@python_2_unicode_compatible
 class WishList(models.Model):
     name = models.CharField(
         _("Name"),
@@ -770,3 +779,6 @@ class WishList(models.Model):
         WishListItem,
         help_text=_("Items on the wishlist.")
     )
+
+    def __str__(self):
+        return u"{} ({})".format(self.name, self.user)
