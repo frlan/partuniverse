@@ -735,6 +735,13 @@ class WishListItem(models.Model):
         help_text=_("In case the part already exists in our database "
                     "this it is")
     )
+    title = models.CharField(
+        _("Title"),
+        null=True,
+        blank=True,
+        max_length=25,
+        help_text=_("A very short title for wishlist item.")
+    )
     description = models.TextField(
         _("Alternative description"),
         null=True,
@@ -742,6 +749,9 @@ class WishListItem(models.Model):
         help_text=_("If the part is not already inside the database, "
                     "this field takes description of the wished item.")
     )
+
+    def __str__(self):
+        return self.name
 
 
 class WishList(models.Model):
