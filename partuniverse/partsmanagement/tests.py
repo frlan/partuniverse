@@ -880,3 +880,45 @@ class DistributorWithUnicodeTestCase(TestCase):
     def test_distributor_name(self):
         dist_result = u'Distribü³r'
         self.assertEqual(u'%s' % self.dist, dist_result)
+
+
+########################################################################
+# WishListItem
+########################################################################
+class WhishListItemTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret'
+        )
+
+    def test_generic_whishlist_item(self):
+        wli = WishListItem.objects.create(
+            created_by=self.user,
+            title='Test WishList Item',
+            quantity='50')
+        self.assertEqual(u'%s' % wli, 'Test WishList Item: 50')
+
+
+########################################################################
+# WishList
+########################################################################
+class WishListTestCase(TestCase):
+    def setUo(self):
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret'
+        )
+        wli = WishListItem.objects.create(
+            created_by=self.user,
+            title='Test WishList Item',
+            quantity='50')
+
+    def est_generic_whishlist(self):
+        wl = WishList.objects.create(
+            name='My test list',
+            created_by=self.user,
+            items=[wli])
+        self.assertEqual(u'%s' % wl, 'My test list (jacob)')
