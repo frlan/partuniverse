@@ -877,6 +877,6 @@ class DistributorWithUnicodeTestCase(TestCase):
             name=u'Distribü³r',
             created_by=self.user)
 
-    def test_manufakturer_name(self):
+    def test_distributor_name(self):
         dist_result = u'Distribü³r'
         self.assertEqual(u'%s' % self.dist, dist_result)
