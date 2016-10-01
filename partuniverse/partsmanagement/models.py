@@ -715,3 +715,48 @@ class Transaction(models.Model):
         verbose_name = _("Transaction")
         verbose_name_plural = _("Transactions")
         ordering = ['date']
+
+
+class WishListItem(models.Model):
+    created_by = models.ForeignKey(
+        User,
+        verbose_name=_("Created by"),
+        help_text=_("The user which created the wishlistitem.")
+    )
+    quantity = models.CharField(
+        _("Quantity"),
+        max_length=50,
+        help_text=_("The quantity asked for.")
+    )
+    part = models.ForeignKey(
+        "part",
+        null=True,
+        blank=True,
+        help_text=_("In case the part already exists in our database "
+                    "this it is")
+    )
+    description = models.TextField(
+        _("Alternative description"),
+        null=True,
+        blank=True,
+        help_text=_("If the part is not already inside the database, "
+                    "this field takes description of the wished item.")
+    )
+
+
+class WishList(models.Model):
+    name = models.CharField(
+        _("Name"),
+        max_length=100,
+        help_text=_("A Name for the wishlist")
+    )
+    created_by = models.ForeignKey(
+        User,
+        verbose_name=_("Created by"),
+        help_text=_("The user which created the wishlist and who is "
+                    "owning it.")
+    )
+    items = models.ManyToManyField(
+        WishListItem,
+        help_text=_("Items on the wishlist.")
+    )
