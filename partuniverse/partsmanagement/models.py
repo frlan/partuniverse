@@ -775,9 +775,20 @@ class WishList(models.Model):
         help_text=_("The user which created the wishlist and who is "
                     "owning it.")
     )
+    created_date = models.TimeField(
+        _("Creation timestamp"),
+        blank=False,
+        null=False,
+        auto_now_add=True,
+        help_text=_("The timestamp wishlist has been entered.")
+    )
     items = models.ManyToManyField(
         WishListItem,
         help_text=_("Items on the wishlist.")
+    )
+    public = models.BooleanField(
+        _('Public'),
+        help_text=_("Whether this is a public wishlist.")
     )
 
     def __str__(self):
