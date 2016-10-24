@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-26 21:02+0000\n"
+"POT-Creation-Date: 2016-10-24 19:15+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -116,7 +116,7 @@ msgstr "Stück"
 msgid "piece"
 msgstr "Stück"
 
-#: partsmanagement/models.py:51 templates/pmgmt/storage/list.html.py:46
+#: partsmanagement/models.py:51 templates/pmgmt/storage/list.html:46
 #: templates/pmgmt/storageitem/detail.html:25
 msgid "n/A"
 msgstr "n/V"
@@ -141,11 +141,11 @@ msgstr "Reserviert"
 msgid "The name for a storage type. Should be unique"
 msgstr "Der Name des Lagertypes. Sollte ein eindeutiger Name sein."
 
-#: partsmanagement/models.py:88 templates/pmgmt/storage/detail.html.py:33
+#: partsmanagement/models.py:88 templates/pmgmt/storage/detail.html:33
 msgid "Storage Type"
 msgstr "Lagertyp"
 
-#: partsmanagement/models.py:89 templates/base.html.py:49
+#: partsmanagement/models.py:89 templates/base.html:49
 msgid "Storage Types"
 msgstr "Lagertypen"
 
@@ -181,7 +181,7 @@ msgid "So does look the place in real."
 msgstr "So sieht der Lagerplatz »in echt« aus."
 
 #: partsmanagement/models.py:128 partsmanagement/models.py:272
-#: partsmanagement/models.py:340 templates/pmgmt/part/detail.html.py:69
+#: partsmanagement/models.py:340 templates/pmgmt/part/detail.html:69
 #: templates/pmgmt/storage/detail.html:37
 msgid "Description"
 msgstr "Beschreibung"
@@ -234,11 +234,11 @@ msgid "The user the manufacturer was created by."
 msgstr "Der Nutzer, von dem der Hersteller angelegt wurde."
 
 #: partsmanagement/models.py:211 partsmanagement/models.py:375
-#: templates/pmgmt/part/detail.html:61 templates/pmgmt/part/list.html.py:39
+#: templates/pmgmt/part/detail.html:61 templates/pmgmt/part/list.html:39
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:212 templates/base.html.py:47
+#: partsmanagement/models.py:212 templates/base.html:47
 #: templates/pmgmt/manufacturer/add.html:7
 #: templates/pmgmt/manufacturer/detail.html:6
 #: templates/pmgmt/manufacturer/list.html:6
@@ -271,7 +271,7 @@ msgstr "Nutzer der den Lieferanten als gelöscht markiert hat."
 msgid "Distributor"
 msgstr "Lieferant"
 
-#: partsmanagement/models.py:252 templates/base.html.py:46
+#: partsmanagement/models.py:252 templates/base.html:46
 #: templates/pmgmt/distributor/add.html:7
 #: templates/pmgmt/distributor/detail.html:6
 #: templates/pmgmt/distributor/list.html:6
@@ -306,7 +306,7 @@ msgstr "Eine Kategorie kann nicht Teil ihrer selbst sein."
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:318 templates/base.html.py:45
+#: partsmanagement/models.py:318 templates/base.html:45
 #: templates/pmgmt/category/list.html:6 templates/pmgmt/part/detail.html:77
 msgid "Categories"
 msgstr "Kategorien"
@@ -319,7 +319,7 @@ msgstr "Name des Teils"
 msgid "Name of the part."
 msgstr "Name des Teils"
 
-#: partsmanagement/models.py:332 templates/pmgmt/part/detail.html.py:33
+#: partsmanagement/models.py:332 templates/pmgmt/part/detail.html:33
 msgid "SKU"
 msgstr "SKU"
 
@@ -387,14 +387,14 @@ msgstr "Der Nutzer, der das Teil erstellt hat."
 msgid "Whether the part is active or not."
 msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 
-#: partsmanagement/models.py:521 templates/pmgmt/storageitem/detail.html.py:16
+#: partsmanagement/models.py:521 templates/pmgmt/storageitem/detail.html:16
 #: templates/pmgmt/storageitem/list.html:33
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:522 templates/base.html.py:26
-#: templates/pmgmt/part/add.html:7 templates/pmgmt/part/delete.html.py:6
-#: templates/pmgmt/part/detail.html:5 templates/pmgmt/part/list.html.py:6
+#: partsmanagement/models.py:522 templates/base.html:26
+#: templates/pmgmt/part/add.html:7 templates/pmgmt/part/delete.html:6
+#: templates/pmgmt/part/detail.html:5 templates/pmgmt/part/list.html:6
 #: templates/pmgmt/part/update.html:7
 msgid "Parts"
 msgstr "Teile"
@@ -423,17 +423,17 @@ msgstr "Entscheidet, ob der Eintrag aktiv ist."
 msgid "Difference from Stocktaking"
 msgstr "Unterschiede Inventur"
 
-#: partsmanagement/models.py:577 templates/pmgmt/transaction/detail.html.py:29
+#: partsmanagement/models.py:577 templates/pmgmt/transaction/detail.html:29
 msgid "Storage Item"
 msgstr "Einlagerung"
 
-#: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html.py:6
+#: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html:6
 #: templates/pmgmt/storageitem/list.html:6
 #: templates/pmgmt/storageitem/update.html:7
 msgid "Storage Items"
 msgstr "Einlagerungen"
 
-#: partsmanagement/models.py:587 templates/pmgmt/transaction/detail.html.py:25
+#: partsmanagement/models.py:587 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
 msgstr "Kurzbeschreibung"
 
@@ -445,7 +445,7 @@ msgstr "Eine kurze Zusammenfassung für die Transaktion."
 msgid "The part-storage relation the transaction was applied on."
 msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
-#: partsmanagement/models.py:600 templates/pmgmt/transaction/detail.html.py:33
+#: partsmanagement/models.py:600 templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
@@ -469,7 +469,7 @@ msgstr "Transaktionsdaten"
 msgid "The date the transaction took  part."
 msgstr "Das Datum, an dem die Transaktion stattfand."
 
-#: partsmanagement/models.py:621 templates/pmgmt/transaction/list.html.py:25
+#: partsmanagement/models.py:621 templates/pmgmt/transaction/list.html:25
 msgid "State"
 msgstr "Status"
 
@@ -477,7 +477,7 @@ msgstr "Status"
 msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
-#: partsmanagement/models.py:630 templates/pmgmt/part/detail.html.py:81
+#: partsmanagement/models.py:630 templates/pmgmt/part/detail.html:81
 #: templates/pmgmt/transaction/detail.html:41
 msgid "Created by"
 msgstr "Erstellt von"
@@ -518,18 +518,18 @@ msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:715 templates/pmgmt/transaction/detail.html.py:6
+#: partsmanagement/models.py:715 templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:716 templates/base.html.py:38
+#: partsmanagement/models.py:716 templates/base.html:38
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
 msgstr "Transaktionen"
 
-#: templates/about.html:5 templates/about.html.py:8 templates/about.html:10
-#: templates/base.html.py:108
+#: templates/about.html:5 templates/about.html:8 templates/about.html:10
+#: templates/base.html:108
 msgid "About"
 msgstr "Über"
 
@@ -558,11 +558,11 @@ msgstr ""
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/account/delete.html:8 templates/account/settings.html.py:31
+#: templates/account/delete.html:8 templates/account/settings.html:31
 msgid "Delete your account"
 msgstr "Benutzerkonto löschen"
 
-#: templates/account/delete.html:11 templates/account/delete.html.py:13
+#: templates/account/delete.html:11 templates/account/delete.html:13
 #: templates/account/settings.html:29
 msgid "Delete Account"
 msgstr "Nutzeraccount löschen"
@@ -619,13 +619,7 @@ msgid "Change password email notification"
 msgstr "Passwort geändert Bestätigung"
 
 #: templates/account/email/password_reset.txt:1
-#| msgid ""
-#| "You're receiving this email because you or someone else has requested a "
-#| "password for your user account at %(site_name)s.\n"
-#| "It can be safely ignored if you did not request a password reset. Click "
-#| "the link below to reset your password.\n"
-#| "\n"
-#| "%(password_reset_url)s\n"
+#, python-format
 msgid ""
 "You're receiving this email because you or someone else has requested a "
 "password for your user account at %(site_name)s.\n"
@@ -652,25 +646,36 @@ msgid "[%(site_name)s] Password reset"
 msgstr "[%(site_name)s] Passwort zurücksetzen"
 
 #: templates/account/email_confirm.html:5
-#: templates/account/email_confirm.html:8
+#: templates/account/email_confirm.html:12
 msgid "Confirm Email"
 msgstr "Bestätigung Deiner Email"
 
-#: templates/account/email_confirm.html:11
-#, python-format
-msgid "Confirm email address <b>%(email)s</b>?"
-msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>."
+#: templates/account/email_confirm.html:8
+#: templates/account/email_confirmation_sent.html:10
+#| msgid "Account settings"
+msgid "Account signup"
+msgstr "Benutzerkonto anlegen"
 
-#: templates/account/email_confirm.html:12 templates/pmgmt/part/delete.html:22
+#: templates/account/email_confirm.html:15
+#| msgid "Confirm email address <b>%(email)s</b>?"
+msgid "Can you confirm email address: <b>%(email)s</b>?"
+msgstr "Bitte bestätige Deine Emailadresse: <b>%(email)s</b>."
+
+#: templates/account/email_confirm.html:16 templates/pmgmt/part/delete.html:22
 msgid "Confirm"
 msgstr "Bestätigen"
 
+#: templates/account/email_confirmation_sent.html:5
+#| msgid "No Information"
+msgid "Confirmation"
+msgstr "Bestätigung"
+
 #: templates/account/email_confirmation_sent.html:7
-#: templates/account/email_confirmation_sent.html:10
+#: templates/account/email_confirmation_sent.html:14
 msgid "Confirm your email address"
 msgstr "Bestätige Deine Email-Adresse"
 
-#: templates/account/email_confirmation_sent.html:12
+#: templates/account/email_confirmation_sent.html:16
 #, python-format
 msgid ""
 "We have sent you an email to <b>%(email)s</b> for verification. Follow the "
@@ -694,8 +699,8 @@ msgstr "Email bestätigt"
 msgid "You have confirmed <b>%(email)s</b>"
 msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 
-#: templates/account/login.html:7 templates/account/login.html.py:10
-#: templates/account/login.html:12 templates/account/login.html.py:18
+#: templates/account/login.html:7 templates/account/login.html:10
+#: templates/account/login.html:12 templates/account/login.html:18
 msgid "Log in"
 msgstr "Einloggen"
 
@@ -703,7 +708,7 @@ msgstr "Einloggen"
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/logout.html:5 templates/account/logout.html.py:8
+#: templates/account/logout.html:5 templates/account/logout.html:8
 #: templates/account/logout.html:12
 msgid "Log out"
 msgstr "Ausloggen"
@@ -812,7 +817,7 @@ msgstr ""
 "sein, dass er schon einmal verwendet wurde. Bitte frage einen <a href="
 "\"%(url)s\">neuen Link</a> an."
 
-#: templates/account/settings.html:10 templates/account/settings.html.py:12
+#: templates/account/settings.html:10 templates/account/settings.html:12
 msgid "Account settings"
 msgstr "Benutzerkonto-Einstellungen"
 
@@ -828,8 +833,8 @@ msgstr "Aktualisiere Deine Accountdaten hier:"
 msgid "Password"
 msgstr "Passwort"
 
-#: templates/account/signup.html:7 templates/account/signup.html.py:10
-#: templates/account/signup.html:12 templates/account/signup.html.py:21
+#: templates/account/signup.html:7 templates/account/signup.html:10
+#: templates/account/signup.html:12 templates/account/signup.html:21
 #: templates/account/signup_closed.html:5
 msgid "Sign up"
 msgstr "Registrieren"
@@ -846,7 +851,7 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:19 templates/base.html.py:86
+#: templates/base.html:19 templates/base.html:86
 msgid "Home"
 msgstr "Start"
 
@@ -858,7 +863,7 @@ msgstr "Einlagerungen"
 msgid "Manage"
 msgstr "Verwalten"
 
-#: templates/base.html:48 templates/pmgmt/storage/detail.html.py:6
+#: templates/base.html:48 templates/pmgmt/storage/detail.html:6
 #: templates/pmgmt/storage/list.html:7 templates/pmgmt/storage/update.html:7
 #: templates/pmgmt/storagetype/detail.html:6
 #: templates/pmgmt/storagetype/update.html:7
@@ -881,12 +886,12 @@ msgstr "Einloggen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: templates/base.html:103
+#: templates/base.html:103 templates/help.html:5 templates/help.html:8
+#: templates/help.html:10
 msgid "Help"
 msgstr "Hilfe"
 
 #: templates/dashboard/most_recent_parts.html:8
-#| msgid "Most recent Parts"
 msgid "Recent parts"
 msgstr "Neuste Teile"
 
@@ -895,7 +900,6 @@ msgid "No new parts."
 msgstr "Keine neuen Teile."
 
 #: templates/dashboard/most_recent_transactions.html:8
-#| msgid "Most recent Transactions"
 msgid "Recent transactions"
 msgstr "Neuste Transaktionen"
 
@@ -913,7 +917,7 @@ msgstr "Benötigt Nachbestellung"
 #: templates/pmgmt/distributor/list.html:29
 #: templates/pmgmt/manufacturer/detail.html:25
 #: templates/pmgmt/manufacturer/list.html:29
-#: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html.py:36
+#: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html:36
 msgid "Name"
 msgstr "Name"
 
@@ -926,13 +930,29 @@ msgstr "Lagerbestand"
 msgid "All parts are in stock!"
 msgstr "Alle Teile sind hinreichend vorhanden!"
 
+#: templates/help.html:13
+msgid "Frequent Asked Questions"
+msgstr "Häufige Fragen"
+
+#: templates/help.html:15
+msgid ""
+"No frequent questions by now.</p>\n"
+"    <p>Please check our <a href=\"https://github.com/frlan/partuniverse/wiki"
+"\">github</a>-wiki for some additional documentation.\n"
+"    "
+msgstr ""
+"Keine häufigen Fragen bis jetzt.</p><p>Besuche doch unsere Wiki-Seite "
+"bei <a href=<a href=\"https://github."
+"com/frlan/partuniverse/wiki\">github</a> um ein wenig zusätzliche "
+"Dokumentation zu erhalten."
+
 #: templates/index.html:5
 msgid "Welcome to partuniverse"
 msgstr "Willkommen bei Partuniverse"
 
 #: templates/pmgmt/category/add.html:9 templates/pmgmt/distributor/add.html:9
 #: templates/pmgmt/manufacturer/add.html:9 templates/pmgmt/part/add.html:9
-#: templates/pmgmt/storage/add.html.py:9 templates/pmgmt/storagetype/add.html:9
+#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storagetype/add.html:9
 #: templates/pmgmt/transaction/add.html:10
 msgid "Add"
 msgstr "Hinzufügen"
@@ -948,7 +968,7 @@ msgstr "Liste der Kategorien"
 #: templates/pmgmt/category/list.html:36
 #: templates/pmgmt/distributor/list.html:44
 #: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:83
-#: templates/pmgmt/storage/list.html.py:60
+#: templates/pmgmt/storage/list.html:60
 #: templates/pmgmt/storageitem/list.html:70
 #: templates/pmgmt/storagetype/list.html:53
 msgid "No data available at the moment"
@@ -995,7 +1015,7 @@ msgstr "Liste der Lieferantanten"
 
 #: templates/pmgmt/distributor/list.html:37
 #: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:70
-#: templates/pmgmt/storage/list.html.py:51
+#: templates/pmgmt/storage/list.html:51
 #: templates/pmgmt/storageitem/list.html:56
 #: templates/pmgmt/storagetype/list.html:44
 msgid "Update"
@@ -1026,7 +1046,7 @@ msgstr "Hersteller aktualisieren"
 msgid "List of manufacturers"
 msgstr "Liste der Hersteller"
 
-#: templates/pmgmt/part/add.html:12 templates/pmgmt/part/add.html.py:14
+#: templates/pmgmt/part/add.html:12 templates/pmgmt/part/add.html:14
 msgid "Add a new part"
 msgstr "Ein neues Teil anlegen"
 
@@ -1082,7 +1102,7 @@ msgstr "Keine Beschreibung verfügbar."
 msgid "Delete item"
 msgstr "Teil löschen"
 
-#: templates/pmgmt/part/list.html:9 templates/pmgmt/part/list.html.py:11
+#: templates/pmgmt/part/list.html:9 templates/pmgmt/part/list.html:11
 msgid "List of parts"
 msgstr "Teileliste"
 
@@ -1215,12 +1235,10 @@ msgid "Add a new transaction"
 msgstr "Eine neue Transaktion starten"
 
 #: templates/pmgmt/transaction/detail.html:37
-#| msgid "State"
 msgid "Status"
 msgstr "Status"
 
 #: templates/pmgmt/transaction/detail.html:45
-#| msgid "Transaction Date"
 msgid "Transaction date"
 msgstr "Transaktionsdatum"
 
