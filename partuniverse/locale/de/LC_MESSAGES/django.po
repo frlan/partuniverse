@@ -539,7 +539,7 @@ msgstr "Lizenz"
 
 #: templates/about.html:14
 msgid "The software is distributed under terms of AGPLv3+."
-msgstr "Die Software ist under den Bedingungen "
+msgstr "Die Software ist under den Bedingungen  der AGPLv3+ veröffentlicht."
 
 #: templates/about.html:15
 msgid "Source Code"
