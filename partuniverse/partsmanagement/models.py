@@ -751,6 +751,24 @@ class WishListItem(models.Model):
                     "this field takes description of the wished item.")
     )
 
+    created_date = models.TimeField(
+        _("Creation timestamp"),
+        blank=False,
+        null=False,
+        auto_now_add=True,
+        help_text=_("The timestamp wishlist has been entered.")
+    )
+    valid_till = models.TimeField(
+        _("Valid until"),
+        blank=True,
+        null=True,
+        help_text=_("An optinal date when the wish might expire.")
+    )
+    public = models.BooleanField(
+        _('Public'),
+        help_text=_("Whether this is a public wishlist.")
+    )
+
     def __str__(self):
         if self.title:
             return u"{}: {}".format(self.title, self.quantity)
@@ -789,6 +807,12 @@ class WishList(models.Model):
     public = models.BooleanField(
         _('Public'),
         help_text=_("Whether this is a public wishlist.")
+    )
+    valid_till = models.TimeField(
+        _("Valid until"),
+        blank=True,
+        null=True,
+        help_text=_("An optinal date when the wish might expire.")
     )
 
     def __str__(self):
