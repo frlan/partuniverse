@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "help" %}" class="active section">{% trans "Help" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Help" %}{% endblock %}
+
+{% block heading %}{% trans "Help" %}{% endblock %}
+
+{% block content %}
+<h2 class="ui dividing header">{% trans "Frequent Asked Questions" %}</h2>
+<p>
+    {% blocktrans %}No frequent questions by now. Please check <a href="https://github.com/frlan/partuniverse">github</a>-page for some documentation.
+    {% endblocktrans %}</p>
+{% endblock %}
