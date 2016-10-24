@@ -761,7 +761,7 @@ msgstr ""
 
 #: templates/account/password_reset_sent.html:10
 msgid "Password reset sent"
-msgstr "Passwort zurücksetzen Email wurde versendet"
+msgstr "»Passwort zurücksetzen«-Email wurde versendet."
 
 #: templates/account/password_reset_sent.html:12
 #, python-format
