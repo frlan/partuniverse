@@ -644,7 +644,7 @@ msgstr ""
 "%(password_reset_url)s\n"
 "\n"
 "\n"
-"Dein Adminteam"
+"Dein Adminteam\n"
 
 #: templates/account/email/password_reset_subject.txt:1
 #, python-format
