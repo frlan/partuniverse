@@ -1188,7 +1188,7 @@ msgstr "Inventur"
 #: templates/pmgmt/storageitem/list.html:9
 #: templates/pmgmt/storageitem/list.html:11
 msgid "List of storages items"
-msgstr "Liste der Lieferanten"
+msgstr "Liste der Einlagerungen"
 
 #: templates/pmgmt/storageitem/list.html:35
 msgid "Reported On Stock"
