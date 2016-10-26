@@ -18,7 +18,7 @@
            href="{% url "home" %}">
           {% trans "Home" %}
         </a>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated or not settings.PRIVATE_COMMUNITY %}
         <a
            class="item"
            accesskey="p"
@@ -31,12 +31,16 @@
            href="{% url "storage_item_list" %}">
           {% trans "Storage items" %}
         </a>
+        {% endif %}
+        {% if user.is_authenticated %}
         <a
            class="item"
            accesskey="t"
            href="{% url "transaction_list" %}">
           {% trans "Transactions" %}
         </a>
+        {% endif %}
+        {% if user.is_authenticated %}
         <div class="right menu">
           <div class="ui simple dropdown item">
             {% trans "Manage" %}
