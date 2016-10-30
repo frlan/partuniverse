@@ -14,7 +14,8 @@ from .views import *
 urlpatterns = patterns(
     '',
     # Some general url pattern
-    url(r'^$', RedirectView.as_view(
+    url(r'^$',
+        RedirectView.as_view(
             url='list',
             permanent=True),
         name='index'),
