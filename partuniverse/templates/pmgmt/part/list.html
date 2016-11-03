@@ -48,7 +48,7 @@
       <td>
         {% if item.pic %}
           <a href="{% url "part_detail" item.id %}">
-            <img class="ui fluid rounded image" src="{{item.pic.url}}">
+            <img style="max-height: 80px;" class="ui fluid rounded image" src="{{item.pic.url}}">
           </a>
         {% else %}
           &nbsp;
