@@ -931,8 +931,8 @@ msgid "All parts are in stock!"
 msgstr "Alle Teile sind hinreichend vorhanden!"
 
 #: templates/help.html:13
-msgid "Frequent Asked Questions"
-msgstr "Häufige Fragen"
+msgid "Frequently Asked Questions"
+msgstr "Häufig gestellte Fragen"
 
 #: templates/help.html:15
 msgid ""
@@ -1158,7 +1158,7 @@ msgstr "Zugeordnet zu"
 #: templates/pmgmt/storagetype/update.html:14
 #, python-format
 msgid "Update of „%(name)s“"
-msgstr "Aktaulisierung von »%(name)s«"
+msgstr "Aktualisierung von »%(name)s«"
 
 #: templates/pmgmt/storageitem/add.html:7
 msgid "Storage Item Add"
