@@ -4,6 +4,8 @@ coverage==4.1
 diff-match-patch==20121119
 Django==1.9.8
 django-appconf==1.0.2
+-e git+https://github.com/vinyll/django-imagefit@0731c31427aab52cc315ed656886daf0792fea86#egg=django_imagefit
+django-import-export==0.4.5
 django-mathfilters==0.4.0
 django-polymorphic==0.9.2
 django-semanticui-form==0.0.1

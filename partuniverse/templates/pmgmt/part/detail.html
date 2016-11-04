@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load imagefit %}
+
 {% block breadcrumbs %}
 <a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
 <i class="right chevron icon divider"></i>
@@ -85,7 +87,7 @@
   </div>
 {% if object.pic %}
 <div class="column">
-    <img class="ui fluid rounded image" src="{{object.pic.url}}">
+    <img class="ui fluid rounded image" src="{{object.pic|resize:'400x400'}}">
 </div>
 {% endif %}
 </div>

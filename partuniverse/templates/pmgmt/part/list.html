@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load imagefit %}
 
 {% block breadcrumbs %}
 <a href="{% url "part_list" %}" class="active section">{% trans "Parts" %}</a>
@@ -48,7 +49,7 @@
       <td>
         {% if item.pic %}
           <a href="{% url "part_detail" item.id %}">
-            <img style="max-height: 80px; width: auto;" class="ui fluid rounded image" src="{{item.pic.url}}">
+            <img style="max-height: 80px; width: auto;" class="ui fluid rounded image" src="{{item.pic|resize:'80x80'}}">
           </a>
         {% else %}
           &nbsp;

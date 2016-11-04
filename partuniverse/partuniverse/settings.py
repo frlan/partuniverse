@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'account',
     'partsmanagement',
     'dashboard',
+    'imagefit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -155,6 +156,8 @@ LOGGING = {
         },
     }
 }
+
+IMAGEFIT_ROOT = "media"
 
 ########################################################################
 # Delimiter for hirachial stuff

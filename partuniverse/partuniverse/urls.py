@@ -37,5 +37,6 @@ urlpatterns = patterns('',
                            name='index'),
                        url(r'^pmgmt/', include('partsmanagement.urls')),
                        url(r"^accounts/", include("account.urls")),
+                       url(r'^imagefit/', include('imagefit.urls')),
                        ) + static(settings.MEDIA_URL,
                                   document_root=settings.MEDIA_ROOT)
