@@ -42,15 +42,13 @@
     <tr>
     {% for item in object_list %}
       <td><a href="{% url "part_detail" item.part.id %}">{{ item.part }}</a></td>
-      <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage.name }}</a></td>
+      <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage }}</a></td>
       <td>{{ item.on_stock|default:"---"|floatformat }}</td>
       {% if user.is_authenticated %}
       <td>
         <div class="ui inverted blue menu">
           <div class="ui fluid simple dropdown item">
             <a style="width: 100%;" href="{% url "storage_item_detail" item.id %}"/>Detail</a>
-          
-
             <i class="dropdown icon"></i>
             <div class="menu">
               <a class="item" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>

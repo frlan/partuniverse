@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-13 21:42+0200\n"
+"POT-Creation-Date: 2016-10-24 19:15+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -49,7 +49,8 @@ msgstr "Teile mit geringen Bestand"
 
 #: partsmanagement/dashboards/NeedsRestockingDashboardItem.py:14
 msgid "Displays a table with parts which have low stock."
-msgstr "Zeigt eine Übersicht mit Teilen an, die einen zu geringen Bestand haben."
+msgstr ""
+"Zeigt eine Übersicht mit Teilen an, die einen zu geringen Bestand haben."
 
 #: partsmanagement/exceptions.py:16
 #, python-format
@@ -422,7 +423,7 @@ msgstr "Entscheidet, ob der Eintrag aktiv ist."
 msgid "Difference from Stocktaking"
 msgstr "Unterschiede Inventur"
 
-#: partsmanagement/models.py:577
+#: partsmanagement/models.py:577 templates/pmgmt/transaction/detail.html:29
 msgid "Storage Item"
 msgstr "Einlagerung"
 
@@ -432,7 +433,7 @@ msgstr "Einlagerung"
 msgid "Storage Items"
 msgstr "Einlagerungen"
 
-#: partsmanagement/models.py:587
+#: partsmanagement/models.py:587 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
 msgstr "Kurzbeschreibung"
 
@@ -444,7 +445,7 @@ msgstr "Eine kurze Zusammenfassung für die Transaktion."
 msgid "The part-storage relation the transaction was applied on."
 msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
-#: partsmanagement/models.py:600
+#: partsmanagement/models.py:600 templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
@@ -477,6 +478,7 @@ msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
 #: partsmanagement/models.py:630 templates/pmgmt/part/detail.html:81
+#: templates/pmgmt/transaction/detail.html:41
 msgid "Created by"
 msgstr "Erstellt von"
 
@@ -516,7 +518,7 @@ msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:715
+#: partsmanagement/models.py:715 templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
@@ -537,7 +539,7 @@ msgstr "Lizenz"
 
 #: templates/about.html:14
 msgid "The software is distributed under terms of AGPLv3+."
-msgstr "Die Software ist under den Bedingungen "
+msgstr "Die Software ist unter den Bedingungen  der AGPLv3+ veröffentlicht."
 
 #: templates/about.html:15
 msgid "Source Code"
@@ -625,12 +627,18 @@ msgid ""
 "link below to reset your password.\n"
 "\n"
 "%(password_reset_url)s\n"
+"\n"
+"Your Adminteam\n"
 msgstr ""
-"Du erhälst Diese Email, weil jemand ein neues Passwort für die Seite "
+"Du erhälst diese Email, weil jemand ein neues Passwort für die Seite "
 "%(site_name)s angefordert hat. \n"
-" Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt "
-"hast. Um Dein Passwort zu ändern, klicken auf diesen Link: \n"
+"\n"
+"Diese Mail kann ignoriert werden, wenn Du diese Anfrage nicht gestellt hast. "
+"Um Dein Passwort zu ändern, klicke auf diesen Link: \n"
 "%(password_reset_url)s\n"
+"\n"
+"\n"
+"Dein Adminteam\n"
 
 #: templates/account/email/password_reset_subject.txt:1
 #, python-format
@@ -638,25 +646,36 @@ msgid "[%(site_name)s] Password reset"
 msgstr "[%(site_name)s] Passwort zurücksetzen"
 
 #: templates/account/email_confirm.html:5
-#: templates/account/email_confirm.html:8
+#: templates/account/email_confirm.html:12
 msgid "Confirm Email"
 msgstr "Bestätigung Deiner Email"
 
-#: templates/account/email_confirm.html:11
-#, python-format
-msgid "Confirm email address <b>%(email)s</b>?"
-msgstr "Bitte bestätige Deine Emailadresse <b>%(email)s</b>."
+#: templates/account/email_confirm.html:8
+#: templates/account/email_confirmation_sent.html:10
+#| msgid "Account settings"
+msgid "Account signup"
+msgstr "Benutzerkonto anlegen"
 
-#: templates/account/email_confirm.html:12 templates/pmgmt/part/delete.html:22
+#: templates/account/email_confirm.html:15
+#| msgid "Confirm email address <b>%(email)s</b>?"
+msgid "Can you confirm email address: <b>%(email)s</b>?"
+msgstr "Bitte bestätige Deine Emailadresse: <b>%(email)s</b>."
+
+#: templates/account/email_confirm.html:16 templates/pmgmt/part/delete.html:22
 msgid "Confirm"
 msgstr "Bestätigen"
 
+#: templates/account/email_confirmation_sent.html:5
+#| msgid "No Information"
+msgid "Confirmation"
+msgstr "Bestätigung"
+
 #: templates/account/email_confirmation_sent.html:7
-#: templates/account/email_confirmation_sent.html:10
+#: templates/account/email_confirmation_sent.html:14
 msgid "Confirm your email address"
 msgstr "Bestätige Deine Email-Adresse"
 
-#: templates/account/email_confirmation_sent.html:12
+#: templates/account/email_confirmation_sent.html:16
 #, python-format
 msgid ""
 "We have sent you an email to <b>%(email)s</b> for verification. Follow the "
@@ -664,11 +683,10 @@ msgid ""
 "within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
 "\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Wir haben Dir eine Email an <b>%(email)s</b> zur Bestätigung gesendet."
-" <br> Folge der Anleitung in dieser Mail, um den "
-"Registrierungsprozess abzuschließen. Solltest Du keine Email "
-"innerhalb der nächsten Minuten erhalten, kontaktieren uns bitte unter "
-"<a href=\"mailto:"
+"Wir haben Dir eine Email an <b>%(email)s</b> zur Bestätigung gesendet. <br> "
+"Folge der Anleitung in dieser Mail, um den Registrierungsprozess "
+"abzuschließen. Solltest Du keine Email innerhalb der nächsten Minuten "
+"erhalten, kontaktieren uns bitte unter <a href=\"mailto:"
 "%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: templates/account/email_confirmed.html:5
@@ -714,6 +732,9 @@ msgstr "Bitte gib Dein altes und Dein neues Passwort ein"
 
 #: templates/account/password_reset.html:7
 #: templates/account/password_reset.html:9
+#: templates/account/password_reset.html:16
+#: templates/account/password_reset_sent.html:6
+#: templates/account/password_reset_sent.html:7
 msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
@@ -725,11 +746,11 @@ msgstr ""
 "Passowrt vergessen? Gebe Deine Email-Adresse unten ein und wir werden Dir "
 "eine Mail zusenden, die es Dir erlaubt, ein neues Passwort zu setzen."
 
-#: templates/account/password_reset.html:24
+#: templates/account/password_reset.html:23
 msgid "Reset my password"
 msgstr "Mein Passowrt zurück setzen"
 
-#: templates/account/password_reset.html:28
+#: templates/account/password_reset.html:27
 #, python-format
 msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
@@ -738,12 +759,11 @@ msgstr ""
 "Wenn Du Probleme beim rücksetzen Deines Passwortes hast, kontaktiere uns "
 "über <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>. "
 
-#: templates/account/password_reset_sent.html:6
-#: templates/account/password_reset_sent.html:9
+#: templates/account/password_reset_sent.html:10
 msgid "Password reset sent"
-msgstr "Passwort zurücksetzen Email wurde versendet"
+msgstr "»Passwort zurücksetzen«-Email wurde versendet."
 
-#: templates/account/password_reset_sent.html:11
+#: templates/account/password_reset_sent.html:12
 #, python-format
 msgid ""
 "We have sent you an email. If you do not receive it within a few minutes, "
@@ -755,24 +775,25 @@ msgstr ""
 "uns via <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</"
 "a>"
 
-#: templates/account/password_reset_sent.html:19
+#: templates/account/password_reset_sent.html:20
 msgid "Resend"
 msgstr "Erneut senden"
 
-#: templates/account/password_reset_sent.html:24
+#: templates/account/password_reset_sent.html:25
 #, python-format
 msgid ""
 "We have resent the password email. If you do not receive it within a few "
 "minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Wir haben Dir die Email zu zurücksetzen Dienes Passowrts nocheinmal "
+"Wir haben Dir die Email zum zurücksetzen Deines Passwortes noch einmal "
 "zugesendet. Sollest Du innerhalb weniger Minuten diese Mail nicht erhalten, "
 "kontaktiere uns unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 
-#: templates/account/password_reset_token.html:6
-#: templates/account/password_reset_token.html:9
+#: templates/account/password_reset_token.html:7
+#: templates/account/password_reset_token.html:8
+#: templates/account/password_reset_token.html:11
 msgid "Set your new password"
 msgstr "Setze Dein neues Passwort"
 
@@ -865,15 +886,24 @@ msgstr "Einloggen"
 msgid "Register"
 msgstr "Registrieren"
 
-#: templates/base.html:103
+#: templates/base.html:103 templates/help.html:5 templates/help.html:8
+#: templates/help.html:10
 msgid "Help"
 msgstr "Hilfe"
 
-#: templates/dashboard/most_recent_parts.html:31
+#: templates/dashboard/most_recent_parts.html:8
+msgid "Recent parts"
+msgstr "Neuste Teile"
+
+#: templates/dashboard/most_recent_parts.html:32
 msgid "No new parts."
 msgstr "Keine neuen Teile."
 
-#: templates/dashboard/most_recent_transactions.html:34
+#: templates/dashboard/most_recent_transactions.html:8
+msgid "Recent transactions"
+msgstr "Neuste Transaktionen"
+
+#: templates/dashboard/most_recent_transactions.html:35
 msgid "No transactions."
 msgstr "Keine Transaktionen"
 
@@ -900,6 +930,22 @@ msgstr "Lagerbestand"
 msgid "All parts are in stock!"
 msgstr "Alle Teile sind hinreichend vorhanden!"
 
+#: templates/help.html:13
+msgid "Frequently Asked Questions"
+msgstr "Häufig gestellte Fragen"
+
+#: templates/help.html:15
+msgid ""
+"No frequent questions by now.</p>\n"
+"    <p>Please check our <a href=\"https://github.com/frlan/partuniverse/wiki"
+"\">github</a>-wiki for some additional documentation.\n"
+"    "
+msgstr ""
+"Keine häufigen Fragen bis jetzt.</p><p>Besuche doch unsere Wiki-Seite "
+"bei <a href=<a href=\"https://github."
+"com/frlan/partuniverse/wiki\">github</a> um ein wenig zusätzliche "
+"Dokumentation zu erhalten."
+
 #: templates/index.html:5
 msgid "Welcome to partuniverse"
 msgstr "Willkommen bei Partuniverse"
@@ -921,7 +967,7 @@ msgstr "Liste der Kategorien"
 
 #: templates/pmgmt/category/list.html:36
 #: templates/pmgmt/distributor/list.html:44
-#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:73
+#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:83
 #: templates/pmgmt/storage/list.html:60
 #: templates/pmgmt/storageitem/list.html:70
 #: templates/pmgmt/storagetype/list.html:53
@@ -968,7 +1014,7 @@ msgid "List of distributors"
 msgstr "Liste der Lieferantanten"
 
 #: templates/pmgmt/distributor/list.html:37
-#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:63
+#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:70
 #: templates/pmgmt/storage/list.html:51
 #: templates/pmgmt/storageitem/list.html:56
 #: templates/pmgmt/storagetype/list.html:44
@@ -1033,7 +1079,8 @@ msgstr ""
 #: templates/pmgmt/part/detail.html:22
 msgid "The item is out of stock or below its minimum stock"
 msgstr ""
-"Dieses Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf Lager."
+"Dieses Teil hat den Minimalbestand unterschritten oder ist nicht mehr auf "
+"Lager."
 
 #: templates/pmgmt/part/detail.html:41
 msgid "Measuring unit"
@@ -1063,7 +1110,7 @@ msgstr "Teileliste"
 msgid "Minimum"
 msgstr "Minimum"
 
-#: templates/pmgmt/part/list.html:64
+#: templates/pmgmt/part/list.html:71
 msgid "Delete"
 msgstr "Löschen"
 
@@ -1111,7 +1158,7 @@ msgstr "Zugeordnet zu"
 #: templates/pmgmt/storagetype/update.html:14
 #, python-format
 msgid "Update of „%(name)s“"
-msgstr "Aktaulisierung von »%(name)s«"
+msgstr "Aktualisierung von »%(name)s«"
 
 #: templates/pmgmt/storageitem/add.html:7
 msgid "Storage Item Add"
@@ -1141,7 +1188,7 @@ msgstr "Inventur"
 #: templates/pmgmt/storageitem/list.html:9
 #: templates/pmgmt/storageitem/list.html:11
 msgid "List of storages items"
-msgstr "Liste der Lieferanten"
+msgstr "Liste der Einlagerungen"
 
 #: templates/pmgmt/storageitem/list.html:35
 msgid "Reported On Stock"
@@ -1186,6 +1233,14 @@ msgstr "Liste der Lagertypen"
 #: templates/pmgmt/transaction/add.html:15
 msgid "Add a new transaction"
 msgstr "Eine neue Transaktion starten"
+
+#: templates/pmgmt/transaction/detail.html:37
+msgid "Status"
+msgstr "Status"
+
+#: templates/pmgmt/transaction/detail.html:45
+msgid "Transaction date"
+msgstr "Transaktionsdatum"
 
 #: templates/pmgmt/transaction/list.html:9
 #: templates/pmgmt/transaction/list.html:11

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
 
 
@@ -13,6 +13,11 @@ from .views import *
 
 urlpatterns = [
     # Some general url pattern
+    url(r'^$',
+        RedirectView.as_view(
+            url='list',
+            permanent=True),
+        name='index'),
     url(r'^list/', PartsList.as_view(), name='part_list'),
     url(r'^add/', login_required(PartsAddView.as_view()),
         name='part_add'),

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.conf.urls.static import static
 from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
+from django.contrib import admin
+from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
+
 
 # i18n
 from django.utils.translation import ugettext_lazy as _
@@ -17,6 +20,9 @@ urlpatterns = [
                url(r'^about/$',
                    TemplateView.as_view(template_name='about.html'),
                    name='about'),
+               url(r'^help/$',
+                   TemplateView.as_view(template_name='help.html'),
+                   name='help'),
                url(r'^img/(.*)$',
                    'django.views.static.serve',
                    {'document_root': settings.MEDIA_ROOT}),

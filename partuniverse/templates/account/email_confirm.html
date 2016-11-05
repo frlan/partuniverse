@@ -4,11 +4,15 @@
 
 {% block heading %}{% trans "Confirm Email" %}{% endblock %}
 
+{% block breadcrumbs %}
+<a href="{% url "account_signup" %}" class="active section">{% trans "Account signup" %}</a>
+{% endblock %}
+
 {% block content %}
 <p> {% trans "Confirm Email" %}</p>
 <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
 {% csrf_token %}
-<p>{% blocktrans with email=confirmation.email_address.email %}Confirm email address <b>{{ email }}</b>?{% endblocktrans %}</p>
+<p>{% blocktrans with email=confirmation.email_address.email %}Can you confirm email address: <b>{{ email }}</b>?{% endblocktrans %}</p>
 <button type="submit" >{% trans "Confirm" %}</button>
 </form>
 {% endblock %}

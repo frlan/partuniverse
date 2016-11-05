@@ -7,7 +7,10 @@ but at a more general storage.
 
 ## Discussion and help
 
-To discuss about partuniverse or get help, join our mailing list at [lstsrv.org](https://lstsrv.org/mailman/listinfo/partuniverse)
+To discuss about partuniverse or get help, join our mailing list at
+[lstsrv.org](https://lstsrv.org/mailman/listinfo/partuniverse). There
+is also a XMPP-MUC available to chat. Join
+[partuniverse@chat.kraut.space](xmpp:partuniverse@chat.kraut.space).
 
 ## Bugreporting
 
@@ -160,9 +163,9 @@ prevents the bug from happen again.
 
 ### Branching
 
-Before start coding, make your own fork of partuniverse. This can be 
+Before start coding, make your own fork of partuniverse. This can be
 done either at github or any other public git repo. Once you have done
-this, please develope one feature within one branch. Try to avoid hacking 
+this, please develope one feature within one branch. Try to avoid hacking
 on your master branch. Having feature-branches allows easier merges/discussion/*.
 When finishing your featre, please send a pull request or a patchset via mail.
 
