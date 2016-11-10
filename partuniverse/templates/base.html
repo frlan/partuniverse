@@ -122,9 +122,11 @@
       </div>
     </footer>
     {% endblock footer %}
+
+    {% block javascripts %}
     <script src="{% static "jquery/dist/jquery.js" %}"></script>
     <script src="{% static "semantic-ui/dist/semantic.js" %}"></script>
     <script src="{% static "custom/semantic.js" %}"></script>
-    {% block javascripts %}{% endblock %}
+    {% endblock %}
   </body>
 </html>

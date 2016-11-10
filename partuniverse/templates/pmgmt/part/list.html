@@ -12,8 +12,8 @@
 {% block heading %}{% trans "List of parts" %}{% endblock %}
 
 {% block javascripts %}
+{{ block.super }}
 <script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
-<!--script src="http://semantic-ui.com/javascript/library/tablesort.js"></script-->
 <script src="{% static "custom/tablesort.js" %}"></script>
 {% endblock %}
 
