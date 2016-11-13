@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% block breadcrumbs %}
 <a href="{% url "manufacturer_list" %}" class="active section">{% trans "Manufacturers" %}</a>
@@ -9,6 +10,12 @@
 {% block head_title %}{% trans "List of manufacturers" %}{% endblock %}
 
 {% block heading %}{% trans "List of manufacturers" %}{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
 
 {% block content %}
 <a
@@ -19,14 +26,14 @@
   <i class="icon add"></i> Add
 </a>
 {% if object_list %}
-<table class="ui table segment">
+<table class="ui table segment sortable">
   <colgroup>
     <col>
     <col width="8%">
   </colgroup>
   <thead>
     <tr>
-      <th>{% trans "Name" %}</th>
+      <th class="sorted ascending">{% trans "Name" %}</th>
       <th></th>
     </tr>
   </thead>
