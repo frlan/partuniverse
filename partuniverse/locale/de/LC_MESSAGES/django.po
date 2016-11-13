@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 12:43+0000\n"
+"POT-Creation-Date: 2016-11-13 13:10+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -116,7 +116,7 @@ msgstr "Stück"
 msgid "piece"
 msgstr "Stück"
 
-#: partsmanagement/models.py:51 templates/pmgmt/storage/list.html:46
+#: partsmanagement/models.py:51 templates/pmgmt/storage/list.html:53
 #: templates/pmgmt/storageitem/detail.html:25
 msgid "n/A"
 msgstr "n/V"
@@ -241,7 +241,7 @@ msgstr "Hersteller"
 #: partsmanagement/models.py:212 templates/base.html:53
 #: templates/pmgmt/manufacturer/add.html:7
 #: templates/pmgmt/manufacturer/detail.html:6
-#: templates/pmgmt/manufacturer/list.html:6
+#: templates/pmgmt/manufacturer/list.html:7
 #: templates/pmgmt/manufacturer/update.html:7
 msgid "Manufacturers"
 msgstr "Hersteller"
@@ -274,7 +274,7 @@ msgstr "Lieferant"
 #: partsmanagement/models.py:252 templates/base.html:52
 #: templates/pmgmt/distributor/add.html:7
 #: templates/pmgmt/distributor/detail.html:6
-#: templates/pmgmt/distributor/list.html:6
+#: templates/pmgmt/distributor/list.html:7
 #: templates/pmgmt/distributor/update.html:7
 msgid "Distributors"
 msgstr "Lieferanten"
@@ -307,7 +307,7 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: partsmanagement/models.py:318 templates/base.html:51
-#: templates/pmgmt/category/list.html:6 templates/pmgmt/part/detail.html:77
+#: templates/pmgmt/category/list.html:7 templates/pmgmt/part/detail.html:77
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -388,7 +388,7 @@ msgid "Whether the part is active or not."
 msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 
 #: partsmanagement/models.py:521 templates/pmgmt/storageitem/detail.html:16
-#: templates/pmgmt/storageitem/list.html:33
+#: templates/pmgmt/storageitem/list.html:40
 msgid "Part"
 msgstr "Teil"
 
@@ -428,7 +428,7 @@ msgid "Storage Item"
 msgstr "Einlagerung"
 
 #: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html:6
-#: templates/pmgmt/storageitem/list.html:6
+#: templates/pmgmt/storageitem/list.html:7
 #: templates/pmgmt/storageitem/update.html:7
 msgid "Storage Items"
 msgstr "Einlagerungen"
@@ -905,8 +905,6 @@ msgid "Recent transactions"
 msgstr "Neuste Transaktionen"
 
 #: templates/dashboard/most_recent_transactions.html:24
-
-#| msgid "Added by"
 msgid "added"
 msgstr "hinzugefügt"
 
@@ -931,11 +929,11 @@ msgid "Need restocking"
 msgstr "Benötigt Nachbestellung"
 
 #: templates/dashboard/needs_restocking.html:12
-#: templates/pmgmt/category/list.html:26
+#: templates/pmgmt/category/list.html:33
 #: templates/pmgmt/distributor/detail.html:25
-#: templates/pmgmt/distributor/list.html:29
+#: templates/pmgmt/distributor/list.html:36
 #: templates/pmgmt/manufacturer/detail.html:25
-#: templates/pmgmt/manufacturer/list.html:29
+#: templates/pmgmt/manufacturer/list.html:36
 #: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html:44
 msgid "Name"
 msgstr "Name"
@@ -953,16 +951,15 @@ msgstr "Alle Teile sind hinreichend vorhanden!"
 msgid "Frequently Asked Questions"
 msgstr "Häufig gestellte Fragen"
 
-#: templates/help.html:15
+#: templates/help.html:14
 msgid ""
-"No frequently questions by now.</p>\n"
+"<p>No frequently questions by now.</p>\n"
 "    <p>Please check our <a href=\"https://github.com/frlan/partuniverse/wiki"
-"\">github</a> wiki for some additional documentation.\n"
-"    "
+"\">github</a> wiki for some additional documentation.</p>"
 msgstr ""
 "Keine häufigen Fragen bis jetzt.</p><p>Besuche doch unsere Wiki-Seite bei <a "
 "href=<a href=\"https://github.com/frlan/partuniverse/wiki\">github</a> um "
-"ein wenig zusätzliche Dokumentation zu erhalten.\n"
+"ein wenig zusätzliche Dokumentation zu erhalten."
 
 #: templates/index.html:5
 msgid "Welcome to partuniverse"
@@ -979,16 +976,16 @@ msgstr "Hinzufügen"
 msgid "Add a new category"
 msgstr "Ein neue Kategory anlegen"
 
-#: templates/pmgmt/category/list.html:9 templates/pmgmt/category/list.html:11
+#: templates/pmgmt/category/list.html:10 templates/pmgmt/category/list.html:12
 msgid "List of categories"
 msgstr "Liste der Kategorien"
 
-#: templates/pmgmt/category/list.html:36
-#: templates/pmgmt/distributor/list.html:44
-#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:93
-#: templates/pmgmt/storage/list.html:60
-#: templates/pmgmt/storageitem/list.html:68
-#: templates/pmgmt/storagetype/list.html:53
+#: templates/pmgmt/category/list.html:43
+#: templates/pmgmt/distributor/list.html:51
+#: templates/pmgmt/manufacturer/list.html:51 templates/pmgmt/part/list.html:93
+#: templates/pmgmt/storage/list.html:67
+#: templates/pmgmt/storageitem/list.html:75
+#: templates/pmgmt/storagetype/list.html:60
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
 
@@ -1026,16 +1023,16 @@ msgstr "URL"
 msgid "Update item"
 msgstr "Aktualisieren"
 
-#: templates/pmgmt/distributor/list.html:9
-#: templates/pmgmt/distributor/list.html:11
+#: templates/pmgmt/distributor/list.html:10
+#: templates/pmgmt/distributor/list.html:12
 msgid "List of distributors"
 msgstr "Liste der Lieferantanten"
 
-#: templates/pmgmt/distributor/list.html:37
-#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:80
-#: templates/pmgmt/storage/list.html:51
-#: templates/pmgmt/storageitem/list.html:54
-#: templates/pmgmt/storagetype/list.html:44
+#: templates/pmgmt/distributor/list.html:44
+#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:80
+#: templates/pmgmt/storage/list.html:58
+#: templates/pmgmt/storageitem/list.html:61
+#: templates/pmgmt/storagetype/list.html:51
 msgid "Update"
 msgstr "Aktualisieren"
 
@@ -1059,8 +1056,8 @@ msgstr "Hersteller löschen"
 msgid "Update Manufacturer"
 msgstr "Hersteller aktualisieren"
 
-#: templates/pmgmt/manufacturer/list.html:9
-#: templates/pmgmt/manufacturer/list.html:11
+#: templates/pmgmt/manufacturer/list.html:10
+#: templates/pmgmt/manufacturer/list.html:12
 msgid "List of manufacturers"
 msgstr "Liste der Hersteller"
 
@@ -1138,7 +1135,7 @@ msgstr "Löschen"
 
 #: templates/pmgmt/storage/add.html:7
 #: templates/pmgmt/storageitem/detail.html:20
-#: templates/pmgmt/storageitem/list.html:34
+#: templates/pmgmt/storageitem/list.html:41
 #: templates/pmgmt/storagetype/add.html:7
 msgid "Storage"
 msgstr "Lager"
@@ -1153,7 +1150,7 @@ msgstr "Ein neues Lager anlegen"
 msgid "Use this to add new storage places e.g. new shelf."
 msgstr "Hier kannst Du neue Lager wie z.B. ein Fach im Bücherregal hinzufügen."
 
-#: templates/pmgmt/storage/detail.html:29 templates/pmgmt/storage/list.html:36
+#: templates/pmgmt/storage/detail.html:29 templates/pmgmt/storage/list.html:43
 msgid "Storage Name"
 msgstr "Lagername"
 
@@ -1165,11 +1162,11 @@ msgstr "Keine Details"
 msgid "List of storages"
 msgstr "Liste der Lager"
 
-#: templates/pmgmt/storage/list.html:37
+#: templates/pmgmt/storage/list.html:44
 msgid "Storage Typ"
 msgstr "Lagertyp"
 
-#: templates/pmgmt/storage/list.html:38
+#: templates/pmgmt/storage/list.html:45
 msgid "Assigned To"
 msgstr "Zugeordnet zu"
 
@@ -1203,20 +1200,20 @@ msgid "On Stock"
 msgstr "Im Bestand"
 
 #: templates/pmgmt/storageitem/detail.html:33
-#: templates/pmgmt/storageitem/list.html:56
+#: templates/pmgmt/storageitem/list.html:63
 msgid "Stock taking"
 msgstr "Inventur"
 
-#: templates/pmgmt/storageitem/list.html:9
-#: templates/pmgmt/storageitem/list.html:11
+#: templates/pmgmt/storageitem/list.html:10
+#: templates/pmgmt/storageitem/list.html:12
 msgid "List of storages items"
 msgstr "Liste der Einlagerungen"
 
-#: templates/pmgmt/storageitem/list.html:35
+#: templates/pmgmt/storageitem/list.html:42
 msgid "Reported On Stock"
 msgstr "Bestand gemeldet"
 
-#: templates/pmgmt/storageitem/list.html:55
+#: templates/pmgmt/storageitem/list.html:62
 msgid "Merge Storage item"
 msgstr "Einlagerungen verschmelzen"
 
@@ -1238,16 +1235,16 @@ msgstr ""
 "aktuellen Bestand auf den eingetragenen Wert korrgiert."
 
 #: templates/pmgmt/storagetype/detail.html:29
-#: templates/pmgmt/storagetype/list.html:34
+#: templates/pmgmt/storagetype/list.html:41
 msgid "Storage Type Name"
 msgstr "Lagertyp Name"
 
-#: templates/pmgmt/storagetype/list.html:7
+#: templates/pmgmt/storagetype/list.html:8
 msgid "Storages types"
 msgstr "Lagertypen"
 
-#: templates/pmgmt/storagetype/list.html:10
-#: templates/pmgmt/storagetype/list.html:12
+#: templates/pmgmt/storagetype/list.html:11
+#: templates/pmgmt/storagetype/list.html:13
 msgid "List of storages types"
 msgstr "Liste der Lagertypen"
 
