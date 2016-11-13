@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-24 19:15+0000\n"
+"POT-Creation-Date: 2016-11-13 12:43+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -145,7 +145,7 @@ msgstr "Der Name des Lagertypes. Sollte ein eindeutiger Name sein."
 msgid "Storage Type"
 msgstr "Lagertyp"
 
-#: partsmanagement/models.py:89 templates/base.html:49
+#: partsmanagement/models.py:89 templates/base.html:55
 msgid "Storage Types"
 msgstr "Lagertypen"
 
@@ -234,11 +234,11 @@ msgid "The user the manufacturer was created by."
 msgstr "Der Nutzer, von dem der Hersteller angelegt wurde."
 
 #: partsmanagement/models.py:211 partsmanagement/models.py:375
-#: templates/pmgmt/part/detail.html:61 templates/pmgmt/part/list.html:39
+#: templates/pmgmt/part/detail.html:61 templates/pmgmt/part/list.html:47
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:212 templates/base.html:47
+#: partsmanagement/models.py:212 templates/base.html:53
 #: templates/pmgmt/manufacturer/add.html:7
 #: templates/pmgmt/manufacturer/detail.html:6
 #: templates/pmgmt/manufacturer/list.html:6
@@ -271,7 +271,7 @@ msgstr "Nutzer der den Lieferanten als gelöscht markiert hat."
 msgid "Distributor"
 msgstr "Lieferant"
 
-#: partsmanagement/models.py:252 templates/base.html:46
+#: partsmanagement/models.py:252 templates/base.html:52
 #: templates/pmgmt/distributor/add.html:7
 #: templates/pmgmt/distributor/detail.html:6
 #: templates/pmgmt/distributor/list.html:6
@@ -306,7 +306,7 @@ msgstr "Eine Kategorie kann nicht Teil ihrer selbst sein."
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:318 templates/base.html:45
+#: partsmanagement/models.py:318 templates/base.html:51
 #: templates/pmgmt/category/list.html:6 templates/pmgmt/part/detail.html:77
 msgid "Categories"
 msgstr "Kategorien"
@@ -392,9 +392,9 @@ msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:522 templates/base.html:26
+#: partsmanagement/models.py:522 templates/base.html:28
 #: templates/pmgmt/part/add.html:7 templates/pmgmt/part/delete.html:6
-#: templates/pmgmt/part/detail.html:5 templates/pmgmt/part/list.html:6
+#: templates/pmgmt/part/detail.html:5 templates/pmgmt/part/list.html:7
 #: templates/pmgmt/part/update.html:7
 msgid "Parts"
 msgstr "Teile"
@@ -522,14 +522,14 @@ msgstr "geändert {}"
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:716 templates/base.html:38
+#: partsmanagement/models.py:716 templates/base.html:42
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
 msgstr "Transaktionen"
 
 #: templates/about.html:5 templates/about.html:8 templates/about.html:10
-#: templates/base.html:108
+#: templates/base.html:114
 msgid "About"
 msgstr "Über"
 
@@ -652,12 +652,11 @@ msgstr "Bestätigung Deiner Email"
 
 #: templates/account/email_confirm.html:8
 #: templates/account/email_confirmation_sent.html:10
-#| msgid "Account settings"
 msgid "Account signup"
 msgstr "Benutzerkonto anlegen"
 
 #: templates/account/email_confirm.html:15
-#| msgid "Confirm email address <b>%(email)s</b>?"
+#, python-format
 msgid "Can you confirm email address: <b>%(email)s</b>?"
 msgstr "Bitte bestätige Deine Emailadresse: <b>%(email)s</b>."
 
@@ -666,7 +665,6 @@ msgid "Confirm"
 msgstr "Bestätigen"
 
 #: templates/account/email_confirmation_sent.html:5
-#| msgid "No Information"
 msgid "Confirmation"
 msgstr "Bestätigung"
 
@@ -689,6 +687,10 @@ msgstr ""
 "erhalten, kontaktieren uns bitte unter <a href=\"mailto:"
 "%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
+#: templates/account/email_confirmation_sent.html:18
+msgid "Go back"
+msgstr "Zurück"
+
 #: templates/account/email_confirmed.html:5
 #: templates/account/email_confirmed.html:8
 msgid "Email confirmed"
@@ -704,7 +706,7 @@ msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 msgid "Log in"
 msgstr "Einloggen"
 
-#: templates/account/login.html:18 templates/account/password_reset.html:12
+#: templates/account/login.html:18 templates/account/password_reset.html:10
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
@@ -731,14 +733,13 @@ msgid "Please enter you current and your new password"
 msgstr "Bitte gib Dein altes und Dein neues Passwort ein"
 
 #: templates/account/password_reset.html:7
-#: templates/account/password_reset.html:9
-#: templates/account/password_reset.html:16
+#: templates/account/password_reset.html:14
 #: templates/account/password_reset_sent.html:6
 #: templates/account/password_reset_sent.html:7
 msgid "Password reset"
 msgstr "Passwort zurücksetzen"
 
-#: templates/account/password_reset.html:20
+#: templates/account/password_reset.html:18
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
@@ -746,11 +747,11 @@ msgstr ""
 "Passowrt vergessen? Gebe Deine Email-Adresse unten ein und wir werden Dir "
 "eine Mail zusenden, die es Dir erlaubt, ein neues Passwort zu setzen."
 
-#: templates/account/password_reset.html:23
+#: templates/account/password_reset.html:21
 msgid "Reset my password"
 msgstr "Mein Passowrt zurück setzen"
 
-#: templates/account/password_reset.html:27
+#: templates/account/password_reset.html:25
 #, python-format
 msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
@@ -851,42 +852,42 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:19 templates/base.html:86
+#: templates/base.html:21 templates/base.html:92
 msgid "Home"
 msgstr "Start"
 
-#: templates/base.html:32
+#: templates/base.html:34
 msgid "Storage items"
 msgstr "Einlagerungen"
 
-#: templates/base.html:42
+#: templates/base.html:48
 msgid "Manage"
 msgstr "Verwalten"
 
-#: templates/base.html:48 templates/pmgmt/storage/detail.html:6
+#: templates/base.html:54 templates/pmgmt/storage/detail.html:6
 #: templates/pmgmt/storage/list.html:7 templates/pmgmt/storage/update.html:7
 #: templates/pmgmt/storagetype/detail.html:6
 #: templates/pmgmt/storagetype/update.html:7
 msgid "Storages"
 msgstr "Lager"
 
-#: templates/base.html:55
+#: templates/base.html:61
 msgid "Edit user settings"
 msgstr "Nutzereinstellungen ändern"
 
-#: templates/base.html:61
+#: templates/base.html:67
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: templates/base.html:70
+#: templates/base.html:76
 msgid "Login"
 msgstr "Einloggen"
 
-#: templates/base.html:75
+#: templates/base.html:81
 msgid "Register"
 msgstr "Registrieren"
 
-#: templates/base.html:103 templates/help.html:5 templates/help.html:8
+#: templates/base.html:109 templates/help.html:5 templates/help.html:8
 #: templates/help.html:10
 msgid "Help"
 msgstr "Hilfe"
@@ -903,7 +904,25 @@ msgstr "Keine neuen Teile."
 msgid "Recent transactions"
 msgstr "Neuste Transaktionen"
 
-#: templates/dashboard/most_recent_transactions.html:35
+#: templates/dashboard/most_recent_transactions.html:24
+
+#| msgid "Added by"
+msgid "added"
+msgstr "hinzugefügt"
+
+#: templates/dashboard/most_recent_transactions.html:28
+msgid "to"
+msgstr "nach"
+
+#: templates/dashboard/most_recent_transactions.html:30
+msgid "took"
+msgstr "genommen"
+
+#: templates/dashboard/most_recent_transactions.html:34
+msgid "from"
+msgstr "von"
+
+#: templates/dashboard/most_recent_transactions.html:49
 msgid "No transactions."
 msgstr "Keine Transaktionen"
 
@@ -917,12 +936,12 @@ msgstr "Benötigt Nachbestellung"
 #: templates/pmgmt/distributor/list.html:29
 #: templates/pmgmt/manufacturer/detail.html:25
 #: templates/pmgmt/manufacturer/list.html:29
-#: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html:36
+#: templates/pmgmt/part/detail.html:29 templates/pmgmt/part/list.html:44
 msgid "Name"
 msgstr "Name"
 
 #: templates/dashboard/needs_restocking.html:13
-#: templates/pmgmt/part/list.html:38
+#: templates/pmgmt/part/list.html:46
 msgid "In Stock"
 msgstr "Lagerbestand"
 
@@ -936,15 +955,14 @@ msgstr "Häufig gestellte Fragen"
 
 #: templates/help.html:15
 msgid ""
-"No frequent questions by now.</p>\n"
+"No frequently questions by now.</p>\n"
 "    <p>Please check our <a href=\"https://github.com/frlan/partuniverse/wiki"
-"\">github</a>-wiki for some additional documentation.\n"
+"\">github</a> wiki for some additional documentation.\n"
 "    "
 msgstr ""
-"Keine häufigen Fragen bis jetzt.</p><p>Besuche doch unsere Wiki-Seite "
-"bei <a href=<a href=\"https://github."
-"com/frlan/partuniverse/wiki\">github</a> um ein wenig zusätzliche "
-"Dokumentation zu erhalten."
+"Keine häufigen Fragen bis jetzt.</p><p>Besuche doch unsere Wiki-Seite bei <a "
+"href=<a href=\"https://github.com/frlan/partuniverse/wiki\">github</a> um "
+"ein wenig zusätzliche Dokumentation zu erhalten.\n"
 
 #: templates/index.html:5
 msgid "Welcome to partuniverse"
@@ -967,9 +985,9 @@ msgstr "Liste der Kategorien"
 
 #: templates/pmgmt/category/list.html:36
 #: templates/pmgmt/distributor/list.html:44
-#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:83
+#: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:93
 #: templates/pmgmt/storage/list.html:60
-#: templates/pmgmt/storageitem/list.html:70
+#: templates/pmgmt/storageitem/list.html:68
 #: templates/pmgmt/storagetype/list.html:53
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
@@ -1014,9 +1032,9 @@ msgid "List of distributors"
 msgstr "Liste der Lieferantanten"
 
 #: templates/pmgmt/distributor/list.html:37
-#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:70
+#: templates/pmgmt/manufacturer/list.html:37 templates/pmgmt/part/list.html:80
 #: templates/pmgmt/storage/list.html:51
-#: templates/pmgmt/storageitem/list.html:56
+#: templates/pmgmt/storageitem/list.html:54
 #: templates/pmgmt/storagetype/list.html:44
 msgid "Update"
 msgstr "Aktualisieren"
@@ -1102,15 +1120,19 @@ msgstr "Keine Beschreibung verfügbar."
 msgid "Delete item"
 msgstr "Teil löschen"
 
-#: templates/pmgmt/part/list.html:9 templates/pmgmt/part/list.html:11
+#: templates/pmgmt/part/list.html:10 templates/pmgmt/part/list.html:12
 msgid "List of parts"
 msgstr "Teileliste"
 
-#: templates/pmgmt/part/list.html:37
+#: templates/pmgmt/part/list.html:45
 msgid "Minimum"
 msgstr "Minimum"
 
-#: templates/pmgmt/part/list.html:71
+#: templates/pmgmt/part/list.html:49
+msgid "Selling price"
+msgstr "Kosten"
+
+#: templates/pmgmt/part/list.html:81
 msgid "Delete"
 msgstr "Löschen"
 
@@ -1181,7 +1203,7 @@ msgid "On Stock"
 msgstr "Im Bestand"
 
 #: templates/pmgmt/storageitem/detail.html:33
-#: templates/pmgmt/storageitem/list.html:58
+#: templates/pmgmt/storageitem/list.html:56
 msgid "Stock taking"
 msgstr "Inventur"
 
@@ -1194,7 +1216,7 @@ msgstr "Liste der Einlagerungen"
 msgid "Reported On Stock"
 msgstr "Bestand gemeldet"
 
-#: templates/pmgmt/storageitem/list.html:57
+#: templates/pmgmt/storageitem/list.html:55
 msgid "Merge Storage item"
 msgstr "Einlagerungen verschmelzen"
 
