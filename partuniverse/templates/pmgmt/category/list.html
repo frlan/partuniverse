@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 {% load i18n %}
 
 {% block breadcrumbs %}
@@ -9,6 +10,12 @@
 {% block head_title %}{% trans "List of categories" %}{% endblock %}
 
 {% block heading %}{% trans "List of categories" %}{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
 
 {% block content %}
 <a
@@ -20,10 +27,10 @@
 </a>
 
 {% if object_list %}
-<table class="ui table segment">
+<table class="ui table sortable segment">
   <thead>
     <tr>
-      <th>{% trans "Name" %}</th>
+      <th class="sorted ascending">{% trans "Name" %}</th>
   </thead>
   <tbody>
     {% for item in object_list %}
