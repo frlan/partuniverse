@@ -3,12 +3,19 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
+
 <a href="{% url "storage_item_list" %}" class="item">{% trans "Storage Items" %}</a>
 <i class="right chevron icon divider"></i>
 <a class="active item" href="{% url "storage_item_detail" object.id%}">{{ object }}</a>
 
 {% endblock %}
+
+{% block head_title %}{{ object.name }}{% endblock %}
+{% block heading %}{{ object.name }}{% endblock %}
+
+
 {% block content %}
+
 <h1>{{ object }}</h1>
 
 <table class="ui table segment">
