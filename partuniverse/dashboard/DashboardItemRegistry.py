@@ -3,7 +3,6 @@ import importlib
 
 from django.apps import apps
 from django.conf import settings
-from django.template.loader import BaseLoader
 from django.utils._os import safe_join
 from django.utils import six
 
