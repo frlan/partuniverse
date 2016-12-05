@@ -14,6 +14,26 @@ from django.views.static import serve
 from django.utils.translation import ugettext_lazy as _
 from partuniverse import views as partuniverse_view
 
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
+
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -28,5 +48,7 @@ urlpatterns = [
     }),
     url(r'^$', partuniverse_view.dashboard, name='home'),
     url(r'^pmgmt/', include('partsmanagement.urls')),
-    url(r"^accounts/", include("account.urls"))
+    url(r"^accounts/", include("account.urls")),
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
