@@ -14,7 +14,7 @@
 {% block heading %}{% trans "Add a new distributor" %}{% endblock %}
 
 {% block content %}
-<form method="post" class="ui form" enctype="multipart/form-data"> >
+<form method="post" class="ui form" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form|semanticui }}
   <input class="ui blue button" type="submit" value="Submit">

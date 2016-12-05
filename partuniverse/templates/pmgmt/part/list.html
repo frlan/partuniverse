@@ -12,8 +12,8 @@
 {% block heading %}{% trans "List of parts" %}{% endblock %}
 
 {% block javascripts %}
+{{ block.super }}
 <script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
-<!--script src="http://semantic-ui.com/javascript/library/tablesort.js"></script-->
 <script src="{% static "custom/tablesort.js" %}"></script>
 {% endblock %}
 
@@ -34,6 +34,7 @@
     <col width="10%">
     <col width="18%">
     {% if user.is_authenticated %}
+    <col width="10%">
     <col width="20%">
     {% endif %}
   </colgroup>
@@ -45,6 +46,7 @@
       <th>{% trans "In Stock" %}</th>
       <th>{% trans "Manufacturer" %}</th>
       {% if user.is_authenticated %}
+      <th>{% trans "Selling price" %}</th>
       <th class="no-sort"></th>
       {% endif %}
     </tr>
@@ -55,7 +57,7 @@
       <td>
         {% if item.pic %}
           <a href="{% url "part_detail" item.id %}">
-            <img style="max-height: 80px; width: auto;" class="ui fluid rounded image" src="{{item.pic.url}}">
+            <img class="ui fluid rounded image tiny" src="{{item.pic.url}}">
           </a>
         {% else %}
           &nbsp;
@@ -66,6 +68,7 @@
       <td>{{ item.get_on_stock|default:""|floatformat }}</td>
       <td>{{ item.manufacturer|default:"" }}</td>
       {% if user.is_authenticated %}
+      <td>{{ item.price }}</td>
       <td>
         <div class="ui inverted blue menu">
           <div class="ui fluid simple dropdown item">

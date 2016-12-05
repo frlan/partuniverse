@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 {% load i18n %}
 
 
@@ -11,6 +12,12 @@
 
 {% block heading %}{% trans "List of storages types" %}{% endblock %}
 
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
 {% block content %}
 <a
    accesskey="a"
@@ -20,7 +27,7 @@
   <i class="icon add"></i> Add
 </a>
 {% if object_list %}
-<table class="ui table">
+<table class="ui table sortable segment">
   <colgroup>
     <col>
     {% if user.is_authenticated %}
@@ -31,7 +38,7 @@
   </colgroup>
   <thead>
     <tr>
-      <th>{% trans "Storage Type Name" %}</th>
+      <th class="sorted ascending">{% trans "Storage Type Name" %}</th>
       <th></th>
     </tr>
   </thead>
