@@ -22,7 +22,9 @@ class DashboardItemRegistryClass:
                 return item
         return None
 
+
 DashboardItemRegistry = DashboardItemRegistryClass()
+
 
 # scan the installed apps for dashboard items
 for app_config in apps.get_app_configs():
