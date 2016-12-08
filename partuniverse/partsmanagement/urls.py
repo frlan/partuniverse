@@ -96,4 +96,4 @@ urlpatterns = [
     url(r'^storagetype/(?P<pk>[\w]+)/update/$',
         login_required(StorageTypeUpdateView.as_view()),
         name='storage_type_update')
-    ]
+]

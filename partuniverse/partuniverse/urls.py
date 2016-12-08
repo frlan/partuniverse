@@ -24,9 +24,9 @@ urlpatterns = [
         TemplateView.as_view(template_name='help.html'),
         name='help'),
     url(r'^img/(?P<path>.*)$', serve, {
-            'document_root': settings.MEDIA_ROOT,
-        }),
+        'document_root': settings.MEDIA_ROOT,
+    }),
     url(r'^$', partuniverse_view.dashboard, name='home'),
     url(r'^pmgmt/', include('partsmanagement.urls')),
     url(r"^accounts/", include("account.urls"))
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
