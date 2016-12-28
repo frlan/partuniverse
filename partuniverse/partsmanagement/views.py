@@ -1,27 +1,25 @@
 # -*- coding: utf-8 -*-
 
+from decimal import *
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import F
+from django.forms.widgets import DateTimeInput
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
+from django.views.generic.detail import SingleObjectTemplateResponseMixin
 from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import FormView
+from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from django.http import HttpResponseRedirect
-from django.forms.widgets import DateTimeInput
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from decimal import *
-# Importing models
-from partsmanagement.models import *
-
-# Importing custom forms
 from .forms import *
+from partsmanagement.models import *
 
 # Logging
 import logging
