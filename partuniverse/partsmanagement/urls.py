@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
 from django.contrib import admin
@@ -11,8 +11,7 @@ from django.views.generic import TemplateView
 
 from .views import *
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # Some general url pattern
     url(r'^$',
         RedirectView.as_view(
@@ -96,4 +95,5 @@ urlpatterns = patterns(
         name='storage_type_detail'),
     url(r'^storagetype/(?P<pk>[\w]+)/update/$',
         login_required(StorageTypeUpdateView.as_view()),
-        name='storage_type_update'))
+        name='storage_type_update')
+]

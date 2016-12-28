@@ -5,10 +5,10 @@
 {% block heading %}{% trans "Welcome to partuniverse" %}{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-{{ dashboard.render }}
-{% else %}
+{% if user.is_anonymous %}
 <p>put your mission statement here</p>
+{% else %}
+{{ dashboard.render }}
 {% endif %}
 
 {% endblock %}

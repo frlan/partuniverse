@@ -3,9 +3,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
+from dashboard.DashboardContainer import DashboardContainer
+from django.conf import settings
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from dashboard.DashboardContainer import DashboardContainer
 
 
 def index(request):
