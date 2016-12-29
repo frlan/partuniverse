@@ -18,7 +18,7 @@ from django.views.generic.edit import FormView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from .forms import *
+from partsmanagement.forms import *
 from partsmanagement.models import *
 
 # Logging
