@@ -2,7 +2,13 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Log out" %}{% endblock %}
+{% block breadcrumbs %}
+<a href="{% url "account_logout" %}" class="active section">{% trans "Logout" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Account Logout" %}{% endblock %}
+
+{% block heading %}{% trans "Account Logout" %}{% endblock %}
 
 {% block content %}
 <h1 class="ui dividing header">{% trans "Log out" %}</h1>
