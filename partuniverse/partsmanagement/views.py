@@ -33,6 +33,7 @@ logger = logging.getLogger(__name__)
 ########################################################################
 # Rest
 ########################################################################
+
 class RestStorageTypeList(generics.ListCreateAPIView):
     queryset = StorageType.objects.all()
     serializer_class = StorageTypeSerializer
@@ -45,6 +46,21 @@ class RestStorageTypeList(generics.ListCreateAPIView):
 class RestStorageTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = StorageType.objects.all()
     serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestStoragePlaceList(generics.ListCreateAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStoragePlaceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
