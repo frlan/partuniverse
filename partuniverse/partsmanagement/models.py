@@ -274,6 +274,12 @@ class Category(models.Model):
         null=True,
         help_text=_("A short summarize of this category.")
     )
+    pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/categories/',
+        help_text=_("Some picutre for category.")
+    )
 
     def __str__(self):
         if self.parent is None:
