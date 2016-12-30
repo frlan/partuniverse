@@ -43,3 +43,11 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('name', 'description', 'parent')
+
+
+class PartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Part
+        fields = ('name', 'sku', 'description', 'min_stock', 'unit', 'pic',
+                  'image_url', 'manufacturer', 'distributor', 'price',
+                  'categories', 'disabled')

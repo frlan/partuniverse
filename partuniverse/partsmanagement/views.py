@@ -109,6 +109,21 @@ class RestCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class RestPartList(generics.ListCreateAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestPartDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
 # class UserList(generics.ListAPIView):
 #    queryset = User.objects.all()
 #    serializer_class = UserSerializer
