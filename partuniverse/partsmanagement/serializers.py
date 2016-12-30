@@ -31,3 +31,9 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manufacturer
         fields = ('name', 'logo', 'url')
+
+
+class DistributorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Distributor
+        fields = ('name', 'logo', 'url')

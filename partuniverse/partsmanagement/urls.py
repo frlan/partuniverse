@@ -65,6 +65,8 @@ urlpatterns = [
         name='distributor_update'),
     url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
         name='distributor_detail'),
+    url(r'^distributor/rest/list/$', RestDistributorList.as_view()),
+    url(r'^distributor/rest/(?P<pk>[0-9]+)/$', RestDistributorDetail.as_view()),
     # Storage
     url(r'^storageitem/add', login_required(StorageItemAddView.as_view()),
         name='storage_item_add'),
