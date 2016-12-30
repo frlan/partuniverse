@@ -33,7 +33,6 @@ logger = logging.getLogger(__name__)
 ########################################################################
 # Rest
 ########################################################################
-
 class RestStorageTypeList(generics.ListCreateAPIView):
     queryset = StorageType.objects.all()
     serializer_class = StorageTypeSerializer
@@ -152,15 +151,6 @@ class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = StorageItem.objects.all()
     serializer_class = StorageItemSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-
-# class UserList(generics.ListAPIView):
-#    queryset = User.objects.all()
-#    serializer_class = UserSerializer
-#
-# class UserDetail(generics.RetrieveAPIView):
-#    queryset = User.objects.all()
-#    serializer_class = UserSerializer
 
 
 ########################################################################
