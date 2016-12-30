@@ -53,6 +53,12 @@ class PartSerializer(serializers.ModelSerializer):
                   'categories', 'disabled')
 
 
+class StorageItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StorageItem
+        fields = ('part', 'storage', 'on_stock', 'disabled')
+
+
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction

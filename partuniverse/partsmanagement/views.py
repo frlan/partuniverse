@@ -139,6 +139,21 @@ class RestTransactionDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class RestStorageItemList(generics.ListCreateAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
 # class UserList(generics.ListAPIView):
 #    queryset = User.objects.all()
 #    serializer_class = UserSerializer
