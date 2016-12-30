@@ -53,6 +53,8 @@ urlpatterns = [
         ManufacturerUpdateView.as_view()), name='manufacturer_update'),
     url(r'^manufacturer/(?P<pk>[\w]+)$', ManufacturerView.as_view(),
         name='manufacturer_detail'),
+    url(r'^manufacturer/rest/list/$', RestManufacturerList.as_view()),
+    url(r'^manufacturer/rest/(?P<pk>[0-9]+)/$', RestManufacturerDetail.as_view()),
     # Distributor
     url(r'^distributor/list', DistributorListView.as_view(),
         name='distributor_list'),

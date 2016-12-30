@@ -25,3 +25,9 @@ class StoragePlaceSerializer(serializers.ModelSerializer):
             'disabled',
             'pic',
             'description')
+
+
+class ManufacturerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Manufacturer
+        fields = ('name', 'logo', 'url')
