@@ -37,3 +37,9 @@ class DistributorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Distributor
         fields = ('name', 'logo', 'url')
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('name', 'description', 'parent')

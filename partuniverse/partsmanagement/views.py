@@ -94,6 +94,21 @@ class RestDistributorDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
+class RestCategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
 # class UserList(generics.ListAPIView):
 #    queryset = User.objects.all()
 #    serializer_class = UserSerializer

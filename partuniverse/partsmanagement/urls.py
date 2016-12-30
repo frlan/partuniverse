@@ -35,6 +35,8 @@ urlpatterns = [
     # Category
     url(r'^category/list', CategoryList.as_view(), name='category_list'),
     url(r'^category/add', CategoryAddView.as_view(), name='category_add'),
+    url(r'^category/rest/list/$', RestCategoryList.as_view()),
+    url(r'^category/rest/(?P<pk>[0-9]+)/$', RestCategoryDetail.as_view()),
     # Transactions
     url(r'^transaction/list',
         TransactionListView.as_view(),
