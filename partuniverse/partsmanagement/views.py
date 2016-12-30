@@ -11,7 +11,6 @@ from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import FormView
