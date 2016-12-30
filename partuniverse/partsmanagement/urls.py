@@ -95,5 +95,8 @@ urlpatterns = [
         name='storage_type_detail'),
     url(r'^storagetype/(?P<pk>[\w]+)/update/$',
         login_required(StorageTypeUpdateView.as_view()),
-        name='storage_type_update')
+        name='storage_type_update'),
+    url(r'^storagetype/rest/list/$', RestStorageTypeList.as_view()),
+    url(r'^storagetype/rest/(?P<pk>[0-9]+)/$',
+        RestStorageTypeDetail.as_view()),
 ]

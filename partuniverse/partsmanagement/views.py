@@ -3,6 +3,7 @@
 from decimal import *
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import F
 from django.forms.widgets import DateTimeInput
@@ -20,10 +21,41 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from .forms import *
 from partsmanagement.models import *
+from partsmanagement.serializers import *
+from rest_framework import generics
+from rest_framework import permissions
+
 
 # Logging
 import logging
 logger = logging.getLogger(__name__)
+
+
+########################################################################
+# Rest
+########################################################################
+class RestStorageTypeList(generics.ListCreateAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStorageTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+# class UserList(generics.ListAPIView):
+#    queryset = User.objects.all()
+#    serializer_class = UserSerializer
+#
+# class UserDetail(generics.RetrieveAPIView):
+#    queryset = User.objects.all()
+#    serializer_class = UserSerializer
 
 
 ########################################################################
