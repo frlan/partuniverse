@@ -51,3 +51,10 @@ class PartSerializer(serializers.ModelSerializer):
         fields = ('name', 'sku', 'description', 'min_stock', 'unit', 'pic',
                   'image_url', 'manufacturer', 'distributor', 'price',
                   'categories', 'disabled')
+
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = ('subject', 'storage_item', 'amount', 'comment', 'date',
+                  'state', 'created_by', 'created_date', 'reverted')

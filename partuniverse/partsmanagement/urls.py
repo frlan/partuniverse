@@ -48,6 +48,8 @@ urlpatterns = [
         name='transaction_add'),
     url(r'^transaction/(?P<pk>[\w]+)$', TransactionView.as_view(),
         name='transaction_detail'),
+    url(r'^transaction/rest/list/$', RestTransactionList.as_view()),
+    url(r'^transaction/rest/(?P<pk>[0-9]+)/$', RestTransactionDetail.as_view()),
     # Manufacturer
     url(r'^manufacturer/list', ManufacturerListView.as_view(),
         name='manufacturer_list'),
