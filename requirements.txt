@@ -20,3 +20,6 @@ pytz==2016.4
 six==1.10.0
 snowballstemmer==1.2.1
 tablib==0.11.2
+djangorestframework
+markdown
+django-filter

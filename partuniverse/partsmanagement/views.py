@@ -3,6 +3,7 @@
 from decimal import *
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import F
 from django.forms.widgets import DateTimeInput
@@ -19,10 +20,137 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from partsmanagement.forms import *
 from partsmanagement.models import *
+from partsmanagement.serializers import *
+from rest_framework import generics
+from rest_framework import permissions
+
 
 # Logging
 import logging
 logger = logging.getLogger(__name__)
+
+
+########################################################################
+# Rest
+########################################################################
+class RestStorageTypeList(generics.ListCreateAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStorageTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestStoragePlaceList(generics.ListCreateAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStoragePlaceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestManufacturerList(generics.ListCreateAPIView):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestManufacturerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestDistributorList(generics.ListCreateAPIView):
+    queryset = Distributor.objects.all()
+    serializer_class = DistributorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestDistributorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Distributor.objects.all()
+    serializer_class = DistributorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestCategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestPartList(generics.ListCreateAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestPartDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestTransactionList(generics.ListCreateAPIView):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestTransactionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestStorageItemList(generics.ListCreateAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 ########################################################################
