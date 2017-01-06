@@ -20,7 +20,6 @@ urlpatterns = [
         name='index'),
     url(r'^list/', PartsList.as_view(), name='part_list'),
     url(r'^rest/list/$', RestPartList.as_view()),
-    url(r'^rest/(?P<pk>[0-9]+)/$', RestPartDetail.as_view()),
     url(r'^add/', login_required(PartsAddView.as_view()),
         name='part_add'),
     url(r'^reorderlist/$', PartsReorderList.as_view(),
@@ -37,8 +36,6 @@ urlpatterns = [
     # Category
     url(r'^category/list', CategoryList.as_view(), name='category_list'),
     url(r'^category/add', CategoryAddView.as_view(), name='category_add'),
-    url(r'^category/rest/list/$', RestCategoryList.as_view()),
-    url(r'^category/rest/(?P<pk>[0-9]+)/$', RestCategoryDetail.as_view()),
     # Transactions
     url(r'^transaction/list',
         TransactionListView.as_view(),
@@ -48,9 +45,7 @@ urlpatterns = [
         name='transaction_add'),
     url(r'^transaction/(?P<pk>[\w]+)$', TransactionView.as_view(),
         name='transaction_detail'),
-    url(r'^transaction/rest/list/$', RestTransactionList.as_view()),
-    url(r'^transaction/rest/(?P<pk>[0-9]+)/$', RestTransactionDetail.as_view()),
-    # Manufacturer
+   # Manufacturer
     url(r'^manufacturer/list', ManufacturerListView.as_view(),
         name='manufacturer_list'),
     url(r'^manufacturer/add', login_required(ManufacturerAddView.as_view()),
@@ -59,9 +54,7 @@ urlpatterns = [
         ManufacturerUpdateView.as_view()), name='manufacturer_update'),
     url(r'^manufacturer/(?P<pk>[\w]+)$', ManufacturerView.as_view(),
         name='manufacturer_detail'),
-    url(r'^manufacturer/rest/list/$', RestManufacturerList.as_view()),
-    url(r'^manufacturer/rest/(?P<pk>[0-9]+)/$', RestManufacturerDetail.as_view()),
-    # Distributor
+  # Distributor
     url(r'^distributor/list', DistributorListView.as_view(),
         name='distributor_list'),
     url(r'^distributor/add', login_required(DistributorAddView.as_view()),
@@ -71,8 +64,6 @@ urlpatterns = [
         name='distributor_update'),
     url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
         name='distributor_detail'),
-    url(r'^distributor/rest/list/$', RestDistributorList.as_view()),
-    url(r'^distributor/rest/(?P<pk>[0-9]+)/$', RestDistributorDetail.as_view()),
     # Storage
     url(r'^storageitem/add', login_required(StorageItemAddView.as_view()),
         name='storage_item_add'),
@@ -86,10 +77,7 @@ urlpatterns = [
         StorageItemMergeView.as_view()), name='storage_item_merge'),
     url(r'^storageitem/(?P<pk>[\w]+)/stocktaking/$', login_required(
         StorageItemStockTakingView.as_view()), name='storage_item_stocktaking'),
-    url(r'^storageitem/rest/list/$', RestStorageItemList.as_view()),
-    url(r'^storageitem/rest/(?P<pk>[0-9]+)/$', RestStorageItemDetail.as_view()),
-
-    # Storage Place
+  # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),
     url(r'^storage/list', StoragePlaceListView.as_view(),
@@ -98,8 +86,6 @@ urlpatterns = [
         name='storage_detail'),
     url(r'^storage/(?P<pk>[\w]+)/update/$', login_required(
         StoragePlaceUpdateView.as_view()), name='storage_update'),
-    url(r'^storage/rest/list/$', RestStoragePlaceList.as_view()),
-    url(r'^storage/rest/(?P<pk>[0-9]+)/$', RestStoragePlaceDetail.as_view()),
     # Storage Types
     url(r'^storagetype/list', StorageTypeListView.as_view(),
         name='storage_type_list'),
@@ -112,7 +98,4 @@ urlpatterns = [
     url(r'^storagetype/(?P<pk>[\w]+)/update/$',
         login_required(StorageTypeUpdateView.as_view()),
         name='storage_type_update'),
-    url(r'^storagetype/rest/list/$', RestStorageTypeList.as_view()),
-    url(r'^storagetype/rest/(?P<pk>[0-9]+)/$',
-        RestStorageTypeDetail.as_view()),
 ]

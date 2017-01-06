@@ -42,5 +42,6 @@ urlpatterns = [
     url(r'^pmgmt/', include('partsmanagement.urls')),
     url(r"^accounts/", include("account.urls")),
     url(r'^api-auth/', include('rest_framework.urls',
-                               namespace='rest_framework'))
+                               namespace='rest_framework')),
+    url(r'^rest/', include('rest.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
