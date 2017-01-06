@@ -8,6 +8,7 @@ from partsmanagement.views import *
 
 urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', RestPartDetail.as_view()),
+    url(r'^list/$', RestPartList.as_view()),
     url(r'^category/list/$', RestCategoryList.as_view()),
     url(r'^category/(?P<pk>[0-9]+)/$', RestCategoryDetail.as_view()),
     url(r'^transaction/list/$', RestTransactionList.as_view()),

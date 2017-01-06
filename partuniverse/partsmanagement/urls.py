@@ -19,7 +19,6 @@ urlpatterns = [
             permanent=True),
         name='index'),
     url(r'^list/', PartsList.as_view(), name='part_list'),
-    url(r'^rest/list/$', RestPartList.as_view()),
     url(r'^add/', login_required(PartsAddView.as_view()),
         name='part_add'),
     url(r'^reorderlist/$', PartsReorderList.as_view(),
