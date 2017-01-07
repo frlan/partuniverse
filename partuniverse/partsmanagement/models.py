@@ -11,9 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
 
-import pdb
-import pprint
-
 import os
 
 # Exceptions
@@ -484,8 +481,9 @@ class Part(models.Model):
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
                 u('Cannot merge not idendical parts. '
-                  'Parts »%s« and »%s« are not idendical') %
-                (si1.part, si2.part))
+                  'Parts »{}« and »{}« are not idendical'.format(
+                    si1.part,
+                    si2.part)))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
