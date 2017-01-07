@@ -40,7 +40,7 @@ urlpatterns = [
     }),
     url(r'^$', partuniverse_view.dashboard, name='home'),
     url(r'^pmgmt/', include('partsmanagement.urls')),
-    url(r"^accounts/", include("account.urls")),
+    url(r'^accounts/', include('account.urls')),
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
     url(r'^rest/', include('rest.urls'))
