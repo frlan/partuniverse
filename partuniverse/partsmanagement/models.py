@@ -299,7 +299,8 @@ class Category(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ancestors of %s.' % self.id)))
+                    _('There seems to be a circle inside '
+                      'ancestors of {}.'.format(self.id))))
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -316,7 +317,8 @@ class Category(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {'parent': _('The category cannot be one of its ancestors.')}
+                    {'parent': _('The category cannot be one of '
+                                 'its ancestors.')}
                 )
 
     class Meta:
@@ -481,7 +483,8 @@ class Part(models.Model):
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
-                u'Cannot merge not idendical parts. Parts »%s« and »%s« are not idendical' %
+                u('Cannot merge not idendical parts. '
+                  'Parts »%s« and »%s« are not idendical') %
                 (si1.part, si2.part))
 
         # Check, whether si1 and si2 are different storage types at all
