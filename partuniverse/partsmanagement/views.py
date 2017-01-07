@@ -440,9 +440,13 @@ class StorageItemMergeView(FormView):
 
     def form_valid(self, form):
         si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        si.part.merge_storage_items(
-            si,
-            StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+        try:
+            si.part.merge_storage_items(
+                si,
+                StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+        except PartsmanagementException:
+            pass
+
         return super(StorageItemMergeView, self).form_valid(form)
 
 
