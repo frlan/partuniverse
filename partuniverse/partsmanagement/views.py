@@ -444,7 +444,7 @@ class StorageItemMergeView(FormView):
             si.part.merge_storage_items(
                 si,
                 StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
-        except PartsmanagementException:
+        except StorageItemIsTheSameException:
             pass
 
         return super(StorageItemMergeView, self).form_valid(form)
