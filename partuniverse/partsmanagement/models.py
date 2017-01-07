@@ -21,7 +21,8 @@ from .exceptions import (
     PartsNotFitException,
     PartsmanagementException,
     CircleDetectedException,
-    TransactionAllreadyRevertedException
+    TransactionAllreadyRevertedException,
+    StorageItemIsTheSameException
 )
 from datetime import datetime
 from decimal import Decimal
@@ -486,8 +487,9 @@ class Part(models.Model):
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
         if si1.id == si2.id:
-            raise PartsmanagementException(
-                u'StorageItems are idendical. Nothing to merge')
+            raise StorageItemIsTheSameException(
+                u'{} and {} are idendical. Nothing to merge'.format(
+                    si1.id, si2.id))
 
         # Special behavior for on_stock is None storage items
         # 0x None -> New on_stock is si1.on_stock + si2.on_stock

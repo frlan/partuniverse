@@ -41,7 +41,16 @@ class StorageItemBelowZeroException(PartsmanagementException):
         logger.error(
             _(u(
                 "Amount of items inside a storage cannot be under 0:",
-                "%s") % error)
+                "%s") % error))
+
+
+class StorageItemIsTheSameException(PartsmanagementException):
+    """
+    Used in case of trying to merge one and the smae storage item"
+    """
+    def __init__(self, error):
+        logger.error(
+            _(u"Storage Items are idendical: %s" % error)
         )
 
 

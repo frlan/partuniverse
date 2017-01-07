@@ -685,7 +685,7 @@ class StorageItemsMergeTestCase(TestCase):
         """
         Checks whether merging the samse storage items fails
         """
-        with self.assertRaises(PartsmanagementException):
+        with self.assertRaises(StorageItemIsTheSameException):
             tmp = self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
 
     def test_working_merge_of_two_storage_items(self):
