@@ -195,7 +195,7 @@ class PartsReorderList(ListView):
         parts = Part.objects.exclude(
             disabled__exact='True',
             min_stock__gt=0)
-        return filter(lambda x: x.get_on_stock < x.min_stock, parts)
+        return filter(lambda x: x.get_on_stock() < x.min_stock, parts)
 
 
 class PartsAddView(CreateView):
