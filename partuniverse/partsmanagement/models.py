@@ -483,8 +483,8 @@ class Part(models.Model):
             raise PartsNotFitException(
                 u('Cannot merge not idendical parts. '
                   'Parts »{}« and »{}« are not idendical'.format(
-                    si1.part,
-                    si2.part)))
+                      si1.part,
+                      si2.part)))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
