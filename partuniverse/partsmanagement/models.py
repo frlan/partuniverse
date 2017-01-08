@@ -481,10 +481,10 @@ class Part(models.Model):
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
-                u('Cannot merge not idendical parts. '
-                  'Parts »{}« and »{}« are not idendical'.format(
-                      si1.part,
-                      si2.part)))
+                'Cannot merge not idendical parts. '
+                'Parts »{}« and »{}« are not idendical'.format(
+                    si1.part,
+                    si2.part))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
