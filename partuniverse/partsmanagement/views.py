@@ -194,7 +194,8 @@ class PartsReorderList(ListView):
     def get_queryset(self):
         parts = Part.objects.exclude(
             disabled__exact='True',
-            min_stock__gt=0)
+            min_stock__isnull=True,
+            min_stock__exact=0)
         return filter(lambda x: x.get_on_stock() < x.min_stock, parts)
 
 
