@@ -186,21 +186,16 @@ class PartsList(ListView):
 
 
 class PartsReorderList(ListView):
-    # model = Part
     template_name = 'pmgmt/part/list.html'
     context_object_name = 'reorder_items'
 
     # This is not using new generated functions, but should be much more
     # performant for lot of items instead
     def get_queryset(self):
-        # Should be translated to something like:
-        # SELECT *
-        # FROM "PARTS"
-        # WHERE NOT (on_stock > 0
-        #   AND on_stock >= min_stock)
-        # TODO: Check on database level
-        return Part.objects.exclude(on_stock__gt='0',
-                                    on_stock__gte=F('min_stock'))
+        parts = Part.objects.exclude(
+            disabled__exact='True',
+            min_stock__gt=0)
+        return filter(lambda x: x.get_on_stock < x.min_stock, parts)
 
 
 class PartsAddView(CreateView):
