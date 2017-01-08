@@ -428,7 +428,6 @@ class Part(models.Model):
             self.sku = uuid.uuid1()
         super(Part, self).save(*args, **kwargs)
 
-    @property
     def get_on_stock(self):
         """ Returns the amount of items which are on stock over all storages """
 
