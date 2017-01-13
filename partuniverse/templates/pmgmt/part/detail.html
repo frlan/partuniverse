@@ -77,10 +77,6 @@
     <td>{% trans "Categories" %}</td>
     <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
 </tr>
-<tr>
-    <td>{% trans "Created by" %}</td>
-    <td>{{object.created_by}}</td>
-</tr>
 </table>
   </div>
 {% if object.pic %}
