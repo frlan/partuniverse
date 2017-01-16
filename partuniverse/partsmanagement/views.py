@@ -167,6 +167,12 @@ class CategoryAddView(CreateView):
     template_name = 'pmgmt/category/add.html'
     fields = ('name',)
 
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.created_by = user
+        form.instance.creation_time = now()
+        return super(CategoryAddView, self).form_valid(form)
+
 
 class CategoryDetailView(DetailView):
     template_name = "pmgmt/category/detail.html"
