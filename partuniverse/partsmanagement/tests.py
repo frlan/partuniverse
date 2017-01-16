@@ -134,7 +134,7 @@ class CategoryPartsList(TestCase):
         self.assertEqual(len(self.cat2.get_parts()), 2)
 
     def test_parts_in_more_than_one_categor(self):
-        self.assertEqual(len(self.cat3.get_parts()), 2)
+        self.assertEqual(len(self.cat3.get_parts()), 1)
 
 
 ########################################################################
