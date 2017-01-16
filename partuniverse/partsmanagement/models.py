@@ -320,7 +320,11 @@ class Category(models.Model):
                 )
 
     def get_parts(self):
-        pass
+        parts = self.part_set.all()
+        if not parts:
+            return None
+        else:
+            return parts
 
     class Meta:
         unique_together = ("name", "parent")
