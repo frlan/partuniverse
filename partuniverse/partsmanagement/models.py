@@ -319,6 +319,9 @@ class Category(models.Model):
                                  'its ancestors.')}
                 )
 
+    def get_parts(self):
+        pass
+
     class Meta:
         unique_together = ("name", "parent")
         verbose_name = _("Category")

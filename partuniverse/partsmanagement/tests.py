@@ -88,6 +88,55 @@ class CategoryWithCircleAnsistor(TestCase):
             self.cat2.clean()
 
 
+class CategoryPartsList(TestCase):
+
+    def setUp(self):
+        # Setting up categories
+        self.cat1 = Category.objects.create(name=u'Category empty')
+        self.cat2 = Category.objects.create(name=u'Category with parts')
+        self.cat3 = Category.objects.create(name=u'Category plus')
+        self.cat4 = Category.objects.create(name=u'Category plus1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
+
+        # Some items
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         sku=u'tp1',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.part3 = Part.objects.create(name=u'Test Part 3',
+                                         sku=u'tp3',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        # Assigning categories to parts
+        self.part1.categories.add(self.cat2)
+        self.part2.categories.add(self.cat2)
+        self.part3.categories.add(self.cat3)
+        self.part3.categories.add(self.cat4)
+
+    def test_no_part_in_category(self):
+        self.assertIsNone(self.cat1.get_parts())
+
+    def test_parts_in_category(self):
+        self.assertEqual(self.cat2.get_parts(), 2)
+
+    def test_parts_in_more_than_one_categor(self):
+        self.assertEqual(self.cat3.get_parts(), 2)
+
+
 ########################################################################
 # Transaction
 ########################################################################
