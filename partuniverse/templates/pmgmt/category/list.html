@@ -34,7 +34,7 @@
   </thead>
   <tbody>
     {% for item in object_list %}
-        <tr><td>{{item.name}}</td></tr>
+        <tr><td><a href="{% url "category_detail" item.id %}">{{item.name}}</a></td></tr>
     {% endfor %}
   </tbody>
 </table>

@@ -167,11 +167,23 @@ class CategoryAddView(CreateView):
     template_name = 'pmgmt/category/add.html'
     fields = ('name',)
 
-    def form_valid(self, form):
-        user = self.request.user
-        form.instance.created_by = user
-        form.instance.creation_time = now()
-        return super(CategoryAddView, self).form_valid(form)
+
+class CategoryDetailView(DetailView):
+    template_name = "pmgmt/category/detail.html"
+    model = Category
+    fields = ('name',
+              'pic',
+              'description',
+              'parent')
+
+
+class CategoryUpdateView(UpdateView):
+    template_name = "pmgmt/category/update.html"
+    success_url = reverse_lazy('category_list')
+    model = Category
+    fields = ('name',
+              'pic',
+              'description')
 
 
 ########################################################################
