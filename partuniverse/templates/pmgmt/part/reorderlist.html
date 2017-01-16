@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% block breadcrumbs %}
+<a href="{% url "part_list" %}" class="active section">{% trans "Parts to Reorder" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of parts needs reordering" %}{% endblock %}
+
+{% block heading %}{% trans "List of parts needs reordering" %}{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<table class="ui table sortable segment">
+  <colgroup>
+    <col width="15%">
+    <col>
+    <col width="10%">
+    <col width="10%">
+    <col width="18%">
+    {% if user.is_authenticated %}
+    <col width="10%">
+    <col width="20%">
+    {% endif %}
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="no-sort">&nbsp;</th>
+      <th class="sorted ascending">{% trans "Name" %}</th>
+      <th>{% trans "Minimum" %}</th>
+      <th>{% trans "In Stock" %}</th>
+      <th>{% trans "Manufacturer" %}</th>
+      {% if user.is_authenticated %}
+      <th>{% trans "Selling price" %}</th>
+      <th class="no-sort"></th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+    <tr class="{% if item.is_below_min_stock == True or item.is_on_stock == False %}error{% endif %} ">
+      <td>
+        {% if item.pic %}
+          <a href="{% url "part_detail" item.id %}">
+            <img class="ui fluid rounded image tiny" src="{{item.pic.url}}">
+          </a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+      </td>
+      <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>
+      <td>{{ item.min_stock|default:""|floatformat}}</td>
+      <td>{{ item.get_on_stock|default:""|floatformat }}</td>
+      <td>{{ item.manufacturer|default:"" }}</td>
+      {% if user.is_authenticated %}
+      <td>{{ item.price }}</td>
+      <td>
+        <div class="ui inverted blue menu">
+          <div class="ui fluid simple dropdown item">
+            <a style="width: 100%;" href="{% url "part_detail" item.id %}"/>Detail</a>
+
+
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="{% url "part_update" item.id %}">{% trans "Update" %}</a>
+              <a class="item" href="{% url "part_delete" item.id %}">{% trans "Delete" %}</a>
+            </div>
+          </div>
+        </div>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>{% trans "It appears no part needs reordering." %}</p>
+{% endif %}
+{% endblock %}

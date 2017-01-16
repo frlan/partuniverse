@@ -186,7 +186,7 @@ class PartsList(ListView):
 
 
 class PartsReorderList(ListView):
-    template_name = 'pmgmt/part/list.html'
+    template_name = 'pmgmt/part/reorderlist.html'
     context_object_name = 'reorder_items'
 
     # This is not using new generated functions, but should be much more
