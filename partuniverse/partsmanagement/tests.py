@@ -131,10 +131,10 @@ class CategoryPartsList(TestCase):
         self.assertIsNone(self.cat1.get_parts())
 
     def test_parts_in_category(self):
-        self.assertEqual(self.cat2.get_parts(), 2)
+        self.assertEqual(len(self.cat2.get_parts()), 2)
 
     def test_parts_in_more_than_one_categor(self):
-        self.assertEqual(self.cat3.get_parts(), 2)
+        self.assertEqual(len(self.cat3.get_parts()), 2)
 
 
 ########################################################################
