@@ -77,7 +77,7 @@
 </tr>
 <tr>
     <td>{% trans "Categories" %}</td>
-    <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
+    <td>{% for i in object.categories.all %}<a href="{% url "category_detail" i.id %}">{{ i }}</a><br/>{% endfor %}</td>
 </tr>
 </table>
   </div>
