@@ -249,7 +249,6 @@ class PartDetailView(DetailView):
 
 class PartUpdateView(UpdateView):
     template_name = "pmgmt/part/update.html"
-    success_url = reverse_lazy('part_list')
     model = Part
     # We don't want to make all fields editable via
     # normal frontend.
@@ -262,6 +261,9 @@ class PartUpdateView(UpdateView):
               'distributor',
               'categories',
               'pic')
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs=self.kwargs)
 
 
 ########################################################################
