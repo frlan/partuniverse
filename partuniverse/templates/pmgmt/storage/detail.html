@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% block breadcrumbs %}
 <a href="{% url "storage_list" %}" class="section">{% trans "Storages" %}</a>
@@ -17,6 +18,10 @@
 {% if object.pic %}
 <div class="column">
     <img class="ui fluid rounded image" src="{{object.pic.url}}">
+</div>
+{% else %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
 </div>
 {% endif %}
 

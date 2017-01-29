@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
+
 {% block breadcrumbs %}
 <a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
 <i class="right chevron icon divider"></i>
@@ -79,11 +81,15 @@
 </tr>
 </table>
   </div>
-{% if object.pic %}
-<div class="column">
+ {% if object.pic %}
+  <div class="column">
     <img class="ui fluid rounded image" src="{{object.pic.url}}">
-</div>
-{% endif %}
+  </div>
+  {% else %}
+  <div class="column">
+    <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}"
+  </div>
+  {% endif %}
 </div>
 <div class="ui clearing hidden divider"></div>
 <p>
