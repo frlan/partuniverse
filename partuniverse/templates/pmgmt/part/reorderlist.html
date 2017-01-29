@@ -53,7 +53,7 @@
             <img class="ui fluid rounded image tiny" src="{{item.pic.url}}">
           </a>
         {% else %}
-          &nbsp;
+            <img class="ui fluid rounded image tiny" src="{% static "img/no-pic.png" %}">
         {% endif %}
       </td>
       <td><a href="{% url "part_detail" item.id %}">{{ item.name }}</a></td>

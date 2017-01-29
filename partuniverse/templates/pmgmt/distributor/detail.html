@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 {% load i18n %}
 
 {% block breadcrumbs %}
@@ -17,6 +18,10 @@
 {% if object.logo %}
 <div class="column">
     <img class="ui fluid rounded image small" src="{{object.logo.url}}">
+</div>
+{% else %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
 </div>
 {% endif %}
 
