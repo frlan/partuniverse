@@ -1,6 +1,6 @@
 main.main.container {
   margin-top: 5em;
-  min-height: 100%;
+  min-height: calc(100% - 108px);
 }
 
 .ui.footer.segment {
