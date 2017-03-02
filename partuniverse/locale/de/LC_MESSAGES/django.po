@@ -1038,7 +1038,7 @@ msgstr "URL"
 #: templates/pmgmt/storageitem/detail.html:39
 #: templates/pmgmt/storagetype/detail.html:34
 msgid "Update item"
-msgstr "Aktualisieren"
+msgstr "Bearbeiten"
 
 #: templates/pmgmt/distributor/list.html:10
 #: templates/pmgmt/distributor/list.html:12
