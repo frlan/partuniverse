@@ -3,4 +3,4 @@ python bootstrap-buildout.py
 cp partuniverse/partuniverse/local_settings.py.tpl_dev partuniverse/partuniverse/local_settings.py
 ./bin/django makemigrations
 ./bin/django migrate
-./bin/django test
+./bin/test
