@@ -518,15 +518,6 @@ class Part(models.Model):
             si1.save()
             si2.delete()
 
-    def cache(self):
-        """Store image locally if we have a URL"""
-
-        if self.image_url and not self.pic:
-            result = urllib.urlretrieve(self.image_url)
-            self.pic.save(os.path.basename(self.image_url),
-                          File(open(result[0])))
-            self.save()
-
     class Meta:
         verbose_name = _("Part")
         verbose_name_plural = _("Parts")
