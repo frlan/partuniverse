@@ -79,6 +79,20 @@
     <td>{% trans "Categories" %}</td>
     <td>{% for i in object.categories.all %}<a href="{% url "category_detail" i.id %}">{{ i }}</a><br/>{% endfor %}</td>
 </tr>
+<tr>
+    <td>{% trans "Storages" %}</td>
+    <td><ui class="list ui">
+        {% for item in object.get_storage_items %}
+        <li><a href="{% url "storage_detail" item.storage.id%}">{{item.storage}}</a>
+        {% if item.on_stock %}
+        ({{item.on_stock}})
+        {% else %}
+        {% trans "(unknown quantity on stock)" %}
+        {% endif %}</li>
+        {% endfor %}
+    </ui>
+    </td>
+</tr>
 </table>
   </div>
  {% if object.pic %}

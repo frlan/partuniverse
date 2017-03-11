@@ -430,6 +430,13 @@ class Part(models.Model):
     def __str__(self):
         return ('%s' % self.name)
 
+    def get_storage_items(self):
+        tmp = self.storageitem_set.all()
+        if tmp:
+            return tmp
+        else:
+            return None
+
     def save(self, *args, **kwargs):
         if not self.sku:
             self.sku = uuid.uuid1()
