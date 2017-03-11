@@ -32,11 +32,11 @@
 <tr>
     <td>{% trans "Parts" %}</td>
     <td>
-        <ul style="list-style-type: none">
+        <div class="ui list">
         {% for item in object.get_parts %}
             <li><a href={% url "part_detail" item.id %}>{{item}}</a></li>
         {% endfor %}
-        </ul>
+        </div>
     </td>
 </tr>
 </table>
