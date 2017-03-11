@@ -35,6 +35,11 @@ urlpatterns = [
     # Category
     url(r'^category/list', CategoryList.as_view(), name='category_list'),
     url(r'^category/add', CategoryAddView.as_view(), name='category_add'),
+    url(r'^category/(?P<pk>[\w]+)/$', CategoryDetailView.as_view(),
+        name='category_detail'),
+    url(r'^category/(?P<pk>[\w]+)/update/$',
+        login_required(CategoryUpdateView.as_view()),
+        name='category_update'),
     # Transactions
     url(r'^transaction/list',
         TransactionListView.as_view(),

@@ -319,6 +319,13 @@ class Category(models.Model):
                                  'its ancestors.')}
                 )
 
+    def get_parts(self):
+        parts = self.part_set.all()
+        if not parts:
+            return None
+        else:
+            return parts
+
     class Meta:
         unique_together = ("name", "parent")
         verbose_name = _("Category")

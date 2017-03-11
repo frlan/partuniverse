@@ -174,6 +174,24 @@ class CategoryAddView(CreateView):
         return super(CategoryAddView, self).form_valid(form)
 
 
+class CategoryDetailView(DetailView):
+    template_name = "pmgmt/category/detail.html"
+    model = Category
+    fields = ('name',
+              'pic',
+              'description',
+              'parent')
+
+
+class CategoryUpdateView(UpdateView):
+    template_name = "pmgmt/category/update.html"
+    success_url = reverse_lazy('category_list')
+    model = Category
+    fields = ('name',
+              'pic',
+              'description')
+
+
 ########################################################################
 # Part
 ########################################################################
