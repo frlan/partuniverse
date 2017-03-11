@@ -513,6 +513,53 @@ class PartGetOnStockAmount(TestCase):
             name=u'Test Part 4').get_on_stock(), 0)
 
 
+class PartsGetStorageItems(TestCase):
+    def setUp(self):
+        # Setting up categories
+        self.cat = Category.objects.create(name=u'Category 1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(username='jacob',
+                                             email='jacob@foo.baa',
+                                             password='top_secret')
+
+        # Basis setting of storage
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace1 = StoragePlace.objects.create(name=u'Test Storage1',
+                                                         storage_type=self.storagetype)
+        self.storageplace2 = StoragePlace.objects.create(name=u'Test Storage2',
+                                                         storage_type=self.storagetype)
+
+        # Some items
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         sku=u'tp1',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         sku=u'tp2',
+                                         unit='m',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.storage_item1 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace1,
+                                                        on_stock=25)
+        self.storage_item2 = StorageItem.objects.create(part=self.part1,
+                                                        storage=self.storageplace2,
+                                                        on_stock=7)
+
+    def test_item_empty_list(self):
+        self.assertIsNone(self.part2.get_storage_items())
+
+    def test_item_two_storages_inside_list(self):
+        result = self.part1.get_storage_items()
+        self.assertTrue(self.storage_item1 in result)
+        self.assertTrue(self.storage_item2 in result)
+        self.assertEqual(len(result), 2)
+
+
 class ItemOutOfStockTestCase(TestCase):
     """ Checking whether reporting of out-of-stock-items are
         working well """
