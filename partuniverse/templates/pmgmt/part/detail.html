@@ -80,7 +80,7 @@
     <td>{% for i in object.categories.all %}<a href="{% url "category_detail" i.id %}">{{ i }}</a><br/>{% endfor %}</td>
 </tr>
 <tr>
-    <td>{% trans "Storages" %}</td>
+    <td class="top aligned">{% trans "Storages" %}</td>
     <td><ui class="list ui">
         {% for item in object.get_storage_items %}
         <li><a href="{% url "storage_detail" item.storage.id%}">{{item.storage}}</a>
