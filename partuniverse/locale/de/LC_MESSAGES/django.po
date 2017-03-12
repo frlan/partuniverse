@@ -892,7 +892,7 @@ msgstr "Lager"
 
 #: templates/base.html:56
 msgid "Parts needs reordering"
-msgstr "Teile, die neu bestellt werden müssen"
+msgstr "Notwendige Neubestellungen"
 
 #: templates/base.html:62
 msgid "Edit user settings"
