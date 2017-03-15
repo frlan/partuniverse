@@ -443,6 +443,9 @@ class Part(models.Model):
     def __str__(self):
         return ('%s' % self.name)
 
+    def data_sheet_name(self):
+        return os.path.basename(self.data_sheet.name)
+
     def get_storage_items(self):
         tmp = self.storageitem_set.all()
         if tmp:
