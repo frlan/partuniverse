@@ -71,6 +71,11 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
     return result_list
 
 
+def validate_file_extension(value):
+    if value.file.content_type != 'application/pdf':
+        raise ValidationError(u'Filetyp not supported')
+
+
 @python_2_unicode_compatible
 class StorageType(models.Model):
     """ Defining a general typ of storage """
@@ -383,6 +388,14 @@ class Part(models.Model):
         null=True,
         blank=True,
         help_text=_("The URL of the original image.")
+    )
+    data_sheet = models.FileField(
+        _("Data sheet"),
+        help_text=_("A document containing important addition information"),
+        upload_to='datasheets',
+        validators=[validate_file_extension],
+        null=True,
+        blank=True
     )
     manufacturer = models.ForeignKey(
         Manufacturer,
