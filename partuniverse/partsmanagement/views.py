@@ -256,7 +256,8 @@ class PartDetailView(DetailView):
     fields = ('name',
               'sku',
               'min_stock',
-              'pic'
+              'pic',
+              'data_sheet',
               'unit',
               'price',
               'manufacturer',
@@ -278,7 +279,8 @@ class PartUpdateView(UpdateView):
               'manufacturer',
               'distributor',
               'categories',
-              'pic')
+              'pic',
+              'data_sheet')
 
     def get_success_url(self):
         return reverse('part_detail', kwargs=self.kwargs)
