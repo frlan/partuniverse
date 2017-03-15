@@ -93,6 +93,12 @@
     </ui>
     </td>
 </tr>
+{% if object.data_sheet %}
+<tr>
+    <td>{% trans "Data sheet" %}</td>
+    <td><a href="{{object.data_sheet.url}}">{{object.data_sheet_name}}</a></td>
+</tr>
+{% endif %}
 </table>
   </div>
  {% if object.pic %}
