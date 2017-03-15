@@ -103,11 +103,12 @@
   </div>
  {% if object.pic %}
   <div class="column">
-    <img class="ui fluid rounded image" src="{{object.pic.url}}">
+    <img class="ui fluid rounded image" src="{{object.pic.url}}"/>
   </div>
   {% else %}
   <div class="column">
     <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}"
+    alt="{% trans "No picture available" %}"/>
   </div>
   {% endif %}
 </div>
