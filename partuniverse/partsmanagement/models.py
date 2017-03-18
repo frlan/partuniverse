@@ -72,8 +72,11 @@ def get_all_storage_item_parts_with_on_stock_and_min_stock():
 
 
 def validate_file_extension(value):
-    if value.file.content_type != 'application/pdf':
-        raise ValidationError(u'Filetyp not supported')
+    try:
+        if value.file.content_type != 'application/pdf':
+            raise ValidationError(u'Filetyp not supported')
+    except AttributeError:
+        pass
 
 
 @python_2_unicode_compatible
