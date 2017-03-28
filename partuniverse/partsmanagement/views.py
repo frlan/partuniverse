@@ -304,7 +304,7 @@ class TransactionAddView(CreateView):
               'date',
               'comment')
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         form = super(TransactionAddView, self).get_form(form_class)
         form.fields['date'].widget = DateTimeInput(
             attrs={
