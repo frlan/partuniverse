@@ -514,7 +514,7 @@ msgstr "Der Zeitpunkt zu dem die Transaktion angelegt wurde."
 
 #: partsmanagement/models.py:674
 msgid "Reverted"
-msgstr "Zurück getrollt"
+msgstr "Zurück gerollt"
 
 #: partsmanagement/models.py:677
 msgid ""
