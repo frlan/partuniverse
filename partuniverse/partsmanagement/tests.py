@@ -728,7 +728,8 @@ class ItemOutOfStockTestCase(TestCase):
 
 
 ########################################################################
-
+# Storage item
+########################################################################
 class StorageItemsMergeTestCase(TestCase):
     """
     To check, whether the merging of two storage items is working
