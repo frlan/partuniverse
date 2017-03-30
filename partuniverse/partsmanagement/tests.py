@@ -982,6 +982,160 @@ class StrorageParentTestCase(TestCase):
         self.assertEqual(u'%s' % self.stor3, stor_result3)
 
 
+class StorageGetChild(TestCase):
+    """
+    Testcase whether a storage is knowing its child storages
+    """
+
+    def setUp(self):
+        # Setting up storage type
+        self.storage_type = StorageType.objects.create(name=u'Generic Typ')
+
+        # Setting up some storage places
+        self.stor1 = StoragePlace.objects.create(
+            name=u'Storage Lvl 1', storage_type=self.storage_type)
+        self.stor2 = StoragePlace.objects.create(
+            name=u'Storage Lvl 2',
+            parent=self.stor1,
+            storage_type=self.storage_type)
+        self.stor3 = StoragePlace.objects.create(
+            name=u'Storage Lvl 2 with unicode µä³½',
+            parent=self.stor2,
+            storage_type=self.storage_type)
+
+    def test_get_childs(self):
+        expected_result = [self.stor2, self.stor3]
+        result = self.stor1.get_children()
+        self.assertEqual(len(result), 2)
+        self.assertIn(self.stor2, result)
+        self.assertIn(self.stor3, result)
+
+
+class StorageGetParts(TestCase):
+    """
+    Testcase for checking whether methond
+    """
+    def setUp(self):
+        # Setting up storage type
+        self.storage_type = StorageType.objects.create(name=u'Generic Typ')
+
+        # Setting up some storage places
+        self.stor1a = StoragePlace.objects.create(
+            name=u'Storage Lvl 1', storage_type=self.storage_type)
+        self.stor1b = StoragePlace.objects.create(
+            name=u'Storage Lvl 1b', storage_type=self.storage_type)
+        self.stor2b = StoragePlace.objects.create(
+            name=u'Storage Lvl 2b',
+            storage_type=self.storage_type,
+            parent=self.stor1b)
+        self.stor1c = StoragePlace.objects.create(
+            name=u'Storage Lvl 1c', storage_type=self.storage_type)
+        self.stor2c = StoragePlace.objects.create(
+            name=u'Storage Lvl 2c',
+            storage_type=self.storage_type,
+            parent=self.stor1c)
+        self.stor3c = StoragePlace.objects.create(
+            name=u'Storage Lvl 3c',
+            storage_type=self.storage_type,
+            parent=self.stor2c)
+
+        # Setting up categories
+        self.cat = Category.objects.create(name=u'Category 1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(
+            username='jacob', email='jacob@foo.baa', password='top_secret')
+
+        # Some items
+        self.part1 = Part.objects.create(name=u'Test Part 1',
+                                         unit='m',
+                                         sku=u'tp1',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.part2 = Part.objects.create(name=u'Test Part 2',
+                                         unit='m',
+                                         sku=u'tp2',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        self.part3 = Part.objects.create(name=u'Test Part 3',
+                                         unit='m',
+                                         sku=u'tp3',
+                                         creation_time=timezone.now(),
+                                         created_by=self.user)
+
+        # Setting up storage items
+        self.storage_item1a = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor1a,
+            on_stock=25)
+
+        self.storage_item1b = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor1b,
+            on_stock=50)
+        self.storage_item2b = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor2b,
+            on_stock=50)
+
+        self.storage_item1c = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor1c,
+            on_stock=50)
+        self.storage_item2c = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor2c,
+            on_stock=50)
+        self.storage_item3c = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.stor3c,
+            on_stock=50)
+
+    def test_get_storageitems_1st_level(self):
+        """
+        Tests for a storage without any children"
+        """
+        expected_result = [self.storage_item1a]
+        result = self.stor1a.get_storage_items(children=False)
+        self.assertEqual(len(result), 1)
+        self.assertIn(self.storage_item1a, result)
+
+    def test_get_storageitems_1st_level_without_flag(self):
+        """
+        Tests for a storage without any children"
+        """
+        expected_result = [self.storage_item1a]
+        result = self.stor1a.get_storage_items(children=True)
+        self.assertEqual(len(result), 1)
+        self.assertIn(self.storage_item1a, result)
+
+    def test_get_storageitems_2nd_level(self):
+        """
+        Tests for a storage with one level of child storages
+        """
+        expected_result = [self.storage_item1b, self.storage_item2b]
+        result = self.stor1b.get_storage_items(children=True)
+        self.assertEqual(len(result), 2)
+        self.assertIn(self.storage_item1b, result)
+        self.assertIn(self.storage_item2b, result)
+
+    def test_get_storageitems_3rd_level(self):
+        """
+        Tests for two level of child storages
+        """
+        expected_result = [
+            self.storage_item1c,
+            self.storage_item2c,
+            self.storage_item3c]
+        result = self.stor1c.get_storage_items(children=True)
+        self.assertEqual(len(result), 3)
+        self.assertIn(self.storage_item1c, result)
+        self.assertIn(self.storage_item2c, result)
+        self.assertIn(self.storage_item3c, result)
+
+
 ########################################################################
 # Manufacturer
 ########################################################################

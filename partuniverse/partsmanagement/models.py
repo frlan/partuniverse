@@ -165,6 +165,12 @@ class StoragePlace(models.Model):
                     break
         return result
 
+    def get_children(self):
+        pass
+
+    def get_storage_items(self, children=False):
+        pass
+
     def clean(self):
         # If there is an ID, we can check for ID and don't care about
         # the rest as it's a new object
