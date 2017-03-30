@@ -7,3 +7,12 @@ main.main.container {
   margin: 2em 0em 0em;
   padding: 2em 0em;
 }
+
+.ui.form input[type="search"],
+.ui.form input[type="search"]:focus {
+	box-shadow: none;
+	border: none;
+	-webkit-appearance: textfield;
+	padding:0;
+	line-height: 2.5em;
+}
