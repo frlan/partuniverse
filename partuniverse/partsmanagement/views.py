@@ -199,9 +199,15 @@ class PartsList(ListView):
     model = Part
     template_name = 'pmgmt/part/list.html'
 
-    def get_queryset(self):
-        return Part.objects.exclude(disabled='True')
+    @property
+    def search(self):
+        return self.request.GET.get('search', '')
 
+    def get_queryset(self):
+        parts = Part.objects.exclude(disabled='True')
+        if self.search != '':
+            return parts.filter(name__icontains=self.search)
+        return parts
 
 class PartsReorderList(ListView):
     template_name = 'pmgmt/part/reorderlist.html'
