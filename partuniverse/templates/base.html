@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "semantic-ui/dist/semantic.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/all.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/dashboard.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/select2.min.css" %}">
     {% block stylesheets %}{% endblock %}
     <!-- link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}" -->
   </head>
@@ -125,9 +126,12 @@
     {% endblock footer %}
 
     {% block javascripts %}
+
     <script src="{% static "jquery/dist/jquery.js" %}"></script>
     <script src="{% static "semantic-ui/dist/semantic.js" %}"></script>
-    <script src="{% static "custom/semantic.js" %}"></script>
+    <script src="{% static "custom/select2.min.js" %}"></script>
+    <script src="{% static "custom/select2.js" %}"></script>
+
     {% endblock %}
   </body>
 </html>
