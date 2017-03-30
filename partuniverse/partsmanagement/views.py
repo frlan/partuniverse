@@ -209,6 +209,7 @@ class PartsList(ListView):
             return parts.filter(name__icontains=self.search)
         return parts
 
+
 class PartsReorderList(ListView):
     template_name = 'pmgmt/part/reorderlist.html'
     context_object_name = 'reorder_items'
