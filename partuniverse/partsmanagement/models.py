@@ -11,7 +11,7 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
-
+import operator
 import os
 
 # Exceptions
@@ -189,7 +189,7 @@ class StoragePlace(models.Model):
         result.extend(list(self.storageitem_set.all()))
         if storages:
             for storage in storages:
-                result.extend(storage.storageitem_set.all())
+                result.extend(storage.storageitem_set.all().order_by('part'))
         return result
 
     def clean(self):
