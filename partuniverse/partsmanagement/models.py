@@ -165,8 +165,24 @@ class StoragePlace(models.Model):
                     break
         return result
 
-    def get_children(self):
-        pass
+    def get_children(self, children=False):
+        """
+        A recursive methode to return child storage assoziated with this
+        particular one.
+        The flag children controlls whether children objects should be included
+        """
+        childs = list(self.storageplace_set.all())
+        if children:
+            result = []
+            if childs:
+                for child in childs:
+                    result.append(child)
+                    result.extend(child.get_children())
+                return result
+            else:
+                return None
+        else:
+            return childs
 
     def get_storage_items(self, children=False):
         pass
