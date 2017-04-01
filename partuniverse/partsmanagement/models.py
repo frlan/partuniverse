@@ -217,6 +217,9 @@ class Manufacturer(models.Model):
         help_text=_("The user the manufacturer was created by.")
     )
 
+    def get_parts(self):
+        return list(self.part_set.all().order_by('name'))
+
     def __str__(self):
         return ('%s' % self.name)
 
