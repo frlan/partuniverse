@@ -1003,6 +1003,12 @@ class StorageGetChild(TestCase):
             parent=self.stor2,
             storage_type=self.storage_type)
 
+    def test_get_childs_no_child(self):
+        """
+        Tests whether a storage place without childs is return correct result
+        """
+        self.assertIsNone(self.stor3.get_children())
+
     def test_get_childs(self):
         expected_result = [self.stor2, self.stor3]
         result = self.stor1.get_children()
