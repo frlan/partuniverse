@@ -1007,7 +1007,7 @@ class StorageGetChild(TestCase):
         """
         Tests whether a storage place without childs is return correct result
         """
-        self.assertIsNone(self.stor3.get_children(children=True))
+        self.assertEqual([], self.stor3.get_children(children=True))
 
     def test_get_childs(self):
         expected_result = [self.stor2, self.stor3]

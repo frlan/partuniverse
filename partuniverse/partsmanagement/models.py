@@ -167,9 +167,10 @@ class StoragePlace(models.Model):
 
     def get_children(self, children=False):
         """
-        A recursive methode to return child storage assoziated with this
+        A recursive method to return child storages associated with this
         particular one.
-        The flag children controlls whether children objects should be included
+        The flag children controlls whether children objects should be
+        included.
         """
         childs = list(self.storageplace_set.all())
         if children:
@@ -178,14 +179,18 @@ class StoragePlace(models.Model):
                 for child in childs:
                     result.append(child)
                     result.extend(child.get_children())
-                return result
-            else:
-                return None
+            return result
         else:
             return childs
 
     def get_storage_items(self, children=False):
-        pass
+        result = []
+        storages = self.get_children(children=children)
+        result.extend(list(self.storageitem_set.all()))
+        if storages:
+            for storage in storages:
+                result.extend(storage.storageitem_set.all())
+        return result
 
     def clean(self):
         # If there is an ID, we can check for ID and don't care about
