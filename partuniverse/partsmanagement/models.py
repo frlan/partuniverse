@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
+from .utils import *
 import operator
 import os
 
@@ -22,6 +23,7 @@ from .exceptions import (
     TransactionAllreadyRevertedException,
     StorageItemIsTheSameException
 )
+
 from datetime import datetime
 from decimal import Decimal
 
@@ -30,7 +32,6 @@ import uuid
 # Logging
 import logging
 logger = logging.getLogger(__name__)
-
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
@@ -55,28 +56,6 @@ STATE_CHOICES = (
     ('open', _('Open')),
     ('res', _('Reserverd'))
 )
-
-
-def get_all_storage_item_parts_with_on_stock_and_min_stock():
-    """ Returns a list of list with all Parts having a StorageItem
-        with its min_stock value. """
-    result_list = []
-    for i in StorageItem.objects.values("part").annotate(
-            Sum("on_stock")).order_by('part'):
-        tmp = []
-        tmp.append(i['part'])
-        tmp.append(i['on_stock__sum'])
-        tmp.append(Part.objects.get(pk=i['part']).min_stock)
-        result_list.append(tmp)
-    return result_list
-
-
-def validate_file_extension(value):
-    try:
-        if value.file.content_type != 'application/pdf':
-            raise ValidationError(u'Filetyp not supported')
-    except AttributeError:
-        pass
 
 
 @python_2_unicode_compatible

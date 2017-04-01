@@ -7,7 +7,6 @@ from django.utils import timezone
 from decimal import Decimal
 import uuid
 
-
 from .models import *
 from .views import *
 
@@ -379,62 +378,6 @@ class TransactionAllreadyRevertedTest(TestCase):
 ########################################################################
 # Part related
 ########################################################################
-class PartListWithOnStockValueFromSI(TestCase):
-    """
-        This test shall test, whether the method
-        get_all_storage_item_parts_with_on_stock_and_min_stock():
-        correct returns Parts that are in stock.
-    """
-
-    def setUp(self):
-        # Setting up categories
-        self.cat = Category.objects.create(name=u'Category 1')
-
-        # Setting up test user
-        self.user = User.objects.create_user(username='jacob',
-                                             email='jacob@foo.baa',
-                                             password='top_secret')
-
-        # Basis setting of storage
-        self.storagetype = StorageType.objects.create(name=u"Testtype")
-        self.storageplace1 = StoragePlace.objects.create(name=u'Test Storage1',
-                                                         storage_type=self.storagetype)
-        self.storageplace2 = StoragePlace.objects.create(name=u'Test Storage2',
-                                                         storage_type=self.storagetype)
-
-        # Some items
-        self.part1 = Part.objects.create(name=u'Test Part 1',
-                                         sku=u'tp1',
-                                         unit='m',
-                                         creation_time=timezone.now(),
-                                         created_by=self.user)
-
-        self.part2 = Part.objects.create(name=u'Test Part 2',
-                                         sku=u'tp2',
-                                         unit='m',
-                                         creation_time=timezone.now(),
-                                         created_by=self.user)
-
-        self.storage_item1 = StorageItem.objects.create(part=self.part1,
-                                                        storage=self.storageplace1,
-                                                        on_stock=25)
-        self.storage_item2a = StorageItem.objects.create(part=self.part2,
-                                                         storage=self.storageplace1,
-                                                         on_stock=7)
-        self.storage_item2b = StorageItem.objects.create(part=self.part2,
-                                                         storage=self.storageplace2,
-                                                         on_stock=3)
-
-    def test_part_list_with_on_stock_value(self):
-        # Defining goal list
-        expected_resultset = [
-            [self.part1.id, 25, None],
-            [self.part2.id, 10, None]
-        ]
-        self.assertEqual(
-            get_all_storage_item_parts_with_on_stock_and_min_stock(), expected_resultset)
-
-
 class StoragePlaceCircle(TestCase):
     """
         Testcase to check whether model's validation method is catching
