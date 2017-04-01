@@ -165,7 +165,7 @@ class CategoryAddView(CreateView):
     model = Category
     success_url = reverse_lazy('category_list')
     template_name = 'pmgmt/category/add.html'
-    fields = ('name',)
+    fields = ('name', 'parent')
 
     def form_valid(self, form):
         user = self.request.user
