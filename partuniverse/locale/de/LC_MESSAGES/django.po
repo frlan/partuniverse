@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-30 19:01+0000\n"
+"POT-Creation-Date: 2017-04-01 13:49+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -147,11 +147,11 @@ msgstr "Reserviert"
 msgid "The name for a storage type. Should be unique"
 msgstr "Der Name des Lagertypes. Sollte ein eindeutiger Name sein."
 
-#: partsmanagement/models.py:95 templates/pmgmt/storage/detail.html:38
+#: partsmanagement/models.py:95 templates/pmgmt/storage/detail.html:31
 msgid "Storage Type"
 msgstr "Lagertyp"
 
-#: partsmanagement/models.py:96 templates/base.html:55
+#: partsmanagement/models.py:96 templates/base.html:56
 msgid "Storage Types"
 msgstr "Lagertypen"
 
@@ -173,8 +173,8 @@ msgstr "Übergeorndetes Lager"
 msgid "The storage the current storage is part of."
 msgstr "Ein Lagerplatz, in der der aktuelle Lagerplatz liegt."
 
-#: partsmanagement/models.py:124 partsmanagement/models.py:441
-#: partsmanagement/models.py:579
+#: partsmanagement/models.py:124 partsmanagement/models.py:468
+#: partsmanagement/models.py:606
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -186,9 +186,9 @@ msgstr "Steuert, ob der aktuelle Lagerplatz zur Verfügung steht."
 msgid "So does look the place in real."
 msgstr "So sieht der Lagerplatz »in echt« aus."
 
-#: partsmanagement/models.py:135 partsmanagement/models.py:279
-#: partsmanagement/models.py:362 templates/pmgmt/category/detail.html:29
-#: templates/pmgmt/part/detail.html:71 templates/pmgmt/storage/detail.html:42
+#: partsmanagement/models.py:135 partsmanagement/models.py:306
+#: partsmanagement/models.py:389 templates/pmgmt/category/detail.html:29
+#: templates/pmgmt/part/detail.html:71 templates/pmgmt/storage/detail.html:35
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -202,50 +202,50 @@ msgid "There seems to be a circle insideancestors at %s."
 msgstr ""
 "Es scheint ein Kreis-Problem mit der übergeordneten Kategorie %s zu geben."
 
-#: partsmanagement/models.py:176
+#: partsmanagement/models.py:203
 msgid "The storage cannot be one of its ancestors"
 msgstr "Ein Lager kann sich nicht in sich selbst befinden."
 
-#: partsmanagement/models.py:180
+#: partsmanagement/models.py:207
 msgid "Storage Place"
 msgstr "Lagerplatz"
 
-#: partsmanagement/models.py:181
+#: partsmanagement/models.py:208
 msgid "Storage Places"
 msgstr "Lagerplätze"
 
-#: partsmanagement/models.py:191
+#: partsmanagement/models.py:218
 msgid "Name of the manufacturer."
 msgstr "Liste der Hersteller."
 
-#: partsmanagement/models.py:197 partsmanagement/models.py:235
+#: partsmanagement/models.py:224 partsmanagement/models.py:262
 msgid "The logo of the company."
 msgstr "Das Logo der Firma."
 
-#: partsmanagement/models.py:202
+#: partsmanagement/models.py:229
 msgid "The URL to homepage of manufacturer."
 msgstr "Die Adresse der Homepage des Herstellers."
 
-#: partsmanagement/models.py:206
+#: partsmanagement/models.py:233
 msgid "Timestamp the manufacturer was created at."
 msgstr "Der Zeitpunkt, zu dem der Hersteller angelegt wurde."
 
-#: partsmanagement/models.py:210 partsmanagement/models.py:250
-#: partsmanagement/models.py:437
+#: partsmanagement/models.py:237 partsmanagement/models.py:277
+#: partsmanagement/models.py:464
 msgid "Added by"
 msgstr "Hinzugefügt von"
 
-#: partsmanagement/models.py:211
+#: partsmanagement/models.py:238
 msgid "The user the manufacturer was created by."
 msgstr "Der Nutzer, von dem der Hersteller angelegt wurde."
 
-#: partsmanagement/models.py:218 partsmanagement/models.py:405
+#: partsmanagement/models.py:245 partsmanagement/models.py:432
 #: templates/pmgmt/part/detail.html:63 templates/pmgmt/part/list.html:55
 #: templates/pmgmt/part/reorderlist.html:40
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:219 templates/base.html:53
+#: partsmanagement/models.py:246 templates/base.html:54
 #: templates/pmgmt/manufacturer/add.html:7
 #: templates/pmgmt/manufacturer/detail.html:7
 #: templates/pmgmt/manufacturer/list.html:7
@@ -253,32 +253,32 @@ msgstr "Hersteller"
 msgid "Manufacturers"
 msgstr "Hersteller"
 
-#: partsmanagement/models.py:229
+#: partsmanagement/models.py:256
 msgid "Name of the distributor"
 msgstr "Name des Lieferanten"
 
-#: partsmanagement/models.py:240
+#: partsmanagement/models.py:267
 msgid "The URL to homepage of distributor."
 msgstr "Die Adresse der Homepage des Lieferanten."
 
-#: partsmanagement/models.py:244 partsmanagement/models.py:431
+#: partsmanagement/models.py:271 partsmanagement/models.py:458
 msgid "Creation time"
 msgstr "Angelegt am"
 
-#: partsmanagement/models.py:246
+#: partsmanagement/models.py:273
 msgid "Timestamp the distributor was created at."
 msgstr "Zeitpunkt, an dem der Lieferant erstellt wurde."
 
-#: partsmanagement/models.py:251
+#: partsmanagement/models.py:278
 msgid "User who created the distributor."
 msgstr "Nutzer der den Lieferanten als gelöscht markiert hat."
 
-#: partsmanagement/models.py:258 partsmanagement/models.py:412
+#: partsmanagement/models.py:285 partsmanagement/models.py:439
 #: templates/pmgmt/part/detail.html:55
 msgid "Distributor"
 msgstr "Lieferant"
 
-#: partsmanagement/models.py:259 templates/base.html:52
+#: partsmanagement/models.py:286 templates/base.html:53
 #: templates/pmgmt/distributor/add.html:7
 #: templates/pmgmt/distributor/detail.html:7
 #: templates/pmgmt/distributor/list.html:7
@@ -286,237 +286,237 @@ msgstr "Lieferant"
 msgid "Distributors"
 msgstr "Lieferanten"
 
-#: partsmanagement/models.py:270
+#: partsmanagement/models.py:297
 msgid "Name of the category."
 msgstr "Name der Kategorie des Teils."
 
-#: partsmanagement/models.py:276
+#: partsmanagement/models.py:303
 msgid "If having a subcateogry, the parent."
 msgstr "Bei einer Unterkategorie die nächst höhere Ebene."
 
-#: partsmanagement/models.py:282
+#: partsmanagement/models.py:309
 msgid "A short summarize of this category."
 msgstr "Eine Zusammenfassung der Kategorie"
 
-#: partsmanagement/models.py:288
+#: partsmanagement/models.py:315
 msgid "Some picutre for category."
 msgstr "Ein Bild für die Kategorie."
 
-#: partsmanagement/models.py:308
+#: partsmanagement/models.py:335
 msgid "There seems to be a circle inside ancestors of {}."
 msgstr ""
 "Es scheint ein Kreis-Problem mit der übergeordneten Kategorie »{}« zu geben."
 
-#: partsmanagement/models.py:326
+#: partsmanagement/models.py:353
 msgid "The category cannot be one of its ancestors."
 msgstr "Eine Kategorie kann nicht Teil ihrer selbst sein."
 
-#: partsmanagement/models.py:339 partsmanagement/models.py:427
+#: partsmanagement/models.py:366 partsmanagement/models.py:454
 #: templates/pmgmt/category/add.html:7
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:340 templates/base.html:51
+#: partsmanagement/models.py:367 templates/base.html:52
 #: templates/pmgmt/category/detail.html:6 templates/pmgmt/category/list.html:7
 #: templates/pmgmt/category/update.html:7 templates/pmgmt/part/detail.html:79
 msgid "Categories"
 msgstr "Kategorien"
 
-#: partsmanagement/models.py:349
+#: partsmanagement/models.py:376
 msgid "Name of part"
 msgstr "Name des Teils"
 
-#: partsmanagement/models.py:351
+#: partsmanagement/models.py:378
 msgid "Name of the part."
 msgstr "Name des Teils"
 
-#: partsmanagement/models.py:354 templates/pmgmt/part/detail.html:35
+#: partsmanagement/models.py:381 templates/pmgmt/part/detail.html:35
 msgid "SKU"
 msgstr "SKU"
 
-#: partsmanagement/models.py:357
+#: partsmanagement/models.py:384
 msgid "A installation unique idendifier for the part."
 msgstr "Ein eindeutiger Bezeichner für das Teil."
 
-#: partsmanagement/models.py:365
+#: partsmanagement/models.py:392
 msgid "A long text description of the part"
 msgstr "Eine ausführliche Beschreibung des Teiles."
 
-#: partsmanagement/models.py:368
+#: partsmanagement/models.py:395
 msgid "Minimal stock"
 msgstr "Mindestlagerbestand"
 
-#: partsmanagement/models.py:373
+#: partsmanagement/models.py:400
 msgid "Set a minimum that should be stored."
 msgstr "Setzt einen Minimalwert, wieviele Teile vorhanden sein müssen/sollen."
 
-#: partsmanagement/models.py:376
+#: partsmanagement/models.py:403
 msgid "Messuring unit"
 msgstr "Maßeinheit"
 
-#: partsmanagement/models.py:381
+#: partsmanagement/models.py:408
 msgid "The unit quantities are in."
 msgstr "Die Maßeinheit, in der das Teil gemessen wird."
 
-#: partsmanagement/models.py:387
+#: partsmanagement/models.py:414
 msgid "The actual image."
 msgstr "Ein Bild des Teiles."
 
-#: partsmanagement/models.py:393
+#: partsmanagement/models.py:420
 msgid "The URL of the original image."
 msgstr "Die URL des originalen Bildes."
 
-#: partsmanagement/models.py:396 templates/pmgmt/part/detail.html:99
+#: partsmanagement/models.py:423 templates/pmgmt/part/detail.html:99
 msgid "Data sheet"
 msgstr "Datenblatt"
 
-#: partsmanagement/models.py:397
+#: partsmanagement/models.py:424
 msgid "A document containing important addition information"
 msgstr "Ein Dokument, welches zusätzliche Informationen enthält."
 
-#: partsmanagement/models.py:408
+#: partsmanagement/models.py:435
 msgid "The manufacturer of the part."
 msgstr "Der Hersteller des Teiles."
 
-#: partsmanagement/models.py:415
+#: partsmanagement/models.py:442
 msgid "The usual distributor of the part."
 msgstr "Die gewöhnliche Lieferant des Teiles."
 
-#: partsmanagement/models.py:418
+#: partsmanagement/models.py:445
 msgid "Cost of the part"
 msgstr "Kosten/Preis des Teils"
 
-#: partsmanagement/models.py:419
+#: partsmanagement/models.py:446
 msgid "The cost/price for the part"
 msgstr "Die Kosten bzw. der Preis für ein Teil."
 
-#: partsmanagement/models.py:428
+#: partsmanagement/models.py:455
 msgid "A list of categories the part is in."
 msgstr "Eine Liste mit Kategorien zu denen das Teil gezählt werden kann."
 
-#: partsmanagement/models.py:433
+#: partsmanagement/models.py:460
 msgid "Timestamp the part was created on."
 msgstr "Zeitpunkt an dem das Teil erstellt wurde."
 
-#: partsmanagement/models.py:438
+#: partsmanagement/models.py:465
 msgid "The user the part was created by."
 msgstr "Der Nutzer, der das Teil erstellt hat."
 
-#: partsmanagement/models.py:443
+#: partsmanagement/models.py:470
 msgid "Whether the part is active or not."
 msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 
-#: partsmanagement/models.py:555 templates/pmgmt/storageitem/detail.html:23
+#: partsmanagement/models.py:582 templates/pmgmt/storageitem/detail.html:23
 #: templates/pmgmt/storageitem/list.html:40
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:556 templates/base.html:28
+#: partsmanagement/models.py:583 templates/base.html:29
 #: templates/pmgmt/category/detail.html:33 templates/pmgmt/part/add.html:7
 #: templates/pmgmt/part/delete.html:6 templates/pmgmt/part/detail.html:7
 #: templates/pmgmt/part/list.html:7 templates/pmgmt/part/update.html:7
 msgid "Parts"
 msgstr "Teile"
 
-#: partsmanagement/models.py:564
+#: partsmanagement/models.py:591
 msgid "The part stored at this spot."
 msgstr "Das Teil, welches an dieser Stelle gelagert ist"
 
-#: partsmanagement/models.py:568
+#: partsmanagement/models.py:595
 msgid "The storage the part is stored in."
 msgstr "Der Lagerplatz, an dem das Teil eingelagert ist."
 
-#: partsmanagement/models.py:571
+#: partsmanagement/models.py:598
 msgid "Parts inside storage"
 msgstr "Teile innerhalb des Lagers"
 
-#: partsmanagement/models.py:576
+#: partsmanagement/models.py:603
 msgid "The amount currently stored."
 msgstr "Die Menge an Teilen, die dort aktuell gelagert sind."
 
-#: partsmanagement/models.py:581
+#: partsmanagement/models.py:608
 msgid "Whether the storage item is active."
 msgstr "Entscheidet, ob der Eintrag aktiv ist."
 
-#: partsmanagement/models.py:602
+#: partsmanagement/models.py:629
 msgid "Difference from Stocktaking"
 msgstr "Unterschiede Inventur"
 
-#: partsmanagement/models.py:611 templates/pmgmt/transaction/detail.html:29
+#: partsmanagement/models.py:638 templates/pmgmt/transaction/detail.html:29
 msgid "Storage Item"
 msgstr "Einlagerung"
 
-#: partsmanagement/models.py:612 templates/pmgmt/storageitem/detail.html:7
+#: partsmanagement/models.py:639 templates/pmgmt/storageitem/detail.html:7
 #: templates/pmgmt/storageitem/list.html:7
 #: templates/pmgmt/storageitem/update.html:7
 msgid "Storage Items"
 msgstr "Einlagerungen"
 
-#: partsmanagement/models.py:621 templates/pmgmt/transaction/detail.html:25
+#: partsmanagement/models.py:648 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
 msgstr "Kurzbeschreibung"
 
-#: partsmanagement/models.py:623
+#: partsmanagement/models.py:650
 msgid "A short conclusion of the transaction."
 msgstr "Eine kurze Zusammenfassung für die Transaktion."
 
-#: partsmanagement/models.py:630
+#: partsmanagement/models.py:657
 msgid "The part-storage relation the transaction was applied on."
 msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
-#: partsmanagement/models.py:634 templates/pmgmt/transaction/detail.html:33
+#: partsmanagement/models.py:661 templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
-#: partsmanagement/models.py:637
+#: partsmanagement/models.py:664
 msgid "The quantity transferred."
 msgstr "Die Menge, die entnommen wurde."
 
-#: partsmanagement/models.py:640
+#: partsmanagement/models.py:667
 msgid "Comment"
 msgstr "Kommentar"
 
-#: partsmanagement/models.py:644
+#: partsmanagement/models.py:671
 msgid "A short conclusion."
 msgstr "Eine kurze Zusammenfassung."
 
-#: partsmanagement/models.py:647
+#: partsmanagement/models.py:674
 msgid "Transaction Date"
 msgstr "Transaktionsdaten"
 
-#: partsmanagement/models.py:652
+#: partsmanagement/models.py:679
 msgid "The date the transaction took  part."
 msgstr "Das Datum, an dem die Transaktion stattfand."
 
-#: partsmanagement/models.py:655 templates/pmgmt/transaction/list.html:25
+#: partsmanagement/models.py:682 templates/pmgmt/transaction/list.html:25
 msgid "State"
 msgstr "Status"
 
-#: partsmanagement/models.py:660
+#: partsmanagement/models.py:687
 msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
-#: partsmanagement/models.py:664 templates/pmgmt/transaction/detail.html:41
+#: partsmanagement/models.py:691 templates/pmgmt/transaction/detail.html:41
 msgid "Created by"
 msgstr "Erstellt von"
 
-#: partsmanagement/models.py:665
+#: partsmanagement/models.py:692
 msgid "The user which created the transaction."
 msgstr "Der Nutzer, die die Transaktion anlegte."
 
-#: partsmanagement/models.py:668
+#: partsmanagement/models.py:695
 msgid "Creation timestamp"
 msgstr "Angelegt am"
 
-#: partsmanagement/models.py:673
+#: partsmanagement/models.py:700
 msgid "The timestamp transaction has been entered."
 msgstr "Der Zeitpunkt zu dem die Transaktion angelegt wurde."
 
-#: partsmanagement/models.py:677
+#: partsmanagement/models.py:704
 msgid "Reverted"
 msgstr "Zurück gerollt"
 
-#: partsmanagement/models.py:680
+#: partsmanagement/models.py:707
 msgid ""
 "To control whether transaction has been already reverted and cannot be "
 "reverted again."
@@ -524,30 +524,30 @@ msgstr ""
 "Gibt an, ob die Transktion bereits zurück gerollt, das heißt wider rufen "
 "wurde, und so nicht mehr neu entsprechend behandelt werden kann."
 
-#: partsmanagement/models.py:687
+#: partsmanagement/models.py:714
 msgid "reverted {}"
 msgstr "zurück {}"
 
-#: partsmanagement/models.py:697
+#: partsmanagement/models.py:724
 msgid "Transaktion »{}« was already reverted."
 msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 
-#: partsmanagement/models.py:713
+#: partsmanagement/models.py:740
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:749 templates/pmgmt/transaction/detail.html:6
+#: partsmanagement/models.py:776 templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:750 templates/base.html:42
+#: partsmanagement/models.py:777 templates/base.html:43
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
 msgstr "Transaktionen"
 
 #: templates/about.html:5 templates/about.html:8 templates/about.html:10
-#: templates/base.html:115
+#: templates/base.html:116
 msgid "About"
 msgstr "Über"
 
@@ -728,7 +728,7 @@ msgstr "Einloggen"
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/logout.html:6 templates/base.html:68
+#: templates/account/logout.html:6 templates/base.html:69
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -877,19 +877,19 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:21 templates/base.html:93
+#: templates/base.html:22 templates/base.html:94
 msgid "Home"
 msgstr "Start"
 
-#: templates/base.html:34
+#: templates/base.html:35
 msgid "Storage items"
 msgstr "Einlagerungen"
 
-#: templates/base.html:48
+#: templates/base.html:49
 msgid "Manage"
 msgstr "Verwalten"
 
-#: templates/base.html:54 templates/pmgmt/part/detail.html:83
+#: templates/base.html:55 templates/pmgmt/part/detail.html:83
 #: templates/pmgmt/storage/detail.html:7 templates/pmgmt/storage/list.html:7
 #: templates/pmgmt/storage/update.html:7
 #: templates/pmgmt/storagetype/detail.html:6
@@ -897,23 +897,23 @@ msgstr "Verwalten"
 msgid "Storages"
 msgstr "Lager"
 
-#: templates/base.html:56
+#: templates/base.html:57
 msgid "Parts needs reordering"
 msgstr "Notwendige Neubestellungen"
 
-#: templates/base.html:62
+#: templates/base.html:63
 msgid "Edit user settings"
 msgstr "Nutzereinstellungen ändern"
 
-#: templates/base.html:77
+#: templates/base.html:78
 msgid "Login"
 msgstr "Einloggen"
 
-#: templates/base.html:82
+#: templates/base.html:83
 msgid "Register"
 msgstr "Registrieren"
 
-#: templates/base.html:110 templates/help.html:5 templates/help.html:8
+#: templates/base.html:111 templates/help.html:5 templates/help.html:8
 #: templates/help.html:10
 msgid "Help"
 msgstr "Hilfe"
@@ -1011,7 +1011,7 @@ msgstr "Ein neue Kategory anlegen"
 #: templates/pmgmt/category/detail.html:45
 #: templates/pmgmt/distributor/detail.html:42
 #: templates/pmgmt/part/detail.html:119 templates/pmgmt/part/update.html:11
-#: templates/pmgmt/storage/detail.html:51
+#: templates/pmgmt/storage/detail.html:62
 #: templates/pmgmt/storageitem/detail.html:39
 #: templates/pmgmt/storagetype/detail.html:34
 msgid "Update item"
@@ -1153,13 +1153,10 @@ msgid "No description available."
 msgstr "Keine Beschreibung verfügbar."
 
 #: templates/pmgmt/part/detail.html:86
-
-#| msgid "Storage Item"
 msgid "Storage Item:"
 msgstr "Einlagerung:"
 
 #: templates/pmgmt/part/detail.html:87
-#| msgid "Storage"
 msgid "Storage:"
 msgstr "Lager:"
 
@@ -1168,7 +1165,6 @@ msgid "(unknown quantity on stock)"
 msgstr "(Menge unbekannt)"
 
 #: templates/pmgmt/part/detail.html:112
-#| msgid "No description available."
 msgid "No picture available"
 msgstr "Keine passenden Bild verfügbar."
 
@@ -1230,13 +1226,17 @@ msgstr "Ein neues Lager anlegen"
 msgid "Use this to add new storage places e.g. new shelf."
 msgstr "Hier kannst Du neue Lager wie z.B. ein Fach im Bücherregal hinzufügen."
 
-#: templates/pmgmt/storage/detail.html:34 templates/pmgmt/storage/list.html:43
+#: templates/pmgmt/storage/detail.html:27 templates/pmgmt/storage/list.html:43
 msgid "Storage Name"
 msgstr "Lagername"
 
-#: templates/pmgmt/storage/detail.html:44
+#: templates/pmgmt/storage/detail.html:37
 msgid "no Details"
 msgstr "Keine Details"
+
+#: templates/pmgmt/storage/detail.html:43
+msgid "Parts to find here"
+msgstr "Dinge hier zu finden"
 
 #: templates/pmgmt/storage/list.html:10 templates/pmgmt/storage/list.html:12
 msgid "List of storages"
@@ -1308,7 +1308,6 @@ msgstr ""
 
 #: templates/pmgmt/storageitem/stocktaking.html:6
 #: templates/pmgmt/storageitem/stocktaking.html:7
-#| msgid "Stock taking"
 msgid "Stocktaking"
 msgstr "Inventur"
 
