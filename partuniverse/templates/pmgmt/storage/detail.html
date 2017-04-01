@@ -17,11 +17,11 @@
 
 {% if object.pic %}
 <div class="column">
-    <img class="ui fluid rounded image" src="{{object.pic.url}}">
+    <img class="ui fluid rounded image medium" src="{{object.pic.url}}">
 </div>
 {% else %}
 <div class="column">
-    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
+    <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}">
 </div>
 {% endif %}
 
