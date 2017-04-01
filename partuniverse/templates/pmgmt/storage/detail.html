@@ -46,6 +46,14 @@
           <td>{{object.description}}</td>
       {% endif %}
   </tr>
+  <tr>
+      <td>{% trans "Parts to find here" %}</td>
+      <td><ui class="list ui">
+          {% for sth in object.get_storage_items %}
+          <li><a href="{% url "storage_item_detail" sth.id %}">{{sth.part}}</a></li>
+          {% endfor %}</ui></td>
+
+  </tr>
 </table>
 
 <p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a>
