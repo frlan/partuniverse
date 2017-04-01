@@ -15,15 +15,8 @@
 
 {% block content %}
 
-{% if object.logo %}
+<div class="ui stackable two column grid">
 <div class="column">
-    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
-</div>
-{% else %}
-<div class="column">
-    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
-</div>
-{% endif %}
 <table class="ui definition table segment">
 <tr>
     <td>{% trans "Name" %}</td>
@@ -36,7 +29,16 @@
 </tr>
 {% endif %}
 </table>
-
+</div>
+{% if object.logo %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
+</div>
+{% else %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
+</div>
+{% endif %}
 {% if user.is_authenticated %}
 <p><a class="ui button blue" href="{% url "manufacturer_update" object.id %}">{% trans "Update Manufacturer" %}</a></p>
 {% endif %}
