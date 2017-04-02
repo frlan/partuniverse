@@ -28,13 +28,21 @@
 
 {% if object_list %}
 <table class="ui table sortable segment">
+  <colgroup>
+    <col>
+    <col width="8%">
+  </colgroup>
   <thead>
     <tr>
       <th class="sorted ascending">{% trans "Name" %}</th>
+      <th></th>
   </thead>
   <tbody>
     {% for item in object_list %}
-        <tr><td><a href="{% url "category_detail" item.id %}">{{item.name}}</a></td></tr>
+        <tr>
+            <td><a href="{% url "category_detail" item.id %}">{{item.name}}</a></td>
+            <td>{% if user.is_authenticated %}<a class="ui button blue" href="{% url "category_update" item.id %}">{% trans "Update" %}</a>{% endif %}</td>
+        </tr>
     {% endfor %}
   </tbody>
 </table>
