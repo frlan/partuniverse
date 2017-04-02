@@ -31,6 +31,12 @@
     <td>{% trans "Storage Type" %}</td>
     <td>{{object.storage_type}}</td>
   </tr>
+  {% if object.parent %}
+  <tr>
+      <td>{% trans "Parent storage" %}</td>
+      <td><a href="{% url "storage_detail" object.parent.id %}">{{object.parent}}</a></td>
+  </tr>
+  {% endif %}
   <tr>
       <td>{% trans "Description" %}</td>
       {% if object.description == None %}
