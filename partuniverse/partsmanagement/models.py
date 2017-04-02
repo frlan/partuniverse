@@ -473,7 +473,7 @@ class Part(models.Model):
         return os.path.basename(self.data_sheet.name)
 
     def get_storage_items(self):
-        tmp = self.storageitem_set.all()
+        tmp = self.storageitem_set.all().exclude(disabled='True')
         if tmp:
             return tmp
         else:
