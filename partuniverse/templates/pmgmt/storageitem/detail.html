@@ -21,7 +21,7 @@
 <table class="ui table segment">
 <tr>
 	<th>{% trans "Part" %}</th>
-	<td>{{object.part}}</td>
+	<td><a href="{% url "part_detail" object.part.id %}">{{object.part}}</a></td>
 </tr>
 <tr>
 	<th>{% trans "Storage" %}</th>
