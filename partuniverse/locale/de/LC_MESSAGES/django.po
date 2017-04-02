@@ -1064,7 +1064,7 @@ msgstr "URL"
 #: templates/pmgmt/distributor/list.html:10
 #: templates/pmgmt/distributor/list.html:12
 msgid "List of distributors"
-msgstr "Liste der Lieferantanten"
+msgstr "Liste der Lieferanten"
 
 #: templates/pmgmt/distributor/list.html:45
 #: templates/pmgmt/manufacturer/list.html:44 templates/pmgmt/part/list.html:90
