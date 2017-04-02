@@ -57,10 +57,9 @@
     <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}">
 </div>
 {% endif %}
-<div class="ui clearing hidden divider"></div>
 
-<p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a>
-</p>
-
+{% if user.is_authenticated %}
+<p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a> </p>
+{% endif %}
 
 {% endblock %}
