@@ -169,7 +169,8 @@ class StoragePlace(models.Model):
         if storages:
             for storage in storages:
                 result.extend(storage.storageitem_set.all().order_by('part'))
-        return result
+        sorted_list = sorted(result, key=lambda x: x.part.name)
+        return sorted_list
 
     def clean(self):
         # If there is an ID, we can check for ID and don't care about
