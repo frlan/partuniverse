@@ -16,32 +16,33 @@
 
 <div class="ui stackable two column grid">
   <div class="column">
-<table class="ui definition table segment">
-<tr>
-    <td>{% trans "Name" %}</td>
-    <td>{{object.name}}</td>
-</tr>
-{% if object.url %}
-<tr>
-    <td>{% trans "URL" %}</td>
-    <td><a href="{{object.url}}">{{object.url}}</a></td>
-</tr>
-{% endif %}
-</table>
-</div>
+        <table class="ui definition table segment">
+        <tr>
+            <td>{% trans "Name" %}</td>
+            <td>{{object.name}}</td>
+        </tr>
+        {% if object.url %}
+        <tr>
+            <td>{% trans "URL" %}</td>
+            <td><a href="{{object.url}}">{{object.url}}</a></td>
+        </tr>
+        {% endif %}
+        </table>
+    </div>
 
-{% if object.logo %}
-<div class="column">
-    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
-</div>
-{% else %}
-<div class="column">
-    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
-</div>
-{% endif %}
+    {% if object.logo %}
+    <div class="column">
+        <img class="ui fluid rounded image small" src="{{object.logo.url}}">
+    </div>
+    {% else %}
+    <div class="column">
+        <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
+    </div>
+    {% endif %}
 </div>
 
 {% if user.is_authenticated %}
 <p><a class="ui button blue" href="{% url "distributor_update" object.id %}">{% trans "Update item" %}</a></p>
 {% endif %}
+
 {% endblock %}
