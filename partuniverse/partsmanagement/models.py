@@ -66,6 +66,19 @@ class StorageType(models.Model):
         max_length=50,
         help_text=_("The name for a storage type. Should be unique")
     )
+    description = models.TextField(
+        _("Description"),
+        blank=True,
+        null=True,
+        help_text=_("A short description.")
+    )
+    pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/storagetypes/',
+        help_text=_("If you have a typical image of such a storage, "
+                    "this is the place where it belongs to.")
+    )
 
     def __str__(self):
         return (u'%s' % self.name)

@@ -516,7 +516,7 @@ class StoragePlaceUpdateView(UpdateView):
 class StorageTypeAddView(CreateView):
     model = StorageType
     success_url = reverse_lazy('storage_type_list')
-    fields = ('name',)
+    fields = ('name', 'description', 'pic')
     template_name = 'pmgmt/storagetype/add.html'
 
 
@@ -533,5 +533,5 @@ class StorageTypeDetailView(DetailView):
 class StorageTypeUpdateView(UpdateView):
     model = StorageType
     template_name = 'pmgmt/storagetype/update.html'
-    fields = ('name',)
+    fields = ('name', 'description', 'pic')
     success_url = reverse_lazy('storage_type_list')
