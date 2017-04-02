@@ -15,6 +15,7 @@
 
 {% block content %}
 {% if object.disabled == True %}
+
 <div class="ui error message segment">
 <p>{% trans "This part has been marked as disbaled. Please contact your admin for details." %}</p>
 </div>
@@ -24,7 +25,8 @@
     <p>{% trans "The item is out of stock or below its minimum stock" %}</p>
 </div>
 {% endif %}
-<div class="ui stackable {% if object.pic %}two{% else %}one{% endif %} column grid">
+
+<div class="ui stackable two column grid">
   <div class="column">
 <table class="ui definition table segment">
 <tr>
@@ -114,12 +116,10 @@
   {% endif %}
 </div>
 <div class="ui clearing hidden divider"></div>
-<p>
+
 {% if object.disabled == False %}
   <a class="ui blue button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
 {% endif %}
 <a class="ui blue button" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
-</p>
-
 
 {% endblock %}
