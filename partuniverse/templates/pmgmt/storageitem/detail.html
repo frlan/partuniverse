@@ -2,22 +2,21 @@
 
 {% load i18n %}
 
-{% block breadcrumbs %}
 
+{% block head_title %}{{ object }}{% endblock %}
+{% block heading %}{{ object }}{% endblock %}
+
+{% block breadcrumbs %}
 <a href="{% url "storage_item_list" %}" class="item">{% trans "Storage Items" %}</a>
 <i class="right chevron icon divider"></i>
 <a class="active item" href="{% url "storage_item_detail" object.id%}">{{ object }}</a>
-
 {% endblock %}
-
-{% block head_title %}{{ object.name }}{% endblock %}
-{% block heading %}{{ object.name }}{% endblock %}
 
 
 {% block content %}
 
-<h1>{{ object }}</h1>
-
+<div class="ui stackable one column grid">
+  <div class="column">
 <table class="ui table segment">
 <tr>
 	<th>{% trans "Part" %}</th>
@@ -32,7 +31,8 @@
 	{% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}</td> {% endif %}
 </tr>
 </table>
-
+</div>
+</div>
 {% comment %}<p><a class="ui button blue" href="/pmgmt/stroageitem/{{object.id}}/delete/">{% trans "Delete item" %}</a></p>{% endcomment %}
 <p>
 	<a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>
