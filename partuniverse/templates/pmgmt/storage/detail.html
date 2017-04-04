@@ -9,9 +9,9 @@
 <a class="active section" href="{% url "storage_detail"  object.id %}">{{ object.name }}</a>
 {% endblock %}
 
-{% block head_title %}{{ object.name }}{% endblock %}
+{% block head_title %}{{ object }}{% endblock %}
 
-{% block heading %}{{ object.name }}{% endblock %}
+{% block heading %}{{ object }}{% endblock %}
 
 {% block content %}
 
