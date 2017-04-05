@@ -1303,8 +1303,9 @@ msgid ""
 "Changes here will not change die internal ID of a storage item, but it will "
 "change the name you will see inside the application."
 msgstr ""
-"Eine Änderung hier wird die interne ID einer Einlagerung ändern, nur den "
-"angezeigten Namen."
+"Eine Änderung hier wird die interne ID einer Einlagerung nicht ändern. "
+"Der angezeigte Name wird aus dem Kontext, also dem Zusammenhang zwischen "
+"Teil und Lager gebildet."
 
 #: templates/pmgmt/storageitem/stocktaking.html:6
 #: templates/pmgmt/storageitem/stocktaking.html:7
