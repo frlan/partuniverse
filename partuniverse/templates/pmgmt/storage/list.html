@@ -48,7 +48,7 @@
   </thead>
   <tbody>
     {% for item in object_list %}
-      <td><a href="{% url "storage_detail" item.id %}">{{ item.name }}</a></td>
+      <td><a href="{% url "storage_detail" item.id %}">{{ item }}</a></td>
       <td>{{item.storage_type}}</td>
       {% if item.parent == None %} <td>{% trans "n/A" %}</td> {% else %}<td><a href="{% url "storage_detail" item.parent.id %}">{{item.parent.name}}</a></td>{% endif %}
       {% if user.is_authenticated %}
