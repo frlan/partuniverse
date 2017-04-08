@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<p> {% trans "Confirm Email" %}</p>
+
 <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
 {% csrf_token %}
 <p>{% blocktrans with email=confirmation.email_address.email %}Can you confirm email address: <b>{{ email }}</b>?{% endblocktrans %}</p>
