@@ -5,10 +5,13 @@
 {% block heading %}{% trans "Welcome to partuniverse" %}{% endblock %}
 
 {% block content %}
-{% if user.is_anonymous %}
-<p>put your mission statement here</p>
-{% else %}
-{{ dashboard.render }}
-{% endif %}
-
+	<h2 class="ui top attached header">{% trans "Quick start" %}</h2>
+	<div class="ui attached segment">
+		<ul>
+			<li><a href="{% url "part_list" %}">{% trans "Parts" %}</a></li>
+			<li><a href="{% url "storage_list" %}">{% trans "Storage places" %}</a></li>
+			<li><a href="{% url "category_list" %}">{% trans "Categories" %}</a></li>
+		</ul>
+	</div>
+	{{ dashboard.render }}
 {% endblock %}
