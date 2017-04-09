@@ -230,6 +230,7 @@ class PartsAddView(CreateView):
     template_name = 'pmgmt/part/add.html'
     fields = ('name',
               'sku',
+              'description',
               'min_stock',
               'unit',
               'price',
