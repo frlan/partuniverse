@@ -237,7 +237,8 @@ class PartsAddView(CreateView):
               'manufacturer',
               'distributor',
               'categories',
-              'pic')
+              'pic',
+              'data_sheet')
 
     def form_valid(self, form):
         user = self.request.user
