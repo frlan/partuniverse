@@ -1026,7 +1026,7 @@ msgstr "Hinzufügen"
 
 #: templates/pmgmt/category/add.html:12 templates/pmgmt/category/add.html:14
 msgid "Add a new category"
-msgstr "Ein neue Kategory anlegen"
+msgstr "Ein neue Kategorie anlegen"
 
 #: templates/pmgmt/category/detail.html:45
 #: templates/pmgmt/distributor/detail.html:45
