@@ -443,7 +443,8 @@ class StorageItemDetailView(DetailView):
 class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
-              'storage')
+              'storage',
+              'needs_review')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 

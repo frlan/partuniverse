@@ -598,6 +598,11 @@ class StorageItem(models.Model):
         blank=True,
         help_text=_("The amount currently stored.")
     )
+    needs_review = models.BooleanField(
+        _("Needs review"),
+        default=False,
+        help_text=_("Whether this storage item might be wrong")
+    )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
