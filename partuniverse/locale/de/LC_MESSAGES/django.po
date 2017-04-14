@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-08 12:31+0000\n"
+"POT-Creation-Date: 2017-04-14 14:03+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -127,7 +127,7 @@ msgid "piece"
 msgstr "Stück"
 
 #: partsmanagement/models.py:51 templates/pmgmt/storage/list.html:53
-#: templates/pmgmt/storageitem/detail.html:31
+#: templates/pmgmt/storageitem/detail.html:37
 msgid "n/A"
 msgstr "n/V"
 
@@ -167,7 +167,8 @@ msgstr "Eine kurze Beschreibung"
 msgid ""
 "If you have a typical image of such a storage, this is the place where it "
 "belongs to."
-msgstr "Der perfekte Platz, um ein typisches Bild für den Lagertyp zu hinterlegen."
+msgstr ""
+"Der perfekte Platz, um ein typisches Bild für den Lagertyp zu hinterlegen."
 
 #: partsmanagement/models.py:87 templates/pmgmt/storage/detail.html:31
 msgid "Storage Type"
@@ -196,7 +197,7 @@ msgid "The storage the current storage is part of."
 msgstr "Ein Lagerplatz, in der der aktuelle Lagerplatz liegt."
 
 #: partsmanagement/models.py:116 partsmanagement/models.py:464
-#: partsmanagement/models.py:602
+#: partsmanagement/models.py:607
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -418,7 +419,7 @@ msgstr "Der Nutzer, der das Teil erstellt hat."
 msgid "Whether the part is active or not."
 msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 
-#: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html:22
+#: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html:28
 #: templates/pmgmt/storageitem/list.html:40
 msgid "Part"
 msgstr "Teil"
@@ -446,88 +447,96 @@ msgstr "Teile innerhalb des Lagers"
 msgid "The amount currently stored."
 msgstr "Die Menge an Teilen, die dort aktuell gelagert sind."
 
+#: partsmanagement/models.py:602
+msgid "Needs review"
+msgstr "Überprüfung notwendig"
+
 #: partsmanagement/models.py:604
+msgid "Whether this storage item might be wrong"
+msgstr "Es könnte sein, dass diese Einlager nicht korekt ist."
+
+#: partsmanagement/models.py:609
 msgid "Whether the storage item is active."
 msgstr "Entscheidet, ob der Eintrag aktiv ist."
 
-#: partsmanagement/models.py:625
+#: partsmanagement/models.py:630
 msgid "Difference from Stocktaking"
 msgstr "Unterschiede Inventur"
 
-#: partsmanagement/models.py:634 templates/pmgmt/transaction/detail.html:29
+#: partsmanagement/models.py:639 templates/pmgmt/transaction/detail.html:29
 msgid "Storage Item"
 msgstr "Einlagerung"
 
-#: partsmanagement/models.py:635 templates/pmgmt/storageitem/detail.html:10
+#: partsmanagement/models.py:640 templates/pmgmt/storageitem/detail.html:10
 #: templates/pmgmt/storageitem/list.html:7
 msgid "Storage Items"
 msgstr "Einlagerungen"
 
-#: partsmanagement/models.py:644 templates/pmgmt/transaction/detail.html:25
+#: partsmanagement/models.py:649 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
 msgstr "Kurzbeschreibung"
 
-#: partsmanagement/models.py:646
+#: partsmanagement/models.py:651
 msgid "A short conclusion of the transaction."
 msgstr "Eine kurze Zusammenfassung für die Transaktion."
 
-#: partsmanagement/models.py:653
+#: partsmanagement/models.py:658
 msgid "The part-storage relation the transaction was applied on."
 msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
-#: partsmanagement/models.py:657 templates/pmgmt/transaction/detail.html:33
+#: partsmanagement/models.py:662 templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
-#: partsmanagement/models.py:660
+#: partsmanagement/models.py:665
 msgid "The quantity transferred."
 msgstr "Die Menge, die entnommen wurde."
 
-#: partsmanagement/models.py:663
+#: partsmanagement/models.py:668
 msgid "Comment"
 msgstr "Kommentar"
 
-#: partsmanagement/models.py:667
+#: partsmanagement/models.py:672
 msgid "A short conclusion."
 msgstr "Eine kurze Zusammenfassung."
 
-#: partsmanagement/models.py:670
+#: partsmanagement/models.py:675
 msgid "Transaction Date"
 msgstr "Transaktionsdaten"
 
-#: partsmanagement/models.py:675
+#: partsmanagement/models.py:680
 msgid "The date the transaction took  part."
 msgstr "Das Datum, an dem die Transaktion stattfand."
 
-#: partsmanagement/models.py:678 templates/pmgmt/transaction/list.html:25
+#: partsmanagement/models.py:683 templates/pmgmt/transaction/list.html:25
 msgid "State"
 msgstr "Status"
 
-#: partsmanagement/models.py:683
+#: partsmanagement/models.py:688
 msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
-#: partsmanagement/models.py:687 templates/pmgmt/transaction/detail.html:41
+#: partsmanagement/models.py:692 templates/pmgmt/transaction/detail.html:41
 msgid "Created by"
 msgstr "Erstellt von"
 
-#: partsmanagement/models.py:688
+#: partsmanagement/models.py:693
 msgid "The user which created the transaction."
 msgstr "Der Nutzer, die die Transaktion anlegte."
 
-#: partsmanagement/models.py:691
+#: partsmanagement/models.py:696
 msgid "Creation timestamp"
 msgstr "Angelegt am"
 
-#: partsmanagement/models.py:696
+#: partsmanagement/models.py:701
 msgid "The timestamp transaction has been entered."
 msgstr "Der Zeitpunkt zu dem die Transaktion angelegt wurde."
 
-#: partsmanagement/models.py:700
+#: partsmanagement/models.py:705
 msgid "Reverted"
 msgstr "Zurück gerollt"
 
-#: partsmanagement/models.py:703
+#: partsmanagement/models.py:708
 msgid ""
 "To control whether transaction has been already reverted and cannot be "
 "reverted again."
@@ -535,23 +544,23 @@ msgstr ""
 "Gibt an, ob die Transktion bereits zurück gerollt, das heißt wider rufen "
 "wurde, und so nicht mehr neu entsprechend behandelt werden kann."
 
-#: partsmanagement/models.py:710
+#: partsmanagement/models.py:715
 msgid "reverted {}"
 msgstr "zurück {}"
 
-#: partsmanagement/models.py:720
+#: partsmanagement/models.py:725
 msgid "Transaktion »{}« was already reverted."
 msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 
-#: partsmanagement/models.py:736
+#: partsmanagement/models.py:741
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:772 templates/pmgmt/transaction/detail.html:6
+#: partsmanagement/models.py:777 templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:773 templates/base.html:43
+#: partsmanagement/models.py:778 templates/base.html:43
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
@@ -675,12 +684,11 @@ msgid "[%(site_name)s] Password reset"
 msgstr "[%(site_name)s] Passwort zurücksetzen"
 
 #: templates/account/email_confirm.html:5
-#: templates/account/email_confirm.html:12
 msgid "Confirm Email"
 msgstr "Bestätigung Deiner Email"
 
 #: templates/account/email_confirm.html:8
-#: templates/account/email_confirmation_sent.html:10
+#: templates/account/email_confirmation_sent.html:9
 msgid "Account signup"
 msgstr "Benutzerkonto anlegen"
 
@@ -697,12 +705,12 @@ msgstr "Bestätigen"
 msgid "Confirmation"
 msgstr "Bestätigung"
 
-#: templates/account/email_confirmation_sent.html:7
-#: templates/account/email_confirmation_sent.html:14
+#: templates/account/email_confirmation_sent.html:6
+#: templates/account/email_confirmation_sent.html:13
 msgid "Confirm your email address"
 msgstr "Bestätige Deine Email-Adresse"
 
-#: templates/account/email_confirmation_sent.html:16
+#: templates/account/email_confirmation_sent.html:15
 #, python-format
 msgid ""
 "We have sent you an email to <b>%(email)s</b> for verification. Follow the "
@@ -716,7 +724,7 @@ msgstr ""
 "erhalten, kontaktieren uns bitte unter <a href=\"mailto:"
 "%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
-#: templates/account/email_confirmation_sent.html:18
+#: templates/account/email_confirmation_sent.html:17
 msgid "Go back"
 msgstr "Zurück"
 
@@ -731,11 +739,11 @@ msgid "You have confirmed <b>%(email)s</b>"
 msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 
 #: templates/account/login.html:7 templates/account/login.html:10
-#: templates/account/login.html:12 templates/account/login.html:18
+#: templates/account/login.html:12 templates/account/login.html:30
 msgid "Log in"
 msgstr "Einloggen"
 
-#: templates/account/login.html:18 templates/account/password_reset.html:10
+#: templates/account/login.html:30 templates/account/password_reset.html:10
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
@@ -1013,7 +1021,6 @@ msgid "Quick start"
 msgstr "Schnellstart"
 
 #: templates/index.html:12
-#| msgid "Storage Places"
 msgid "Storage places"
 msgstr "Lagerplätze"
 
@@ -1032,7 +1039,7 @@ msgstr "Ein neue Kategorie anlegen"
 #: templates/pmgmt/distributor/detail.html:45
 #: templates/pmgmt/part/detail.html:121 templates/pmgmt/part/update.html:11
 #: templates/pmgmt/storage/detail.html:78
-#: templates/pmgmt/storageitem/detail.html:39
+#: templates/pmgmt/storageitem/detail.html:45
 #: templates/pmgmt/storagetype/detail.html:58
 msgid "Update item"
 msgstr "Bearbeiten"
@@ -1111,7 +1118,6 @@ msgid "Delete a manufacturer"
 msgstr "Hersteller löschen"
 
 #: templates/pmgmt/manufacturer/detail.html:31
-#| msgid "Name of the manufacturer."
 msgid "Parts by this manufacturer"
 msgstr "Teile des Herstellers"
 
@@ -1236,7 +1242,7 @@ msgid "Submit"
 msgstr "Übertragen"
 
 #: templates/pmgmt/storage/add.html:7
-#: templates/pmgmt/storageitem/detail.html:26
+#: templates/pmgmt/storageitem/detail.html:32
 #: templates/pmgmt/storageitem/list.html:41
 #: templates/pmgmt/storagetype/add.html:7
 msgid "Storage"
@@ -1261,7 +1267,6 @@ msgid "no Details"
 msgstr "Keine Details"
 
 #: templates/pmgmt/storage/detail.html:50
-#| msgid "List of storages"
 msgid "Child storages"
 msgstr "Liste der untergeordneten Lager"
 
@@ -1306,11 +1311,21 @@ msgstr ""
 "Hier kannst du neue Einlagerungen anlegen. Eine Einlagerung besteht aus "
 "einem bestimmten Teil an einem bestimmten Ort/in einem bestimmten Lager."
 
-#: templates/pmgmt/storageitem/detail.html:30
+#: templates/pmgmt/storageitem/detail.html:20
+msgid ""
+"The storage item has been marked as to needs a review. Would you mind to "
+"check whether the part is really at this place and/or the amount registered "
+"inside the storage is correct?"
+msgstr ""
+"Diese Einlagerung wurde für eine Überprüfung markiert. Es könnte also "
+"sein, dass die hier gespeicherten Angaben nicht korrekt sind. "
+"Möchtest Du dabei helfen, die Daten zu korrigieren?"
+
+#: templates/pmgmt/storageitem/detail.html:36
 msgid "On Stock"
 msgstr "Im Bestand"
 
-#: templates/pmgmt/storageitem/detail.html:40
+#: templates/pmgmt/storageitem/detail.html:46
 #: templates/pmgmt/storageitem/list.html:63
 msgid "Stock taking"
 msgstr "Inventur"
@@ -1352,7 +1367,6 @@ msgstr ""
 "aktuellen Bestand auf den eingetragenen Wert korrgiert."
 
 #: templates/pmgmt/storageitem/update.html:12
-#| msgid "Storage Items"
 msgid "Stroage Items"
 msgstr "Einlagerungen"
 
