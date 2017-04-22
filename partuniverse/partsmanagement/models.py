@@ -312,11 +312,12 @@ class Category(models.Model):
         if self.parent is None:
             return u'{}'.format(self.name)
         else:
-            return (u'%s%s%s' % (
-                self.parent,
-                settings.PARENT_DELIMITER,
-                self.name)
-                   )
+            return (
+                u'%s%s%s' % (
+                    self.parent,
+                    settings.PARENT_DELIMITER,
+                    self.name)
+            )
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""

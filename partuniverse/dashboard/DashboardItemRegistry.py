@@ -18,7 +18,7 @@ class DashboardItemRegistryClass:
         return None
 
 
-DashboardItemRegistry = DashboardItemRegistryClass() # pylint: disable=C0103
+DashboardItemRegistry = DashboardItemRegistryClass()  # pylint: disable=C0103
 
 
 # scan the installed apps for dashboard items

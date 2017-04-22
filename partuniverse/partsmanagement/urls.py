@@ -40,7 +40,7 @@ from .views import (
     StorageTypeAddView,
     StorageTypeDetailView,
     StorageTypeUpdateView
-    )
+)
 
 urlpatterns = [
     # Some general url pattern

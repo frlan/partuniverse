@@ -925,7 +925,7 @@ class StrorageParentTestCase(TestCase):
             name=u'Storage Lvl 3 with unicode µä³½',
             parent=self.stor2,
             storage_type=self.storage_type
-            )
+        )
 
     def test_storage_name(self):
         stor_result1 = u'Storage Lvl 1'

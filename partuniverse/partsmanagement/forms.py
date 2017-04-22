@@ -7,6 +7,7 @@ from .models import StorageItem
 
 logger = logging.getLogger(__name__)
 
+
 class MergeStorageItemsForm(forms.Form):
     storageitem1 = forms.ModelChoiceField(
         queryset=StorageItem.objects.all())
