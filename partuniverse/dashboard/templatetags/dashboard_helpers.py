@@ -1,23 +1,23 @@
 from django import template
 
-register = template.Library()
-
+register = template.Library() # pylint: disable=C0103
 
 @register.filter
-def asStringLiteral(integer):
-    if (integer > 9):
-        raise Excepiton("Invalid Number")
-    nums = {0: 'zero',
-            1: 'one',
-            2: 'two',
-            3: 'three',
-            4: 'four',
-            5: 'five',
-            6: 'six',
-            7: 'seven',
-            8: 'eight',
-            9: 'nine'
-            }
+def asStringLiteral(integer): # pylint: disable=C0103
+    if integer > 9:
+        raise Exception("Invalid Number")
+    nums = {
+        0: 'zero',
+        1: 'one',
+        2: 'two',
+        3: 'three',
+        4: 'four',
+        5: 'five',
+        6: 'six',
+        7: 'seven',
+        8: 'eight',
+        9: 'nine'
+    }
     return nums[integer]
 
 

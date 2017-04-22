@@ -1,32 +1,52 @@
 # -*- coding: utf-8 -*-
 
-from decimal import *
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+import logging
+
+# from decimal import *
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.db.models import F
 from django.forms.widgets import DateTimeInput
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import FormView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from partsmanagement.forms import *
-from partsmanagement.models import *
-from partsmanagement.serializers import *
 from rest_framework import generics
 from rest_framework import permissions
 
-
 # Logging
-import logging
+
+from .forms import (
+    StockTakingForm,
+    MergeStorageItemsForm
+)
+from .models import (
+    StorageType,
+    Transaction,
+    StoragePlace,
+    Category,
+    Manufacturer,
+    Distributor,
+    StorageItem,
+    Part
+)
+from .serializers import (
+    StorageTypeSerializer,
+    StoragePlaceSerializer,
+    ManufacturerSerializer,
+    DistributorSerializer,
+    CategorySerializer,
+    PartSerializer,
+    StorageItemSerializer,
+    TransactionSerializer
+)
+
+from .exceptions import (
+    StorageItemIsTheSameException
+)
+
 logger = logging.getLogger(__name__)
 
 
@@ -460,8 +480,8 @@ class StorageItemStockTakingView(FormView):
     template_name = 'pmgmt/storageitem/stocktaking.html'
 
     def form_valid(self, form):
-        si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        si.stock_report(
+        storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
+        storageiitem.stock_report(
             form.cleaned_data["amount"], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
@@ -472,10 +492,10 @@ class StorageItemMergeView(FormView):
     template_name = 'pmgmt/storageitem/merge.html'
 
     def form_valid(self, form):
-        si = StorageItem.objects.get(pk=self.kwargs["pk"])
+        storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
         try:
-            si.part.merge_storage_items(
-                si,
+            storageiitem.part.merge_storage_items(
+                storageiitem,
                 StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
         except StorageItemIsTheSameException:
             pass

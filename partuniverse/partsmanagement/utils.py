@@ -1,4 +1,4 @@
-from .models import *
+from .models import ValidationError
 
 
 def validate_file_extension(value):

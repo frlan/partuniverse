@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
-from decimal import Decimal
-import uuid
 
-from .models import *
-from .views import *
+from .models import (
+    Category,
+    ValidationError,
+    Part,
+    StorageType,
+    StorageItem,
+    Transaction,
+    Manufacturer,
+    Distributor,
+    StoragePlace,
+    StorageItemIsTheSameException,
+    PartsNotFitException,
+    PartsmanagementException
+)
 
 
 ########################################################################
@@ -32,7 +41,7 @@ class CategoryTestCase(TestCase):
             u'Category ü' + settings.PARENT_DELIMITER + u'Category 3'
         self.assertEqual(u'%s' % self.cat1, cat_result1)
         self.assertEqual(u'%s' % self.cat2, cat_result2)
-        self.assertEqual(u'%s' % self.cat2, cat_result2)
+        self.assertEqual(u'%s' % self.cat2, cat_result3)
 
 
 class CategoryParents(TestCase):
@@ -753,14 +762,14 @@ class StorageItemsMergeTestCase(TestCase):
         Checks whether merging the samse storage items fails
         """
         with self.assertRaises(StorageItemIsTheSameException):
-            tmp = self.part1.merge_storage_items(
+            self.part1.merge_storage_items(
                 self.storage_item1, self.storage_item1)
 
     def test_working_merge_of_two_storage_items(self):
         """
         Checks whether normal merging of two storage items is working
         """
-        tmp = self.part1.merge_storage_items(
+        self.part1.merge_storage_items(
             self.storage_item1, self.storage_item2)
         self.assertEqual(int(StorageItem.objects.get(
             pk=self.storage_item1.id).on_stock), 75)
@@ -913,7 +922,10 @@ class StrorageParentTestCase(TestCase):
         self.stor2 = StoragePlace.objects.create(
             name=u'Storage Lvl 2', parent=self.stor1, storage_type=self.storage_type)
         self.stor3 = StoragePlace.objects.create(
-            name=u'Storage Lvl 3 with unicode µä³½', parent=self.stor2, storage_type=self.storage_type)
+            name=u'Storage Lvl 3 with unicode µä³½',
+            parent=self.stor2,
+            storage_type=self.storage_type
+            )
 
     def test_storage_name(self):
         stor_result1 = u'Storage Lvl 1'
@@ -953,7 +965,6 @@ class StorageGetChild(TestCase):
         self.assertEqual([], self.stor3.get_children(children=True))
 
     def test_get_childs(self):
-        expected_result = [self.stor2, self.stor3]
         result = self.stor1.get_children(children=True)
         self.assertEqual(len(result), 2)
         self.assertIn(self.stor2, result)
@@ -1046,7 +1057,6 @@ class StorageGetParts(TestCase):
         """
         Tests for a storage without any children"
         """
-        expected_result = [self.storage_item1a]
         result = self.stor1a.get_storage_items(children=False)
         self.assertEqual(len(result), 1)
         self.assertIn(self.storage_item1a, result)
@@ -1055,7 +1065,6 @@ class StorageGetParts(TestCase):
         """
         Tests for a storage without any children"
         """
-        expected_result = [self.storage_item1a]
         result = self.stor1a.get_storage_items(children=True)
         self.assertEqual(len(result), 1)
         self.assertIn(self.storage_item1a, result)
@@ -1064,7 +1073,6 @@ class StorageGetParts(TestCase):
         """
         Tests for a storage with one level of child storages
         """
-        expected_result = [self.storage_item1b, self.storage_item2b]
         result = self.stor1b.get_storage_items(children=True)
         self.assertEqual(len(result), 2)
         self.assertIn(self.storage_item1b, result)
@@ -1074,10 +1082,6 @@ class StorageGetParts(TestCase):
         """
         Tests for two level of child storages
         """
-        expected_result = [
-            self.storage_item1c,
-            self.storage_item2c,
-            self.storage_item3c]
         result = self.stor1c.get_storage_items(children=True)
         self.assertEqual(len(result), 3)
         self.assertIn(self.storage_item1c, result)

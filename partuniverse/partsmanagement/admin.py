@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib import admin
-from .models import *
-
-# Logging
 import logging
+from django.contrib import admin
+from .models import (
+    StorageItem,
+    StorageType,
+    Category,
+    Part,
+    Manufacturer,
+    Distributor,
+    Transaction,
+    StoragePlace
+)
+
 logger = logging.getLogger(__name__)
 
 admin.site.register(StorageType)

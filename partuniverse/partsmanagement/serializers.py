@@ -1,6 +1,14 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from partsmanagement.models import *
+from partsmanagement.models import (
+    StorageType,
+    StoragePlace,
+    Manufacturer,
+    Distributor,
+    Category,
+    StorageItem,
+    Transaction,
+    Part
+)
 
 
 class StorageTypeSerializer(serializers.ModelSerializer):
