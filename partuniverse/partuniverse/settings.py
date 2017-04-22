@@ -198,6 +198,6 @@ REST_FRAMEWORK = {
 # ignored in your version control system allowing for settings to be
 # defined per machine.
 try:
-    from .local_settings import * # pylint: disable=W0401,W0614
+    from .local_settings import *  # pylint: disable=W0401,W0614
 except ImportError:
     pass

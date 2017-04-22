@@ -21,9 +21,9 @@ class DashboardContainer:
     def add(self, item):
         counter_inner = 0
         counter_outer = 0
-        for i in self.items: # pylint: disable=W0612
+        for i in self.items:  # pylint: disable=W0612
             counter_inner = 0
-            for j in self.items[counter_outer]: # pylint: disable=W0612
+            for j in self.items[counter_outer]:  # pylint: disable=W0612
                 if self.items[counter_outer][counter_inner] is None:
                     self.items[counter_outer][counter_inner] = item(self)
                     return self

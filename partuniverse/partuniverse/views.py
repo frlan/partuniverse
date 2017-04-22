@@ -6,7 +6,7 @@ from dashboard.DashboardContainer import DashboardContainer
 
 def dashboard(request):
     template = loader.get_template('index.html')
-    dashboard = DashboardContainer(request) # pylint: disable=W0621
+    dashboard = DashboardContainer(request)  # pylint: disable=W0621
     dashboard.add(DashboardItemRegistry.get('needs_restocking'))
     dashboard.add(DashboardItemRegistry.get('most_recent_transactions'))
     dashboard.add(DashboardItemRegistry.get('most_recent_parts'))

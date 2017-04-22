@@ -1,9 +1,10 @@
 from django import template
 
-register = template.Library() # pylint: disable=C0103
+register = template.Library()  # pylint: disable=C0103
+
 
 @register.filter
-def asStringLiteral(integer): # pylint: disable=C0103
+def asStringLiteral(integer):  # pylint: disable=C0103
     if integer > 9:
         raise Exception("Invalid Number")
     nums = {
