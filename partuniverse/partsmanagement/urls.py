@@ -1,15 +1,46 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views
-from django.contrib import admin
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import RedirectView
-from django.views.generic import TemplateView
 
 
-from .views import *
+from .views import (
+    PartsList,
+    PartsAddView,
+    PartsReorderList,
+    PartDetailView,
+    PartDeleteView,
+    PartUpdateView,
+    CategoryList,
+    CategoryAddView,
+    CategoryDetailView,
+    CategoryUpdateView,
+    TransactionListView,
+    TransactionAddView,
+    TransactionView,
+    ManufacturerListView,
+    ManufacturerAddView,
+    ManufacturerView,
+    ManufacturerUpdateView,
+    DistributorListView,
+    DistributorAddView,
+    DistributorUpdateView,
+    DistributorView,
+    StorageItemAddView,
+    StorageItemListView,
+    StorageItemDetailView,
+    StorageItemUpdateView,
+    StorageItemMergeView,
+    StorageItemStockTakingView,
+    StoragePlaceAddView,
+    StoragePlaceListView,
+    StoragePlaceDetailView,
+    StoragePlaceUpdateView,
+    StorageTypeListView,
+    StorageTypeAddView,
+    StorageTypeDetailView,
+    StorageTypeUpdateView
+    )
 
 urlpatterns = [
     # Some general url pattern

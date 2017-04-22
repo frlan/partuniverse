@@ -2,11 +2,6 @@
 import importlib
 
 from django.apps import apps
-from django.conf import settings
-from django.utils._os import safe_join
-from django.utils import six
-
-from dashboard.DashboardItem import DashboardItem
 
 
 class DashboardItemRegistryClass:
@@ -23,7 +18,7 @@ class DashboardItemRegistryClass:
         return None
 
 
-DashboardItemRegistry = DashboardItemRegistryClass()
+DashboardItemRegistry = DashboardItemRegistryClass() # pylint: disable=C0103
 
 
 # scan the installed apps for dashboard items

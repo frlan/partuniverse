@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from dashboard.DashboardItem import DashboardItem
 from dashboard.DashboardItemRegistry import DashboardItemRegistry
-from django.db.models import F
 from django.template import RequestContext, loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
