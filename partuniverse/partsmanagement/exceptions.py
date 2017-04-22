@@ -10,7 +10,7 @@ class PartsmanagementException(Exception):
     Base exceptions for this packages
     """
     def __init__(self, error):
-        super(PartsmanagementException, self).__init__()
+        super(PartsmanagementException, self).__init__(error)
         logger.error(_(u"An fatal error has been occurred: %s" % error))
 
 
@@ -19,7 +19,7 @@ class PartsNotFitException(PartsmanagementException):
     Shall be used, when ever a Part is not fitting to another such like cannot be compared
     """
     def __init__(self, error):
-        super(PartsNotFitException, self).__init__()
+        super(PartsNotFitException, self).__init__(error)
         logger.error(_(u"Exception: Parts cannot be combined: %s" % error))
 
 
@@ -28,7 +28,7 @@ class CircleDetectedException(PartsmanagementException):
     Used in case of a chained list is showing some circles
     """
     def __init__(self, error):
-        super(CircleDetectedException, self).__init__()
+        super(CircleDetectedException, self).__init__(error)
         logger.error(_(u"Circle detected: %s" % error))
 
 
@@ -38,7 +38,7 @@ class StorageItemBelowZeroException(PartsmanagementException):
     of items
     """
     def __init__(self, error):
-        super(StorageItemBelowZeroException, self).__init__()
+        super(StorageItemBelowZeroException, self).__init__(error)
         logger.error(
             _(u(
                 "Amount of items inside a storage cannot be under 0:",
@@ -50,7 +50,7 @@ class StorageItemIsTheSameException(PartsmanagementException):
     Used in case of trying to merge one and the smae storage item"
     """
     def __init__(self, error):
-        super(StorageItemIsTheSameException, self).__init__()
+        super(StorageItemIsTheSameException, self).__init__(error)
         logger.error(
             _(u"Storage Items are idendical: %s" % error)
         )
@@ -61,5 +61,5 @@ class TransactionAllreadyRevertedException(PartsmanagementException):
     Used in case of trying to set revert an already marked a reverted transaction
     """
     def __init__(self, error):
-        super(TransactionAllreadyRevertedException, self).__init__()
+        super(TransactionAllreadyRevertedException, self).__init__(error)
         logger.error(_(u"Cannot revert Transaction: %s" % error))

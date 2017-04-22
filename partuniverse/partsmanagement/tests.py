@@ -41,7 +41,7 @@ class CategoryTestCase(TestCase):
             u'Category ü' + settings.PARENT_DELIMITER + u'Category 3'
         self.assertEqual(u'%s' % self.cat1, cat_result1)
         self.assertEqual(u'%s' % self.cat2, cat_result2)
-        self.assertEqual(u'%s' % self.cat2, cat_result3)
+        self.assertEqual(u'%s' % self.cat3, cat_result3)
 
 
 class CategoryParents(TestCase):
