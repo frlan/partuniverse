@@ -175,6 +175,12 @@ PARENT_DELIMITER = "->"
 PRIVATE_COMMUNITY = True
 
 ########################################################################
+# Pagination of list views
+########################################################################
+
+MAX_ITEMS_PER_PAGE = 25
+
+########################################################################
 # Rest
 ########################################################################
 REST_FRAMEWORK = {
@@ -184,6 +190,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
 ##################
 # LOCAL SETTINGS #
 ##################

@@ -198,7 +198,7 @@ class CategoryUpdateView(UpdateView):
 class PartsList(ListView):
     model = Part
     template_name = 'pmgmt/part/list.html'
-    paginate_by = 25
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
     @property
     def search(self):
