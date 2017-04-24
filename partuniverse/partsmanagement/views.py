@@ -366,6 +366,7 @@ class ManufacturerUpdateView(UpdateView):
 class ManufacturerListView(ListView):
     model = Manufacturer
     template_name = 'pmgmt/manufacturer/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class ManufacturerView(DetailView):
