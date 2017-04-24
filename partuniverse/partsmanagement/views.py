@@ -159,6 +159,7 @@ class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
 class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class CategoryAddView(CreateView):
