@@ -407,6 +407,7 @@ class DistributorUpdateView(UpdateView):
 class DistributorListView(ListView):
     model = Distributor
     template_name = 'pmgmt/distributor/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class DistributorView(DetailView):

@@ -48,6 +48,16 @@
   </tbody>
 </table>
 
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "distributor_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>
 {% endif %}
