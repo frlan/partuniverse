@@ -532,6 +532,7 @@ class StorageTypeAddView(CreateView):
 class StorageTypeListView(ListView):
     model = StorageType
     template_name = 'pmgmt/storagetype/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StorageTypeDetailView(DetailView):
