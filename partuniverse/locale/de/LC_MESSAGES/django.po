@@ -1,7 +1,7 @@
 # German translation file of part universe
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Frank Lanitz <frank@frank.uvena.de>, 2014 -2016
+# Frank Lanitz <frank@frank.uvena.de>, 2014 -2017
 #
 # Some basic rules ... in German
 #
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-14 14:03+0000\n"
+"POT-Creation-Date: 2017-04-26 20:03+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -421,6 +421,7 @@ msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 
 #: partsmanagement/models.py:578 templates/pmgmt/storageitem/detail.html:28
 #: templates/pmgmt/storageitem/list.html:40
+#: templates/pmgmt/storageitem/list_review.html:40
 msgid "Part"
 msgstr "Teil"
 
@@ -567,7 +568,7 @@ msgid "Transactions"
 msgstr "Transaktionen"
 
 #: templates/about.html:5 templates/about.html:8 templates/about.html:10
-#: templates/base.html:116
+#: templates/base.html:117
 msgid "About"
 msgstr "Über"
 
@@ -739,15 +740,15 @@ msgid "You have confirmed <b>%(email)s</b>"
 msgstr "Du hast Deine Email-Adresse <b>%(email)s</b> bestätigt-"
 
 #: templates/account/login.html:7 templates/account/login.html:10
-#: templates/account/login.html:12 templates/account/login.html:30
+#: templates/account/login.html:12 templates/account/login.html:18
 msgid "Log in"
 msgstr "Einloggen"
 
-#: templates/account/login.html:30 templates/account/password_reset.html:10
+#: templates/account/login.html:18 templates/account/password_reset.html:10
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/logout.html:6 templates/base.html:69
+#: templates/account/logout.html:6 templates/base.html:70
 msgid "Logout"
 msgstr "Ausloggen"
 
@@ -896,7 +897,7 @@ msgstr "Wenn Du einen Token hast, kannst Du ihn hier eingeben."
 msgid "en"
 msgstr "de"
 
-#: templates/base.html:22 templates/base.html:94
+#: templates/base.html:22 templates/base.html:95
 msgid "Home"
 msgstr "Start"
 
@@ -920,19 +921,24 @@ msgstr "Lager"
 msgid "Parts needs reordering"
 msgstr "Notwendige Neubestellungen"
 
-#: templates/base.html:63
+#: templates/base.html:58
+#| msgid "Storage items"
+msgid "Storage items review"
+msgstr "Einlagerungen zur Überprüfung"
+
+#: templates/base.html:64
 msgid "Edit user settings"
 msgstr "Nutzereinstellungen ändern"
 
-#: templates/base.html:78
+#: templates/base.html:79
 msgid "Login"
 msgstr "Einloggen"
 
-#: templates/base.html:83
+#: templates/base.html:84
 msgid "Register"
 msgstr "Registrieren"
 
-#: templates/base.html:111 templates/help.html:5 templates/help.html:8
+#: templates/base.html:112 templates/help.html:5 templates/help.html:8
 #: templates/help.html:10
 msgid "Help"
 msgstr "Hilfe"
@@ -1054,16 +1060,18 @@ msgstr "Liste der Kategorien"
 #: templates/pmgmt/part/reorderlist.html:73
 #: templates/pmgmt/storage/list.html:61
 #: templates/pmgmt/storageitem/list.html:61
-#: templates/pmgmt/storagetype/list.html:51
+#: templates/pmgmt/storageitem/list_review.html:61
+#: templates/pmgmt/storagetype/list.html:55
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: templates/pmgmt/category/list.html:51
-#: templates/pmgmt/distributor/list.html:52
-#: templates/pmgmt/manufacturer/list.html:51
-#: templates/pmgmt/storage/list.html:73
-#: templates/pmgmt/storageitem/list.html:75
-#: templates/pmgmt/storagetype/list.html:60
+#: templates/pmgmt/category/list.html:61
+#: templates/pmgmt/distributor/list.html:62
+#: templates/pmgmt/manufacturer/list.html:61
+#: templates/pmgmt/storage/list.html:83
+#: templates/pmgmt/storageitem/list.html:86
+#: templates/pmgmt/storageitem/list_review.html:86
+#: templates/pmgmt/storagetype/list.html:77
 msgid "No data available at the moment"
 msgstr "Aktuell keine Daten verfügbar"
 
@@ -1220,7 +1228,7 @@ msgstr "Kosten"
 msgid "Delete"
 msgstr "Löschen"
 
-#: templates/pmgmt/part/list.html:103
+#: templates/pmgmt/part/list.html:113
 msgid "No data available at the moment."
 msgstr "Aktuell keine Daten verfügbar"
 
@@ -1244,6 +1252,7 @@ msgstr "Übertragen"
 #: templates/pmgmt/storage/add.html:7
 #: templates/pmgmt/storageitem/detail.html:32
 #: templates/pmgmt/storageitem/list.html:41
+#: templates/pmgmt/storageitem/list_review.html:41
 #: templates/pmgmt/storagetype/add.html:7
 msgid "Storage"
 msgstr "Lager"
@@ -1317,9 +1326,9 @@ msgid ""
 "check whether the part is really at this place and/or the amount registered "
 "inside the storage is correct?"
 msgstr ""
-"Diese Einlagerung wurde für eine Überprüfung markiert. Es könnte also "
-"sein, dass die hier gespeicherten Angaben nicht korrekt sind. "
-"Möchtest Du dabei helfen, die Daten zu korrigieren?"
+"Diese Einlagerung wurde für eine Überprüfung markiert. Es könnte also sein, "
+"dass die hier gespeicherten Angaben nicht korrekt sind. Möchtest Du dabei "
+"helfen, die Daten zu korrigieren?"
 
 #: templates/pmgmt/storageitem/detail.html:36
 msgid "On Stock"
@@ -1327,6 +1336,7 @@ msgstr "Im Bestand"
 
 #: templates/pmgmt/storageitem/detail.html:46
 #: templates/pmgmt/storageitem/list.html:63
+#: templates/pmgmt/storageitem/list_review.html:63
 msgid "Stock taking"
 msgstr "Inventur"
 
@@ -1336,12 +1346,29 @@ msgid "List of storages items"
 msgstr "Liste der Einlagerungen"
 
 #: templates/pmgmt/storageitem/list.html:42
+#: templates/pmgmt/storageitem/list_review.html:42
 msgid "Reported On Stock"
 msgstr "Bestand gemeldet"
 
 #: templates/pmgmt/storageitem/list.html:62
+#: templates/pmgmt/storageitem/list_review.html:62
 msgid "Merge Storage item"
 msgstr "Einlagerungen verschmelzen"
+
+#: templates/pmgmt/storageitem/list_review.html:7
+#| msgid "Storage Items"
+msgid "Storage Items Review"
+msgstr "Einlagerungs Überprüfung"
+
+#: templates/pmgmt/storageitem/list_review.html:10
+#| msgid "List of storages items"
+msgid "List of storages items which needs review"
+msgstr "Liste der Einlagerungen die einer Überprüfung bedürfen"
+
+#: templates/pmgmt/storageitem/list_review.html:12
+#| msgid "List of storages items"
+msgid "List of storages items needs review"
+msgstr "Liste der Einlagerungen die einer Überprüfung bedürfen"
 
 #: templates/pmgmt/storageitem/merge.html:8
 #: templates/pmgmt/storageitem/update.html:17
