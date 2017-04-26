@@ -73,6 +73,8 @@ urlpatterns = [
         name='storage_item_add'),
     url(r'^storageitem/list', StorageItemListView.as_view(),
         name='storage_item_list'),
+    url(r'^storageitem/reviewlist', StorageItemToReviewListView.as_view(),
+        name='storage_item_review_list'),
     url(r'^storageitem/(?P<pk>[\w]+)$', StorageItemDetailView.as_view(),
         name='storage_item_detail'),
     url(r'^storageitem/(?P<pk>[\w]+)/update/$', login_required(
@@ -81,8 +83,6 @@ urlpatterns = [
         StorageItemMergeView.as_view()), name='storage_item_merge'),
     url(r'^storageitem/(?P<pk>[\w]+)/stocktaking/$', login_required(
         StorageItemStockTakingView.as_view()), name='storage_item_stocktaking'),
-    url(r'^storageitem/reviewlist', StorageItemToReviewListView.as_view(),
-        name='storage_item_review_list'),
     # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),
