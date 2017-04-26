@@ -483,6 +483,12 @@ class StorageItemMergeView(FormView):
         return super(StorageItemMergeView, self).form_valid(form)
 
 
+class StorageItemToReviewListView(ListView):
+    model = StorageItem
+    template_name = 'pmgmt/storageitem/list_review.html'
+    queryset = StorageItem.objects.filter(needs_review=True)
+
+
 ########################################################################
 # StoragePlace
 ########################################################################

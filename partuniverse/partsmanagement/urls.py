@@ -68,7 +68,7 @@ urlpatterns = [
         name='distributor_update'),
     url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
         name='distributor_detail'),
-    # Storage
+    # Storageitems
     url(r'^storageitem/add', login_required(StorageItemAddView.as_view()),
         name='storage_item_add'),
     url(r'^storageitem/list', StorageItemListView.as_view(),
@@ -81,6 +81,8 @@ urlpatterns = [
         StorageItemMergeView.as_view()), name='storage_item_merge'),
     url(r'^storageitem/(?P<pk>[\w]+)/stocktaking/$', login_required(
         StorageItemStockTakingView.as_view()), name='storage_item_stocktaking'),
+    url(r'^storageitem/reviewlist', StorageItemToReviewListView.as_view(),
+        name='storage_item_review_list'),
     # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),
