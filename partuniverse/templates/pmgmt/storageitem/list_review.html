@@ -51,21 +51,22 @@
       <td><a href="{% url "part_detail" item.part.id %}">{{ item.part }}</a></td>
       <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage }}</a></td>
       <td>{{ item.on_stock|default:"---"|floatformat }}</td>
-      {% if user.is_authenticated %}
       <td>
         <div class="ui inverted blue menu">
           <div class="ui fluid simple dropdown item">
             <a style="width: 100%;" href="{% url "storage_item_detail" item.id %}"/>Detail</a>
+            {% if user.is_authenticated %}
             <i class="dropdown icon"></i>
             <div class="menu">
               <a class="item" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>
               <a class="item" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a>
               <a class="item" href="{% url "storage_item_stocktaking" item.id  %}">{% trans "Stock taking" %}</a>
             </div>
+            {% endif %}
           </div>
         </div>
       </td>
-      {% endif %}
+
     </tr>
     {% endfor %}
   </tbody>
