@@ -2,11 +2,14 @@
 <html lang={% trans "en" %}>
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="generator" content="partuniverse" />
     <title>{% block head_title %}Start{% endblock %} — Partuniverse</title>
     <link rel="stylesheet" type="text/css" href="{% static "semantic-ui/dist/semantic.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/all.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/dashboard.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "custom/select2.min.css" %}">
     {% block stylesheets %}{% endblock %}
     <!-- link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}" -->
   </head>
@@ -18,7 +21,7 @@
            href="{% url "home" %}">
           {% trans "Home" %}
         </a>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated or not settings.PRIVATE_COMMUNITY %}
         <a
            class="item"
            accesskey="p"
@@ -31,12 +34,16 @@
            href="{% url "storage_item_list" %}">
           {% trans "Storage items" %}
         </a>
+        {% endif %}
+        {% if user.is_authenticated %}
         <a
            class="item"
            accesskey="t"
            href="{% url "transaction_list" %}">
           {% trans "Transactions" %}
         </a>
+        {% endif %}
+        {% if user.is_authenticated %}
         <div class="right menu">
           <div class="ui simple dropdown item">
             {% trans "Manage" %}
@@ -47,6 +54,8 @@
               <a class="item" href="{% url "manufacturer_list" %}">{% trans "Manufacturers" %}</a>
               <a class="item" href="{% url "storage_list" %}">{% trans "Storages" %}</a>
               <a class="item" href="{% url "storage_type_list" %}">{% trans "Storage Types" %}</a>
+              <a class="item" href="{% url "part_reorderlist" %}">{% trans "Parts needs reordering" %}</a>
+              <a class="item" href="{% url "storage_item_review_list" %}">{% trans "Storage items review" %}</a>
             </div>
           </div>
           <a
@@ -99,7 +108,7 @@
         <div class="ui horizontal inverted small divided link list">
           <a
              class="item"
-             href="">
+             href="{% url "help" %}">
             {% trans "Help" %}
           </a>
           <a
@@ -116,9 +125,14 @@
       </div>
     </footer>
     {% endblock footer %}
+
+    {% block javascripts %}
+
     <script src="{% static "jquery/dist/jquery.js" %}"></script>
     <script src="{% static "semantic-ui/dist/semantic.js" %}"></script>
-    <script src="{% static "custom/semantic.js" %}"></script>
-    {% block javascripts %}{% endblock %}
+    <script src="{% static "custom/select2.min.js" %}"></script>
+    <script src="{% static "custom/select2.js" %}"></script>
+
+    {% endblock %}
   </body>
 </html>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 {% load i18n %}
 
 
@@ -11,6 +12,12 @@
 
 {% block heading %}{% trans "List of storages types" %}{% endblock %}
 
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
 {% block content %}
 <a
    accesskey="a"
@@ -20,7 +27,7 @@
   <i class="icon add"></i> Add
 </a>
 {% if object_list %}
-<table class="ui table">
+<table class="ui table sortable segment">
   <colgroup>
     <col>
     {% if user.is_authenticated %}
@@ -31,7 +38,7 @@
   </colgroup>
   <thead>
     <tr>
-      <th>{% trans "Storage Type Name" %}</th>
+      <th class="sorted ascending">{% trans "Storage Type Name" %}</th>
       <th></th>
     </tr>
   </thead>
@@ -39,15 +46,32 @@
     {% for item in object_list %}
       <td><a href="{% url "storage_type_detail" item.id %}">{{ item.name }}</a></td>
       <td>
-        <a class="ui button blue" href="{% url "storage_type_detail" item.id%}"/>Detail</a>
-        {% if user.is_authenticated %}
-        <a class="ui button blue" href="{% url "storage_type_update" item.id %}">{% trans "Update" %}</a>
-        {% endif %}
+        <div class="ui inverted blue menu">
+          <div class="ui fluid simple dropdown item">
+            <a style="width: 100%;" href="{% url "storage_type_detail" item.id %}"/>Detail</a>
+            {% if user.is_authenticated %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="{% url "storage_type_update" item.id %}">{% trans "Update" %}</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "storage_type_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
 
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>

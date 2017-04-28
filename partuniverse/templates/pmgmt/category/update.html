@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load semanticui %}
+
+{% block breadcrumbs %}
+<a href="{% url "category_list" %}" class="section">{% trans "Categories" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url 'category_detail' object.id %}">{{ object.name }}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "Update category" %}{% endblock %}
+
+{% block heading %}{% trans "Update category" %}{% endblock %}
+
+{% block content %}
+<form class="ui form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|semanticui }}
+    <input class="ui blue button " type="submit" value="Submit">
+</form>
+{% endblock %}

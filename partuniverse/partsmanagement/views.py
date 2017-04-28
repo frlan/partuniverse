@@ -1,31 +1,156 @@
 # -*- coding: utf-8 -*-
 
+from decimal import *
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import F
+from django.forms.widgets import DateTimeInput
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import FormView
+from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from django.http import HttpResponseRedirect
-from django.forms.widgets import DateTimeInput
-from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from decimal import *
-# Importing models
+from partsmanagement.forms import *
 from partsmanagement.models import *
+from partsmanagement.serializers import *
+from rest_framework import generics
+from rest_framework import permissions
 
-# Importing custom forms
-from .forms import *
 
 # Logging
 import logging
 logger = logging.getLogger(__name__)
+
+
+########################################################################
+# Rest
+########################################################################
+class RestStorageTypeList(generics.ListCreateAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStorageTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageType.objects.all()
+    serializer_class = StorageTypeSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestStoragePlaceList(generics.ListCreateAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestStoragePlaceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StoragePlace.objects.all()
+    serializer_class = StoragePlaceSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestManufacturerList(generics.ListCreateAPIView):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestManufacturerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Manufacturer.objects.all()
+    serializer_class = ManufacturerSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestDistributorList(generics.ListCreateAPIView):
+    queryset = Distributor.objects.all()
+    serializer_class = DistributorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestDistributorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Distributor.objects.all()
+    serializer_class = DistributorSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestCategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class RestCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestPartList(generics.ListCreateAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestPartDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestTransactionList(generics.ListCreateAPIView):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestTransactionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class RestStorageItemList(generics.ListCreateAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StorageItem.objects.all()
+    serializer_class = StorageItemSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 ########################################################################
@@ -34,13 +159,14 @@ logger = logging.getLogger(__name__)
 class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class CategoryAddView(CreateView):
     model = Category
     success_url = reverse_lazy('category_list')
     template_name = 'pmgmt/category/add.html'
-    fields = ('name',)
+    fields = ('name', 'parent')
 
     def form_valid(self, form):
         user = self.request.user
@@ -49,33 +175,55 @@ class CategoryAddView(CreateView):
         return super(CategoryAddView, self).form_valid(form)
 
 
+class CategoryDetailView(DetailView):
+    template_name = "pmgmt/category/detail.html"
+    model = Category
+    fields = ('name',
+              'pic',
+              'description',
+              'parent')
+
+
+class CategoryUpdateView(UpdateView):
+    template_name = "pmgmt/category/update.html"
+    success_url = reverse_lazy('category_list')
+    model = Category
+    fields = ('name',
+              'pic',
+              'description')
+
+
 ########################################################################
 # Part
 ########################################################################
 class PartsList(ListView):
     model = Part
     template_name = 'pmgmt/part/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
+
+    @property
+    def search(self):
+        return self.request.GET.get('search', '')
 
     def get_queryset(self):
-        return Part.objects.exclude(disabled='True')
+        parts = Part.objects.exclude(disabled='True')
+        if self.search != '':
+            return parts.filter(name__icontains=self.search)
+        return parts
 
 
 class PartsReorderList(ListView):
-    # model = Part
-    template_name = 'pmgmt/part/list.html'
+    template_name = 'pmgmt/part/reorderlist.html'
     context_object_name = 'reorder_items'
 
     # This is not using new generated functions, but should be much more
     # performant for lot of items instead
     def get_queryset(self):
-        # Should be translated to something like:
-        # SELECT *
-        # FROM "PARTS"
-        # WHERE NOT (on_stock > 0
-        #   AND on_stock >= min_stock)
-        # TODO: Check on database level
-        return Part.objects.exclude(on_stock__gt='0',
-                                    on_stock__gte=F('min_stock'))
+        parts = Part.objects.exclude(
+            disabled__exact='True',
+            min_stock__isnull=True,
+            min_stock__exact=0)
+        return filter(lambda x: x.is_below_min_stock(), parts)
 
 
 class PartsAddView(CreateView):
@@ -84,13 +232,15 @@ class PartsAddView(CreateView):
     template_name = 'pmgmt/part/add.html'
     fields = ('name',
               'sku',
+              'description',
               'min_stock',
               'unit',
               'price',
               'manufacturer',
               'distributor',
               'categories',
-              'pic')
+              'pic',
+              'data_sheet')
 
     def form_valid(self, form):
         user = self.request.user
@@ -117,7 +267,8 @@ class PartDetailView(DetailView):
     fields = ('name',
               'sku',
               'min_stock',
-              'pic'
+              'pic',
+              'data_sheet',
               'unit',
               'price',
               'manufacturer',
@@ -128,7 +279,6 @@ class PartDetailView(DetailView):
 
 class PartUpdateView(UpdateView):
     template_name = "pmgmt/part/update.html"
-    success_url = reverse_lazy('part_list')
     model = Part
     # We don't want to make all fields editable via
     # normal frontend.
@@ -140,7 +290,11 @@ class PartUpdateView(UpdateView):
               'manufacturer',
               'distributor',
               'categories',
-              'pic')
+              'pic',
+              'data_sheet')
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs=self.kwargs)
 
 
 ########################################################################
@@ -161,7 +315,7 @@ class TransactionAddView(CreateView):
               'date',
               'comment')
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         form = super(TransactionAddView, self).get_form(form_class)
         form.fields['date'].widget = DateTimeInput(
             attrs={
@@ -212,6 +366,7 @@ class ManufacturerUpdateView(UpdateView):
 class ManufacturerListView(ListView):
     model = Manufacturer
     template_name = 'pmgmt/manufacturer/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class ManufacturerView(DetailView):
@@ -253,6 +408,7 @@ class DistributorUpdateView(UpdateView):
 class DistributorListView(ListView):
     model = Distributor
     template_name = 'pmgmt/distributor/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class DistributorView(DetailView):
@@ -281,6 +437,7 @@ class StorageItemAddView(CreateView):
 class StorageItemListView(ListView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StorageItemDetailView(DetailView):
@@ -291,7 +448,8 @@ class StorageItemDetailView(DetailView):
 class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
-              'storage')
+              'storage',
+              'needs_review')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 
@@ -304,7 +462,7 @@ class StorageItemStockTakingView(FormView):
     def form_valid(self, form):
         si = StorageItem.objects.get(pk=self.kwargs["pk"])
         si.stock_report(
-            Decimal(self.request.POST["amount"]), self.request.user)
+            form.cleaned_data["amount"], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
 
@@ -315,10 +473,20 @@ class StorageItemMergeView(FormView):
 
     def form_valid(self, form):
         si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        si.part.merge_storage_items(
-            si,
-            StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+        try:
+            si.part.merge_storage_items(
+                si,
+                StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
+        except StorageItemIsTheSameException:
+            pass
+
         return super(StorageItemMergeView, self).form_valid(form)
+
+
+class StorageItemToReviewListView(ListView):
+    model = StorageItem
+    template_name = 'pmgmt/storageitem/list_review.html'
+    queryset = StorageItem.objects.filter(needs_review=True)
 
 
 ########################################################################
@@ -338,6 +506,7 @@ class StoragePlaceAddView(CreateView):
 class StoragePlaceListView(ListView):
     model = StoragePlace
     template_name = 'pmgmt/storage/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StoragePlaceDetailView(DetailView):
@@ -362,13 +531,14 @@ class StoragePlaceUpdateView(UpdateView):
 class StorageTypeAddView(CreateView):
     model = StorageType
     success_url = reverse_lazy('storage_type_list')
-    fields = ('name',)
+    fields = ('name', 'description', 'pic')
     template_name = 'pmgmt/storagetype/add.html'
 
 
 class StorageTypeListView(ListView):
     model = StorageType
     template_name = 'pmgmt/storagetype/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StorageTypeDetailView(DetailView):
@@ -379,5 +549,5 @@ class StorageTypeDetailView(DetailView):
 class StorageTypeUpdateView(UpdateView):
     model = StorageType
     template_name = 'pmgmt/storagetype/update.html'
-    fields = ('name',)
+    fields = ('name', 'description', 'pic')
     success_url = reverse_lazy('storage_type_list')

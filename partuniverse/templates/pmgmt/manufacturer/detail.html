@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
+
+{% block head_title %}{{ object.name }}{% endblock %}
+
+{% block heading %}{{ object.name }}{% endblock %}
 
 {% block breadcrumbs %}
 <a href="{% url "manufacturer_list" %}" class="section">{% trans "Manufacturers" %}</a>
@@ -8,18 +13,9 @@
 <a class="active section" href="{% url 'manufacturer_detail' object.id %}">{{ object.name }}</a>
 {% endblock %}
 
-{% block head_title %}{{ object.name }}{% endblock %}
-
-{% block heading %}{{ object.name }}{% endblock %}
-
 {% block content %}
-
-{% if object.logo %}
+<div class="ui stackable two column grid">
 <div class="column">
-    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
-</div>
-{% endif %}
-
 <table class="ui definition table segment">
 <tr>
     <td>{% trans "Name" %}</td>
@@ -31,8 +27,27 @@
     <td><a href="{{object.url}}">{{object.url}}</a></td>
 </tr>
 {% endif %}
-</table>
+<tr>
+    <td>{% trans "Parts by this manufacturer" %}</td>
+    <td><ui class="list ui">
+    {% for sth in object.get_parts %}
+        <li><a href="{% url "part_detail" sth.id %}">{{sth.name}}</a></li>
+    {% endfor %}
+    </ui></td>
+</tr>
 
+</table>
+</div>
+
+{% if object.logo %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{{object.logo.url}}">
+</div>
+{% else %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{% static "img/no-pic.png" %}">
+</div>
+{% endif %}
 {% if user.is_authenticated %}
 <p><a class="ui button blue" href="{% url "manufacturer_update" object.id %}">{% trans "Update Manufacturer" %}</a></p>
 {% endif %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "storage_item_review_list" %}" class="active section">{% trans "Storage Items Review" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of storages items which needs review" %}{% endblock %}
+
+{% block heading %}{% trans "List of storages items needs review" %}{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<a
+   accesskey="a"
+   class="ui right blue ribbon label"
+   href="{% url "storage_item_add"%}"
+   >
+  <i class="icon add"></i> Add
+</a>
+{% if object_list %}
+<table class="ui table segment sortable">
+  <colgroup>
+    <col>
+    <col>
+    <col>
+    {% if user.is_authenticated %}
+    <col width="15%">
+    {% endif %}
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="sorted ascending">{% trans "Part" %}</th>
+      <th>{% trans "Storage" %}</th>
+      <th>{% trans "Reported On Stock" %}</th>
+      {% if user.is_authenticated %}
+      <th></th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for item in object_list %}
+      <td><a href="{% url "part_detail" item.part.id %}">{{ item.part }}</a></td>
+      <td><a href="{% url "storage_detail" item.storage.id %}">{{ item.storage }}</a></td>
+      <td>{{ item.on_stock|default:"---"|floatformat }}</td>
+      <td>
+        <div class="ui inverted blue menu">
+          <div class="ui fluid simple dropdown item">
+            <a style="width: 100%;" href="{% url "storage_item_detail" item.id %}"/>Detail</a>
+            {% if user.is_authenticated %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>
+              <a class="item" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a>
+              <a class="item" href="{% url "storage_item_stocktaking" item.id  %}">{% trans "Stock taking" %}</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "storage_item_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
+{% endblock %}

@@ -3,7 +3,6 @@ import importlib
 
 from django.apps import apps
 from django.conf import settings
-from django.template.loader import BaseLoader
 from django.utils._os import safe_join
 from django.utils import six
 
@@ -23,7 +22,9 @@ class DashboardItemRegistryClass:
                 return item
         return None
 
+
 DashboardItemRegistry = DashboardItemRegistryClass()
+
 
 # scan the installed apps for dashboard items
 for app_config in apps.get_app_configs():

@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from django.shortcuts import render, redirect
 
-
 # Models we need
 from .models import Part, StorageItem
 
@@ -23,7 +22,7 @@ class MergeStorageItemsForm(forms.Form):
 
 class StockTakingForm(forms.Form):
     amount = forms.DecimalField(
-        _("Parts now inside storage"),
+        label=_("Parts now inside storage"),
         max_digits=10,
         decimal_places=4,
         help_text=_("The amount of currently inside storage place."))

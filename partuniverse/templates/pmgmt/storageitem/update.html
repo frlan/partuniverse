@@ -2,17 +2,18 @@
 
 {% load i18n %}
 {% load semanticui %}
+{% load staticfiles %}
+
+{% block head_title %}{{ object }}{% endblock %}
+{% block heading %}{{ object }}{% endblock %}
+
 
 {% block breadcrumbs %}
-<a href="{% url "storage_item_list" %}" class="item">{% trans "Storage Items" %}</a>
-<div class="item">
-  <i class="right chevron icon divider"></i>
-</div>
-<a class="active item" href="{% url 'storage_item_detail' object.id %}">{{ object }}</a>
+<a href="{% url "storage_item_list" %}" class="section">{% trans "Stroage Items" %}</a>
+<i class="right chevron icon divider"></i><a class="active section" href="{% url "storage_item_detail"  object.id %}">{{ object }}</a>
 {% endblock %}
 
 {% block content %}
-<h1>{{ object }}</h1>
 <p>{% trans "Changes here will not change die internal ID of a storage item, but it will change the name you will see inside the application." %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}

@@ -21,6 +21,7 @@
     {% endfor %}
   </tbody>
 </table>
+<p><a href="{% url "part_reorderlist"%}">{% trans "Complete list" %}</a></p>
 {% else %}
 <div class="ui segment">
   <p>{% trans "All parts are in stock!" %}</p>

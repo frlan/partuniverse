@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
+
 {% block breadcrumbs %}
 <a href="{% url "part_list" %}" class="section">{% trans "Parts" %}</a>
 <i class="right chevron icon divider"></i>
@@ -13,6 +15,7 @@
 
 {% block content %}
 {% if object.disabled == True %}
+
 <div class="ui error message segment">
 <p>{% trans "This part has been marked as disbaled. Please contact your admin for details." %}</p>
 </div>
@@ -22,7 +25,8 @@
     <p>{% trans "The item is out of stock or below its minimum stock" %}</p>
 </div>
 {% endif %}
-<div class="ui stackable {% if object.pic %}two{% else %}one{% endif %} column grid">
+
+<div class="ui stackable two column grid">
   <div class="column">
 <table class="ui definition table segment">
 <tr>
@@ -43,7 +47,7 @@
 </tr>
 <tr>
     <td>{% trans "Costs" %}</td>
-    {% if object.sku %}
+    {% if object.price %}
         <td>{{object.price}}</td>
     {% else %}
         <td>&nbsp;</td>
@@ -75,27 +79,47 @@
 </tr>
 <tr>
     <td>{% trans "Categories" %}</td>
-    <td>{% for i in object.categories.all %}{{ i }}<br/>{% endfor %}</td>
+    <td>{% for i in object.categories.all %}<a href="{% url "category_detail" i.id %}">{{ i }}</a><br/>{% endfor %}</td>
 </tr>
 <tr>
-    <td>{% trans "Created by" %}</td>
-    <td>{{object.created_by}}</td>
+    <td class="top aligned">{% trans "Storages" %}</td>
+    <td><ui class="list ui">
+        {% for item in object.get_storage_items %}
+        <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item}}</a> &nbsp;
+            <a href="{% url "storage_detail" item.storage.id%}">{% trans "Storage:" %}{{item.storage}}</a>
+        {% if item.on_stock %}
+        ({{item.on_stock}})
+        {% else %}
+        {% trans "(unknown quantity on stock)" %}
+        {% endif %}</li>
+        {% endfor %}
+    </ui>
+    </td>
 </tr>
+{% if object.data_sheet %}
+<tr>
+    <td>{% trans "Data sheet" %}</td>
+    <td><a href="{{object.data_sheet.url}}">{{object.data_sheet_name}}</a></td>
+</tr>
+{% endif %}
 </table>
   </div>
-{% if object.pic %}
-<div class="column">
-    <img class="ui fluid rounded image" src="{{object.pic.url}}">
-</div>
-{% endif %}
+ {% if object.pic %}
+  <div class="column">
+    <img class="ui fluid rounded image medium" style="max-height: 400px; height:auto; max-width: 400px; width:auto;" src="{{object.pic.url}}" />
+  </div>
+  {% else %}
+  <div class="column">
+    <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}"
+    alt="{% trans "No picture available" %}"/>
+  </div>
+  {% endif %}
 </div>
 <div class="ui clearing hidden divider"></div>
-<p>
+
 {% if object.disabled == False %}
   <a class="ui blue button" href="{% url "part_update" object.id %}">{% trans "Update item" %}</a>
 {% endif %}
 <a class="ui blue button" href="{% url "part_delete" object.id %}">{% trans "Delete item" %}</a>
-</p>
-
 
 {% endblock %}

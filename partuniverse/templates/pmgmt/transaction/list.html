@@ -33,7 +33,7 @@
     {% for item in object_list %}
     <tr>
       <td>{{ item.storage_item }}</td>
-      {% if item.state = '---' %}
+      {% if item.state == '---' %}
           <td></td>
       {% else %}
           <td>{{ item.state }} </td>

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
 {% load i18n %}
 
 {% block breadcrumbs %}
@@ -10,6 +11,12 @@
 
 {% block heading %}{% trans "List of distributors" %}{% endblock %}
 
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
 {% block content %}
 <a
    accesskey="a"
@@ -18,15 +25,16 @@
    >
   <i class="icon add"></i> Add
 </a>
+
 {% if object_list %}
-<table class="ui table segment">
+<table class="ui table sortable segment">
   <colgroup>
     <col>
     <col width="8%">
   </colgroup>
   <thead>
     <tr>
-      <th>{% trans "Name" %}</th>
+      <th class="sorted ascending">{% trans "Name" %}</th>
       <th></th>
     </tr>
   </thead>
@@ -39,6 +47,16 @@
     {% endfor %}
   </tbody>
 </table>
+
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "distributor_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
 
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.template import RequestContext, loader
+from django.template import RequestContext
 from dashboard.DashboardItem import DashboardItem
 from django.utils.safestring import mark_safe
+from django.template.loader import get_template
 
 
 class DashboardContainer:
@@ -31,9 +32,9 @@ class DashboardContainer:
             counter_outer = counter_outer + 1
 
     def render(self):
-        template_row = loader.get_template('row.html')
-        template_column = loader.get_template('column.html')
-        template_container = loader.get_template('container.html')
+        template_row = get_template('row.html')
+        template_column = get_template('column.html')
+        template_container = get_template('container.html')
         rows = ""
         for row in self.items:
             columns = []

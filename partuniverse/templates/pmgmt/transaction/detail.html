@@ -27,7 +27,7 @@
 </tr>
 <tr>
     <td>{% trans "Storage Item" %}</td>
-    <td>{{object.storage_item}}</td>
+    <td><a href="{% url "storage_item_detail" object.storage_item.id %}">{{object.storage_item}}</a></td>
 </tr>
 <tr>
     <td>{% trans "Amount" %}</td>

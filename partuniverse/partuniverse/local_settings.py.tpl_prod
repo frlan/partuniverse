@@ -10,6 +10,8 @@ SECRET_KEY = 'am+mtwaazf9uxu@x#2x396!1oey(+g)usvapj4g#v%-l)y2(hc'
 # Emailsettings
 DEFAULT_FROM_EMAIL = 'partuniverse@example.com'
 
+# Domainsettings
+ALLOWED_HOSTS = 'myfrontserver'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

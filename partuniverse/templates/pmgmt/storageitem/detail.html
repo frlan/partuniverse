@@ -2,30 +2,43 @@
 
 {% load i18n %}
 
+
+{% block head_title %}{{ object }}{% endblock %}
+{% block heading %}{{ object }}{% endblock %}
+
 {% block breadcrumbs %}
 <a href="{% url "storage_item_list" %}" class="item">{% trans "Storage Items" %}</a>
 <i class="right chevron icon divider"></i>
 <a class="active item" href="{% url "storage_item_detail" object.id%}">{{ object }}</a>
-
 {% endblock %}
-{% block content %}
-<h1>{{ object }}</h1>
 
-<table class="ui table segment">
+
+{% block content %}
+
+{% if object.needs_review %}
+<div class="ui error message segment">
+    <p>{% trans "The storage item has been marked as to needs a review. Would you mind to check whether the part is really at this place and/or the amount registered inside the storage is correct?" %}</p>
+</div>
+{% endif %}
+
+<div class="ui stackable one column grid">
+  <div class="column">
+<table class="ui definition table segment">
 <tr>
-	<th>{% trans "Part" %}</th>
-	<td>{{object.part}}</td>
+	<td>{% trans "Part" %}</td>
+	<td><a href="{% url "part_detail" object.part.id %}">{{object.part}}</a></td>
 </tr>
 <tr>
-	<th>{% trans "Storage" %}</th>
-	<td><a href="{% url "storage_detail" object.storage.id%}">{{object.storage.name}}</a></td>
+	<td>{% trans "Storage" %}</td>
+	<td><a href="{% url "storage_detail" object.storage.id%}">{{object.storage}}</a></td>
 </tr>
 <tr>
-	<th>{% trans "On Stock" %}</th>
+	<td>{% trans "On Stock" %}</td>
 	{% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}</td> {% endif %}
 </tr>
 </table>
-
+</div>
+</div>
 {% comment %}<p><a class="ui button blue" href="/pmgmt/stroageitem/{{object.id}}/delete/">{% trans "Delete item" %}</a></p>{% endcomment %}
 <p>
 	<a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>

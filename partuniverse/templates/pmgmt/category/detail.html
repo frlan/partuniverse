@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "category_list" %}" class="section">{% trans "Categories" %}</a>
+<i class="right chevron icon divider"></i>
+<a class="active section" href="{% url 'category_detail' object.id %}">{{ object.name }}</a>
+{% endblock %}
+
+{% block head_title %}{{ object.name }}{% endblock %}
+
+{% block heading %}{{ object.name }}{% endblock %}
+
+{% block content %}
+
+{% if object.pic %}
+<div class="column">
+    <img class="ui fluid rounded image small" src="{{object.pic.url}}">
+</div>
+{% endif %}
+
+<table class="ui definition table segment">
+<tr>
+    <td>{% trans "Name" %}</td>
+    <td>{{object.name}}</td>
+</tr>
+<tr>
+    <td>{% trans "Description" %}</td>
+    <td>{{object.description}}</td>
+</tr>
+<tr>
+    <td class="top aligned">{% trans "Parts" %}</td>
+    <td>
+        <div class="ui list">
+        {% for item in object.get_parts %}
+            <li><a href={% url "part_detail" item.id %}>{{item}}</a></li>
+        {% endfor %}
+        </div>
+    </td>
+</tr>
+</table>
+
+{% if user.is_authenticated %}
+<p><a class="ui button blue" href="{% url "category_update" object.id %}">{% trans "Update item" %}</a></p>
+{% endif %}
+{% endblock %}

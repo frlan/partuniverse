@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -10,10 +11,8 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
-
-import pdb
-import pprint
-
+from .utils import *
+import operator
 import os
 
 # Exceptions
@@ -21,8 +20,10 @@ from .exceptions import (
     PartsNotFitException,
     PartsmanagementException,
     CircleDetectedException,
-    TransactionAllreadyRevertedException
+    TransactionAllreadyRevertedException,
+    StorageItemIsTheSameException
 )
+
 from datetime import datetime
 from decimal import Decimal
 
@@ -31,7 +32,6 @@ import uuid
 # Logging
 import logging
 logger = logging.getLogger(__name__)
-
 
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
@@ -58,20 +58,6 @@ STATE_CHOICES = (
 )
 
 
-def get_all_storage_item_parts_with_on_stock_and_min_stock():
-    """ Returns a list of list with all Parts having a StorageItem
-        with its min_stock value. """
-    result_list = []
-    for i in StorageItem.objects.values("part").annotate(
-            Sum("on_stock")).order_by('part'):
-        tmp = []
-        tmp.append(i['part'])
-        tmp.append(i['on_stock__sum'])
-        tmp.append(Part.objects.get(pk=i['part']).min_stock)
-        result_list.append(tmp)
-    return result_list
-
-
 @python_2_unicode_compatible
 class StorageType(models.Model):
     """ Defining a general typ of storage """
@@ -79,6 +65,19 @@ class StorageType(models.Model):
     name = models.CharField(
         max_length=50,
         help_text=_("The name for a storage type. Should be unique")
+    )
+    description = models.TextField(
+        _("Description"),
+        blank=True,
+        null=True,
+        help_text=_("A short description.")
+    )
+    pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/storagetypes/',
+        help_text=_("If you have a typical image of such a storage, "
+                    "this is the place where it belongs to.")
     )
 
     def __str__(self):
@@ -158,6 +157,34 @@ class StoragePlace(models.Model):
                     break
         return result
 
+    def get_children(self, children=False):
+        """
+        A recursive method to return child storages associated with this
+        particular one.
+        The flag children controlls whether children objects should be
+        included.
+        """
+        childs = list(self.storageplace_set.all())
+        if children:
+            result = []
+            if childs:
+                for child in childs:
+                    result.append(child)
+                    result.extend(child.get_children())
+            return result
+        else:
+            return childs
+
+    def get_storage_items(self, children=False):
+        result = []
+        storages = self.get_children(children=children)
+        result.extend(list(self.storageitem_set.all()))
+        if storages:
+            for storage in storages:
+                result.extend(storage.storageitem_set.all().order_by('part'))
+        sorted_list = sorted(result, key=lambda x: x.part.name)
+        return sorted_list
+
     def clean(self):
         # If there is an ID, we can check for ID and don't care about
         # the rest as it's a new object
@@ -203,6 +230,9 @@ class Manufacturer(models.Model):
         verbose_name=_("Added by"),
         help_text=_("The user the manufacturer was created by.")
     )
+
+    def get_parts(self):
+        return list(self.part_set.all().order_by('name'))
 
     def __str__(self):
         return ('%s' % self.name)
@@ -274,6 +304,12 @@ class Category(models.Model):
         null=True,
         help_text=_("A short summarize of this category.")
     )
+    pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='uploads/categories/',
+        help_text=_("Some picutre for category.")
+    )
 
     def __str__(self):
         if self.parent is None:
@@ -292,7 +328,8 @@ class Category(models.Model):
         while True:
             if next.id in result:
                 raise(CircleDetectedException(
-                    _('There seems to be a circle inside ancestors of %s.' % self.id)))
+                    _('There seems to be a circle inside '
+                      'ancestors of {}.'.format(self.id))))
             else:
                 result.append(next.id)
                 if next.parent is not None:
@@ -309,8 +346,16 @@ class Category(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {'parent': _('The category cannot be one of its ancestors.')}
+                    {'parent': _('The category cannot be one of '
+                                 'its ancestors.')}
                 )
+
+    def get_parts(self):
+        parts = self.part_set.all()
+        if not parts:
+            return None
+        else:
+            return parts
 
     class Meta:
         unique_together = ("name", "parent")
@@ -370,6 +415,14 @@ class Part(models.Model):
         blank=True,
         help_text=_("The URL of the original image.")
     )
+    data_sheet = models.FileField(
+        _("Data sheet"),
+        help_text=_("A document containing important addition information"),
+        upload_to='datasheets',
+        validators=[validate_file_extension],
+        null=True,
+        blank=True
+    )
     manufacturer = models.ForeignKey(
         Manufacturer,
         verbose_name=_("Manufacturer"),
@@ -415,6 +468,16 @@ class Part(models.Model):
 
     def __str__(self):
         return ('%s' % self.name)
+
+    def data_sheet_name(self):
+        return os.path.basename(self.data_sheet.name)
+
+    def get_storage_items(self):
+        tmp = self.storageitem_set.all().exclude(disabled='True')
+        if tmp:
+            return tmp
+        else:
+            return None
 
     def save(self, *args, **kwargs):
         if not self.sku:
@@ -474,14 +537,17 @@ class Part(models.Model):
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
-                u'Cannot merge not idendical parts. Parts »%s« and »%s« are not idendical' %
-                (si1.part, si2.part))
+                'Cannot merge not idendical parts. '
+                'Parts »{}« and »{}« are not idendical'.format(
+                    si1.part,
+                    si2.part))
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
         if si1.id == si2.id:
-            raise PartsmanagementException(
-                u'StorageItems are idendical. Nothing to merge')
+            raise StorageItemIsTheSameException(
+                u'{} and {} are idendical. Nothing to merge'.format(
+                    si1.id, si2.id))
 
         # Special behavior for on_stock is None storage items
         # 0x None -> New on_stock is si1.on_stock + si2.on_stock
@@ -508,15 +574,6 @@ class Part(models.Model):
             si1.save()
             si2.delete()
 
-    def cache(self):
-        """Store image locally if we have a URL"""
-
-        if self.image_url and not self.pic:
-            result = urllib.urlretrieve(self.image_url)
-            self.pic.save(os.path.basename(self.image_url),
-                          File(open(result[0])))
-            self.save()
-
     class Meta:
         verbose_name = _("Part")
         verbose_name_plural = _("Parts")
@@ -540,6 +597,11 @@ class StorageItem(models.Model):
         null=True,
         blank=True,
         help_text=_("The amount currently stored.")
+    )
+    needs_review = models.BooleanField(
+        _("Needs review"),
+        default=False,
+        help_text=_("Whether this storage item might be wrong")
     )
     disabled = models.BooleanField(
         _("Disabled"),

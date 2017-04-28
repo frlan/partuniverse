@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% block breadcrumbs %}
 <a href="{% url "storage_list" %}" class="section">{% trans "Storages" %}</a>
@@ -8,17 +9,14 @@
 <a class="active section" href="{% url "storage_detail"  object.id %}">{{ object.name }}</a>
 {% endblock %}
 
-{% block head_title %}{{ object.name }}{% endblock %}
+{% block head_title %}{{ object }}{% endblock %}
 
-{% block heading %}{{ object.name }}{% endblock %}
+{% block heading %}{{ object }}{% endblock %}
 
 {% block content %}
 
-{% if object.pic %}
-<div class="column">
-    <img class="ui fluid rounded image" src="{{object.pic.url}}">
-</div>
-{% endif %}
+<div class="ui stackable two column grid">
+  <div class="column">
 
 <table class="ui definition table">
   <colgroup>
@@ -40,12 +38,44 @@
       {% else %}
           <td>{{object.description}}</td>
       {% endif %}
-
+  </tr>
+  {% if object.parent %}
+  <tr>
+      <td>{% trans "Parent storage" %}</td>
+      <td><a href="{% url "storage_detail" object.parent.id %}">{{object.parent}}</a></td>
+  </tr>
+  {% endif %}
+  {% if object.get_children %}
+  <tr>
+      <td>{% trans "Child storages" %}</td>
+      <td><ui class="list ui">
+          {% for sth in object.get_children %}
+          <li><a href="{% url "storage_detail" sth.id %}">{{sth}}</a></li>
+          {% endfor %}
+          </ui></td>
+  </tr>
+  {% endif %}
+  <tr>
+      <td>{% trans "Parts to find here" %}</td>
+      <td><ui class="list ui">
+          {% for sth in object.get_storage_items %}
+          <li><a href="{% url "storage_item_detail" sth.id %}">{{sth.part}}</a></li>
+          {% endfor %}</ui></td>
   </tr>
 </table>
+</div>
+{% if object.pic %}
+<div class="column">
+    <img class="ui fluid rounded image medium" src="{{object.pic.url}}">
+</div>
+{% else %}
+<div class="column">
+    <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}">
+</div>
+{% endif %}
 
-<p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a>
-</p>
-
+{% if user.is_authenticated %}
+<p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a> </p>
+{% endif %}
 
 {% endblock %}
