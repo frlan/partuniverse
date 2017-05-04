@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-04 17:28+0000\n"
+"POT-Creation-Date: 2017-05-04 17:31+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -450,13 +450,12 @@ msgstr "Die Menge an Teilen, die dort aktuell gelagert sind."
 
 #: partsmanagement/models.py:602
 msgid "Needs review"
-msgstr ""
+msgstr "Zur Widervorlage"
 
 #: partsmanagement/models.py:604
-#, fuzzy
 #| msgid "Whether the storage item is active."
 msgid "Whether this storage item might be wrong"
-msgstr "Entscheidet, ob der Eintrag aktiv ist."
+msgstr "Entscheidet, ob der Eintrag nochmal geprüften werden sollte."
 
 #: partsmanagement/models.py:609
 msgid "Whether the storage item is active."
@@ -472,10 +471,9 @@ msgstr "Einlagerung"
 
 #: partsmanagement/models.py:640 templates/pmgmt/storageitem/detail.html:10
 #: templates/pmgmt/storageitem/list.html:7
-#, fuzzy
 #| msgid "Storage Item"
 msgid "Storage Items"
-msgstr "Einlagerung"
+msgstr "Einlagerungen"
 
 #: partsmanagement/models.py:649 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
@@ -1255,7 +1253,7 @@ msgstr "Teile, die neu bestellt werden müssen"
 msgid "It appears no part needs reordering."
 msgstr "Keine neu zu bestellenden Teile bekannt."
 
-#: templates/pmgmt/part/update.html:22
+#: templates/pmgmt/part/update.html:22 templates/pmgmt/transaction/add.html:31
 msgid "Submit"
 msgstr "Übertragen"
 
