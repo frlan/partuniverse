@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-26 20:03+0000\n"
+"POT-Creation-Date: 2017-05-04 17:28+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -450,11 +450,13 @@ msgstr "Die Menge an Teilen, die dort aktuell gelagert sind."
 
 #: partsmanagement/models.py:602
 msgid "Needs review"
-msgstr "Überprüfung notwendig"
+msgstr ""
 
 #: partsmanagement/models.py:604
+#, fuzzy
+#| msgid "Whether the storage item is active."
 msgid "Whether this storage item might be wrong"
-msgstr "Es könnte sein, dass diese Einlager nicht korekt ist."
+msgstr "Entscheidet, ob der Eintrag aktiv ist."
 
 #: partsmanagement/models.py:609
 msgid "Whether the storage item is active."
@@ -470,8 +472,10 @@ msgstr "Einlagerung"
 
 #: partsmanagement/models.py:640 templates/pmgmt/storageitem/detail.html:10
 #: templates/pmgmt/storageitem/list.html:7
+#, fuzzy
+#| msgid "Storage Item"
 msgid "Storage Items"
-msgstr "Einlagerungen"
+msgstr "Einlagerung"
 
 #: partsmanagement/models.py:649 templates/pmgmt/transaction/detail.html:25
 msgid "Subject"
@@ -922,7 +926,6 @@ msgid "Parts needs reordering"
 msgstr "Notwendige Neubestellungen"
 
 #: templates/base.html:58
-#| msgid "Storage items"
 msgid "Storage items review"
 msgstr "Einlagerungen zur Überprüfung"
 
@@ -1030,10 +1033,17 @@ msgstr "Schnellstart"
 msgid "Storage places"
 msgstr "Lagerplätze"
 
-#: templates/pmgmt/category/add.html:9 templates/pmgmt/distributor/add.html:9
-#: templates/pmgmt/manufacturer/add.html:9 templates/pmgmt/part/add.html:9
-#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storagetype/add.html:9
+#: templates/pmgmt/category/add.html:9 templates/pmgmt/category/list.html:26
+#: templates/pmgmt/distributor/add.html:9
+#: templates/pmgmt/distributor/list.html:26
+#: templates/pmgmt/manufacturer/add.html:9
+#: templates/pmgmt/manufacturer/list.html:26 templates/pmgmt/part/add.html:9
+#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storage/list.html:27
+#: templates/pmgmt/storageitem/list.html:26
+#: templates/pmgmt/storagetype/add.html:9
+#: templates/pmgmt/storagetype/list.html:27
 #: templates/pmgmt/transaction/add.html:10
+#: templates/pmgmt/transaction/list.html:19
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -1356,17 +1366,14 @@ msgid "Merge Storage item"
 msgstr "Einlagerungen verschmelzen"
 
 #: templates/pmgmt/storageitem/list_review.html:7
-#| msgid "Storage Items"
 msgid "Storage Items Review"
 msgstr "Einlagerungs Überprüfung"
 
 #: templates/pmgmt/storageitem/list_review.html:10
-#| msgid "List of storages items"
 msgid "List of storages items which needs review"
 msgstr "Liste der Einlagerungen die einer Überprüfung bedürfen"
 
 #: templates/pmgmt/storageitem/list_review.html:12
-#| msgid "List of storages items"
 msgid "List of storages items needs review"
 msgstr "Liste der Einlagerungen die einer Überprüfung bedürfen"
 
