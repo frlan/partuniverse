@@ -1,10 +1,23 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from django.conf.urls.static import static
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic.base import RedirectView
-from django.views.generic import TemplateView
-from partsmanagement.views import *
+from partsmanagement.views import (
+    RestPartDetail,
+    RestPartList,
+    RestTransactionDetail,
+    RestCategoryDetail,
+    RestCategoryList,
+    RestTransactionList,
+    RestManufacturerDetail,
+    RestManufacturerList,
+    RestDistributorDetail,
+    RestDistributorList,
+    RestStorageItemDetail,
+    RestStorageItemList,
+    RestStoragePlaceList,
+    RestStoragePlaceDetail,
+    RestStorageTypeList,
+    RestStorageTypeDetail
+)
 
 urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/$', RestPartDetail.as_view()),

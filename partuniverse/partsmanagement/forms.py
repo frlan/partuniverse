@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth.decorators import login_required
-from django import forms
-from django.shortcuts import render, redirect
-
-# Models we need
-from .models import Part, StorageItem
-
-# i18n (just in case)
-from django.utils.translation import ugettext_lazy as _
-
-# Logging
 import logging
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from .models import StorageItem
+
 logger = logging.getLogger(__name__)
 
 

@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import os
+import uuid
+import logging
+from datetime import datetime
+from decimal import Decimal
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
-from django.core.files import File
-from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
-from .utils import *
-import operator
-import os
+from .utils import (
+    validate_file_extension
+)
 
 # Exceptions
 from .exceptions import (
@@ -21,16 +23,11 @@ from .exceptions import (
     PartsmanagementException,
     CircleDetectedException,
     TransactionAllreadyRevertedException,
-    StorageItemIsTheSameException
+    StorageItemIsTheSameException,
+    StorageItemBelowZeroException
 )
 
-from datetime import datetime
-from decimal import Decimal
 
-import uuid
-
-# Logging
-import logging
 logger = logging.getLogger(__name__)
 
 # Just defining units used on the system here.
@@ -81,7 +78,7 @@ class StorageType(models.Model):
     )
 
     def __str__(self):
-        return (u'%s' % self.name)
+        return u'%s' % self.name
 
     class Meta:
         verbose_name = _("Storage Type")
@@ -132,7 +129,7 @@ class StoragePlace(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return (u'%s' % self.name)
+            return u'%s' % self.name
         else:
             return (u'%s%s%s' % (
                 self.parent,
@@ -142,17 +139,17 @@ class StoragePlace(models.Model):
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
         result = []
-        next = self
+        _next = self
         while True:
-            if next.id in result:
+            if _next.id in result:
                 raise(
                     CircleDetectedException(
                         _('There seems to be a circle inside'
                           'ancestors at %s.' % (self.id))))
             else:
-                result.append(next.id)
-                if next.parent is not None:
-                    next = next.parent
+                result.append(_next.id)
+                if _next.parent is not None:
+                    _next = _next.parent
                 else:
                     break
         return result
@@ -235,7 +232,7 @@ class Manufacturer(models.Model):
         return list(self.part_set.all().order_by('name'))
 
     def __str__(self):
-        return ('%s' % self.name)
+        return '%s' % self.name
 
     class Meta:
         verbose_name = _("Manufacturer")
@@ -275,7 +272,7 @@ class Distributor(models.Model):
     )
 
     def __str__(self):
-        return (u'%s' % self.name)
+        return u'%s' % self.name
 
     class Meta:
         verbose_name = _("Distributor")
@@ -313,27 +310,28 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return (u'{}'.format(self.name))
+            return u'{}'.format(self.name)
         else:
-            return (u'%s%s%s' % (
-                self.parent,
-                settings.PARENT_DELIMITER,
-                self.name)
+            return (
+                u'%s%s%s' % (
+                    self.parent,
+                    settings.PARENT_DELIMITER,
+                    self.name)
             )
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
         result = []
-        next = self
+        _next = self
         while True:
-            if next.id in result:
+            if _next.id in result:
                 raise(CircleDetectedException(
                     _('There seems to be a circle inside '
                       'ancestors of {}.'.format(self.id))))
             else:
-                result.append(next.id)
-                if next.parent is not None:
-                    next = next.parent
+                result.append(_next.id)
+                if _next.parent is not None:
+                    _next = _next.parent
                 else:
                     break
         return result
@@ -467,7 +465,7 @@ class Part(models.Model):
     )
 
     def __str__(self):
-        return ('%s' % self.name)
+        return '%s' % self.name
 
     def data_sheet_name(self):
         return os.path.basename(self.data_sheet.name)
@@ -491,9 +489,9 @@ class Part(models.Model):
         # calculating sum of them
         # TODO: Finding a more performant way doing this
         sum_amount = 0
-        for si in self.storageitem_set.all():
-            if si.on_stock is not None:
-                sum_amount = sum_amount + si.on_stock
+        for storageitem in self.storageitem_set.all():
+            if storageitem.on_stock is not None:
+                sum_amount = sum_amount + storageitem.on_stock
         return sum_amount
 
     def is_below_min_stock(self):
@@ -502,20 +500,14 @@ class Part(models.Model):
             If either on_stock or min_stock is not defined, it will
             return False """
         currently_on_stock = self.get_on_stock()
-        if (self.min_stock is not None and currently_on_stock < self.min_stock):
-            return True
-        else:
-            return False
+        return self.min_stock is not None and currently_on_stock < self.min_stock
 
     def is_on_stock(self):
         """ Returns True, if the item is on stock.
             Will return False if on_stock <= 0
             If either on_stock is not defined, it will
             return True """
-        if (self.get_on_stock() > 0):
-            return True
-        else:
-            return False
+        return self.get_on_stock() > 0
 
     def merge_storage_items(self, si1, si2):
         """
@@ -610,7 +602,7 @@ class StorageItem(models.Model):
     )
 
     def __str__(self):
-        return (u'%s; %s' % (self.part, self.storage))
+        return u'%s; %s' % (self.part, self.storage)
 
     def stock_report(self, new_on_stock, requested_user):
         if new_on_stock < 0:
@@ -626,7 +618,7 @@ class StorageItem(models.Model):
             else:
                 difference = new_on_stock - self.on_stock
 
-            trans = Transaction.objects.create(
+            Transaction.objects.create(
                 subject=_(u'Difference from Stocktaking'),
                 created_by=requested_user,
                 amount=difference,
@@ -709,7 +701,7 @@ class Transaction(models.Model):
 
     def __create_revert(self):
         if self.reverted is False:
-            revert_tran = Transaction.objects.create(
+            Transaction.objects.create(
                 subject=_(u'reverted {}'.format(self.subject)),
                 created_by=self.created_by,
                 amount=self.amount * -1,
@@ -735,7 +727,7 @@ class Transaction(models.Model):
                 # Transactions to represent this
                 if old_transaction.storage_item.id is not self.storage_item.id:
                     old_transaction.__create_revert()
-                    new_tran = Transaction.objects.create(
+                    Transaction.objects.create(
                         subject=_(u'moved {}'.format(old_transaction.subject)),
                         created_by=old_transaction.created_by,
                         amount=old_transaction.amount,
@@ -747,21 +739,21 @@ class Transaction(models.Model):
                     # No need for calling some extra save()
                     return
                 if old_transaction.amount != self.amount:
-                    si = StorageItem.objects.get(pk=self.storage_item.id)
-                    if si.on_stock is not None:
-                        si.on_stock = (
-                            si.on_stock - old_transaction.amount) + self.amount
+                    storageitem = StorageItem.objects.get(pk=self.storage_item.id)
+                    if storageitem.on_stock is not None:
+                        storageitem.on_stock = (
+                            storageitem.on_stock - old_transaction.amount) + self.amount
                     elif self.amount:
-                        si.on_stock = self.amount
-                    si.save()
+                        storageitem.on_stock = self.amount
+                    storageitem.save()
             if not self.id:
                 # We got a new Transaction
-                si = StorageItem.objects.get(pk=self.storage_item.id)
-                if si.on_stock is not None:
-                    si.on_stock = si.on_stock + Decimal(self.amount)
+                storageitem = StorageItem.objects.get(pk=self.storage_item.id)
+                if storageitem.on_stock is not None:
+                    storageitem.on_stock = storageitem.on_stock + Decimal(self.amount)
                 elif self.amount is not None:
-                    si.on_stock = Decimal(self.amount)
-                si.save()
+                    storageitem.on_stock = Decimal(self.amount)
+                storageitem.save()
 
         except ObjectDoesNotExist:
             pass
@@ -769,7 +761,7 @@ class Transaction(models.Model):
         super(Transaction, self).save(*args, **kwargs)
 
     def __str__(self):
-        return ('%s %s %s' % (self.subject, self.storage_item, self.date))
+        return '%s %s %s' % (self.subject, self.storage_item, self.date)
 
     class Meta:
         verbose_name = _("Transaction")
