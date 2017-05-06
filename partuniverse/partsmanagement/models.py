@@ -648,15 +648,13 @@ class Transaction(models.Model):
     subject = models.CharField(
         _("Subject"),
         max_length=100,
-        help_text=_("A short conclusion "
-                    "of the transaction.")
+        help_text=_("A short conclusion of the transaction.")
     )
     storage_item = models.ForeignKey(
         StorageItem,
         null=True,
         blank=True,
-        help_text=_("The part-storage relation "
-                    "the transaction was applied on.")
+        help_text=_("The part-storage relation the transaction was applied on.")
     )
     amount = models.DecimalField(
         _("Amount"),
