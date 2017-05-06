@@ -29,6 +29,7 @@ from .views import (
     StorageItemMergeView,
     StorageItemStockTakingView,
     StorageItemToReviewListView,
+    StorageItemTransactionAddView,
     StorageItemUpdateView,
     StoragePlaceAddView,
     StoragePlaceDetailView,
@@ -115,6 +116,8 @@ urlpatterns = [
         StorageItemMergeView.as_view()), name='storage_item_merge'),
     url(r'^storageitem/(?P<pk>[\w]+)/stocktaking/$', login_required(
         StorageItemStockTakingView.as_view()), name='storage_item_stocktaking'),
+    url(r'^storageitem/(?P<pk>[\w]+)/addtransaction/$', login_required(
+        StorageItemTransactionAddView.as_view()), name='storage_item_transaction'),
     # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),

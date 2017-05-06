@@ -748,6 +748,7 @@ class Transaction(models.Model):
                 # We got a new Transaction
                 storageitem = StorageItem.objects.get(pk=self.storage_item.id)
                 if storageitem.on_stock is not None:
+                    print(self.amount)
                     storageitem.on_stock = storageitem.on_stock + Decimal(self.amount)
                 elif self.amount is not None:
                     storageitem.on_stock = Decimal(self.amount)

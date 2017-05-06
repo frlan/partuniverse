@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load semanticui %}
+{% load static %}
+{% block head_title %}{% trans "Transaction for a storage item" %}{% endblock %}
+{% block heading %}{% trans "Transaction for a storage item" %}{% endblock %}
+
+{% block content %}
+<h1>{{ object }}</h1>
+<form method="post" class="ui form segment">
+  {% csrf_token %}
+  {{ form|semanticui }}
+  <input class="ui button blue" type="submit" name="submit" value="Increase">
+  <input class="ui button blue" type="submit" name="submit" value="Decrease">
+</form>
+{% endblock %}
