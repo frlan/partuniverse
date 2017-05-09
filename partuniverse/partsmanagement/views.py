@@ -19,7 +19,8 @@ from rest_framework import permissions
 
 from .forms import (
     StockTakingForm,
-    MergeStorageItemsForm
+    MergeStorageItemsForm,
+    BulkStorageForm
 )
 from .models import (
     StorageType,
@@ -487,11 +488,11 @@ class StorageItemStockTakingView(FormView):
 class StoragePlaceBulkAddView(FormView):
     form_class = BulkStorageForm
     success_url = reverse_lazy('storage_item_list')
-    template_name = 'pmgmt/storageplace/bulkadd.html'
+    template_name = 'pmgmt/storage/bulkadd.html'
 
     def form_valid(self, form):
         # validate two stringsrows = StorageItem.objects.get(pk=self.kwargs["pk"])
-        return super(StorageItemStockTakingView, self).form_valid(form)
+        return super(StoragePlaceBulkAddView, self).form_valid(form)
 
 
 class StorageItemMergeView(FormView):

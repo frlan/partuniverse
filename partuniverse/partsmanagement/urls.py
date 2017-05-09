@@ -31,6 +31,7 @@ from .views import (
     StorageItemToReviewListView,
     StorageItemUpdateView,
     StoragePlaceAddView,
+    StoragePlaceBulkAddView,
     StoragePlaceDetailView,
     StoragePlaceListView,
     StoragePlaceUpdateView,
@@ -118,6 +119,8 @@ urlpatterns = [
     # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),
+    url(r'^storage/bulkadd', login_required(StoragePlaceBulkAddView.as_view()),
+        name='storage_bulkadd'),
     url(r'^storage/list', StoragePlaceListView.as_view(),
         name='storage_list'),
     url(r'^storage/(?P<pk>[\w]+)$', StoragePlaceDetailView.as_view(),

@@ -20,10 +20,11 @@ class StockTakingForm(forms.Form):
         decimal_places=4,
         help_text=_("The amount of currently inside storage place."))
 
-class BulkTakingForm(forms.Form):
-    rows = forms.CharField(
-        label=_("rows"),
-        help_text=_("rows"))
+
+class BulkStorageForm(forms.Form):
     cols = forms.CharField(
         label=_("cols"),
         help_text=_("cols"))
+    rows = forms.CharField(
+        label=_("rows"),
+        help_text=_("rows"))
