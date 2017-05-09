@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load semanticui %}
+{% load static %}
+{% block head_title %}{% trans "Bulkadd" %}{% endblock %}
+{% block heading %}{% trans "Bulkadd" %}{% endblock %}
+
+
+{% block content %}
+<h1>{{ object }}</h1>
+<p>{% trans "Bulk Add multi Storage Places.." %}</p>
+<form method="post" class="ui form segment">
+  {% csrf_token %}
+  {{ form|semanticui }}
+  <input class="ui button blue" type="submit" value="Submit">
+</form>
+{% endblock %}
