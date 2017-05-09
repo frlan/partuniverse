@@ -484,6 +484,15 @@ class StorageItemStockTakingView(FormView):
             form.cleaned_data["amount"], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
+class StoragePlaceBulkAddView(FormView):
+    form_class = BulkStorageForm
+    success_url = reverse_lazy('storage_item_list')
+    template_name = 'pmgmt/storageplace/bulkadd.html'
+
+    def form_valid(self, form):
+        # validate two stringsrows = StorageItem.objects.get(pk=self.kwargs["pk"])
+        return super(StorageItemStockTakingView, self).form_valid(form)
+
 
 class StorageItemMergeView(FormView):
     form_class = MergeStorageItemsForm
