@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-
-# from decimal import *
+from django.conf import settings
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.widgets import DateTimeInput
 from django.http import HttpResponseRedirect
