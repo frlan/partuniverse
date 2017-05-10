@@ -450,7 +450,7 @@ msgstr "Die Menge an Teilen, die dort aktuell gelagert sind."
 
 #: partsmanagement/models.py:602
 msgid "Needs review"
-msgstr "Zur Widervorlage"
+msgstr "Zur Wiedervorlage"
 
 #: partsmanagement/models.py:604
 #| msgid "Whether the storage item is active."
@@ -544,7 +544,7 @@ msgid ""
 "To control whether transaction has been already reverted and cannot be "
 "reverted again."
 msgstr ""
-"Gibt an, ob die Transktion bereits zurück gerollt, das heißt wider rufen "
+"Gibt an, ob die Transaktion bereits zurück gerollt, das heißt widerrufen "
 "wurde, und so nicht mehr neu entsprechend behandelt werden kann."
 
 #: partsmanagement/models.py:715
