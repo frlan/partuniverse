@@ -493,7 +493,7 @@ msgstr "Menge"
 
 #: partsmanagement/models.py:665
 msgid "The quantity transferred."
-msgstr "Die Menge, die entnommen wurde."
+msgstr "Die Menge, um die sich der Bestand geändert hat."
 
 #: partsmanagement/models.py:668
 msgid "Comment"
