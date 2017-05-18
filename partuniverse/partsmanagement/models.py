@@ -645,8 +645,6 @@ class Transaction(models.Model):
     )
     storage_item = models.ForeignKey(
         StorageItem,
-        null=True,
-        blank=True,
         help_text=_("The part-storage relation the transaction was applied on.")
     )
     amount = models.DecimalField(

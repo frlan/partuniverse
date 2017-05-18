@@ -342,6 +342,7 @@ class TransactionAddView(CreateView):
                 'icon': 'calendar'
             }
         )
+        form.fields['storage_item'].required = True
         return form
 
     def form_valid(self, form):
