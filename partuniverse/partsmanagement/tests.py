@@ -9,7 +9,6 @@ from .exceptions import (
     StorageItemIsTheSameException,
     PartsNotFitException,
     PartsmanagementException,
-    TransactionNoStorageItemGivenException
 )
 from .models import (
     Category,
@@ -411,28 +410,6 @@ class TransactionAllreadyRevertedTest(TestCase):
             Transaction.objects.get(pk=3).storage_item.id,
             StorageItem.objects.get(pk=self.storage_item2.id).id
         )
-
-
-class TransactionWithoutStorageItem(TestCase):
-    """
-        Testcase whether coprrect exception is thrown if trying to create
-        a transaction without any storage item
-    """
-
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username='jacob',
-            email='jacob@foo.baa',
-            password='top_secret')
-
-    def test_with_no_storage_item(self):
-        with self.assertRaises(TransactionNoStorageItemGivenException):
-            trans = Transaction.objects.create(
-                subject=u'Testtransaction 1',
-                created_by=self.user,
-                amount=-10,
-                date=timezone.now(),
-            )
 
 
 ########################################################################
