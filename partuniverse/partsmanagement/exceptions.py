@@ -16,7 +16,8 @@ class PartsmanagementException(Exception):
 
 class PartsNotFitException(PartsmanagementException):
     """
-    Shall be used, when ever a Part is not fitting to another such like cannot be compared
+    Shall be used, when ever a Part is not fitting to another such like
+    cannot be compared.
     """
     def __init__(self, error):
         super(PartsNotFitException, self).__init__(error)
@@ -58,8 +59,18 @@ class StorageItemIsTheSameException(PartsmanagementException):
 
 class TransactionAllreadyRevertedException(PartsmanagementException):
     """
-    Used in case of trying to set revert an already marked a reverted transaction
+    Used in case of trying to set revert an already marked a reverted
+    transaction.
     """
     def __init__(self, error):
         super(TransactionAllreadyRevertedException, self).__init__(error)
         logger.error(_(u"Cannot revert Transaction: %s" % error))
+
+
+class TransactionNoStorageItemGivenException(PartsmanagementException):
+    """
+    Used in case of no storage item given to create a new transaction
+    """
+    def __init__(self, error=None):
+        super(TransactionNoStorageItemGivenException, self).__init__(error)
+        logger.error(_(u"Cannot create a Transaction without storage item"))

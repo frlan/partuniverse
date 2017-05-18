@@ -23,6 +23,7 @@ from .exceptions import (
     PartsmanagementException,
     CircleDetectedException,
     TransactionAllreadyRevertedException,
+    TransactionNoStorageItemGivenException,
     StorageItemIsTheSameException,
     StorageItemBelowZeroException
 )
@@ -747,6 +748,8 @@ class Transaction(models.Model):
                         storageitem.on_stock = self.amount
                     storageitem.save()
             if not self.id:
+                if not self.storage_item:
+                    raise TransactionNoStorageItemGivenException()
                 # We got a new Transaction
                 storageitem = StorageItem.objects.get(pk=self.storage_item.id)
                 if storageitem.on_stock is not None:
