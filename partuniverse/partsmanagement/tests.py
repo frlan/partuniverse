@@ -1,23 +1,25 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils import timezone
 
+from .exceptions import (
+    StorageItemIsTheSameException,
+    PartsNotFitException,
+    PartsmanagementException,
+    TransactionNoStorageItemGivenException
+)
 from .models import (
     Category,
-    ValidationError,
     Part,
     StorageType,
     StorageItem,
     Transaction,
     Manufacturer,
     Distributor,
-    StoragePlace,
-    StorageItemIsTheSameException,
-    PartsNotFitException,
-    PartsmanagementException,
-    TransactionNoStorageItemGivenException
+    StoragePlace
 )
 
 
