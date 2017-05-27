@@ -23,7 +23,7 @@ class StockTakingForm(forms.Form):
 
 class TransactionForm(forms.Form):
     amount = forms.DecimalField(
-        label=_("Difference "),
+        label=_("Difference"),
         max_digits=10,
         decimal_places=4,
         help_text=_("Die amount of items taken/put to storage."))
