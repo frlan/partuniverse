@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+
 import logging
+from decimal import Decimal
 from django.conf import settings
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.widgets import DateTimeInput
@@ -14,13 +16,17 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from rest_framework import generics
 from rest_framework import permissions
+from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
 # Logging
 
 from .forms import (
     StockTakingForm,
-    MergeStorageItemsForm
+    MergeStorageItemsForm,
+    TransactionForm
 )
+
 from .models import (
     StorageType,
     Transaction,
@@ -484,6 +490,31 @@ class StorageItemStockTakingView(FormView):
         storageiitem.stock_report(
             form.cleaned_data["amount"], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
+
+
+class StorageItemTransactionAddView(FormView):
+    form_class = TransactionForm
+    success_url = reverse_lazy('storage_item_list')
+    template_name = 'pmgmt/storageitem/transaction.html'
+
+    def form_valid(self, form):
+        if self.request.POST['submit'] == 'Increase':
+            Transaction.objects.create(
+                subject=(self.request.POST['description']),
+                created_by=self.request.user,
+                amount=self.request.POST['amount'],
+                storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
+                date=timezone.now()
+            )
+        elif self.request.POST['submit'] == 'Decrease':
+            Transaction.objects.create(
+                subject=(self.request.POST['description']),
+                created_by=self.request.user,
+                amount=Decimal(float(self.request.POST['amount']) * -1),
+                storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
+                date=timezone.now()
+            )
+        return super(StorageItemTransactionAddView, self).form_valid(form)
 
 
 class StorageItemMergeView(FormView):

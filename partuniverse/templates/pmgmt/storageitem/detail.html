@@ -39,11 +39,12 @@
 </table>
 </div>
 </div>
-{% comment %}<p><a class="ui button blue" href="/pmgmt/stroageitem/{{object.id}}/delete/">{% trans "Delete item" %}</a></p>{% endcomment %}
-<p>
-	<a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>
-	<a class="ui button blue" href="{% url "storage_item_stocktaking" object.id  %}">{% trans "Stock taking" %}</a>
-</p>
-
+<div>
+    <p>
+	    <a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>
+	    <a class="ui button blue" href="{% url "storage_item_stocktaking" object.id  %}">{% trans "Stock taking" %}</a>
+	    <a class="ui button blue" href="{% url "storage_item_transaction" object.id  %}">{% trans "Transaction" %}</a>
+    </p>
+</div>
 
 {% endblock %}

@@ -19,3 +19,13 @@ class StockTakingForm(forms.Form):
         max_digits=10,
         decimal_places=4,
         help_text=_("The amount of currently inside storage place."))
+
+
+class TransactionForm(forms.Form):
+    amount = forms.DecimalField(
+        label=_("Difference "),
+        max_digits=10,
+        decimal_places=4,
+        help_text=_("Die amount of items taken/put to storage."))
+    description = forms.CharField(
+        max_length=50)
