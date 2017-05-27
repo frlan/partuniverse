@@ -500,7 +500,7 @@ class StorageItemTransactionAddView(FormView):
     def form_valid(self, form):
         if self.request.POST['submit'] == 'Increase':
             Transaction.objects.create(
-                subject=_(u''),
+                subject=(self.request.POST['description']),
                 created_by=self.request.user,
                 amount=self.request.POST['amount'],
                 storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
@@ -508,7 +508,7 @@ class StorageItemTransactionAddView(FormView):
             )
         elif self.request.POST['submit'] == 'Decrease':
             Transaction.objects.create(
-                subject=_(u''),
+                subject=(self.request.POST['description']),
                 created_by=self.request.user,
                 amount=Decimal(float(self.request.POST['amount']) * -1),
                 storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
