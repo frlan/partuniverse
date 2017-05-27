@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-10 17:48+0000\n"
+"POT-Creation-Date: 2017-05-27 19:37+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -89,6 +89,15 @@ msgstr "Teile innerhalb des Lagers"
 #: partsmanagement/forms.py:21
 msgid "The amount of currently inside storage place."
 msgstr "Die Menge, die sich aktuell am Lagerplatz befindet."
+
+#: partsmanagement/forms.py:26
+#| msgid "Difference "
+msgid "Difference"
+msgstr "Unterschied"
+
+#: partsmanagement/forms.py:29
+msgid "Die amount of items taken/put to storage."
+msgstr "Die Menge die ein- bzw. ausgelagert wurde."
 
 #: partsmanagement/models.py:36
 msgid "Length"
@@ -481,63 +490,63 @@ msgstr "Kurzbeschreibung"
 msgid "A short conclusion of the transaction."
 msgstr "Eine kurze Zusammenfassung für die Transaktion."
 
-#: partsmanagement/models.py:649
+#: partsmanagement/models.py:647
 msgid "The part-storage relation the transaction was applied on."
 msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
 
-#: partsmanagement/models.py:652 templates/pmgmt/transaction/detail.html:33
+#: partsmanagement/models.py:650 templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
-#: partsmanagement/models.py:655
+#: partsmanagement/models.py:653
 msgid "The quantity transferred."
 msgstr "Die Menge, um die sich der Bestand geändert hat."
 
-#: partsmanagement/models.py:658
+#: partsmanagement/models.py:656
 msgid "Comment"
 msgstr "Kommentar"
 
-#: partsmanagement/models.py:662
+#: partsmanagement/models.py:660
 msgid "A short conclusion."
 msgstr "Eine kurze Zusammenfassung."
 
-#: partsmanagement/models.py:665
+#: partsmanagement/models.py:663
 msgid "Transaction Date"
 msgstr "Transaktionsdaten"
 
-#: partsmanagement/models.py:670
+#: partsmanagement/models.py:668
 msgid "The date the transaction took  part."
 msgstr "Das Datum, an dem die Transaktion stattfand."
 
-#: partsmanagement/models.py:673 templates/pmgmt/transaction/list.html:25
+#: partsmanagement/models.py:671 templates/pmgmt/transaction/list.html:25
 msgid "State"
 msgstr "Status"
 
-#: partsmanagement/models.py:678
+#: partsmanagement/models.py:676
 msgid "The status a transaction is in."
 msgstr "Der Status in der sich die Transaktion befindet."
 
-#: partsmanagement/models.py:682 templates/pmgmt/transaction/detail.html:41
+#: partsmanagement/models.py:680 templates/pmgmt/transaction/detail.html:41
 msgid "Created by"
 msgstr "Erstellt von"
 
-#: partsmanagement/models.py:683
+#: partsmanagement/models.py:681
 msgid "The user which created the transaction."
 msgstr "Der Nutzer, die die Transaktion anlegte."
 
-#: partsmanagement/models.py:686
+#: partsmanagement/models.py:684
 msgid "Creation timestamp"
 msgstr "Angelegt am"
 
-#: partsmanagement/models.py:691
+#: partsmanagement/models.py:689
 msgid "The timestamp transaction has been entered."
 msgstr "Der Zeitpunkt zu dem die Transaktion angelegt wurde."
 
-#: partsmanagement/models.py:695
+#: partsmanagement/models.py:693
 msgid "Reverted"
 msgstr "Zurück gerollt"
 
-#: partsmanagement/models.py:698
+#: partsmanagement/models.py:696
 msgid ""
 "To control whether transaction has been already reverted and cannot be "
 "reverted again."
@@ -545,23 +554,25 @@ msgstr ""
 "Gibt an, ob die Transaktion bereits zurück gerollt, das heißt widerrufen "
 "wurde, und so nicht mehr neu entsprechend behandelt werden kann."
 
-#: partsmanagement/models.py:705
+#: partsmanagement/models.py:703
 msgid "reverted {}"
 msgstr "zurück {}"
 
-#: partsmanagement/models.py:715
+#: partsmanagement/models.py:713
 msgid "Transaktion »{}« was already reverted."
 msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 
-#: partsmanagement/models.py:731
+#: partsmanagement/models.py:729
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:767 templates/pmgmt/transaction/detail.html:6
+#: partsmanagement/models.py:766 templates/pmgmt/storageitem/detail.html:46
+#: templates/pmgmt/storageitem/list.html:64
+#: templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:768 templates/base.html:43
+#: partsmanagement/models.py:767 templates/base.html:43
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
@@ -1051,7 +1062,7 @@ msgstr "Ein neue Kategorie anlegen"
 #: templates/pmgmt/distributor/detail.html:45
 #: templates/pmgmt/part/detail.html:121 templates/pmgmt/part/update.html:11
 #: templates/pmgmt/storage/detail.html:78
-#: templates/pmgmt/storageitem/detail.html:45
+#: templates/pmgmt/storageitem/detail.html:44
 #: templates/pmgmt/storagetype/detail.html:58
 msgid "Update item"
 msgstr "Bearbeiten"
@@ -1075,7 +1086,7 @@ msgstr "Aktualisieren"
 #: templates/pmgmt/distributor/list.html:62
 #: templates/pmgmt/manufacturer/list.html:61
 #: templates/pmgmt/storage/list.html:83
-#: templates/pmgmt/storageitem/list.html:86
+#: templates/pmgmt/storageitem/list.html:87
 #: templates/pmgmt/storageitem/list_review.html:86
 #: templates/pmgmt/storagetype/list.html:77
 msgid "No data available at the moment"
@@ -1340,7 +1351,7 @@ msgstr ""
 msgid "On Stock"
 msgstr "Im Bestand"
 
-#: templates/pmgmt/storageitem/detail.html:46
+#: templates/pmgmt/storageitem/detail.html:45
 #: templates/pmgmt/storageitem/list.html:63
 #: templates/pmgmt/storageitem/list_review.html:63
 msgid "Stock taking"
@@ -1398,7 +1409,6 @@ msgstr ""
 
 #: templates/pmgmt/storageitem/transaction.html:6
 #: templates/pmgmt/storageitem/transaction.html:7
-#| msgid "List of storages items"
 msgid "Transaction for a storage item"
 msgstr "Transaktion einer Einlagerung"
 
@@ -1434,8 +1444,8 @@ msgid ""
 "Attention: The amount of change is the actual change. If you take out 1 item "
 "from a storage it's actually a -1 of amount."
 msgstr ""
-"Achtung: Die Menge ist die tatsächliche Veränderung. Wenn also ein "
-"Teil aus dem Lager genommen wurde, sollte dort ein -1 stehen."
+"Achtung: Die Menge ist die tatsächliche Veränderung. Wenn also ein Teil aus "
+"dem Lager genommen wurde, sollte dort ein -1 stehen."
 
 #: templates/pmgmt/transaction/detail.html:37
 msgid "Status"
