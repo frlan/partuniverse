@@ -7,7 +7,6 @@
 {% block heading %}{% trans "Transaction for a storage item" %}{% endblock %}
 
 {% block content %}
-<h1>{{ object }}</h1>
 <form method="post" class="ui form segment">
   {% csrf_token %}
   {{ form|semanticui }}
