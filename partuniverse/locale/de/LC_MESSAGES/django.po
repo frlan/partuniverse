@@ -90,8 +90,7 @@ msgstr "Teile innerhalb des Lagers"
 msgid "The amount of currently inside storage place."
 msgstr "Die Menge, die sich aktuell am Lagerplatz befindet."
 
-#: partsmanagement/forms.py:26
-#| msgid "Difference "
+#: partsmanagement/forms.py:26"
 msgid "Difference"
 msgstr "Unterschied"
 

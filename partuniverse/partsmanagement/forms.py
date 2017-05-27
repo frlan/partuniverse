@@ -28,4 +28,5 @@ class TransactionForm(forms.Form):
         decimal_places=4,
         help_text=_("Die amount of items taken/put to storage."))
     description = forms.CharField(
+        label=_("Description"),
         max_length=50)
