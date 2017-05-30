@@ -92,6 +92,16 @@ class StoragePlace(models.Model):
         general storage or a particular place inside a storage as
         e.g. a shelf."""
 
+    @classmethod
+    def createBulkStorage(cls, storagetype, parent=None, entries=('A1')):
+        for e in entries:
+            s = StoragePlace(name=e, storage_type=storagetype)
+            print("create {} {}".format(e, s))
+            if (parent != None):
+                s.parent = parent
+            s.save()
+
+
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(
         max_length=50,

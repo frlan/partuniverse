@@ -15,6 +15,8 @@ from django.views.generic.list import ListView
 from rest_framework import generics
 from rest_framework import permissions
 
+from .utils import createExcelArray
+
 # Logging
 
 from .forms import (
@@ -487,11 +489,18 @@ class StorageItemStockTakingView(FormView):
 
 class StoragePlaceBulkAddView(FormView):
     form_class = BulkStorageForm
-    success_url = reverse_lazy('storage_item_list')
+    success_url = reverse_lazy('storage_list')
     template_name = 'pmgmt/storage/bulkadd.html'
 
+    # this is the callback when the form is valid!
     def form_valid(self, form):
-        # validate two stringsrows = StorageItem.objects.get(pk=self.kwargs["pk"])
+        rows = form.cleaned_data['rows']
+        cols = form.cleaned_data['cols']
+        storagetype = form.cleaned_data['storagetype']
+        parentstorage = form.cleaned_data['parentstorage']
+        places = createExcelArray(rows, cols)
+        print( "{}".format(places))
+        StoragePlace.createBulkStorage(storagetype,parentstorage ,places)
         return super(StoragePlaceBulkAddView, self).form_valid(form)
 
 

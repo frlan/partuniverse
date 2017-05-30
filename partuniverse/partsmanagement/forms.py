@@ -3,7 +3,7 @@
 import logging
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from .models import StorageItem
+from .models import (StorageItem, StorageType, StoragePlace)
 
 logger = logging.getLogger(__name__)
 
@@ -22,9 +22,12 @@ class StockTakingForm(forms.Form):
 
 
 class BulkStorageForm(forms.Form):
-    cols = forms.CharField(
+    storagetype = forms.ModelChoiceField(queryset=StorageType.objects.all())
+    parentstorage = forms.ModelChoiceField(queryset=StoragePlace.objects.all())
+        
+    cols = forms.IntegerField(
         label=_("cols"),
         help_text=_("cols"))
-    rows = forms.CharField(
+    rows = forms.IntegerField(
         label=_("rows"),
         help_text=_("rows"))
