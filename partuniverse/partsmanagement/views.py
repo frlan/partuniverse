@@ -488,7 +488,7 @@ class StorageItemStockTakingView(FormView):
     def form_valid(self, form):
         storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
         storageiitem.stock_report(
-            form.cleaned_data["amount"], self.request.user)
+            form.cleaned_data['amount'], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
 
@@ -500,18 +500,18 @@ class StorageItemTransactionAddView(FormView):
     def form_valid(self, form):
         if self.request.POST['submit'] == 'Increase':
             Transaction.objects.create(
-                subject=(self.request.POST['description']),
+                subject=form.cleaned_data['description'],
                 created_by=self.request.user,
-                amount=self.request.POST['amount'],
-                storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
+                amount=form.cleaned_data['amount'],
+                storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
                 date=timezone.now()
             )
         elif self.request.POST['submit'] == 'Decrease':
             Transaction.objects.create(
-                subject=(self.request.POST['description']),
+                subject=form.cleaned_data['description'],
                 created_by=self.request.user,
-                amount=Decimal(float(self.request.POST['amount']) * -1),
-                storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
+                amount=form.cleaned_data['amount'] * -1,
+                storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
                 date=timezone.now()
             )
         return super(StorageItemTransactionAddView, self).form_valid(form)
