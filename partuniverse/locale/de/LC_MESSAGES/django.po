@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-27 19:37+0000\n"
+"POT-Creation-Date: 2017-05-31 19:32+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -90,13 +90,21 @@ msgstr "Teile innerhalb des Lagers"
 msgid "The amount of currently inside storage place."
 msgstr "Die Menge, die sich aktuell am Lagerplatz befindet."
 
-#: partsmanagement/forms.py:26"
+#: partsmanagement/forms.py:26
 msgid "Difference"
 msgstr "Unterschied"
 
 #: partsmanagement/forms.py:29
 msgid "Die amount of items taken/put to storage."
 msgstr "Die Menge die ein- bzw. ausgelagert wurde."
+
+#: partsmanagement/forms.py:31 partsmanagement/models.py:67
+#: partsmanagement/models.py:124 partsmanagement/models.py:299
+#: partsmanagement/models.py:383 templates/pmgmt/category/detail.html:29
+#: templates/pmgmt/part/detail.html:73 templates/pmgmt/storage/detail.html:35
+#: templates/pmgmt/storagetype/detail.html:37
+msgid "Description"
+msgstr "Beschreibung"
 
 #: partsmanagement/models.py:36
 msgid "Length"
@@ -158,14 +166,6 @@ msgstr "Reserviert"
 #: partsmanagement/models.py:64
 msgid "The name for a storage type. Should be unique"
 msgstr "Der Name des Lagertypes. Sollte ein eindeutiger Name sein."
-
-#: partsmanagement/models.py:67 partsmanagement/models.py:124
-#: partsmanagement/models.py:299 partsmanagement/models.py:383
-#: templates/pmgmt/category/detail.html:29 templates/pmgmt/part/detail.html:73
-#: templates/pmgmt/storage/detail.html:35
-#: templates/pmgmt/storagetype/detail.html:37
-msgid "Description"
-msgstr "Beschreibung"
 
 #: partsmanagement/models.py:70 partsmanagement/models.py:127
 msgid "A short description."
@@ -1044,7 +1044,8 @@ msgstr "Lagerplätze"
 #: templates/pmgmt/distributor/list.html:26
 #: templates/pmgmt/manufacturer/add.html:9
 #: templates/pmgmt/manufacturer/list.html:26 templates/pmgmt/part/add.html:9
-#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storage/list.html:27
+#: templates/pmgmt/part/list.html:26 templates/pmgmt/storage/add.html:9
+#: templates/pmgmt/storage/list.html:27
 #: templates/pmgmt/storageitem/list.html:26
 #: templates/pmgmt/storagetype/add.html:9
 #: templates/pmgmt/storagetype/list.html:27
@@ -1231,6 +1232,10 @@ msgstr "Teil löschen"
 #: templates/pmgmt/part/list.html:10 templates/pmgmt/part/list.html:12
 msgid "List of parts"
 msgstr "Teileliste"
+
+#: templates/pmgmt/part/list.html:32
+msgid "Search in part names"
+msgstr "In Teilenamen suchen"
 
 #: templates/pmgmt/part/list.html:53 templates/pmgmt/part/reorderlist.html:38
 msgid "Minimum"
