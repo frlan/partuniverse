@@ -15,10 +15,10 @@ class MergeStorageItemsForm(forms.Form):
 
 class StockTakingForm(forms.Form):
     amount = forms.DecimalField(
-        label=_("Parts now inside storage"),
+        label=_('Parts now inside storage'),
         max_digits=10,
         decimal_places=4,
-        help_text=_("The amount of currently inside storage place."))
+        help_text=_('The amount of currently inside storage place.'))
 
 
 class BulkStorageForm(forms.Form):
@@ -26,8 +26,8 @@ class BulkStorageForm(forms.Form):
     parentstorage = forms.ModelChoiceField(queryset=StoragePlace.objects.all())
 
     cols = forms.IntegerField(
-        label=_("Columns"),
-        help_text=_("The number of «columns» you need."))
+        label=_('Columns'),
+        help_text=_('The number of «columns» you need.'))
     rows = forms.IntegerField(
-        label=_("Rows"),
-        help_text=_("The number of «rows» you need."))
+        label=_('Rows'),
+        help_text=_('The number of «rows» you need.'))
