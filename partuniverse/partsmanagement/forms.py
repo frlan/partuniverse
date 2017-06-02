@@ -24,10 +24,10 @@ class StockTakingForm(forms.Form):
 class BulkStorageForm(forms.Form):
     storagetype = forms.ModelChoiceField(queryset=StorageType.objects.all())
     parentstorage = forms.ModelChoiceField(queryset=StoragePlace.objects.all())
-        
+
     cols = forms.IntegerField(
-        label=_("cols"),
-        help_text=_("cols"))
+        label=_("Columns"),
+        help_text=_("The number of «columns» you need."))
     rows = forms.IntegerField(
-        label=_("rows"),
-        help_text=_("rows"))
+        label=_("Rows"),
+        help_text=_("The number of «rows» you need."))
