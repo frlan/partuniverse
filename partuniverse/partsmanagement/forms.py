@@ -35,8 +35,12 @@ class BulkStorageForm(forms.Form):
     cols = forms.IntegerField(
         label=_('Columns'),
         required=True,
+        max_value=100,
+        min_value=1,
         help_text=_('The number of «columns» you need.'))
     rows = forms.IntegerField(
         label=_('Rows'),
         required=True,
+        max_value=100,
+        min_value=1,
         help_text=_('The number of «rows» you need.'))
