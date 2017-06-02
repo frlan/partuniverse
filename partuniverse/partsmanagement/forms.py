@@ -22,9 +22,14 @@ class StockTakingForm(forms.Form):
 
 
 class BulkStorageForm(forms.Form):
-    storagetype = forms.ModelChoiceField(queryset=StorageType.objects.all())
-    parentstorage = forms.ModelChoiceField(queryset=StoragePlace.objects.all())
-
+    storagetype = forms.ModelChoiceField(
+        queryset=StorageType.objects.all(),
+        label=_('Storage Type'),
+        help_text=_('Sets the type of your to be created storage places'))
+    parentstorage = forms.ModelChoiceField(
+        label=_('Parent'),
+        help_text=_('The parent storage of the new created ones'),
+        queryset=StoragePlace.objects.all())
     cols = forms.IntegerField(
         label=_('Columns'),
         help_text=_('The number of «columns» you need.'))
