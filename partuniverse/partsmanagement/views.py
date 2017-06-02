@@ -487,6 +487,7 @@ class StorageItemStockTakingView(FormView):
             form.cleaned_data["amount"], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
 
+
 class StoragePlaceBulkAddView(FormView):
     form_class = BulkStorageForm
     success_url = reverse_lazy('storage_list')
@@ -499,8 +500,8 @@ class StoragePlaceBulkAddView(FormView):
         storagetype = form.cleaned_data['storagetype']
         parentstorage = form.cleaned_data['parentstorage']
         places = createExcelArray(rows, cols)
-        print( "{}".format(places))
-        StoragePlace.createBulkStorage(storagetype,parentstorage ,places)
+        print("{}".format(places))
+        StoragePlace.createBulkStorage(storagetype, parentstorage, places)
         return super(StoragePlaceBulkAddView, self).form_valid(form)
 
 

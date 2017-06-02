@@ -97,10 +97,9 @@ class StoragePlace(models.Model):
         for e in entries:
             s = StoragePlace(name=e, storage_type=storagetype)
             print("create {} {}".format(e, s))
-            if (parent != None):
+            if parent:
                 s.parent = parent
             s.save()
-
 
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(
@@ -510,7 +509,8 @@ class Part(models.Model):
             If either on_stock or min_stock is not defined, it will
             return False """
         currently_on_stock = self.get_on_stock()
-        return self.min_stock is not None and currently_on_stock < self.min_stock
+        return (self.min_stock is not None and
+                currently_on_stock < self.min_stock)
 
     def is_on_stock(self):
         """ Returns True, if the item is on stock.
@@ -749,10 +749,12 @@ class Transaction(models.Model):
                     # No need for calling some extra save()
                     return
                 if old_transaction.amount != self.amount:
-                    storageitem = StorageItem.objects.get(pk=self.storage_item.id)
+                    storageitem = StorageItem.objects.get(
+                        pk=self.storage_item.id)
                     if storageitem.on_stock is not None:
                         storageitem.on_stock = (
-                            storageitem.on_stock - old_transaction.amount) + self.amount
+                            storageitem.on_stock - old_transaction.amount) \
+                            + self.amount
                     elif self.amount:
                         storageitem.on_stock = self.amount
                     storageitem.save()
@@ -760,7 +762,8 @@ class Transaction(models.Model):
                 # We got a new Transaction
                 storageitem = StorageItem.objects.get(pk=self.storage_item.id)
                 if storageitem.on_stock is not None:
-                    storageitem.on_stock = storageitem.on_stock + Decimal(self.amount)
+                    storageitem.on_stock = storageitem.on_stock + \
+                        Decimal(self.amount)
                 elif self.amount is not None:
                     storageitem.on_stock = Decimal(self.amount)
                 storageitem.save()
