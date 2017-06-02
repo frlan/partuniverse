@@ -10,6 +10,10 @@ def validate_file_extension(value):
 
 
 def convertToBase26(num):
+    """
+    Converts an integer to a Excel-column-like string.
+    Example AA, BBZ ...
+    """
     number = [chr(i) for i in range(65, 91)]
     print
     if num < 26:
@@ -22,6 +26,10 @@ def convertToBase26(num):
 
 
 def createExcelArray(rows, cols):
+    """
+    Creates a list of fields based on given rows and columns
+    in Excel-like syntex. Example: AA15
+    """
     result = []
     for col in range(0, cols):
         for row in range(1, rows + 1):
