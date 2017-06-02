@@ -94,11 +94,11 @@ class StoragePlace(models.Model):
 
     @classmethod
     def createBulkStorage(cls, storagetype, parent=None, entries=('A1')):
-        for e in entries:
-            s = StoragePlace(name=e, storage_type=storagetype)
-            if parent:
-                s.parent = parent
-            s.save()
+        for entry in entries:
+            StoragePlace.objects.create(
+                name=entry,
+                storage_type=storagetype,
+                parent=parent)
 
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(
