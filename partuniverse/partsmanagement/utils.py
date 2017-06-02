@@ -9,9 +9,22 @@ def validate_file_extension(value):
         pass
 
 
+def convertToBase26(num):
+    number = [chr(i) for i in range(65, 91)]
+    print
+    if num < 26:
+        return number[num]
+    else:
+        return (
+            convertToBase26(num // 26 - 1) +
+            str((number[num % 26]))
+        )
+
+
 def createExcelArray(rows, cols):
     result = []
-    for i in range(0, cols):
-        for j in range(0, rows):
-            result.append("{}{}".format(chr(ord('A') + i), (j + 1)))
+    for col in range(0, cols):
+        for row in range(1, rows + 1):
+            result.append(
+                '{}{}'.format(convertToBase26(col), row))
     return result
