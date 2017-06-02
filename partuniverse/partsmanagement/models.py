@@ -96,7 +96,6 @@ class StoragePlace(models.Model):
     def createBulkStorage(cls, storagetype, parent=None, entries=('A1')):
         for e in entries:
             s = StoragePlace(name=e, storage_type=storagetype)
-            print("create {} {}".format(e, s))
             if parent:
                 s.parent = parent
             s.save()

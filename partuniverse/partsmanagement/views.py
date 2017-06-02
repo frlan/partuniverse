@@ -500,7 +500,6 @@ class StoragePlaceBulkAddView(FormView):
         storagetype = form.cleaned_data['storagetype']
         parentstorage = form.cleaned_data['parentstorage']
         places = createExcelArray(rows, cols)
-        print("{}".format(places))
         StoragePlace.createBulkStorage(storagetype, parentstorage, places)
         return super(StoragePlaceBulkAddView, self).form_valid(form)
 
