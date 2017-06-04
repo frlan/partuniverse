@@ -19,12 +19,15 @@ from rest_framework import permissions
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
+from .utils import createExcelArray
+
 # Logging
 
 from .forms import (
     StockTakingForm,
     MergeStorageItemsForm,
     TransactionForm
+    BulkStorageForm
 )
 
 from .models import (
@@ -520,6 +523,22 @@ class StorageItemTransactionAddView(FormView):
                 date=timezone.now()
             )
         return super(StorageItemTransactionAddView, self).form_valid(form)
+
+
+class StoragePlaceBulkAddView(FormView):
+    form_class = BulkStorageForm
+    success_url = reverse_lazy('storage_list')
+    template_name = 'pmgmt/storage/bulkadd.html'
+
+    # this is the callback when the form is valid!
+    def form_valid(self, form):
+        rows = form.cleaned_data['rows']
+        cols = form.cleaned_data['cols']
+        storagetype = form.cleaned_data['storagetype']
+        parentstorage = form.cleaned_data['parentstorage']
+        places = createExcelArray(rows, cols)
+        StoragePlace.createBulkStorage(storagetype, parentstorage, places)
+        return super(StoragePlaceBulkAddView, self).form_valid(form)
 
 
 class StorageItemMergeView(FormView):
