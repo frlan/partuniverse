@@ -497,6 +497,11 @@ class StorageItemTransactionAddView(FormView):
     success_url = reverse_lazy('storage_item_list')
     template_name = 'pmgmt/storageitem/transaction.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['storage_item'] = StorageItem.objects.get(pk=self.kwargs['pk'])
+        return context
+
     def form_valid(self, form):
         if self.request.POST['submit'] == 'Increase':
             Transaction.objects.create(
