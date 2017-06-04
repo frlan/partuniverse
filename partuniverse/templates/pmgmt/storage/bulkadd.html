@@ -1,4 +1,4 @@
-{% extends "base.html" %}
++{% extends "base.html" %}
 
 {% load i18n %}
 {% load semanticui %}
@@ -8,8 +8,7 @@
 
 
 {% block content %}
-<h1>{{ object }}</h1>
-<p>{% trans "Bulk Add multi Storage Places.." %}</p>
+<p>{% trans "Bulk add multiple storage places as a rectangle given in rows and columns resulting in places like A1 or B22" %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
   {{ form|semanticui }}
