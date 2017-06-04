@@ -26,7 +26,7 @@ from .utils import createExcelArray
 from .forms import (
     StockTakingForm,
     MergeStorageItemsForm,
-    TransactionForm
+    TransactionForm,
     BulkStorageForm
 )
 
