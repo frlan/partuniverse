@@ -587,7 +587,7 @@ class StoragePlaceListView(ListView):
 class StoragePlaceListEmptyView(ListView):
     model = StoragePlace
     queryset = StoragePlace.objects.filter(storageitem=None)
-    template_name = 'pmgmt/storage/list.html'
+    template_name = 'pmgmt/storage/empty_list.html'
 
 
 class StoragePlaceDetailView(DetailView):

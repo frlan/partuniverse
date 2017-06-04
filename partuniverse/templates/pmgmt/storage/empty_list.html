@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<a href="{% url "storage_list" %}" class="active section">{% trans "Storages" %}</a>
+{% endblock %}
+
+{% block head_title %}{% trans "List of empty storages" %}{% endblock %}
+
+{% block heading %}{% trans "List of empty storages" %}{% endblock %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="{% static "jquery-tablesort/jquery.tablesort.min.js" %}"></script>
+<script src="{% static "custom/tablesort.js" %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<p>
+{% trans "Empty storage places are storage places, which don't have any storage item assigned." %}
+</p>
+<a
+   accesskey="a"
+   class="ui right blue ribbon label"
+   href="{% url "storage_add"%}"
+   >
+  <i class="icon add"></i> {% trans "Add" %}
+</a>
+{% if object_list %}
+<table class="ui table sortable segment">
+  <colgroup>
+    <col>
+    <col>
+    <col>
+    {% if user.is_authenticated %}
+    <col width="20%">
+    {% else %}
+    <col width="8%">
+    {% endif %}
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="sorted ascending">{% trans "Storage Name" %}</th>
+      <th>{% trans "Storage Typ" %}</th>
+      <th>{% trans "Assigned To" %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in object_list %}
+      <td><a href="{% url "storage_detail" item.id %}">{{ item }}</a></td>
+      <td>{{item.storage_type}}</td>
+      {% if item.parent == None %} <td>{% trans "n/A" %}</td> {% else %}<td><a href="{% url "storage_detail" item.parent.id %}">{{item.parent.name}}</a></td>{% endif %}
+      {% if user.is_authenticated %}
+      <td>
+        <div class="ui inverted blue menu">
+          <div class="ui fluid simple dropdown item">
+            <a style="width: 100%;" href="{% url "storage_detail" item.id %}"/>Detail</a>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="{% url "storage_update" item.id %}">{% trans "Update" %}</a>
+            </div>
+          </div>
+        </div>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "storage_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% else %}
+<p>{% trans "No data available at the moment" %}</p>
+{% endif %}
+{% endblock %}
