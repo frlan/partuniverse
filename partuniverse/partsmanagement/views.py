@@ -584,6 +584,12 @@ class StoragePlaceListView(ListView):
     paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
+class StoragePlaceListEmptyView(ListView):
+    model = StoragePlace
+    queryset = StoragePlace.objects.filter(storageitem=None)
+    template_name = 'pmgmt/storage/list.html'
+
+
 class StoragePlaceDetailView(DetailView):
     model = StoragePlace
     template_name = 'pmgmt/storage/detail.html'

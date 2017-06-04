@@ -35,6 +35,7 @@ from .views import (
     StoragePlaceBulkAddView,
     StoragePlaceDetailView,
     StoragePlaceListView,
+    StoragePlaceListEmptyView,
     StoragePlaceUpdateView,
     StorageTypeAddView,
     StorageTypeDetailView,
@@ -126,6 +127,8 @@ urlpatterns = [
         name='storage_bulkadd'),
     url(r'^storage/list', StoragePlaceListView.as_view(),
         name='storage_list'),
+    url(r'^storage/empty_list', StoragePlaceListEmptyView.as_view(),
+        name='storage_empty_list'),
     url(r'^storage/(?P<pk>[\w]+)$', StoragePlaceDetailView.as_view(),
         name='storage_detail'),
     url(r'^storage/(?P<pk>[\w]+)/update/$', login_required(
