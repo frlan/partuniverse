@@ -23,3 +23,5 @@ tablib==0.11.2
 djangorestframework
 markdown
 django-filter
+pylint
+pylint-django
