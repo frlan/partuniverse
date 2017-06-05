@@ -256,7 +256,6 @@ class PartsReorderList(ListView):
 
 class PartsAddView(CreateView):
     model = Part
-    success_url = reverse_lazy('part_list')
     template_name = 'pmgmt/part/add.html'
     fields = ('name',
               'sku',
@@ -275,6 +274,9 @@ class PartsAddView(CreateView):
         form.instance.created_by = user
         form.instance.timestamp = now()
         return super(PartsAddView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs={'pk': self.object.pk})
 
 
 class PartDeleteView(DeleteView):
