@@ -84,14 +84,18 @@
 <tr>
     <td class="top aligned">{% trans "Storages" %}</td>
     <td><ui class="list ui">
-        {% for item in object.get_storage_items %}
-        <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item.storage}}</a>
-        {% if item.on_stock %}
-        ({{item.on_stock}})
+        {% if object.get_storage_items %}
+            {% for item in object.get_storage_items %}
+            <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item.storage}}</a>
+            {% if item.on_stock %}
+            ({{item.on_stock}})
+            {% else %}
+            {% trans "(unknown quantity on stock)" %}
+            {% endif %}</li>
+            {% endfor %}
         {% else %}
-        {% trans "(unknown quantity on stock)" %}
-        {% endif %}</li>
-        {% endfor %}
+        <li><a href="{% url "storage_item_add" %}">{% trans "Add" %}</a></li>
+        {% endif %}
     </ui>
     </td>
 </tr>
