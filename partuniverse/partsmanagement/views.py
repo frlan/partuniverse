@@ -1,32 +1,60 @@
 # -*- coding: utf-8 -*-
 
-from decimal import *
+
+import logging
+from decimal import Decimal
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.db.models import F
 from django.forms.widgets import DateTimeInput
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import DeleteView
 from django.views.generic.edit import FormView
 from django.views.generic.edit import UpdateView
 from django.views.generic import DetailView
 from django.views.generic.list import ListView
-from partsmanagement.forms import *
-from partsmanagement.models import *
-from partsmanagement.serializers import *
 from rest_framework import generics
 from rest_framework import permissions
+from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
+from .utils import createExcelArray
 
 # Logging
-import logging
+
+from .forms import (
+    StockTakingForm,
+    MergeStorageItemsForm,
+    TransactionForm,
+    BulkStorageForm
+)
+
+from .models import (
+    StorageType,
+    Transaction,
+    StoragePlace,
+    Category,
+    Manufacturer,
+    Distributor,
+    StorageItem,
+    Part
+)
+from .serializers import (
+    StorageTypeSerializer,
+    StoragePlaceSerializer,
+    ManufacturerSerializer,
+    DistributorSerializer,
+    CategorySerializer,
+    PartSerializer,
+    StorageItemSerializer,
+    TransactionSerializer
+)
+
+from .exceptions import (
+    StorageItemIsTheSameException
+)
+
 logger = logging.getLogger(__name__)
 
 
@@ -159,6 +187,7 @@ class RestStorageItemDetail(generics.RetrieveUpdateDestroyAPIView):
 class CategoryList(ListView):
     model = Category
     template_name = 'pmgmt/category/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class CategoryAddView(CreateView):
@@ -322,6 +351,7 @@ class TransactionAddView(CreateView):
                 'icon': 'calendar'
             }
         )
+        form.fields['storage_item'].required = True
         return form
 
     def form_valid(self, form):
@@ -365,6 +395,7 @@ class ManufacturerUpdateView(UpdateView):
 class ManufacturerListView(ListView):
     model = Manufacturer
     template_name = 'pmgmt/manufacturer/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class ManufacturerView(DetailView):
@@ -406,6 +437,7 @@ class DistributorUpdateView(UpdateView):
 class DistributorListView(ListView):
     model = Distributor
     template_name = 'pmgmt/distributor/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class DistributorView(DetailView):
@@ -434,6 +466,7 @@ class StorageItemAddView(CreateView):
 class StorageItemListView(ListView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StorageItemDetailView(DetailView):
@@ -456,10 +489,56 @@ class StorageItemStockTakingView(FormView):
     template_name = 'pmgmt/storageitem/stocktaking.html'
 
     def form_valid(self, form):
-        si = StorageItem.objects.get(pk=self.kwargs["pk"])
-        si.stock_report(
-            form.cleaned_data["amount"], self.request.user)
+        storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
+        storageiitem.stock_report(
+            form.cleaned_data['amount'], self.request.user)
         return super(StorageItemStockTakingView, self).form_valid(form)
+
+
+class StorageItemTransactionAddView(FormView):
+    form_class = TransactionForm
+    success_url = reverse_lazy('storage_item_list')
+    template_name = 'pmgmt/storageitem/transaction.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['storage_item'] = StorageItem.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form):
+        if self.request.POST['submit'] == 'Increase':
+            Transaction.objects.create(
+                subject=form.cleaned_data['description'],
+                created_by=self.request.user,
+                amount=form.cleaned_data['amount'],
+                storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
+                date=timezone.now()
+            )
+        elif self.request.POST['submit'] == 'Decrease':
+            Transaction.objects.create(
+                subject=form.cleaned_data['description'],
+                created_by=self.request.user,
+                amount=form.cleaned_data['amount'] * -1,
+                storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
+                date=timezone.now()
+            )
+        return super(StorageItemTransactionAddView, self).form_valid(form)
+
+
+class StoragePlaceBulkAddView(FormView):
+    form_class = BulkStorageForm
+    success_url = reverse_lazy('storage_list')
+    template_name = 'pmgmt/storage/bulkadd.html'
+
+    # this is the callback when the form is valid!
+    def form_valid(self, form):
+        rows = form.cleaned_data['rows']
+        cols = form.cleaned_data['cols']
+        storagetype = form.cleaned_data['storagetype']
+        parentstorage = form.cleaned_data['parentstorage']
+        places = createExcelArray(rows, cols)
+        StoragePlace.createBulkStorage(storagetype, parentstorage, places)
+        return super(StoragePlaceBulkAddView, self).form_valid(form)
 
 
 class StorageItemMergeView(FormView):
@@ -468,15 +547,21 @@ class StorageItemMergeView(FormView):
     template_name = 'pmgmt/storageitem/merge.html'
 
     def form_valid(self, form):
-        si = StorageItem.objects.get(pk=self.kwargs["pk"])
+        storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
         try:
-            si.part.merge_storage_items(
-                si,
+            storageiitem.part.merge_storage_items(
+                storageiitem,
                 StorageItem.objects.get(pk=self.request.POST["storageitem1"]))
         except StorageItemIsTheSameException:
             pass
 
         return super(StorageItemMergeView, self).form_valid(form)
+
+
+class StorageItemToReviewListView(ListView):
+    model = StorageItem
+    template_name = 'pmgmt/storageitem/list_review.html'
+    queryset = StorageItem.objects.filter(needs_review=True)
 
 
 ########################################################################
@@ -496,6 +581,13 @@ class StoragePlaceAddView(CreateView):
 class StoragePlaceListView(ListView):
     model = StoragePlace
     template_name = 'pmgmt/storage/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
+
+
+class StoragePlaceListEmptyView(ListView):
+    model = StoragePlace
+    queryset = StoragePlace.objects.filter(storageitem=None)
+    template_name = 'pmgmt/storage/empty_list.html'
 
 
 class StoragePlaceDetailView(DetailView):
@@ -527,6 +619,7 @@ class StorageTypeAddView(CreateView):
 class StorageTypeListView(ListView):
     model = StorageType
     template_name = 'pmgmt/storagetype/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class StorageTypeDetailView(DetailView):

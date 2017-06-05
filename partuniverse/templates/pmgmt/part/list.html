@@ -23,13 +23,13 @@
    class="ui right blue ribbon label"
    href="{% url "part_add"%}"
    >
-  <i class="icon add"></i> Add
+  <i class="icon add"></i> {% trans "Add" %}
 </a>
 
 <p>
 </p>
 <form class="ui form" action="." method="GET">
-  <input type="text" name="search" placeholder="Search in part names" value="{{ view.search }}" />
+  <input type="text" name="search" placeholder="{% trans "Search in part names" %}" value="{{ view.search }}" />
 </form>
 
 {% if object_list %}

@@ -1,15 +1,50 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views
-from django.contrib import admin
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import RedirectView
-from django.views.generic import TemplateView
 
 
-from .views import *
+from .views import (
+    CategoryAddView,
+    CategoryDetailView,
+    CategoryList,
+    CategoryUpdateView,
+    DistributorAddView,
+    DistributorListView,
+    DistributorUpdateView,
+    DistributorView,
+    ManufacturerAddView,
+    ManufacturerListView,
+    ManufacturerUpdateView,
+    ManufacturerView,
+    PartDeleteView,
+    PartDetailView,
+    PartsAddView,
+    PartsList,
+    PartsReorderList,
+    PartUpdateView,
+    StorageItemAddView,
+    StorageItemDetailView,
+    StorageItemListView,
+    StorageItemMergeView,
+    StorageItemStockTakingView,
+    StorageItemToReviewListView,
+    StorageItemTransactionAddView,
+    StorageItemUpdateView,
+    StoragePlaceAddView,
+    StoragePlaceBulkAddView,
+    StoragePlaceDetailView,
+    StoragePlaceListView,
+    StoragePlaceListEmptyView,
+    StoragePlaceUpdateView,
+    StorageTypeAddView,
+    StorageTypeDetailView,
+    StorageTypeListView,
+    StorageTypeUpdateView,
+    TransactionAddView,
+    TransactionListView,
+    TransactionView
+)
 
 urlpatterns = [
     # Some general url pattern
@@ -68,11 +103,13 @@ urlpatterns = [
         name='distributor_update'),
     url(r'^distributor/(?P<pk>[\w]+)$', DistributorView.as_view(),
         name='distributor_detail'),
-    # Storage
+    # Storageitems
     url(r'^storageitem/add', login_required(StorageItemAddView.as_view()),
         name='storage_item_add'),
     url(r'^storageitem/list', StorageItemListView.as_view(),
         name='storage_item_list'),
+    url(r'^storageitem/reviewlist', StorageItemToReviewListView.as_view(),
+        name='storage_item_review_list'),
     url(r'^storageitem/(?P<pk>[\w]+)$', StorageItemDetailView.as_view(),
         name='storage_item_detail'),
     url(r'^storageitem/(?P<pk>[\w]+)/update/$', login_required(
@@ -81,11 +118,17 @@ urlpatterns = [
         StorageItemMergeView.as_view()), name='storage_item_merge'),
     url(r'^storageitem/(?P<pk>[\w]+)/stocktaking/$', login_required(
         StorageItemStockTakingView.as_view()), name='storage_item_stocktaking'),
+    url(r'^storageitem/(?P<pk>[\w]+)/addtransaction/$', login_required(
+        StorageItemTransactionAddView.as_view()), name='storage_item_transaction'),
     # Storage Place
     url(r'^storage/add', login_required(StoragePlaceAddView.as_view()),
         name='storage_add'),
+    url(r'^storage/bulkadd', login_required(StoragePlaceBulkAddView.as_view()),
+        name='storage_bulkadd'),
     url(r'^storage/list', StoragePlaceListView.as_view(),
         name='storage_list'),
+    url(r'^storage/empty_list', StoragePlaceListEmptyView.as_view(),
+        name='storage_empty_list'),
     url(r'^storage/(?P<pk>[\w]+)$', StoragePlaceDetailView.as_view(),
         name='storage_detail'),
     url(r'^storage/(?P<pk>[\w]+)/update/$', login_required(

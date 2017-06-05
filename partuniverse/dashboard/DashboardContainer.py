@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.template import RequestContext
-from dashboard.DashboardItem import DashboardItem
 from django.utils.safestring import mark_safe
 from django.template.loader import get_template
 
@@ -22,10 +21,10 @@ class DashboardContainer:
     def add(self, item):
         counter_inner = 0
         counter_outer = 0
-        for i in self.items:
+        for i in self.items:  # pylint: disable=W0612
             counter_inner = 0
-            for j in self.items[counter_outer]:
-                if (self.items[counter_outer][counter_inner] is None):
+            for j in self.items[counter_outer]:  # pylint: disable=W0612
+                if self.items[counter_outer][counter_inner] is None:
                     self.items[counter_outer][counter_inner] = item(self)
                     return self
                 counter_inner = counter_inner + 1
@@ -50,8 +49,12 @@ class DashboardContainer:
             })
             row_html = template_row.render(context)
             rows = rows + row_html
-        context = RequestContext(self.request, {
-                                 'rows': mark_safe(rows),
-                                 'dashboard': self})
+        context = RequestContext(
+            self.request,
+            {
+                'rows': mark_safe(rows),
+                'dashboard': self
+            }
+        )
         output = template_container.render(context)
         return mark_safe(output)

@@ -25,9 +25,14 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="ui attached segment">
+  <p>{% trans "Attention: The amount of change is the actual change. If you take out 1 item from a storage it's actually a -1 of amount." %}</p>
+</div>
+
 <form method="post" class="ui form">
   {% csrf_token %}
   {{ form|semanticui }}
-  <input class="ui blue button" type="submit" value="Submit">
+  <input class="ui blue button" type="submit" value="{% trans "Submit" %}">
 </form>
 {% endblock %}

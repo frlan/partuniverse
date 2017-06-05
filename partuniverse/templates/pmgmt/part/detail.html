@@ -43,7 +43,7 @@
 </tr>
 <tr>
     <td>{% trans "Measuring unit" %}</td>
-    <td>{{object.unit}}</td>
+    <td>{{object.get_unit_display}}</td>
 </tr>
 <tr>
     <td>{% trans "Costs" %}</td>
@@ -85,8 +85,7 @@
     <td class="top aligned">{% trans "Storages" %}</td>
     <td><ui class="list ui">
         {% for item in object.get_storage_items %}
-        <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item}}</a> &nbsp;
-            <a href="{% url "storage_detail" item.storage.id%}">{% trans "Storage:" %}{{item.storage}}</a>
+        <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item.storage}}</a>
         {% if item.on_stock %}
         ({{item.on_stock}})
         {% else %}

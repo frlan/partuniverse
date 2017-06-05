@@ -4,12 +4,12 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<a href="{% url "storage_item_list" %}" class="active section">{% trans "Storage Items" %}</a>
+<a href="{% url "storage_item_review_list" %}" class="active section">{% trans "Storage Items Review" %}</a>
 {% endblock %}
 
-{% block head_title %}{% trans "List of storages items" %}{% endblock %}
+{% block head_title %}{% trans "List of storages items which needs review" %}{% endblock %}
 
-{% block heading %}{% trans "List of storages items" %}{% endblock %}
+{% block heading %}{% trans "List of storages items needs review" %}{% endblock %}
 
 {% block javascripts %}
 {{ block.super }}
@@ -23,7 +23,7 @@
    class="ui right blue ribbon label"
    href="{% url "storage_item_add"%}"
    >
-  <i class="icon add"></i> {% trans "Add" %}
+  <i class="icon add"></i> Add
 </a>
 {% if object_list %}
 <table class="ui table segment sortable">
@@ -61,7 +61,6 @@
               <a class="item" href="{% url "storage_item_update" item.id %}">{% trans "Update" %}</a>
               <a class="item" href="{% url "storage_item_merge" item.id %}">{% trans "Merge Storage item" %}</a>
               <a class="item" href="{% url "storage_item_stocktaking" item.id  %}">{% trans "Stock taking" %}</a>
-              <a class="item" href="{% url "storage_item_transaction" item.id  %}">{% trans "Transaction" %}</a>
             </div>
             {% endif %}
           </div>

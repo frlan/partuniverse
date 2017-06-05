@@ -1,0 +1,17 @@
++{% extends "base.html" %}
+
+{% load i18n %}
+{% load semanticui %}
+{% load static %}
+{% block head_title %}{% trans "Bulkadd" %}{% endblock %}
+{% block heading %}{% trans "Bulkadd" %}{% endblock %}
+
+
+{% block content %}
+<p>{% trans "Bulk add multiple storage places as a rectangle given in rows and columns resulting in places like A1 or B22" %}</p>
+<form method="post" class="ui form segment">
+  {% csrf_token %}
+  {{ form|semanticui }}
+  <input class="ui button blue" type="submit" value="Submit">
+</form>
+{% endblock %}

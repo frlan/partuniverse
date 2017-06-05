@@ -2,12 +2,7 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views
-from django.contrib.auth.models import User
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
-from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
 from django.views.static import serve
 from partuniverse import views as partuniverse_view

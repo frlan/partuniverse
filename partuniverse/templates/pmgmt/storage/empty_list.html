@@ -7,9 +7,9 @@
 <a href="{% url "storage_list" %}" class="active section">{% trans "Storages" %}</a>
 {% endblock %}
 
-{% block head_title %}{% trans "List of storages" %}{% endblock %}
+{% block head_title %}{% trans "List of empty storages" %}{% endblock %}
 
-{% block heading %}{% trans "List of storages" %}{% endblock %}
+{% block heading %}{% trans "List of empty storages" %}{% endblock %}
 
 {% block javascripts %}
 {{ block.super }}
@@ -19,6 +19,9 @@
 
 
 {% block content %}
+<p>
+{% trans "Empty storage places are storage places, which don't have any storage item assigned." %}
+</p>
 <a
    accesskey="a"
    class="ui right blue ribbon label"

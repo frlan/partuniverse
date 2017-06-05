@@ -23,7 +23,7 @@
    class="ui right blue ribbon label"
    href="{% url "category_add"%}"
    >
-  <i class="icon add"></i> Add
+  <i class="icon add"></i> {% trans "Add" %}
 </a>
 
 {% if object_list %}
@@ -46,6 +46,16 @@
     {% endfor %}
   </tbody>
 </table>
+
+{% if is_paginated %}
+<div class="ui fluid pagination menu">
+  {% for number in page_obj.paginator.page_range %}
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "category_list" %}?page={{ number }}">
+    {{ number }}
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
 
 {% else %}
 <p>{% trans "No data available at the moment" %}</p>
