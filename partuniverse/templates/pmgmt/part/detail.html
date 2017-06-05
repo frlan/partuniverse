@@ -82,7 +82,7 @@
     <td>{% for i in object.categories.all %}<a href="{% url "category_detail" i.id %}">{{ i }}</a><br/>{% endfor %}</td>
 </tr>
 <tr>
-    <td class="top aligned">{% trans "Storages" %}</td>
+    <td class="top aligned">{% trans "Storage item" %}</td>
     <td><ui class="list ui">
         {% if object.get_storage_items %}
             {% for item in object.get_storage_items %}
