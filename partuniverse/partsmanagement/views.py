@@ -465,6 +465,27 @@ class StorageItemAddView(CreateView):
     template_name = 'pmgmt/storageitem/add.html'
 
 
+class StorageItemAddPartView(CreateView):
+    model = StorageItem
+    fields = ('storage', 'on_stock')
+    template_name = 'pmgmt/storageitem/add_part.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['part'] = Part.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        StorageItem.objects.create(
+            part=Part.objects.get(pk=self.kwargs["pk"]),
+            storage=form.cleaned_data['storage'],
+            on_stock=form.cleaned_data['on_stock'])
+        return HttpResponseRedirect(self.get_success_url())
+
+
 class StorageItemListView(ListView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/list.html'
