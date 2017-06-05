@@ -15,5 +15,4 @@ def dashboard(request):
         'dashboard': dashboard,
         'user': request.user
     })
-    print(context.__dict__)
     return HttpResponse(template.render(context))
