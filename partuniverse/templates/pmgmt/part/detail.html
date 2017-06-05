@@ -93,9 +93,8 @@
             {% trans "(unknown quantity on stock)" %}
             {% endif %}</li>
             {% endfor %}
-        {% else %}
-        <li><a href="{% url "storage_item_add" %}">{% trans "Add" %}</a></li>
         {% endif %}
+        <li><a href="{% url "storage_item_add" %}">{% trans "Add new" %}</a></li>
     </ui>
     </td>
 </tr>
