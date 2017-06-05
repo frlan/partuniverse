@@ -7,12 +7,13 @@
 <a href="{% url "storage_item_add" %}" class="active section">{% trans "Storage Item Add" %}</a>
 {% endblock %}
 
-{% block head_title %}{% trans "Add a storages item" %}{% endblock %}
+{% block head_title %}{% trans "Add a storage item" %}{% endblock %}
 
-{% block heading %}{% trans "Add a storages item" %}{% endblock %}
+{% block heading %}{% trans "Add a storage item" %}{% endblock %}
 
 {% block content %}
-<p>{% trans "Use this to add new storage items, which are parts on a decent storage place" %}</p>
+<p>{% trans "Use this to add a new storage items, which is a combination
+    of a part a decent storage place. Actually: Where can I find this particular part." %}</p>
 <form method="post" class="ui form" >
   {% csrf_token %}
   {{ form|semanticui }}
