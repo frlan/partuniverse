@@ -17,6 +17,6 @@
 <form method="post" class="ui form"  enctype="multipart/form-data">
 {% csrf_token %}
 {{form|semanticui}}
-<input type="submit" value="Submit" class="ui blue button">
+<input type="submit" value="{% trans "Add" %}" class="ui blue button">
 </form>
 {% endblock %}
