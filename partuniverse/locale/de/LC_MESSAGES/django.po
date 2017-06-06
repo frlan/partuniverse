@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 17:53+0000\n"
+"POT-Creation-Date: 2017-06-06 17:07+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -1073,18 +1073,24 @@ msgstr "Schnellstart"
 msgid "Storage places"
 msgstr "Lagerplätze"
 
-#: templates/pmgmt/category/add.html:9 templates/pmgmt/category/list.html:26
-#: templates/pmgmt/distributor/add.html:9
+#: templates/pmgmt/category/add.html:9 templates/pmgmt/category/add.html:20
+#: templates/pmgmt/category/list.html:26 templates/pmgmt/distributor/add.html:9
+#: templates/pmgmt/distributor/add.html:20
 #: templates/pmgmt/distributor/list.html:26
 #: templates/pmgmt/manufacturer/add.html:9
+#: templates/pmgmt/manufacturer/add.html:20
 #: templates/pmgmt/manufacturer/list.html:26 templates/pmgmt/part/add.html:9
-#: templates/pmgmt/part/list.html:26 templates/pmgmt/storage/add.html:9
+#: templates/pmgmt/part/add.html:20 templates/pmgmt/part/list.html:26
+#: templates/pmgmt/storage/add.html:9 templates/pmgmt/storage/add.html:22
+#: templates/pmgmt/storage/bulkadd.html:15
 #: templates/pmgmt/storage/empty_list.html:30
-#: templates/pmgmt/storage/list.html:27
+#: templates/pmgmt/storage/list.html:27 templates/pmgmt/storageitem/add.html:20
+#: templates/pmgmt/storageitem/add_part.html:21
 #: templates/pmgmt/storageitem/list.html:26
 #: templates/pmgmt/storagetype/add.html:9
 #: templates/pmgmt/storagetype/list.html:27
 #: templates/pmgmt/transaction/add.html:10
+#: templates/pmgmt/transaction/add.html:36
 #: templates/pmgmt/transaction/list.html:19
 msgid "Add"
 msgstr "Hinzufügen"
@@ -1247,10 +1253,9 @@ msgid "No description available."
 msgstr "Keine Beschreibung verfügbar."
 
 #: templates/pmgmt/part/detail.html:85
-#, fuzzy
 #| msgid "Storage Items"
 msgid "Storage Item(s)"
-msgstr "Einlagerungen"
+msgstr "Einlagerung(en)"
 
 #: templates/pmgmt/part/detail.html:89
 msgid "Storage Item:"
@@ -1309,7 +1314,7 @@ msgstr "Teile, die neu bestellt werden müssen"
 msgid "It appears no part needs reordering."
 msgstr "Keine neu zu bestellenden Teile bekannt."
 
-#: templates/pmgmt/part/update.html:22 templates/pmgmt/transaction/add.html:36
+#: templates/pmgmt/part/update.html:22
 msgid "Submit"
 msgstr "Übertragen"
 
@@ -1373,7 +1378,6 @@ msgstr "Dinge hier zu finden"
 
 #: templates/pmgmt/storage/empty_list.html:10
 #: templates/pmgmt/storage/empty_list.html:12
-#| msgid "List of storages"
 msgid "List of empty storages"
 msgstr "Liste der leeren Lager"
 
@@ -1381,7 +1385,9 @@ msgstr "Liste der leeren Lager"
 msgid ""
 "Empty storage places are storage places, which don't have any storage item "
 "assigned."
-msgstr "Leere Lagerplätze sind solche, die noch keiner Einlagerung zugewiesne sind und so potentiell frei genutzt werden können."
+msgstr ""
+"Leere Lagerplätze sind solche, die noch keiner Einlagerung zugewiesne sind "
+"und so potentiell frei genutzt werden können."
 
 #: templates/pmgmt/storage/empty_list.html:47
 #: templates/pmgmt/storage/list.html:44
@@ -1415,18 +1421,17 @@ msgstr "Einlagerung hinzufügen"
 #: templates/pmgmt/storageitem/add.html:12
 #: templates/pmgmt/storageitem/add_part.html:10
 #: templates/pmgmt/storageitem/add_part.html:12
-#| msgid "Add a storages item"
 msgid "Add a storage item"
 msgstr "Eine neue Einlagerung anlegen"
 
-#: templates/pmgmt/storageitem/add_part.html:15
+#: templates/pmgmt/storageitem/add_part.html:16
 #, python-format
 msgid ""
 " Add a new storage item for the part «%(part)s» to help to find it inside "
 "the storage and keep track on its inventory. "
 msgstr ""
-"Eine neue Einlaguner für das Teil »%(part)s« anlegen. Dies hilft, "
-"dieses Teil im Lager zu finden und den Bestand zu führen."
+"Eine neue Einlaguner für das Teil »%(part)s« anlegen. Dies hilft, dieses "
+"Teil im Lager zu finden und den Bestand zu führen."
 
 #: templates/pmgmt/storageitem/detail.html:20
 msgid ""
