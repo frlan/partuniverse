@@ -11,7 +11,7 @@ def is_img(fileob):
 
 def validate_file_extension(value):
     try:
-        if not is_pdf(value.file) or not is_img(value.file):
+        if not (is_pdf(value.file) or is_img(value.file)):
             raise ValidationError(u'Filetype not supported')
     except AttributeError:
         pass
