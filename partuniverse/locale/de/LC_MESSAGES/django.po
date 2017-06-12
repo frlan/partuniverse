@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 17:07+0000\n"
+"POT-Creation-Date: 2017-06-12 16:52+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -417,7 +417,7 @@ msgstr "Ein Bild des Teiles."
 msgid "The URL of the original image."
 msgstr "Die URL des originalen Bildes."
 
-#: partsmanagement/models.py:425 templates/pmgmt/part/detail.html:103
+#: partsmanagement/models.py:425 templates/pmgmt/part/detail.html:105
 msgid "Data sheet"
 msgstr "Datenblatt"
 
@@ -1101,7 +1101,7 @@ msgstr "Ein neue Kategorie anlegen"
 
 #: templates/pmgmt/category/detail.html:45
 #: templates/pmgmt/distributor/detail.html:45
-#: templates/pmgmt/part/detail.html:123 templates/pmgmt/part/update.html:11
+#: templates/pmgmt/part/detail.html:125 templates/pmgmt/part/update.html:11
 #: templates/pmgmt/storage/detail.html:78
 #: templates/pmgmt/storageitem/detail.html:44
 #: templates/pmgmt/storagetype/detail.html:58
@@ -1253,27 +1253,32 @@ msgid "No description available."
 msgstr "Keine Beschreibung verfügbar."
 
 #: templates/pmgmt/part/detail.html:85
-#| msgid "Storage Items"
 msgid "Storage Item(s)"
 msgstr "Einlagerung(en)"
 
-#: templates/pmgmt/part/detail.html:89
-msgid "Storage Item:"
-msgstr "Einlagerung:"
+#: templates/pmgmt/part/detail.html:91
+#| msgid "Update item"
+msgid "Update stock"
+msgstr "Bestand ändern"
 
 #: templates/pmgmt/part/detail.html:93
 msgid "(unknown quantity on stock)"
 msgstr "(Menge unbekannt)"
 
-#: templates/pmgmt/part/detail.html:97
+#: templates/pmgmt/part/detail.html:95
+#| msgid "no Details"
+msgid "Detail"
+msgstr "Mehr"
+
+#: templates/pmgmt/part/detail.html:99
 msgid "Add new"
 msgstr "Neu"
 
-#: templates/pmgmt/part/detail.html:116
+#: templates/pmgmt/part/detail.html:118
 msgid "No picture available"
 msgstr "Keine passenden Bild verfügbar."
 
-#: templates/pmgmt/part/detail.html:125
+#: templates/pmgmt/part/detail.html:127
 msgid "Delete item"
 msgstr "Teil löschen"
 
@@ -1575,6 +1580,9 @@ msgstr "Wie viel"
 #: templates/pmgmt/transaction/list.html:28
 msgid "When"
 msgstr "Wann"
+
+#~ msgid "Storage Item:"
+#~ msgstr "Einlagerung:"
 
 #~| msgid "Storage items"
 #~ msgid "Storage item"
