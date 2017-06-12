@@ -86,12 +86,14 @@
     <td><ui class="list ui">
         {% if object.get_storage_items %}
             {% for item in object.get_storage_items %}
-            <li><a href="{% url "storage_item_detail" item.id %}">{% trans "Storage Item:" %} {{item.storage}}</a>
+            <li><a href="{% url "storage_item_detail" item.id %}">{{item.storage}}</a>
             {% if item.on_stock %}
-            ({{item.on_stock}})
+            ({{item.on_stock}}) &nbsp;<a href="{% url "storage_item_transaction" item.id %}">{% trans "Update stock" %}</a>
             {% else %}
             {% trans "(unknown quantity on stock)" %}
-            {% endif %}</li>
+            {% endif %}
+            &nbsp;<a href="[% "storage_item_detail" item.id %}">{% trans "Detail" %}</a>
+            </li>
             {% endfor %}
         {% endif %}
         <li><a href="{% url "part_add_storage_item" object.id %}">{% trans "Add new" %}</a></li>
