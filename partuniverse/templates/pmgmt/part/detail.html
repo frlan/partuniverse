@@ -92,7 +92,7 @@
             {% else %}
             {% trans "(unknown quantity on stock)" %}
             {% endif %}
-            &nbsp;<a href="[% "storage_item_detail" item.id %}">{% trans "Detail" %}</a>
+            &nbsp;<a href="{% "storage_item_detail" item.id %}">{% trans "Detail" %}</a>
             </li>
             {% endfor %}
         {% endif %}
