@@ -61,7 +61,7 @@ First you will have to create the Database:
 
         $ ./bin/django migrate
 
-Create you superuser:
+Create your superuser:
 
         $ .bin/django createsuperuser
 
