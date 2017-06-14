@@ -83,22 +83,21 @@
 </tr>
 <tr>
     <td class="top aligned">{% trans "Storage Item(s)" %}</td>
-    <td><ui class="list ui">
+    <td><div class="ui relaxed divided list">
         {% if object.get_storage_items %}
             {% for item in object.get_storage_items %}
-            <li><a href="{% url "storage_item_detail" item.id %}">{{item.storage}}</a>
+            <div class="item"><div class="content"><div class="header"><a href="{% url "storage_item_detail" item.id %}">{{item.storage}}</a></div>
             {% if item.on_stock %}
-            ({{item.on_stock}}) &nbsp;<a href="{% url "storage_item_transaction" item.id %}">{% trans "Update stock" %}</a>
+            ({{item.on_stock}}) <a href="{% url "storage_item_transaction" item.id %}" class="ui button mini teal right floated compact">{% trans "Update stock" %}</a>
             {% else %}
             {% trans "(unknown quantity on stock)" %}
             {% endif %}
-            &nbsp;<a href="{% url "storage_item_detail" item.id %}">{% trans "Detail" %}</a>
-            </li>
+            <a href="{% url "storage_item_detail" item.id %}" class="ui button mini teal right floated compact">{% trans "Detail" %}</a>
+            </div></div>
             {% endfor %}
         {% endif %}
-        <li><a href="{% url "part_add_storage_item" object.id %}">{% trans "Add new" %}</a></li>
-    </ui>
-    </td>
+        <div class="item"><a href="{% url "part_add_storage_item" object.id %}" class="ui button mini blue right floated compact">{% trans "Add new" %}</a></div>
+    </div></td>
 </tr>
 {% if object.data_sheet %}
 <tr>
