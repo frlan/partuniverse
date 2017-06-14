@@ -61,6 +61,9 @@ First you will have to create the Database:
 
         $ ./bin/django migrate
 
+Create you superuser:
+
+        $ .bin/django createsuperuser
 
 If everything worked well, you can start the server (in debug mode):
 
