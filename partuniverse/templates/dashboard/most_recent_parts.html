@@ -2,25 +2,21 @@
 
 {% load humanize %}
 {% load mathfilters %}
-
 {% if parts|length > 0 %}
-<div class="ui divided items">
-  <h4>{% trans "Recent parts" %}</h4>
+<h4>{% trans "Recent parts" %}</h4>
+<div class="ui divider"></div>
+<div class="ui small feed">
   {% for part in parts %}
-  <div class="item">
+  <div class="event">
     <div class="content">
-      <div class="header">
+       <div class="summary">
         <a href="{% url "part_detail" part.id %}">{{ part.name }}</a>
-      </div>
-      <div class="meta">
-        <span class="date">
-          {{ part.creation_time }}
-        </span>
-      </div>
-      <div class="description">
-        <p>
-          {{ part.created_by }}
-        </p>
+        <div class="date"  data-tooltip="{{ part.creation_time }}">
+          {{ part.creation_time | naturaltime }} by 
+          <a class="user">
+            {{ part.created_by }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
