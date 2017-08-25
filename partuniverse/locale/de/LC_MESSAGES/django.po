@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 16:52+0000\n"
+"POT-Creation-Date: 2017-08-25 17:22+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -367,7 +367,7 @@ msgstr "Eine Kategorie kann nicht Teil ihrer selbst sein."
 msgid "Category"
 msgstr "Kategorie"
 
-#: partsmanagement/models.py:369 templates/base.html:52 templates/index.html:13
+#: partsmanagement/models.py:369 templates/base.html:52 templates/index.html:19
 #: templates/pmgmt/category/detail.html:6 templates/pmgmt/category/list.html:7
 #: templates/pmgmt/category/update.html:7 templates/pmgmt/part/detail.html:81
 msgid "Categories"
@@ -417,7 +417,7 @@ msgstr "Ein Bild des Teiles."
 msgid "The URL of the original image."
 msgstr "Die URL des originalen Bildes."
 
-#: partsmanagement/models.py:425 templates/pmgmt/part/detail.html:105
+#: partsmanagement/models.py:425 templates/pmgmt/part/detail.html:104
 msgid "Data sheet"
 msgstr "Datenblatt"
 
@@ -463,7 +463,7 @@ msgstr "Zeigt ab, ob das Teil aktiv oder inaktiv ist."
 msgid "Part"
 msgstr "Teil"
 
-#: partsmanagement/models.py:580 templates/base.html:29 templates/index.html:11
+#: partsmanagement/models.py:580 templates/base.html:29 templates/index.html:17
 #: templates/pmgmt/category/detail.html:33 templates/pmgmt/part/add.html:7
 #: templates/pmgmt/part/delete.html:6 templates/pmgmt/part/detail.html:7
 #: templates/pmgmt/part/list.html:7 templates/pmgmt/part/update.html:7
@@ -986,11 +986,11 @@ msgstr "Registrieren"
 msgid "Help"
 msgstr "Hilfe"
 
-#: templates/dashboard/most_recent_parts.html:8
+#: templates/dashboard/most_recent_parts.html:6
 msgid "Recent parts"
 msgstr "Neuste Teile"
 
-#: templates/dashboard/most_recent_parts.html:32
+#: templates/dashboard/most_recent_parts.html:28
 msgid "No new parts."
 msgstr "Keine neuen Teile."
 
@@ -1069,7 +1069,16 @@ msgstr "Willkommen bei Partuniverse"
 msgid "Quick start"
 msgstr "Schnellstart"
 
-#: templates/index.html:12
+#: templates/index.html:10
+#| msgid "Quick start"
+msgid "Quicksearch"
+msgstr "Schnellsuche"
+
+#: templates/index.html:12 templates/pmgmt/part/list.html:32
+msgid "Search in part names"
+msgstr "In Teilenamen suchen"
+
+#: templates/index.html:18
 msgid "Storage places"
 msgstr "Lagerplätze"
 
@@ -1101,7 +1110,7 @@ msgstr "Ein neue Kategorie anlegen"
 
 #: templates/pmgmt/category/detail.html:45
 #: templates/pmgmt/distributor/detail.html:45
-#: templates/pmgmt/part/detail.html:125 templates/pmgmt/part/update.html:11
+#: templates/pmgmt/part/detail.html:124 templates/pmgmt/part/update.html:11
 #: templates/pmgmt/storage/detail.html:78
 #: templates/pmgmt/storageitem/detail.html:44
 #: templates/pmgmt/storagetype/detail.html:58
@@ -1257,7 +1266,6 @@ msgid "Storage Item(s)"
 msgstr "Einlagerung(en)"
 
 #: templates/pmgmt/part/detail.html:91
-#| msgid "Update item"
 msgid "Update stock"
 msgstr "Bestand ändern"
 
@@ -1266,7 +1274,6 @@ msgid "(unknown quantity on stock)"
 msgstr "(Menge unbekannt)"
 
 #: templates/pmgmt/part/detail.html:95
-#| msgid "no Details"
 msgid "Detail"
 msgstr "Mehr"
 
@@ -1274,21 +1281,17 @@ msgstr "Mehr"
 msgid "Add new"
 msgstr "Neu"
 
-#: templates/pmgmt/part/detail.html:118
+#: templates/pmgmt/part/detail.html:117
 msgid "No picture available"
 msgstr "Keine passenden Bild verfügbar."
 
-#: templates/pmgmt/part/detail.html:127
+#: templates/pmgmt/part/detail.html:126
 msgid "Delete item"
 msgstr "Teil löschen"
 
 #: templates/pmgmt/part/list.html:10 templates/pmgmt/part/list.html:12
 msgid "List of parts"
 msgstr "Teileliste"
-
-#: templates/pmgmt/part/list.html:32
-msgid "Search in part names"
-msgstr "In Teilenamen suchen"
 
 #: templates/pmgmt/part/list.html:53 templates/pmgmt/part/reorderlist.html:38
 msgid "Minimum"
