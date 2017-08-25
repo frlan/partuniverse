@@ -6,6 +6,12 @@
 
 {% block content %}
 	<h2 class="ui top attached header">{% trans "Quick start" %}</h2>
+	<div class="ui attached segment"
+	<h3>{% trans "Quicksearch" %}</h3>
+	<form class="ui attached segment form" action={% url "part_list" %} method="GET">
+		<input type="text" name="search" placeholder="{% trans "Search in part names" %}" value="{{ view.search }}" />
+	</form>
+	</div>
 	<div class="ui attached segment">
 		<ul>
 			<li><a href="{% url "part_list" %}">{% trans "Parts" %}</a></li>
