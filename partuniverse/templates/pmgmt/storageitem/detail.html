@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 	    <td>{% trans "On Stock" %}</td>
-	    {% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}</td> {% endif %}
+	    {% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}{{object.part.unit}}</td> {% endif %}
 	</tr>
     </table>
 </div>
