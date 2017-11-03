@@ -501,7 +501,8 @@ class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
               'storage',
-              'needs_review')
+              'needs_review',
+              'review_reason')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 

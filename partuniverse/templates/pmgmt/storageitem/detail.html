@@ -18,6 +18,11 @@
 {% if object.needs_review %}
 <div class="ui error message segment">
     <p>{% trans "The storage item has been marked as to needs a review. Would you mind to check whether the part is really at this place and/or the amount registered inside the storage is correct?" %}</p>
+    {% if object.review_reason %}
+	<p><strong>{% trans "Reason:" %}</strong></p>
+	<p> {{ object.review_reason }}</p>
+    {% endif %}
+
 </div>
 {% endif %}
 

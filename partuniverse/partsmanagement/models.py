@@ -604,6 +604,12 @@ class StorageItem(models.Model):
         default=False,
         help_text=_("Whether this storage item might be wrong")
     )
+    review_reason = models.TextField(
+        _("Reason for Review"),
+        blank=True,
+        null=True,
+        help_text=_("Put reason, why this item should be reviewed here in.")
+    )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
