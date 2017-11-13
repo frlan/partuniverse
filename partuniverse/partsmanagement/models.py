@@ -110,6 +110,13 @@ class StoragePlace(models.Model):
         StorageType,
         help_text=_("Of which type is the storage place.")
     )
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        verbose_name=_("Owned by"),
+        help_text=_("The user who is responsible for the storage.")
+    )
     parent = models.ForeignKey(
         "self",
         null=True,

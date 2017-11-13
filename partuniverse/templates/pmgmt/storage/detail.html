@@ -39,6 +39,13 @@
           <td>{{object.description}}</td>
       {% endif %}
   </tr>
+  {% if object.owner %}
+  <tr>
+      <td>{% trans "Owner" %}</td>
+      <td>{{object.owner}}</td>
+  </tr>
+
+  {% endif %}
   {% if object.parent %}
   <tr>
       <td>{% trans "Parent storage" %}</td>

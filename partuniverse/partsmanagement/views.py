@@ -596,6 +596,7 @@ class StoragePlaceAddView(CreateView):
     success_url = reverse_lazy('storage_list')
     fields = ('name',
               'storage_type',
+              'owner',
               'description',
               'pic',
               'parent')
@@ -624,6 +625,7 @@ class StoragePlaceUpdateView(UpdateView):
     template_name = 'pmgmt/storage/update.html'
     fields = ('name',
               'storage_type',
+              'owner',
               'description',
               'pic',
               'parent')
