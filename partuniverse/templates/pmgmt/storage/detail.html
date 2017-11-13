@@ -82,7 +82,10 @@
 {% endif %}
 
 {% if user.is_authenticated %}
-<p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a> </p>
+<div class="ui stackable one column grid">
+    <p><a class="ui button blue" href="{% url "storage_update" object.id %}">{% trans "Update item" %}</a> </p>
+</div>
+
 {% endif %}
 
 {% endblock %}
