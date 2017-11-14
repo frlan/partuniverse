@@ -467,7 +467,7 @@ class StorageItemAddView(CreateView):
 
 class StorageItemAddPartView(CreateView):
     model = StorageItem
-    fields = ('storage', 'on_stock')
+    fields = ('storage', 'on_stock', 'owner')
     template_name = 'pmgmt/storageitem/add_part.html'
 
     def get_context_data(self, **kwargs):
@@ -501,6 +501,7 @@ class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
               'storage',
+              'owner',
               'needs_review',
               'review_reason')
     template_name = 'pmgmt/storageitem/update.html'

@@ -622,9 +622,22 @@ class StorageItem(models.Model):
         default=False,
         help_text=_("Whether the storage item is active.")
     )
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        verbose_name=_("Owned by"),
+        help_text=_("The user owning items of this storageitem.")
+    )
 
     def __str__(self):
         return u'%s; %s' % (self.part, self.storage)
+
+    @property
+    def get_owner(self):
+        # Return either owner of storage item or the owner of the
+        # storage. If nobody owns the storage, it returns None
+        return self.owner if self.owner else self.storage.owner
 
     def stock_report(self, new_on_stock, requested_user):
         if new_on_stock < 0:
@@ -649,7 +662,7 @@ class StorageItem(models.Model):
             )
 
     class Meta:
-        unique_together = ("part", "storage")
+        unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
         verbose_name_plural = _("Storage Items")
         ordering = ['storage', 'part']

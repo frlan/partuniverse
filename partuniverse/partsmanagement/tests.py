@@ -736,6 +736,78 @@ class ItemOutOfStockTestCase(TestCase):
 ########################################################################
 # Storage item
 ########################################################################
+class StorageItemOwnerTestCase(TestCase):
+    def setUp(self):
+        # Setting up categories
+        self.cat = Category.objects.create(name=u'Category 1')
+
+        # Setting up test user
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret')
+
+        self.user2 = User.objects.create_user(
+            username='jochen',
+            email='jochen@foo.baa',
+            password='top_secret')
+
+        # Basis setting of storage
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace1 = StoragePlace.objects.create(
+            name=u'Test Storage1',
+            storage_type=self.storagetype)
+        self.storageplace2 = StoragePlace.objects.create(
+            name=u'Test Storage2',
+            storage_type=self.storagetype,
+            owner=self.user)
+
+        # Part
+        self.part1 = Part.objects.create(
+            name=u'Test Part 1',
+            unit='m',
+            sku=u'tp1',
+            creation_time=timezone.now(),
+            created_by=self.user)
+
+    def test_storageitem_without_owner_and_storage_without_owner(self):
+        si1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace1,
+            on_stock=25)
+        self.assertIsNone(si1.get_owner)
+
+    def test_storageitem_without_owner_and_storage_with_owner(self):
+        si1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace2,
+            owner=self.user,
+            on_stock=25)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user.id)
+
+    def test_storageitem_with_owner_and_storage_without_owner(self):
+        si1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace1,
+            owner=self.user,
+            on_stock=25)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user.id)
+
+    def test_storageitem_with_owner_and_storage_with_owner(self):
+        """
+        In this case the storage item will override the storage place
+        """
+        si1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace1,
+            owner=self.user2,
+            on_stock=25)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user2.id)
+
+
 class StorageItemsMergeTestCase(TestCase):
     """
     To check, whether the merging of two storage items is working
