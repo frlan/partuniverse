@@ -795,7 +795,6 @@ class StorageItemOwnerTestCase(TestCase):
         self.assertIsNotNone(si1.get_owner())
         self.assertEqual(si1.get_owner().id, self.user.id)
 
-
     def test_storageitem_with_owner_and_storage_with_owner(self):
         """
         In this case the storage item will override the storage place
@@ -807,7 +806,6 @@ class StorageItemOwnerTestCase(TestCase):
             on_stock=25)
         self.assertIsNotNone(si1.get_owner())
         self.assertEqual(si1.get_owner().id, self.user2.id)
-
 
 
 class StorageItemsMergeTestCase(TestCase):
