@@ -29,7 +29,7 @@ class TransactionForm(forms.Form):
         label=_("Difference"),
         max_digits=10,
         decimal_places=4,
-        help_text=_("Die amount of items taken/put to storage."))
+        help_text=_("The amount of items taken/put to storage."))
 
 
 class StorageItemAddTransactionForm(forms.Form):
