@@ -775,7 +775,7 @@ class StorageItemOwnerTestCase(TestCase):
             part=self.part1,
             storage=self.storageplace1,
             on_stock=25)
-        self.assertIsNone(si1.get_owner())
+        self.assertIsNone(si1.get_owner)
 
     def test_storageitem_without_owner_and_storage_with_owner(self):
         si1 = StorageItem.objects.create(
@@ -783,8 +783,8 @@ class StorageItemOwnerTestCase(TestCase):
             storage=self.storageplace2,
             owner=self.user,
             on_stock=25)
-        self.assertIsNotNone(si1.get_owner())
-        self.assertEqual(si1.get_owner().id, self.user.id)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user.id)
 
     def test_storageitem_with_owner_and_storage_without_owner(self):
         si1 = StorageItem.objects.create(
@@ -792,8 +792,8 @@ class StorageItemOwnerTestCase(TestCase):
             storage=self.storageplace1,
             owner=self.user,
             on_stock=25)
-        self.assertIsNotNone(si1.get_owner())
-        self.assertEqual(si1.get_owner().id, self.user.id)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user.id)
 
     def test_storageitem_with_owner_and_storage_with_owner(self):
         """
@@ -804,8 +804,8 @@ class StorageItemOwnerTestCase(TestCase):
             storage=self.storageplace1,
             owner=self.user2,
             on_stock=25)
-        self.assertIsNotNone(si1.get_owner())
-        self.assertEqual(si1.get_owner().id, self.user2.id)
+        self.assertIsNotNone(si1.get_owner)
+        self.assertEqual(si1.get_owner.id, self.user2.id)
 
 
 class StorageItemsMergeTestCase(TestCase):
