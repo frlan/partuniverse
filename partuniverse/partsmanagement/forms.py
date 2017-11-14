@@ -32,6 +32,19 @@ class TransactionForm(forms.Form):
         help_text=_("Die amount of items taken/put to storage."))
 
 
+class StorageItemAddTransactionForm(forms.Form):
+    description = forms.CharField(
+        label=_("Description"),
+        max_length=50)
+    amount = forms.DecimalField(
+        label=_("Difference"),
+        max_digits=10,
+        decimal_places=4,
+        min_value=0,
+        help_text=_("The amount of items taken/put to storage. "
+                    "Positiv values only"))
+
+
 class BulkStorageForm(forms.Form):
     storagetype = forms.ModelChoiceField(
         queryset=StorageType.objects.all(),

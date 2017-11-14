@@ -27,7 +27,8 @@ from .forms import (
     StockTakingForm,
     MergeStorageItemsForm,
     TransactionForm,
-    BulkStorageForm
+    BulkStorageForm,
+    StorageItemAddTransactionForm
 )
 
 from .models import (
@@ -521,7 +522,7 @@ class StorageItemStockTakingView(FormView):
 
 
 class StorageItemTransactionAddView(FormView):
-    form_class = TransactionForm
+    form_class = StorageItemAddTransactionForm
     success_url = reverse_lazy('storage_item_list')
     template_name = 'pmgmt/storageitem/transaction.html'
 
@@ -531,7 +532,7 @@ class StorageItemTransactionAddView(FormView):
         return context
 
     def form_valid(self, form):
-        if self.request.POST['submit'] == 'Increase':
+        if self.request.POST['submit'] == '+':
             Transaction.objects.create(
                 subject=form.cleaned_data['description'],
                 created_by=self.request.user,
@@ -539,7 +540,7 @@ class StorageItemTransactionAddView(FormView):
                 storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
                 date=timezone.now()
             )
-        elif self.request.POST['submit'] == 'Decrease':
+        elif self.request.POST['submit'] == '-':
             Transaction.objects.create(
                 subject=form.cleaned_data['description'],
                 created_by=self.request.user,
