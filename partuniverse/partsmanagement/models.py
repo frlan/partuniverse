@@ -633,6 +633,7 @@ class StorageItem(models.Model):
     def __str__(self):
         return u'%s; %s' % (self.part, self.storage)
 
+    @property
     def get_owner(self):
         # Return either owner of storage item or the owner of the
         # storage. If nobody owns the storage, it returns None
