@@ -42,7 +42,7 @@ class StorageItemAddTransactionForm(forms.Form):
         decimal_places=4,
         min_value=0,
         help_text=_("The amount of items taken/put to storage. "
-                    "Positiv values only"))
+                    "Positiv values only."))
 
 
 class BulkStorageForm(forms.Form):
