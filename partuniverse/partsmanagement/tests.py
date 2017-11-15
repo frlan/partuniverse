@@ -737,6 +737,10 @@ class ItemOutOfStockTestCase(TestCase):
 # Storage item
 ########################################################################
 class StorageItemOwnerTestCase(TestCase):
+    """
+    Tests to see whether the owner of a storage/storage item is correct populated to the 
+    storageitem 
+    """
     def setUp(self):
         # Setting up categories
         self.cat = Category.objects.create(name=u'Category 1')
