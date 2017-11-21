@@ -13,6 +13,8 @@ gunicorn==19.6.0
 imagesize==0.7.1
 Jinja2==2.8
 MarkupSafe==0.23
+olefile==0.44
 pep8==1.7.0
+Pillow==4.3.0
 pkg-resources==0.0.0
 pytz==2016.4
