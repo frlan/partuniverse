@@ -22,7 +22,6 @@
   <thead>
     <tr>
       <th>{% trans "What" %}</th>
-      <th>{% trans "State" %}</th>
       <th>{% trans "Why" %}</th>
       <th>{% trans "How much" %}</th>
       <th>{% trans "When" %}</th>
@@ -33,11 +32,6 @@
     {% for item in object_list %}
     <tr>
       <td>{{ item.storage_item }}</td>
-      {% if item.state == '---' %}
-          <td></td>
-      {% else %}
-          <td>{{ item.state }} </td>
-      {% endif %}
       <td><a href="{% url "transaction_detail" item.id%}">{{ item.subject }}</a></td>
       <td>{{ item.amount|floatformat }}</td>
       <td>{{ item.date }}</td>
