@@ -195,7 +195,11 @@ class StoragePlace(models.Model):
         result.extend(list(self.storageitem_set.all()))
         if storages:
             for storage in storages:
-                result.extend(storage.storageitem_set.all().order_by('part'))
+                result.extend(
+                    storage.storageitem_set.all().exclude(
+                        disabled='True'
+                    ).order_by('part')
+                )
         sorted_list = sorted(result, key=lambda x: x.part.name)
         return sorted_list
 
