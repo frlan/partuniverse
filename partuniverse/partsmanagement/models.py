@@ -493,7 +493,7 @@ class Part(models.Model):
 
     def get_storage_items(self):
         tmp = self.storageitem_set.all().exclude(disabled='True')
-        tmp = sorted(tmp, key=lambda x : x.__str__())
+        tmp = sorted(tmp, key=lambda x: x.__str__())
         if tmp:
             return tmp
         else:
