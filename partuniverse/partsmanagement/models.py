@@ -459,6 +459,7 @@ class Part(models.Model):
         verbose_name=_("Manufacturer"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The manufacturer of the part.")
     )
     distributor = models.ForeignKey(
