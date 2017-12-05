@@ -127,7 +127,7 @@ class StoragePlace(models.Model):
         "self",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name=_("Parent storage"),
         help_text=_("The storage the current storage is part of.")
     )
