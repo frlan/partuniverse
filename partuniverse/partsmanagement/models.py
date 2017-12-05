@@ -296,6 +296,9 @@ class Distributor(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("User who created the distributor.")
     )
