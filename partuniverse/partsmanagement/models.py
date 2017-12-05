@@ -250,6 +250,9 @@ class Manufacturer(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("The user the manufacturer was created by.")
     )
