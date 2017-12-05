@@ -325,6 +325,7 @@ class Category(models.Model):
         "self",
         null=True,
         blank=True,
+        on_detete=CASCADE,
         help_text=_("If having a subcateogry, the parent.")
     )
     description = models.TextField(
