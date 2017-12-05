@@ -467,6 +467,7 @@ class Part(models.Model):
         verbose_name=_("Distributor"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The usual distributor of the part.")
     )
     price = models.DecimalField(
