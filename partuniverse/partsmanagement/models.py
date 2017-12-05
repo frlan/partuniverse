@@ -110,19 +110,24 @@ class StoragePlace(models.Model):
     )
     storage_type = models.ForeignKey(
         StorageType,
-        help_text=_("Of which type is the storage place.")
+        help_text=_("Of which type is the storage place."),
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
     )
     owner = models.ForeignKey(
         User,
         null=True,
         blank=True,
         verbose_name=_("Owned by"),
-        help_text=_("The user who is responsible for the storage.")
+        help_text=_("The user who is responsible for the storage."),
+        on_delete=models.SET_NULL
     )
     parent = models.ForeignKey(
         "self",
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Parent storage"),
         help_text=_("The storage the current storage is part of.")
     )
