@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import os
 import uuid
 import logging
@@ -55,7 +54,6 @@ STATE_CHOICES = (
 )
 
 
-@python_2_unicode_compatible
 class StorageType(models.Model):
     """ Defining a general typ of storage """
 
@@ -86,7 +84,6 @@ class StorageType(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class StoragePlace(models.Model):
     """ Representing the general storage place. This can be either a
         general storage or a particular place inside a storage as
@@ -225,7 +222,6 @@ class StoragePlace(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
@@ -269,7 +265,6 @@ class Manufacturer(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
@@ -312,7 +307,6 @@ class Distributor(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     """ Representing a category a part might contains to.
     E.g. resistor """
@@ -395,7 +389,6 @@ class Category(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Part(models.Model):
     """ Representing a special kind of parts """
 
@@ -609,7 +602,6 @@ class Part(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
@@ -689,7 +681,6 @@ class StorageItem(models.Model):
         ordering = ['storage', 'part']
 
 
-@python_2_unicode_compatible
 class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
