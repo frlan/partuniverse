@@ -76,7 +76,7 @@ class StorageType(models.Model):
     )
 
     def __str__(self):
-        return u'%s' % self.name
+        return '%s' % self.name
 
     class Meta:
         verbose_name = _("Storage Type")
@@ -148,9 +148,9 @@ class StoragePlace(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return u'%s' % self.name
+            return '%s' % self.name
         else:
-            return (u'%s%s%s' % (
+            return ('%s%s%s' % (
                 self.parent,
                 settings.PARENT_DELIMITER,
                 self.name))
@@ -337,10 +337,10 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return u'{}'.format(self.name)
+            return '{}'.format(self.name)
         else:
             return (
-                u'%s%s%s' % (
+                '%s%s%s' % (
                     self.parent,
                     settings.PARENT_DELIMITER,
                     self.name)
@@ -550,7 +550,7 @@ class Part(models.Model):
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
             raise PartsmanagementException(
-                u'One of the storage items seems to not exists: %s, %s' % (
+                'One of the storage items seems to not exists: %s, %s' % (
                     si1,
                     si2
                 )
@@ -568,7 +568,7 @@ class Part(models.Model):
         # If so, we better don't do anything.
         if si1.id == si2.id:
             raise StorageItemIsTheSameException(
-                u'{} and {} are idendical. Nothing to merge'.format(
+                '{} and {} are idendical. Nothing to merge'.format(
                     si1.id, si2.id))
 
         # Special behavior for on_stock is None storage items
@@ -644,7 +644,7 @@ class StorageItem(models.Model):
     )
 
     def __str__(self):
-        return u'%s; %s' % (self.part, self.storage)
+        return '%s; %s' % (self.part, self.storage)
 
     @property
     def get_owner(self):
@@ -655,7 +655,7 @@ class StorageItem(models.Model):
     def stock_report(self, new_on_stock, requested_user):
         if new_on_stock < 0:
             raise StorageItemBelowZeroException(
-                u("Tried to set {} amount below 0" % self.name)
+                ("Tried to set {} amount below 0" % self.name)
             )
 
         if new_on_stock >= 0:
@@ -667,7 +667,7 @@ class StorageItem(models.Model):
                 difference = new_on_stock - self.on_stock
 
             Transaction.objects.create(
-                subject=_(u'Difference from Stocktaking'),
+                subject=_('Difference from Stocktaking'),
                 created_by=requested_user,
                 amount=difference,
                 storage_item=self,
@@ -706,6 +706,7 @@ class Transaction(models.Model):
         max_length=200,
         help_text=_("A short conclusion.")
     )
+
     date = models.DateTimeField(
         _("Transaction Date"),
         blank=False,
@@ -757,7 +758,7 @@ class Transaction(models.Model):
             self.save()
         else:
             raise TransactionAllreadyRevertedException(
-                _(u'Transaktion »{}« '
+                _('Transaktion »{}« '
                   'was already reverted.'.format(self))
             )
 
