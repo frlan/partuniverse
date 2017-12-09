@@ -110,19 +110,24 @@ class StoragePlace(models.Model):
     )
     storage_type = models.ForeignKey(
         StorageType,
-        help_text=_("Of which type is the storage place.")
+        help_text=_("Of which type is the storage place."),
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
     )
     owner = models.ForeignKey(
         User,
         null=True,
         blank=True,
         verbose_name=_("Owned by"),
-        help_text=_("The user who is responsible for the storage.")
+        help_text=_("The user who is responsible for the storage."),
+        on_delete=models.SET_NULL
     )
     parent = models.ForeignKey(
         "self",
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         verbose_name=_("Parent storage"),
         help_text=_("The storage the current storage is part of.")
     )
@@ -245,6 +250,9 @@ class Manufacturer(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("The user the manufacturer was created by.")
     )
@@ -288,6 +296,9 @@ class Distributor(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("User who created the distributor.")
     )
@@ -314,6 +325,7 @@ class Category(models.Model):
         "self",
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         help_text=_("If having a subcateogry, the parent.")
     )
     description = models.TextField(
@@ -447,6 +459,7 @@ class Part(models.Model):
         verbose_name=_("Manufacturer"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The manufacturer of the part.")
     )
     distributor = models.ForeignKey(
@@ -454,6 +467,7 @@ class Part(models.Model):
         verbose_name=_("Distributor"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The usual distributor of the part.")
     )
     price = models.DecimalField(
