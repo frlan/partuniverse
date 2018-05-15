@@ -11,7 +11,7 @@ class PartsmanagementException(Exception):
     """
     def __init__(self, error):
         super(PartsmanagementException, self).__init__(error)
-        logger.error(_(u"An fatal error has been occurred: %s" % error))
+        logger.error(_("An fatal error has been occurred: %s" % error))
 
 
 class PartsNotFitException(PartsmanagementException):
