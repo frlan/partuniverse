@@ -29,7 +29,7 @@ class CircleDetectedException(PartsmanagementException):
     """
     def __init__(self, error):
         super(CircleDetectedException, self).__init__(error)
-        logger.error(_(u"Circle detected: %s" % error))
+        logger.error(_("Circle detected: %s" % error))
 
 
 class StorageItemBelowZeroException(PartsmanagementException):
@@ -40,7 +40,7 @@ class StorageItemBelowZeroException(PartsmanagementException):
     def __init__(self, error):
         super(StorageItemBelowZeroException, self).__init__(error)
         logger.error(
-            _(u(
+            _((
                 "Amount of items inside a storage cannot be under 0:",
                 "%s") % error))
 
@@ -52,7 +52,7 @@ class StorageItemIsTheSameException(PartsmanagementException):
     def __init__(self, error):
         super(StorageItemIsTheSameException, self).__init__(error)
         logger.error(
-            _(u"Storage Items are idendical: %s" % error)
+            _("Storage Items are idendical: %s" % error)
         )
 
 
@@ -62,4 +62,4 @@ class TransactionAllreadyRevertedException(PartsmanagementException):
     """
     def __init__(self, error):
         super(TransactionAllreadyRevertedException, self).__init__(error)
-        logger.error(_(u"Cannot revert Transaction: %s" % error))
+        logger.error(_("Cannot revert Transaction: %s" % error))
