@@ -20,7 +20,7 @@ class PartsNotFitException(PartsmanagementException):
     """
     def __init__(self, error):
         super(PartsNotFitException, self).__init__(error)
-        logger.error(_(u"Exception: Parts cannot be combined: %s" % error))
+        logger.error(_("Exception: Parts cannot be combined: %s" % error))
 
 
 class CircleDetectedException(PartsmanagementException):
