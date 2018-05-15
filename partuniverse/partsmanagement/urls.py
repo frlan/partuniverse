@@ -24,6 +24,7 @@ from .views import (
     PartsReorderList,
     PartUpdateView,
     StorageItemAddView,
+    StorageItemAddPartView,
     StorageItemDetailView,
     StorageItemListView,
     StorageItemMergeView,
@@ -61,6 +62,9 @@ urlpatterns = [
     # item specific ones
     url(r'^(?P<pk>[\w]+)/$', PartDetailView.as_view(),
         name='part_detail'),
+    url(r'^(?P<pk>[\w]+)/addstorage$', login_required(
+        StorageItemAddPartView.as_view()),
+        name='part_add_storage_item'),
     url(r'^(?P<pk>[\w]+)/delete/$',
         login_required(PartDeleteView.as_view()),
         name='part_delete'),

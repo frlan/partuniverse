@@ -18,32 +18,44 @@
 {% if object.needs_review %}
 <div class="ui error message segment">
     <p>{% trans "The storage item has been marked as to needs a review. Would you mind to check whether the part is really at this place and/or the amount registered inside the storage is correct?" %}</p>
+
+    {% if object.review_reason %}
+    <p><strong>{% trans "Reason:" %}</strong></p>
+    <p> {{ object.review_reason }}</p>
+    {% endif %}
 </div>
 {% endif %}
 
 <div class="ui stackable one column grid">
   <div class="column">
-<table class="ui definition table segment">
-<tr>
-	<td>{% trans "Part" %}</td>
-	<td><a href="{% url "part_detail" object.part.id %}">{{object.part}}</a></td>
-</tr>
-<tr>
-	<td>{% trans "Storage" %}</td>
-	<td><a href="{% url "storage_detail" object.storage.id%}">{{object.storage}}</a></td>
-</tr>
-<tr>
-	<td>{% trans "On Stock" %}</td>
-	{% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}</td> {% endif %}
-</tr>
-</table>
+    <table class="ui definition table segment very compact">
+	<tr>
+	    <td>{% trans "Part" %}</td>
+	    <td><a href="{% url "part_detail" object.part.id %}">{{object.part}}</a></td>
+	</tr>
+	<tr>
+	    <td>{% trans "Storage" %}</td>
+	    <td><a href="{% url "storage_detail" object.storage.id%}">{{object.storage}}</a></td>
+	</tr>
+	{% if object.get_owner %}
+	<tr>
+	    <td>{% trans "Owner" %}</td>
+	    <td>{{object.get_owner}}</td>
+	</tr>
+
+	{% endif %}
+	<tr>
+	    <td>{% trans "On Stock" %}</td>
+	    {% if object.on_stock == None%}<td>{% trans "n/A" %}</td>{% else %} <td>{{object.on_stock}}{{object.part.unit}}</td> {% endif %}
+	</tr>
+    </table>
 </div>
-</div>
-<div>
+
+<div class="ui stackable one column grid">
     <p>
-	    <a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>
-	    <a class="ui button blue" href="{% url "storage_item_stocktaking" object.id  %}">{% trans "Stock taking" %}</a>
-	    <a class="ui button blue" href="{% url "storage_item_transaction" object.id  %}">{% trans "Transaction" %}</a>
+	<a class="ui button blue" href="{% url "storage_item_update" object.id  %}">{% trans "Update item" %}</a>
+	<a class="ui button blue" href="{% url "storage_item_stocktaking" object.id  %}">{% trans "Stock taking" %}</a>
+	<a class="ui button blue" href="{% url "storage_item_transaction" object.id  %}">{% trans "Transaction" %}</a>
     </p>
 </div>
 

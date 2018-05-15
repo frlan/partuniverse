@@ -12,8 +12,9 @@
 {% block heading %}{% trans "Add a storage item" %}{% endblock %}
 
 {% block content %}
-<p>{% trans "Use this to add a new storage items, which is a combination
-    of a part a decent storage place. Actually: Where can I find this particular part." %}</p>
+
+<p>{% blocktrans %} Add a new storage item for the part «{{ part }}» to help to find it inside the storage and keep track on its inventory. {% endblocktrans %}</p>
+
 <form method="post" class="ui form" >
   {% csrf_token %}
   {{ form|semanticui }}

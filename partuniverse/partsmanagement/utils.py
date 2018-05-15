@@ -1,10 +1,18 @@
 from .models import ValidationError
 
 
+def is_pdf(fileob):
+    return fileob.content_type == 'application/pdf'
+
+
+def is_img(fileob):
+    return fileob.content_type.startswith('image/')
+
+
 def validate_file_extension(value):
     try:
-        if value.file.content_type != 'application/pdf':
-            raise ValidationError(u'Filetyp not supported')
+        if not (is_pdf(value.file) or is_img(value.file)):
+            raise ValidationError(u'Filetype not supported')
     except AttributeError:
         pass
 

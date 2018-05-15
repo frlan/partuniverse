@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import os
 import uuid
 import logging
@@ -55,7 +54,6 @@ STATE_CHOICES = (
 )
 
 
-@python_2_unicode_compatible
 class StorageType(models.Model):
     """ Defining a general typ of storage """
 
@@ -78,7 +76,7 @@ class StorageType(models.Model):
     )
 
     def __str__(self):
-        return u'%s' % self.name
+        return '%s' % self.name
 
     class Meta:
         verbose_name = _("Storage Type")
@@ -86,19 +84,20 @@ class StorageType(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class StoragePlace(models.Model):
     """ Representing the general storage place. This can be either a
         general storage or a particular place inside a storage as
         e.g. a shelf."""
 
     @classmethod
-    def createBulkStorage(cls, storagetype, parent=None, entries=('A1')):
+    def createBulkStorage(
+            cls, storagetype, parent=None, entries=('A1'), owner=None):
         for entry in entries:
             StoragePlace.objects.create(
                 name=entry,
                 storage_type=storagetype,
-                parent=parent)
+                parent=parent,
+                owner=None)
 
     # The Name could be e.g. cordinates or something else meaningfull
     name = models.CharField(
@@ -108,12 +107,24 @@ class StoragePlace(models.Model):
     )
     storage_type = models.ForeignKey(
         StorageType,
-        help_text=_("Of which type is the storage place.")
+        help_text=_("Of which type is the storage place."),
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
+    )
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        verbose_name=_("Owned by"),
+        help_text=_("The user who is responsible for the storage."),
+        on_delete=models.SET_NULL
     )
     parent = models.ForeignKey(
         "self",
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         verbose_name=_("Parent storage"),
         help_text=_("The storage the current storage is part of.")
     )
@@ -137,9 +148,9 @@ class StoragePlace(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return u'%s' % self.name
+            return '%s' % self.name
         else:
-            return (u'%s%s%s' % (
+            return ('%s%s%s' % (
                 self.parent,
                 settings.PARENT_DELIMITER,
                 self.name))
@@ -186,7 +197,11 @@ class StoragePlace(models.Model):
         result.extend(list(self.storageitem_set.all()))
         if storages:
             for storage in storages:
-                result.extend(storage.storageitem_set.all().order_by('part'))
+                result.extend(
+                    storage.storageitem_set.all().exclude(
+                        disabled='True'
+                    ).order_by('part')
+                )
         sorted_list = sorted(result, key=lambda x: x.part.name)
         return sorted_list
 
@@ -207,7 +222,6 @@ class StoragePlace(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
@@ -232,6 +246,9 @@ class Manufacturer(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("The user the manufacturer was created by.")
     )
@@ -248,7 +265,6 @@ class Manufacturer(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
@@ -275,6 +291,9 @@ class Distributor(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
         help_text=_("User who created the distributor.")
     )
@@ -288,7 +307,6 @@ class Distributor(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     """ Representing a category a part might contains to.
     E.g. resistor """
@@ -301,6 +319,7 @@ class Category(models.Model):
         "self",
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         help_text=_("If having a subcateogry, the parent.")
     )
     description = models.TextField(
@@ -318,10 +337,10 @@ class Category(models.Model):
 
     def __str__(self):
         if self.parent is None:
-            return u'{}'.format(self.name)
+            return '{}'.format(self.name)
         else:
             return (
-                u'%s%s%s' % (
+                '%s%s%s' % (
                     self.parent,
                     settings.PARENT_DELIMITER,
                     self.name)
@@ -370,7 +389,6 @@ class Category(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class Part(models.Model):
     """ Representing a special kind of parts """
 
@@ -434,6 +452,7 @@ class Part(models.Model):
         verbose_name=_("Manufacturer"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The manufacturer of the part.")
     )
     distributor = models.ForeignKey(
@@ -441,6 +460,7 @@ class Part(models.Model):
         verbose_name=_("Distributor"),
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         help_text=_("The usual distributor of the part.")
     )
     price = models.DecimalField(
@@ -480,6 +500,7 @@ class Part(models.Model):
 
     def get_storage_items(self):
         tmp = self.storageitem_set.all().exclude(disabled='True')
+        tmp = sorted(tmp, key=lambda x: x.__str__())
         if tmp:
             return tmp
         else:
@@ -529,7 +550,7 @@ class Part(models.Model):
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
             raise PartsmanagementException(
-                u'One of the storage items seems to not exists: %s, %s' % (
+                'One of the storage items seems to not exists: %s, %s' % (
                     si1,
                     si2
                 )
@@ -547,7 +568,7 @@ class Part(models.Model):
         # If so, we better don't do anything.
         if si1.id == si2.id:
             raise StorageItemIsTheSameException(
-                u'{} and {} are idendical. Nothing to merge'.format(
+                '{} and {} are idendical. Nothing to merge'.format(
                     si1.id, si2.id))
 
         # Special behavior for on_stock is None storage items
@@ -581,7 +602,6 @@ class Part(models.Model):
         ordering = ['name']
 
 
-@python_2_unicode_compatible
 class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
@@ -604,19 +624,38 @@ class StorageItem(models.Model):
         default=False,
         help_text=_("Whether this storage item might be wrong")
     )
+    review_reason = models.TextField(
+        _("Reason for Review"),
+        blank=True,
+        null=True,
+        help_text=_("Put reason, why this item should be reviewed here in.")
+    )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
         help_text=_("Whether the storage item is active.")
     )
+    owner = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        verbose_name=_("Owned by"),
+        help_text=_("The user owning items of this storageitem.")
+    )
 
     def __str__(self):
-        return u'%s; %s' % (self.part, self.storage)
+        return '%s; %s' % (self.part, self.storage)
+
+    @property
+    def get_owner(self):
+        # Return either owner of storage item or the owner of the
+        # storage. If nobody owns the storage, it returns None
+        return self.owner if self.owner else self.storage.owner
 
     def stock_report(self, new_on_stock, requested_user):
         if new_on_stock < 0:
             raise StorageItemBelowZeroException(
-                u("Tried to set {} amount below 0" % self.name)
+                ("Tried to set {} amount below 0" % self.name)
             )
 
         if new_on_stock >= 0:
@@ -628,7 +667,7 @@ class StorageItem(models.Model):
                 difference = new_on_stock - self.on_stock
 
             Transaction.objects.create(
-                subject=_(u'Difference from Stocktaking'),
+                subject=_('Difference from Stocktaking'),
                 created_by=requested_user,
                 amount=difference,
                 storage_item=self,
@@ -636,13 +675,12 @@ class StorageItem(models.Model):
             )
 
     class Meta:
-        unique_together = ("part", "storage")
+        unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
         verbose_name_plural = _("Storage Items")
         ordering = ['storage', 'part']
 
 
-@python_2_unicode_compatible
 class Transaction(models.Model):
     """ The transaction really taking place for the part """
 
@@ -668,6 +706,7 @@ class Transaction(models.Model):
         max_length=200,
         help_text=_("A short conclusion.")
     )
+
     date = models.DateTimeField(
         _("Transaction Date"),
         blank=False,
@@ -719,7 +758,7 @@ class Transaction(models.Model):
             self.save()
         else:
             raise TransactionAllreadyRevertedException(
-                _(u'Transaktion »{}« '
+                _('Transaktion »{}« '
                   'was already reverted.'.format(self))
             )
 

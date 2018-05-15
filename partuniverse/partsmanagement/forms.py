@@ -29,7 +29,20 @@ class TransactionForm(forms.Form):
         label=_("Difference"),
         max_digits=10,
         decimal_places=4,
-        help_text=_("Die amount of items taken/put to storage."))
+        help_text=_("The amount of items taken/put to storage."))
+
+
+class StorageItemAddTransactionForm(forms.Form):
+    description = forms.CharField(
+        label=_("Description"),
+        max_length=50)
+    amount = forms.DecimalField(
+        label=_("Difference"),
+        max_digits=10,
+        decimal_places=4,
+        min_value=0.0001,
+        help_text=_("The amount of items taken/put to storage. "
+                    "Positiv values only."))
 
 
 class BulkStorageForm(forms.Form):

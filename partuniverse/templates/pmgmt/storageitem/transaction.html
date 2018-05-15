@@ -8,11 +8,16 @@
 
 {% block content %}
 <h1>{{ storage_item }}</h1>
-<p>{% trans "Add a new transation for storage item: " %}<strong>{{ storage_item }}</strong></p>
+
+<div class="ui attached segment">
+    <p>{% trans "Add a new transation for storage item:" %}</p>
+</div>
+
 <form method="post" class="ui form segment">
-  {% csrf_token %}
-  {{ form|semanticui }}
-  <input class="ui button blue" type="submit" name="submit" value="Increase">
-  <input class="ui button blue" type="submit" name="submit" value="Decrease">
+    {% csrf_token %}
+    {{ form|semanticui }}
+    <input class="ui button red" type="submit" name="submit" value="-">
+    <input class="ui button green" type="submit" name="submit" value="+">
 </form>
+
 {% endblock %}

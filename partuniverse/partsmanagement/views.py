@@ -27,7 +27,8 @@ from .forms import (
     StockTakingForm,
     MergeStorageItemsForm,
     TransactionForm,
-    BulkStorageForm
+    BulkStorageForm,
+    StorageItemAddTransactionForm
 )
 
 from .models import (
@@ -256,7 +257,6 @@ class PartsReorderList(ListView):
 
 class PartsAddView(CreateView):
     model = Part
-    success_url = reverse_lazy('part_list')
     template_name = 'pmgmt/part/add.html'
     fields = ('name',
               'sku',
@@ -275,6 +275,9 @@ class PartsAddView(CreateView):
         form.instance.created_by = user
         form.instance.timestamp = now()
         return super(PartsAddView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs={'pk': self.object.pk})
 
 
 class PartDeleteView(DeleteView):
@@ -463,6 +466,27 @@ class StorageItemAddView(CreateView):
     template_name = 'pmgmt/storageitem/add.html'
 
 
+class StorageItemAddPartView(CreateView):
+    model = StorageItem
+    fields = ('storage', 'on_stock', 'owner')
+    template_name = 'pmgmt/storageitem/add_part.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['part'] = Part.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self):
+        return reverse('part_detail', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        StorageItem.objects.create(
+            part=Part.objects.get(pk=self.kwargs["pk"]),
+            storage=form.cleaned_data['storage'],
+            on_stock=form.cleaned_data['on_stock'])
+        return HttpResponseRedirect(self.get_success_url())
+
+
 class StorageItemListView(ListView):
     model = StorageItem
     template_name = 'pmgmt/storageitem/list.html'
@@ -478,7 +502,9 @@ class StorageItemUpdateView(UpdateView):
     model = StorageItem
     fields = ('part',
               'storage',
-              'needs_review')
+              'owner',
+              'needs_review',
+              'review_reason')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 
@@ -496,7 +522,7 @@ class StorageItemStockTakingView(FormView):
 
 
 class StorageItemTransactionAddView(FormView):
-    form_class = TransactionForm
+    form_class = StorageItemAddTransactionForm
     success_url = reverse_lazy('storage_item_list')
     template_name = 'pmgmt/storageitem/transaction.html'
 
@@ -506,7 +532,7 @@ class StorageItemTransactionAddView(FormView):
         return context
 
     def form_valid(self, form):
-        if self.request.POST['submit'] == 'Increase':
+        if self.request.POST['submit'] == '+':
             Transaction.objects.create(
                 subject=form.cleaned_data['description'],
                 created_by=self.request.user,
@@ -514,7 +540,7 @@ class StorageItemTransactionAddView(FormView):
                 storage_item=StorageItem.objects.get(pk=self.kwargs['pk']),
                 date=timezone.now()
             )
-        elif self.request.POST['submit'] == 'Decrease':
+        elif self.request.POST['submit'] == '-':
             Transaction.objects.create(
                 subject=form.cleaned_data['description'],
                 created_by=self.request.user,
@@ -572,6 +598,7 @@ class StoragePlaceAddView(CreateView):
     success_url = reverse_lazy('storage_list')
     fields = ('name',
               'storage_type',
+              'owner',
               'description',
               'pic',
               'parent')
@@ -600,6 +627,7 @@ class StoragePlaceUpdateView(UpdateView):
     template_name = 'pmgmt/storage/update.html'
     fields = ('name',
               'storage_type',
+              'owner',
               'description',
               'pic',
               'parent')
