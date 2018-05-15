@@ -58,8 +58,7 @@ INSTALLED_APPS = (
     'semanticuiform',
     'mathfilters',
     'account',
-    'partsmanagement',
-    'dashboard',
+    'partsmanagement'
 )
 
 MIDDLEWARE_CLASSES = (
