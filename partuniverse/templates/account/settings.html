@@ -16,7 +16,7 @@
 <p>{% trans "Change here your account data:" %}</p>
 <form class="ui form" method="POST" action="{% url "account_settings" %}">
   {% csrf_token %}
-  {{ form|semanticui }}
+  {% render_form form _help=1 %}
   <button class="ui blue button" type="submit"> {% trans "Save" %}</button>
 </form>
 
