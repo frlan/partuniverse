@@ -484,7 +484,9 @@ class Part(models.Model):
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Added by"),
-        help_text=_("The user the part was created by.")
+        help_text=_("The user the part was created by."),
+        on_delete=models.SET_NULL,
+        null=True
     )
     disabled = models.BooleanField(
         _("Disabled"),
@@ -605,11 +607,13 @@ class Part(models.Model):
 class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
-        help_text=_("The part stored at this spot.")
+        help_text=_("The part stored at this spot."),
+        on_delete=models.PROTECT
     )
     storage = models.ForeignKey(
         StoragePlace,
-        help_text=_("The storage the part is stored in.")
+        help_text=_("The storage the part is stored in."),
+        on_delete=models.PROTECT
     )
     on_stock = models.DecimalField(
         _("Parts inside storage"),
@@ -640,7 +644,8 @@ class StorageItem(models.Model):
         null=True,
         blank=True,
         verbose_name=_("Owned by"),
-        help_text=_("The user owning items of this storageitem.")
+        help_text=_("The user owning items of this storageitem."),
+        on_delete=models.PROTECT
     )
 
     def __str__(self):
@@ -691,7 +696,8 @@ class Transaction(models.Model):
     )
     storage_item = models.ForeignKey(
         StorageItem,
-        help_text=_("The part-storage relation the transaction was applied on.")
+        help_text=_("The part-storage relation the transaction was applied on."),
+        on_delete=models.PROTECT
     )
     amount = models.DecimalField(
         _("Amount"),
@@ -726,7 +732,8 @@ class Transaction(models.Model):
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Created by"),
-        help_text=_("The user which created the transaction.")
+        help_text=_("The user which created the transaction."),
+        on_delete=models.PROTECT
     )
     created_date = models.TimeField(
         _("Creation timestamp"),
