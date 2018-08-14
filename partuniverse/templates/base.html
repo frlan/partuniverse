@@ -1,17 +1,18 @@
-<!DOCTYPE html>{% load staticfiles %}{% load i18n %}
+<!DOCTYPE html>{% load staticfiles %}{% load static %}{% load i18n %}{% load semanticui %}
 <html lang={% trans "en" %}>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="generator" content="partuniverse" />
-    <title>{% block head_title %}Start{% endblock %} — Partuniverse</title>
     <link rel="stylesheet" type="text/css" href="{% static "semantic-ui/dist/semantic.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/all.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/dashboard.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "custom/select2.min.css" %}">
     {% block stylesheets %}{% endblock %}
     <!-- link rel="stylesheet" type="text/css" href="{% static "semantic/css/custom.css" %}" -->
+
+    <title>{% block head_title %}Start{% endblock %} — Partuniverse</title>
   </head>
   <body>
     <header class="ui fixed inverted menu">
