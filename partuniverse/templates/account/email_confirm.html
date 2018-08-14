@@ -11,8 +11,8 @@
 {% block content %}
 
 <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
-{% csrf_token %}
-<p>{% blocktrans with email=confirmation.email_address.email %}Can you confirm email address: <b>{{ email }}</b>?{% endblocktrans %}</p>
-<button type="submit" >{% trans "Confirm" %}</button>
+	{% csrf_token %}
+	<p>{% blocktrans with email=confirmation.email_address.email %}Can you confirm email address: <b>{{ email }}</b>?{% endblocktrans %}</p>
+	<button class="ui blue button" type="submit" >{% trans "Confirm" %}</button>
 </form>
 {% endblock %}
