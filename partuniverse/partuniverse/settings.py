@@ -55,7 +55,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'rest_framework',
-    'semanticuiform',
+    'semanticuiforms',
     'mathfilters',
     'account',
     'partsmanagement'
