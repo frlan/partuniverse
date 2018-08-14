@@ -18,7 +18,7 @@
 <p>{% trans "When creating more than one storage place, consider using " %}<a href="{% url "storage_bulkadd" %}">{% trans "the bulkadd-feature" %}</a></p>
 <form method="post" class="ui form" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ form|semanticui }}
+  {% render_form form _help=1 %}
   <input class="ui button blue" type="submit" value="{% trans "Add" %}">
 </form>
 {% endblock %}
