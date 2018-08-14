@@ -12,7 +12,6 @@
 <p>{% trans "It will create an Transaction adjusting the amount for items on stock to reported one.." %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
-  {{ form|semanticui }}
   {% render_form form _help=1 %}
   <input class="ui button blue" type="submit" value="Submit">
 </form>
