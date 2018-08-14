@@ -15,7 +15,7 @@
 
 <form method="post" class="ui form segment">
     {% csrf_token %}
-    {{ form|semanticui }}
+    {% render_form form _help=1 %}
     <input class="ui button red" type="submit" name="submit" value="-">
     <input class="ui button green" type="submit" name="submit" value="+">
 </form>

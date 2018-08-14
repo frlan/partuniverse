@@ -13,6 +13,7 @@
 <form method="post" class="ui form segment">
   {% csrf_token %}
   {{ form|semanticui }}
+  {% render_form form _help=1 %}
   <input class="ui button blue" type="submit" value="Submit">
 </form>
 {% endblock %}
