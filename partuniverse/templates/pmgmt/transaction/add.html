@@ -32,7 +32,7 @@
 
 <form method="post" class="ui form">
   {% csrf_token %}
-  {{ form|semanticui }}
+  {% render_form form _help=1 %}
   <input class="ui blue button" type="submit" value="{% trans "Add" %}">
 </form>
 {% endblock %}
