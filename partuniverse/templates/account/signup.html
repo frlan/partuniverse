@@ -12,13 +12,10 @@
 {% block heading %}{% trans "Sign up" %}{% endblock %}
 
 {% block content %}
-<form class="ui form" id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-    {% csrf_token %}
-    {{ form|semanticui }}
-    {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button class="ui blue button" type="submit">{% trans "Sign up" %}</button>
+<form class="ui form" method="POST">
+	{% csrf_token %}
+	{% render_form form _help=1 %}
+	<button class="ui blue submit button"> Submit</button>
 </form>
 
 {% endblock %}
