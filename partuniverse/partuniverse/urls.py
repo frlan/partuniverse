@@ -6,9 +6,10 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views.static import serve
 from partuniverse import views as partuniverse_view
+from django.urls import path
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    path('admin/', admin.site.urls),
     url(r'^about/$',
         TemplateView.as_view(template_name='about.html'),
         name='about'),
