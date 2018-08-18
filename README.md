@@ -31,6 +31,9 @@ Partuniverse depends on:
 
 ### Buildout
 
+Note: This is currently not working as Django 2.x is only supporting
+Python 3.5+ and the recipt used for Django is using Python 2.7.
+
 The [zc.buildout](http://www.buildout.org/en/latest/) and all the dependcies will be installed via its bootstrap script:
 
         $ pwd
