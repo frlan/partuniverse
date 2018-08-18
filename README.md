@@ -12,6 +12,8 @@ To discuss about partuniverse or get help, join our mailing list at
 is also a XMPP-MUC available to chat. Join
 [partuniverse@chat.kraut.space](xmpp:partuniverse@chat.kraut.space).
 
+We do also have an matrix-chat. Join us at #partuniverse:matrix.org
+
 ## Bugreporting
 
 Please report bugs and feature wishes to the project page at [github](https://github.com/frlan/partuniverse/issues)
