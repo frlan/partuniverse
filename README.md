@@ -24,7 +24,7 @@ Please report bugs and feature wishes to the project page at [github](https://gi
 
 Partuniverse depends on:
 
-- Django and therefore Python
+- Django 2.x and therefore Python3
 - A database server supported by django (PostgreSQL recommended) and
   its development libraries --
   SQLlite -- the default -- should be fine for the very beginning
@@ -33,15 +33,14 @@ Partuniverse depends on:
 
 ### Buildout
 
-Note: This is currently not working as Django 2.x is only supporting
-Python 3.5+ and the recipt used for Django is using Python 2.7.
-
 The [zc.buildout](http://www.buildout.org/en/latest/) and all the dependcies will be installed via its bootstrap script:
 
         $ pwd
         /path/to/your/sources/
-        $ python bootstrap-buildout.py
+        $ virtualenv --python=python3 .
+        $ bin/pip install zc.buildout
         $ ./bin/buildout
+
 
 ### Running
 
