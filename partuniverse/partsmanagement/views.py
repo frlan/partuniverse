@@ -608,6 +608,16 @@ class StoragePlaceListView(ListView):
     template_name = 'pmgmt/storage/list.html'
     paginate_by = settings.MAX_ITEMS_PER_PAGE
 
+    @property
+    def search(self):
+        return self.request.GET.get('search', '')
+
+    def get_queryset(self):
+        st = StoragePlace.objects.exclude(disabled='True')
+        if self.search != '':
+            return st.filter(name__icontains=self.search)
+        return st
+
 
 class StoragePlaceListEmptyView(ListView):
     model = StoragePlace

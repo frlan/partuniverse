@@ -26,6 +26,12 @@
    >
   <i class="icon add"></i> {% trans "Add" %}
 </a>
+
+<p></p>
+<form class="ui form" action="list" method="GET">
+  <input type="text" name="search" placeholder="{% trans "Search in storage names" %}" value="{{ view.search }}" />
+</form>
+
 {% if object_list %}
 <table class="ui table sortable segment very compact">
   <colgroup>
