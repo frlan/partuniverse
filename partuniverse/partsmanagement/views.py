@@ -316,7 +316,6 @@ class PartUpdateView(UpdateView):
               'description',
               'min_stock',
               'unit',
-              'price',
               'manufacturer',
               'distributor',
               'categories',
