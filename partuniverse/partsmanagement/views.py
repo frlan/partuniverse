@@ -200,7 +200,6 @@ class CategoryList(ListView):
         return cat
 
 
-
 class CategoryAddView(CreateView):
     model = Category
     success_url = reverse_lazy('category_list')
