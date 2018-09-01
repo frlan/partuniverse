@@ -615,7 +615,7 @@ class StoragePlaceListView(ListView):
     def get_queryset(self):
         st = StoragePlace.objects.exclude(disabled='True')
         if self.search != '':
-            return ([item for item in st if self.search in item.__str__() ])
+            return ([item for item in st if self.search in item.__str__()])
         return st
 
 
