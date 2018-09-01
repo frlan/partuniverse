@@ -189,6 +189,17 @@ class CategoryList(ListView):
     template_name = 'pmgmt/category/list.html'
     paginate_by = settings.MAX_ITEMS_PER_PAGE
 
+    @property
+    def search(self):
+        return self.request.GET.get('search', '')
+
+    def get_queryset(self):
+        cat = Category.objects.all()
+        if self.search != '':
+            return ([item for item in cat if self.search in item.__str__()])
+        return cat
+
+
 
 class CategoryAddView(CreateView):
     model = Category

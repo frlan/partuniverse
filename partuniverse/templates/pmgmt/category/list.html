@@ -26,6 +26,11 @@
   <i class="icon add"></i> {% trans "Add" %}
 </a>
 
+<p></p>
+<form class="ui form" action="list" method="GET">
+  <input type="text" name="search" placeholder="{% trans "Search in storage names" %}" value="{{ view.search }}" />
+</form>
+
 {% if object_list %}
 <table class="ui table sortable segment very compact">
   <colgroup>
@@ -50,7 +55,7 @@
 {% if is_paginated %}
 <div class="ui fluid pagination menu">
   {% for number in page_obj.paginator.page_range %}
-  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "category_list" %}?page={{ number }}">
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "category_list" %}?page={{ number }}{% if view.search %}&amp;search={{ view.search }}{% endif %}">
     {{ number }}
   </a>
   {% endfor %}
