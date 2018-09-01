@@ -78,7 +78,7 @@
 {% if is_paginated %}
 <div class="ui fluid pagination menu">
   {% for number in page_obj.paginator.page_range %}
-  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "storage_list" %}?page={{ number }}">
+  <a class="{% if number == page_obj.number %}active {% endif %}item" href="{% url "storage_list" %}?page={{ number }}{% if view.search %}&amp;search={{ view.search }}{% endif %}">
     {{ number }}
   </a>
   {% endfor %}
