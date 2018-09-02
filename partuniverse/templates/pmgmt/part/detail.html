@@ -106,9 +106,9 @@
 </tr>
 {% endif %}
 </table>
-  </div>
- {% if object.pic %}
-  <div class="column">
+</div>
+{% if object.pic %}
+<div class="column">
     <img class="ui fluid rounded image medium" style="max-height: 400px; height:auto; max-width: 400px; width:auto;" src="{{object.pic.url}}" />
   </div>
   {% else %}
@@ -116,7 +116,7 @@
     <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}"
     alt="{% trans "No picture available" %}"/>
   </div>
-  {% endif %}
+{% endif %}
 </div>
 <div class="ui clearing hidden divider"></div>
 
