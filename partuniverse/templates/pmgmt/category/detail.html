@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load staticfiles %}
 
 {% block breadcrumbs %}
 <a href="{% url "category_list" %}" class="section">{% trans "Categories" %}</a>
@@ -14,36 +15,44 @@
 
 {% block content %}
 
-{% if object.pic %}
-<div class="column">
-    <img class="ui fluid rounded image small" src="{{object.pic.url}}">
-</div>
-{% endif %}
-
-<table class="ui definition table segment very compact">
-<tr>
-    <td>{% trans "Name" %}</td>
-    <td>{{object.name}}</td>
-</tr>
-{% if object.description %}
-<tr>
-    <td>{% trans "Description" %}</td>
-    <td>{{object.description}}</td>
-</tr>
-{% endif %}
-<tr>
-    <td class="top aligned">{% trans "Parts" %}</td>
-    <td>
+<div class="ui stackable two column grid">
+  <div class="column">
+  <table class="ui definition table segment very compact">
+    <tr>
+      <td>{% trans "Name" %}</td>
+      <td>{{object.name}}</td>
+    </tr>
+    {% if object.description %}
+    <tr>
+      <td>{% trans "Description" %}</td>
+      <td>{{object.description}}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td class="top aligned">{% trans "Parts" %}</td>
+      <td>
         <div class="ui list">
         {% for item in object.get_parts %}
             <li><a href={% url "part_detail" item.id %}>{{item}}</a></li>
         {% endfor %}
         </div>
-    </td>
-</tr>
-</table>
-
-{% if user.is_authenticated %}
-<p><a class="ui button blue" href="{% url "category_update" object.id %}">{% trans "Update item" %}</a></p>
-{% endif %}
+      </td>
+    </tr>
+  </table>
+  </div>
+  {% if object.pic %}
+  <div class="column">
+    <img class="ui fluid rounded image medium" style="max-height: 400px; height:auto; max-width: 400px; width:auto;" src="{{object.pic.url}}" />
+  </div>
+  {% else %}
+    <div class="column">
+      <img class="ui fluid rounded image medium" src="{% static "img/no-pic.png" %}"
+      alt="{% trans "No picture available" %}"/>
+    </div>
+  {% endif %}
+  <div class="ui clearing hidden divider"></div>
+  {% if user.is_authenticated %}
+  <p><a class="ui button blue" href="{% url "category_update" object.id %}">{% trans "Update item" %}</a></p>
+  {% endif %}
+</div>
 {% endblock %}
