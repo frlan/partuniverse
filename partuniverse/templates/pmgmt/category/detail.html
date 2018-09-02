@@ -25,10 +25,12 @@
     <td>{% trans "Name" %}</td>
     <td>{{object.name}}</td>
 </tr>
+{% if object.description %}
 <tr>
     <td>{% trans "Description" %}</td>
     <td>{{object.description}}</td>
 </tr>
+{% endif %}
 <tr>
     <td class="top aligned">{% trans "Parts" %}</td>
     <td>
