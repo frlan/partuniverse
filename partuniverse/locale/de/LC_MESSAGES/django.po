@@ -863,14 +863,10 @@ msgstr "Erneut senden"
 #: templates/account/password_reset_sent.html:25
 #, python-format
 msgid ""
-"We have resent the password email. If you do not receive it within a few "
-"minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
-"%(THEME_CONTACT_EMAIL)s</a>."
+"We have resent the password email.</a>."
 msgstr ""
 "Wir haben Dir die Email zum zurücksetzen Deines Passwortes noch einmal "
-"zugesendet. Sollest Du innerhalb weniger Minuten diese Mail nicht erhalten, "
-"kontaktiere uns unter <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
-"%(THEME_CONTACT_EMAIL)s</a>."
+"zugesendet."
 
 #: templates/account/password_reset_token.html:7
 #: templates/account/password_reset_token.html:8
