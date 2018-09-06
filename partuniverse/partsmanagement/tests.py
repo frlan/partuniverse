@@ -18,7 +18,8 @@ from .models import (
     Transaction,
     Manufacturer,
     Distributor,
-    StoragePlace
+    StoragePlace,
+    VerifiedStock
 )
 
 
@@ -411,6 +412,55 @@ class TransactionAllreadyRevertedTest(TestCase):
             StorageItem.objects.get(pk=self.storage_item2.id).id
         )
 
+
+########################################################################
+# Verified Storage
+########################################################################
+
+class VerifiedCutOffDay(TestCase):
+    """
+        Testcase to check storage of current given amoutn of a particual
+        cutoff day
+    """
+    def setUp(self):
+        self.cat = Category.objects.create(name=u'Category 1')
+        self.user = User.objects.create_user(
+            username='jacob',
+            email='jacob@foo.baa',
+            password='top_secret')
+        self.manu = Manufacturer.objects.create(
+            name=u'Test Manufacturer 1',
+            created_by=self.user)
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace = StoragePlace.objects.create(
+            name=u'Test Storage',
+            storage_type=self.storagetype)
+        self.part1 = Part.objects.create(
+            name=u'Test Part 1',
+            sku=u'tp1',
+            unit='m',
+            creation_time=timezone.now(),
+            created_by=self.user)
+        self.storage_item1 = StorageItem.objects.create(
+            part=self.part1,
+            storage=self.storageplace,
+            on_stock=100)
+
+    def test_cut_off_day(self):
+        verified = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        self.assertEqual(verified.amount, 100)
+
+    def test_stock_taking(self):
+        self.storage_item1.stock_report(
+            new_on_stock=150,
+            requested_user=self.user)
+        latest_verified = VerifiedStock.objects.filter(
+            storage_item__exact=self.storage_item1).latest('id')
+        self.assertEqual(latest_verified.amount, 150)
 
 ########################################################################
 # Part related

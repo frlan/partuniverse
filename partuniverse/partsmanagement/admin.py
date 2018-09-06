@@ -10,7 +10,8 @@ from .models import (
     Manufacturer,
     Distributor,
     Transaction,
-    StoragePlace
+    StoragePlace,
+    VerifiedStock
 )
 
 logger = logging.getLogger(__name__)
@@ -23,3 +24,4 @@ admin.site.register(Distributor)
 admin.site.register(Part)
 admin.site.register(StorageItem)
 admin.site.register(Transaction)
+admin.site.register(VerifiedStock)

@@ -681,12 +681,46 @@ class StorageItem(models.Model):
                 storage_item=self,
                 date=timezone.now()
             )
+            VerifiedStock.objects.create(
+                storage_item=self,
+                date=timezone.now(),
+                created_by=requested_user,
+                amount=new_on_stock)
+
 
     class Meta:
         unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
         verbose_name_plural = _("Storage Items")
         ordering = ['storage', 'part']
+
+
+class VerifiedStock(models.Model):
+    storage_item = models.ForeignKey(
+        StorageItem,
+        help_text=_("The part-storage relation the the stock was verified."),
+        on_delete=models.PROTECT)
+    amount = models.DecimalField(
+        _("Amount"),
+        max_digits=10,
+        decimal_places=4,
+        help_text=_("The quantity at this very time."))
+    date = models.DateTimeField(
+        _("Verfication Date"),
+        blank=False,
+        null=False,
+        default=datetime.now,
+        db_index=True,
+        help_text=_("The date the verifiedcation was created.")
+    )
+    created_by = models.ForeignKey(
+        User,
+        verbose_name=_("Created by"),
+        help_text=_("The user which verified the stock."),
+        on_delete=models.PROTECT
+    )
+    def __str__(self):
+        return '%s %s' % (self.storage_item, self.date)
 
 
 class Transaction(models.Model):
