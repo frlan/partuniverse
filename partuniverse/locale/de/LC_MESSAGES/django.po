@@ -15,9 +15,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.3\n"
+"Project-Id-Version: 0.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-02 07:15+0000\n"
+"POT-Creation-Date: 2018-09-06 18:51+0000\n"
 "PO-Revision-Date: 2014-11-21 19:35+0100\n"
 "Last-Translator: Frank Lanitz <frank@frank.uvena.de>\n"
 "Language: \n"
@@ -201,7 +201,6 @@ msgid "Of which type is the storage place."
 msgstr "Von welchem Typ ist der Lagerplatz."
 
 #: partsmanagement/models.py:119 partsmanagement/models.py:646
-#| msgid "Added by"
 msgid "Owned by"
 msgstr "Gehört"
 
@@ -493,84 +492,110 @@ msgstr "Entscheidet, ob der Eintrag aktiv ist."
 msgid "The user owning items of this storageitem."
 msgstr "Der Nutzer, dem die Teile aus der Einlagerung gehören."
 
-#: partsmanagement/models.py:675
+#: partsmanagement/models.py:678
 msgid "Difference from Stocktaking"
 msgstr "Unterschiede Inventur"
 
-#: partsmanagement/models.py:684 templates/pmgmt/transaction/detail.html:29
+#: partsmanagement/models.py:693 templates/pmgmt/transaction/detail.html:29
 msgid "Storage Item"
 msgstr "Einlagerung"
 
-#: partsmanagement/models.py:685 templates/pmgmt/storageitem/detail.html:10
+#: partsmanagement/models.py:694 templates/pmgmt/storageitem/detail.html:10
 #: templates/pmgmt/storageitem/list.html:7
 msgid "Storage Items"
 msgstr "Einlagerungen"
 
-#: partsmanagement/models.py:693 templates/pmgmt/transaction/detail.html:25
-msgid "Subject"
-msgstr "Kurzbeschreibung"
+#: partsmanagement/models.py:701
+#| msgid "The part-storage relation the transaction was applied on."
+msgid "The part-storage relation the the stock was verified."
+msgstr "Die Einlagerung, für die der Lagerstand verifiziert wurde."
 
-#: partsmanagement/models.py:695
-msgid "A short conclusion of the transaction."
-msgstr "Eine kurze Zusammenfassung für die Transaktion."
-
-#: partsmanagement/models.py:699
-msgid "The part-storage relation the transaction was applied on."
-msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
-
-#: partsmanagement/models.py:703 templates/pmgmt/transaction/detail.html:33
+#: partsmanagement/models.py:704 partsmanagement/models.py:740
+#: templates/pmgmt/transaction/detail.html:33
 msgid "Amount"
 msgstr "Menge"
 
-#: partsmanagement/models.py:706
-msgid "The quantity transferred."
-msgstr "Die Menge, um die sich der Bestand geändert hat."
+#: partsmanagement/models.py:707
+#| msgid "The quantity transferred."
+msgid "The quantity at this very time."
+msgstr "Die Menge zum Stichtag."
 
 #: partsmanagement/models.py:709
-msgid "Comment"
-msgstr "Kommentar"
+#| msgid "Transaction Date"
+msgid "Verfication Date"
+msgstr "Verifikationszeitpunkt"
 
-#: partsmanagement/models.py:713
-msgid "A short conclusion."
-msgstr "Eine kurze Zusammenfassung."
+#: partsmanagement/models.py:714
+#| msgid "The user the part was created by."
+msgid "The date the verifiedcation was created."
+msgstr "Der Stichtag, an dem der Bestand verifiziert wurde."
 
-#: partsmanagement/models.py:717
-msgid "Transaction Date"
-msgstr "Transaktionsdaten"
-
-#: partsmanagement/models.py:722
-msgid "The date the transaction took  part."
-msgstr "Das Datum, an dem die Transaktion stattfand."
-
-#: partsmanagement/models.py:725
-msgid "State"
-msgstr "Status"
-
-#: partsmanagement/models.py:730
-msgid "The status a transaction is in."
-msgstr "Der Status in der sich die Transaktion befindet."
-
-#: partsmanagement/models.py:734 templates/pmgmt/transaction/detail.html:37
+#: partsmanagement/models.py:718 partsmanagement/models.py:771
+#: templates/pmgmt/transaction/detail.html:37
 msgid "Created by"
 msgstr "Erstellt von"
 
-#: partsmanagement/models.py:735
+#: partsmanagement/models.py:719
+msgid "The user which verified the stock."
+msgstr "Der Nutzer, der den Bestand verifiziert hat."
+
+#: partsmanagement/models.py:730 templates/pmgmt/transaction/detail.html:25
+msgid "Subject"
+msgstr "Kurzbeschreibung"
+
+#: partsmanagement/models.py:732
+msgid "A short conclusion of the transaction."
+msgstr "Eine kurze Zusammenfassung für die Transaktion."
+
+#: partsmanagement/models.py:736
+msgid "The part-storage relation the transaction was applied on."
+msgstr "Die Einlagerung, auf die bei der Transaktion zurück gegriffen wurde."
+
+#: partsmanagement/models.py:743
+msgid "The quantity transferred."
+msgstr "Die Menge, um die sich der Bestand geändert hat."
+
+#: partsmanagement/models.py:746
+msgid "Comment"
+msgstr "Kommentar"
+
+#: partsmanagement/models.py:750
+msgid "A short conclusion."
+msgstr "Eine kurze Zusammenfassung."
+
+#: partsmanagement/models.py:754
+msgid "Transaction Date"
+msgstr "Transaktionsdaten"
+
+#: partsmanagement/models.py:759
+msgid "The date the transaction took  part."
+msgstr "Das Datum, an dem die Transaktion stattfand."
+
+#: partsmanagement/models.py:762
+msgid "State"
+msgstr "Status"
+
+#: partsmanagement/models.py:767
+msgid "The status a transaction is in."
+msgstr "Der Status in der sich die Transaktion befindet."
+
+#: partsmanagement/models.py:772
 msgid "The user which created the transaction."
 msgstr "Der Nutzer, die die Transaktion anlegte."
 
-#: partsmanagement/models.py:739
+#: partsmanagement/models.py:776
 msgid "Creation timestamp"
 msgstr "Angelegt am"
 
-#: partsmanagement/models.py:744
+#: partsmanagement/models.py:781
 msgid "The timestamp transaction has been entered."
 msgstr "Der Zeitpunkt zu dem die Transaktion angelegt wurde."
 
-#: partsmanagement/models.py:748
+#: partsmanagement/models.py:785
 msgid "Reverted"
 msgstr "Zurück gerollt"
 
-#: partsmanagement/models.py:751
+#: partsmanagement/models.py:788
 msgid ""
 "To control whether transaction has been already reverted and cannot be "
 "reverted again."
@@ -578,25 +603,25 @@ msgstr ""
 "Gibt an, ob die Transaktion bereits zurück gerollt, das heißt widerrufen "
 "wurde, und so nicht mehr neu entsprechend behandelt werden kann."
 
-#: partsmanagement/models.py:758
+#: partsmanagement/models.py:795
 msgid "reverted {}"
 msgstr "zurück {}"
 
-#: partsmanagement/models.py:768
+#: partsmanagement/models.py:805
 msgid "Transaktion »{}« was already reverted."
 msgstr "Die Transatkion »{}« wurde bereits zurück gerollt."
 
-#: partsmanagement/models.py:784
+#: partsmanagement/models.py:821
 msgid "moved {}"
 msgstr "geändert {}"
 
-#: partsmanagement/models.py:823 templates/pmgmt/storageitem/detail.html:58
+#: partsmanagement/models.py:860 templates/pmgmt/storageitem/detail.html:58
 #: templates/pmgmt/storageitem/list.html:64
 #: templates/pmgmt/transaction/detail.html:6
 msgid "Transaction"
 msgstr "Transaktion"
 
-#: partsmanagement/models.py:824 templates/base.html:44
+#: partsmanagement/models.py:861 templates/base.html:44
 #: templates/pmgmt/transaction/add.html:8
 #: templates/pmgmt/transaction/list.html:6
 msgid "Transactions"
@@ -861,9 +886,8 @@ msgid "Resend"
 msgstr "Erneut senden"
 
 #: templates/account/password_reset_sent.html:25
-#, python-format
-msgid ""
-"We have resent the password email.</a>."
+#| msgid "We have resent the password email.</a>."
+msgid "We have resent the password email. "
 msgstr ""
 "Wir haben Dir die Email zum zurücksetzen Deines Passwortes noch einmal "
 "zugesendet."
@@ -913,6 +937,10 @@ msgstr "Passwort"
 #: templates/account/signup.html:7 templates/account/signup.html:10
 #: templates/account/signup.html:12 templates/account/signup_closed.html:5
 msgid "Sign up"
+msgstr "Registrieren"
+
+#: templates/account/signup.html:18 templates/base.html:86
+msgid "Register"
 msgstr "Registrieren"
 
 #: templates/account/signup_closed.html:8
@@ -966,10 +994,6 @@ msgstr "Nutzereinstellungen ändern"
 #: templates/base.html:81
 msgid "Login"
 msgstr "Einloggen"
-
-#: templates/base.html:86
-msgid "Register"
-msgstr "Registrieren"
 
 #: templates/base.html:114 templates/help.html:5 templates/help.html:8
 #: templates/help.html:10
@@ -1098,7 +1122,6 @@ msgid "Add a new category"
 msgstr "Ein neue Kategorie anlegen"
 
 #: templates/pmgmt/category/detail.html:40
-#| msgid "No new parts."
 msgid "No parts by now."
 msgstr "Aktuell keine Teile."
 
@@ -1120,7 +1143,6 @@ msgid "List of categories"
 msgstr "Liste der Kategorien"
 
 #: templates/pmgmt/category/list.html:31 templates/pmgmt/storage/list.html:32
-#| msgid "Search in part names"
 msgid "Search in storage names"
 msgstr "In Lagernamen suchen"
 
