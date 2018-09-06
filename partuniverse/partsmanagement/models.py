@@ -687,7 +687,6 @@ class StorageItem(models.Model):
                 created_by=requested_user,
                 amount=new_on_stock)
 
-
     class Meta:
         unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
@@ -719,6 +718,7 @@ class VerifiedStock(models.Model):
         help_text=_("The user which verified the stock."),
         on_delete=models.PROTECT
     )
+
     def __str__(self):
         return '%s %s' % (self.storage_item, self.date)
 

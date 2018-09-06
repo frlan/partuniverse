@@ -462,9 +462,11 @@ class VerifiedCutOffDay(TestCase):
             storage_item__exact=self.storage_item1).latest('id')
         self.assertEqual(latest_verified.amount, 150)
 
+
 ########################################################################
 # Part related
 ########################################################################
+
 class StoragePlaceCircle(TestCase):
     """
         Testcase to check whether model's validation method is catching
