@@ -15,7 +15,7 @@
 <form class="ui form" method="POST">
 	{% csrf_token %}
 	{% render_form form _help=1 %}
-	<button class="ui blue submit button"> Submit</button>
+	<button class="ui blue submit button">{% trans "Register" %}</button>
 </form>
 
 {% endblock %}
