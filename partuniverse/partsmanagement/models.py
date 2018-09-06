@@ -658,6 +658,9 @@ class StorageItem(models.Model):
         return self.owner if self.owner else self.storage.owner
 
     def stock_report(self, new_on_stock, requested_user):
+        # Use this method for any kind of stock taking/hard updating
+        # of amount inside storage place from verified source
+
         if new_on_stock < 0:
             raise StorageItemBelowZeroException(
                 ("Tried to set {} amount below 0" % self.name)
