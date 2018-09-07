@@ -704,6 +704,13 @@ class VerifiedStock(models.Model):
         max_digits=10,
         decimal_places=4,
         help_text=_("The quantity at this very time."))
+    comment = models.TextField(
+        _("Comment"),
+        blank=True,
+        null=True,
+        max_length=200,
+        help_text=_("A short conclusion.")
+    )
     date = models.DateTimeField(
         _("Verfication Date"),
         blank=False,
