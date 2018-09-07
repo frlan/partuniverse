@@ -532,7 +532,7 @@ class StorageItemStockTakingView(FormView):
 class StorageItemTransactionAddView(FormView):
     form_class = StorageItemAddTransactionForm
     success_url = reverse_lazy('storage_item_list')
-    template_name = 'pmgmt/storageitem/transaction.html'
+    template_name = 'pmgmt/transaction/add.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

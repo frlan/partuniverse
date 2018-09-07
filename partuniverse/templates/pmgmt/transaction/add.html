@@ -1,38 +1,23 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load staticfiles %}
 {% load semanticui %}
-
-{% block breadcrumbs %}
-<a href="{% url "transaction_list" %}" class="section">{% trans "Transactions" %}</a>
-<i class="right chevron icon divider"></i>
-<a class="active section">{% trans "Add" %}</a>
-{% endblock %}
-
-{% block head_title %}{% trans "Add a new transaction" %}{% endblock %}
-
-{% block heading %}{% trans "Add a new transaction" %}{% endblock %}
-
-{% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="{% static "datetimepicker/jquery.datetimepicker.css" %}">
-{% endblock %}
-
-{% block javascripts %}
-{{ block.super }}
-<script src="{% static "datetimepicker/jquery.datetimepicker.js" %}"></script>
-<script src="{% static "custom/datepicker.js" %}"></script>
-{% endblock %}
+{% load static %}
+{% block head_title %}{% trans "Transaction for a storage item" %}{% endblock %}
+{% block heading %}{% trans "Transaction for a storage item" %}{% endblock %}
 
 {% block content %}
+<h1>{{ storage_item }}</h1>
 
 <div class="ui attached segment">
-  <p>{% trans "Attention: The amount of change is the actual change. If you take out 1 item from a storage it's actually a -1 of amount." %}</p>
+    <p>{% trans "Add a new transation for storage item:" %}</p>
 </div>
 
-<form method="post" class="ui form">
-  {% csrf_token %}
-  {% render_form form _help=1 %}
-  <input class="ui blue button" type="submit" value="{% trans "Add" %}">
+<form method="post" class="ui form segment">
+    {% csrf_token %}
+    {% render_form form _help=1 %}
+    <input class="ui button red" type="submit" name="submit" value="-">
+    <input class="ui button green" type="submit" name="submit" value="+">
 </form>
+
 {% endblock %}
