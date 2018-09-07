@@ -685,6 +685,7 @@ class StorageItem(models.Model):
                 storage_item=self,
                 date=timezone.now(),
                 created_by=requested_user,
+                comment=_('Stocktaking'),
                 amount=new_on_stock)
 
     class Meta:
