@@ -1301,7 +1301,7 @@ msgstr "Teil löschen"
 
 #: templates/pmgmt/part/list.html:10 templates/pmgmt/part/list.html:12
 msgid "List of parts"
-msgstr "Teileliste"
+msgstr "Liste der Teile"
 
 #: templates/pmgmt/part/list.html:53 templates/pmgmt/part/reorderlist.html:38
 msgid "Minimum"
