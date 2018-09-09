@@ -675,7 +675,7 @@ class StorageItem(models.Model):
                 difference = new_on_stock - self.on_stock
 
             Transaction.objects.create(
-                subject=_('Difference from Stocktaking'),
+                subject='Difference from Stocktaking',
                 created_by=requested_user,
                 amount=difference,
                 storage_item=self,
@@ -685,7 +685,7 @@ class StorageItem(models.Model):
                 storage_item=self,
                 date=timezone.now(),
                 created_by=requested_user,
-                comment=_('Stocktaking'),
+                comment='Stocktaking',
                 amount=new_on_stock)
 
     class Meta:
