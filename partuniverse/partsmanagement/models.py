@@ -755,7 +755,7 @@ class Transaction(models.Model):
         blank=True,
         null=True,
         max_length=200,
-        help_text=_("A short conclusion.")
+        help_text=_("Optional: A short conclusion.")
     )
 
     date = models.DateTimeField(
