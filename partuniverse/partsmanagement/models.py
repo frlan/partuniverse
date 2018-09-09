@@ -764,7 +764,7 @@ class Transaction(models.Model):
         null=False,
         default=datetime.now,
         db_index=True,
-        help_text=_("The date the transaction took  part.")
+        help_text=_("The date the transaction took part.")
     )
     state = models.CharField(
         _("State"),
