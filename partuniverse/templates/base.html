@@ -35,6 +35,12 @@
            href="{% url "storage_item_list" %}">
           {% trans "Storage items" %}
         </a>
+        <a
+           class="item"
+           accesskey="S"
+           href="{% url "storage_list" %}">
+           {% trans "Storages" %}
+        </a>
         {% endif %}
         {% if user.is_authenticated %}
         <a
@@ -53,7 +59,6 @@
               <a class="item" href="{% url "category_list" %}">{% trans "Categories" %}</a>
               <a class="item" href="{% url "distributor_list" %}">{% trans "Distributors" %}</a>
               <a class="item" href="{% url "manufacturer_list" %}">{% trans "Manufacturers" %}</a>
-              <a class="item" href="{% url "storage_list" %}">{% trans "Storages" %}</a>
               <a class="item" href="{% url "storage_type_list" %}">{% trans "Storage Types" %}</a>
               <a class="item" href="{% url "part_reorderlist" %}">{% trans "Parts needs reordering" %}</a>
               <a class="item" href="{% url "storage_item_review_list" %}">{% trans "Storage items review" %}</a>
