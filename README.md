@@ -41,6 +41,13 @@ The [zc.buildout](http://www.buildout.org/en/latest/) and all the dependcies wil
         $ bin/pip install zc.buildout
         $ ./bin/buildout
 
+### Virtualenv (for testing)
+
+        $ pwd
+        /path/to/your/sources/
+        $ virtualenv --python=python3 .
+        $ bin/pip install -r requirements.txt
+        $ source bin/activate
 
 ### Running
 
@@ -61,6 +68,8 @@ After this has been done, go ahead setting up your application.
 
 Go into the folder where you have checked out the sources.
 
+##### Buildout
+
 First you will have to create the Database:
 
         $ ./bin/django migrate
@@ -72,6 +81,22 @@ Create your superuser:
 If everything worked well, you can start the server (in debug mode):
 
         $ ./bin/django runserver
+
+##### Virtualenv
+First you will have to create the Database:
+
+        $ source bin/activate
+        $ cd partuniverse
+        $ python manage.py migrate
+
+Create your superuser:
+
+        $ python manage.py createsuperuser
+
+If everything worked well, you can start the server (in debug mode):
+
+        $ python manage.py runserver
+
 
 ### Running a production instance behind Nginx
 
