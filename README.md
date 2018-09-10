@@ -33,8 +33,6 @@ Partuniverse depends on:
 
 ### Buildout
 
-The [zc.buildout](http://www.buildout.org/en/latest/) and all the dependcies will be installed via its bootstrap script:
-
         $ pwd
         /path/to/your/sources/
         $ virtualenv --python=python3 .
