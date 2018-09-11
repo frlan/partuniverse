@@ -44,3 +44,4 @@ def createExcelArray(rows, cols):
             result.append(
                 '{}{}'.format(convertToBase26(col), row))
     return result
+

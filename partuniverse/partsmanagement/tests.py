@@ -462,6 +462,52 @@ class VerifiedCutOffDay(TestCase):
             storage_item__exact=self.storage_item1).latest('id')
         self.assertEqual(latest_verified.amount, 150)
 
+    def test_get_all_verified_stock(self):
+        verified1 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        verified2 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        verified3 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[0].id,
+            verified1.id)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[1].id,
+            verified2.id)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[2].id,
+            verified3.id)
+
+
+    def test_get_last_verfieid_stock(self):
+        verified1 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        verified2 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        verified3 = VerifiedStock.objects.create(
+            storage_item=self.storage_item1,
+            amount=self.storage_item1.on_stock,
+            date=timezone.now(),
+            created_by=self.user)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock_last().id,
+            verified3.id)
 
 ########################################################################
 # Part related

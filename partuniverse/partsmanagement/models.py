@@ -688,6 +688,12 @@ class StorageItem(models.Model):
                 comment='Stocktaking',
                 amount=new_on_stock)
 
+    def get_verified_stock(self):
+        return VerifiedStock.objects.filter(storage_item__exact=self).order_by('id')
+
+    def get_verified_stock_last(self):
+        return VerifiedStock.objects.filter(storage_item__exact=self).latest('id')
+
     class Meta:
         unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
