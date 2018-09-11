@@ -8,7 +8,7 @@
 <p>{% trans "Changes here will not change die internal ID of a storage item, but it will change the name you will see inside the application." %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
-  {% render_form form _help=1 %}
+  {{ form }}
   <input class="ui button blue" type="submit" value="Submit">
 </form>
 {% endblock %}

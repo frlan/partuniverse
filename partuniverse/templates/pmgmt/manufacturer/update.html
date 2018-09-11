@@ -16,7 +16,7 @@
 {% block content %}
 <form class="ui form" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {% render_form form _help=1 %}
+  {{ form }}
   <input class="ui blue button" type="submit" value="Submit">
 </form>
 {% endblock %}

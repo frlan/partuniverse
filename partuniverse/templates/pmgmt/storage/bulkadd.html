@@ -11,7 +11,7 @@
 <p>{% trans "Bulk add multiple storage places as a rectangle given in rows and columns resulting in places like A1 or B22" %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
-  {% render_form form _help=1 %}
+  {{ form }}
   <input class="ui button blue" type="submit" value="{% trans "Add" %}">
 </form>
 {% endblock %}

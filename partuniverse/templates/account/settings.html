@@ -16,7 +16,7 @@
 <p>{% trans "Change here your account data:" %}</p>
 <form class="ui form" method="POST" action="{% url "account_settings" %}">
   {% csrf_token %}
-  {% render_form form _help=1 %}
+  {{ form }}
   <button class="ui blue button" type="submit"> {% trans "Save" %}</button>
 </form>
 
