@@ -689,10 +689,18 @@ class StorageItem(models.Model):
                 amount=new_on_stock)
 
     def get_verified_stock(self):
-        return VerifiedStock.objects.filter(storage_item__exact=self).order_by('id')
+        tmp = VerifiedStock.objects.filter(storage_item__exact=self).order_by('id')
+        if len(tmp) == 0:
+            return None
+        else:
+            return tmp
 
     def get_verified_stock_last(self):
-        return VerifiedStock.objects.filter(storage_item__exact=self).latest('id')
+        try:
+            return VerifiedStock.objects.filter(storage_item__exact=self).latest('id')
+        except VerifiedStock.DoesNotExist:
+            return None
+
 
     class Meta:
         unique_together = ("part", "storage", "owner")

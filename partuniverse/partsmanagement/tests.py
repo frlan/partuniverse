@@ -462,6 +462,12 @@ class VerifiedCutOffDay(TestCase):
             storage_item__exact=self.storage_item1).latest('id')
         self.assertEqual(latest_verified.amount, 150)
 
+    def test_get_all_verified_stock_none(self):
+        self.assertIsNone(self.storage_item1.get_verified_stock())
+
+    def test_get_last_verified_stock_none(self):
+        self.assertIsNone(self.storage_item1.get_verified_stock_last())
+
     def test_get_all_verified_stock(self):
         verified1 = VerifiedStock.objects.create(
             storage_item=self.storage_item1,
