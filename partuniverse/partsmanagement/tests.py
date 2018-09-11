@@ -494,7 +494,6 @@ class VerifiedCutOffDay(TestCase):
             self.storage_item1.get_verified_stock()[2].id,
             verified3.id)
 
-
     def test_get_last_verfieid_stock(self):
         verified1 = VerifiedStock.objects.create(
             storage_item=self.storage_item1,
@@ -518,6 +517,7 @@ class VerifiedCutOffDay(TestCase):
 ########################################################################
 # Part related
 ########################################################################
+
 
 class StoragePlaceCircle(TestCase):
     """

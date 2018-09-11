@@ -701,7 +701,6 @@ class StorageItem(models.Model):
         except VerifiedStock.DoesNotExist:
             return None
 
-
     class Meta:
         unique_together = ("part", "storage", "owner")
         verbose_name = _("Storage Item")
