@@ -381,7 +381,7 @@ msgstr "Mindestlagerbestand"
 
 #: partsmanagement/models.py:420
 msgid "Set a minimum that should be stored."
-msgstr "Setzt einen Minimalwert, wieviele Teile vorhanden sein müssen/sollen."
+msgstr "Setzt einen Minimalwert, wie viele Teile vorhanden sein müssen/sollen."
 
 #: partsmanagement/models.py:423
 msgid "Messuring unit"
