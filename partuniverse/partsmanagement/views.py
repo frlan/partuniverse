@@ -342,6 +342,7 @@ class PartUpdateView(UpdateView):
 class TransactionListView(ListView):
     model = Transaction
     template_name = 'pmgmt/transaction/list.html'
+    paginate_by = settings.MAX_ITEMS_PER_PAGE
 
 
 class TransactionAddView(CreateView):
