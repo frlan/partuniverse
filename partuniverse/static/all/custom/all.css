@@ -3,6 +3,10 @@ main.main.container {
   min-height: calc(100% - 108px);
 }
 
+.ui.menu .item {
+  padding: 0.7em 0.8em;
+}
+
 .ui.footer.segment {
   margin: 2em 0em 0em;
   padding: 2em 0em;
