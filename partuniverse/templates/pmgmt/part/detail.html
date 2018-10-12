@@ -93,12 +93,15 @@
                         <a href="{% url "storage_item_detail" item.id %}">{{item.storage}}</a>
                     </div>
                 {% if item.on_stock %}
-                ({{item.on_stock}}{{object.unit}})<a href="{% url "storage_item_transaction" item.id %}" class="ui button mini teal right floated compact">{% trans "Update stock" %}</a>
-            {% else %}
-            {% trans "(unknown quantity on stock)" %}
-            {% endif %}
-            <a href="{% url "storage_item_detail" item.id %}" class="ui button mini teal right floated compact">{% trans "Detail" %}</a>
-            </div></div>
+                    ({{item.on_stock}}{{object.unit}})<a href="{% url "storage_item_transaction" item.id %}" class="ui button mini teal right floated compact">{% trans "Update stock" %}</a>
+                {% elif item.on_stock == 0 %}
+                    {{item.on_stock}}
+                {% else %}
+                    {% trans "(unknown quantity on stock)" %}
+                {% endif %}
+                    <a href="{% url "storage_item_detail" item.id %}" class="ui button mini teal right floated compact">{% trans "Detail" %}</a>
+                </div>
+            </div>
 
             {% endif %}
             {% endfor %}
