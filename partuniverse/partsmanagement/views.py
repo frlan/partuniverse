@@ -513,7 +513,8 @@ class StorageItemUpdateView(UpdateView):
               'storage',
               'owner',
               'needs_review',
-              'review_reason')
+              'review_reason',
+              'disabled')
     template_name = 'pmgmt/storageitem/update.html'
     success_url = reverse_lazy('storage_item_list')
 
