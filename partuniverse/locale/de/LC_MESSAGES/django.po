@@ -413,7 +413,7 @@ msgstr "Der Hersteller des Teiles."
 
 #: partsmanagement/models.py:464
 msgid "The usual distributor of the part."
-msgstr "Die gewöhnliche Lieferant des Teiles."
+msgstr "Der übliche Lieferant des Teiles."
 
 #: partsmanagement/models.py:467
 msgid "Cost of the part"
