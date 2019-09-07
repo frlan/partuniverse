@@ -228,7 +228,8 @@ class TransactionInventoryChange(TestCase):
         )
 
         self.assertEqual(
-            int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 110
+            int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock),
+            110,
         )
 
 
@@ -278,7 +279,8 @@ class TransactionInventoryChangeOnUpdate(TestCase):
 
         # The amount should now be 110
         self.assertEqual(
-            int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock), 110
+            int(StorageItem.objects.get(pk=trans.storage_item.id).on_stock),
+            110,
         )
 
 
@@ -340,7 +342,8 @@ class TransactionInventoryChangeOnUpdateStorageItem(TestCase):
             int(StorageItem.objects.get(pk=self.storage_item2.id).on_stock), 90
         )
         self.assertEqual(
-            int(StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 100
+            int(StorageItem.objects.get(pk=self.storage_item1.id).on_stock),
+            100,
         )
 
 

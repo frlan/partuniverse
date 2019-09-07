@@ -313,7 +313,9 @@ class Category(models.Model):
     """ Representing a category a part might contains to.
     E.g. resistor """
 
-    name = models.CharField(max_length=50, help_text=_("Name of the category."))
+    name = models.CharField(
+        max_length=50, help_text=_("Name of the category.")
+    )
     parent = models.ForeignKey(
         "self",
         null=True,

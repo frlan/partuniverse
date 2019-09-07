@@ -17,7 +17,9 @@ urlpatterns = [
         name="about",
     ),
     url(
-        r"^help/$", TemplateView.as_view(template_name="help.html"), name="help"
+        r"^help/$",
+        TemplateView.as_view(template_name="help.html"),
+        name="help",
     ),
     url(r"^img/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
     url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),

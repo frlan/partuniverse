@@ -488,7 +488,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "disabled",
-                    models.BooleanField(default=False, verbose_name="Disabled"),
+                    models.BooleanField(
+                        default=False, verbose_name="Disabled"
+                    ),
                 ),
                 (
                     "part",
@@ -546,7 +548,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="part",
             name="name",
-            field=models.CharField(max_length=255, verbose_name="Name of part"),
+            field=models.CharField(
+                max_length=255, verbose_name="Name of part"
+            ),
         ),
         migrations.AddField(
             model_name="category",
