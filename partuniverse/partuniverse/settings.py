@@ -117,7 +117,10 @@ LOGGING = {
     "disable_existing_loggers": True,
     "formatters": {
         "verbose": {
-            "format": "%(asctime)s %(name)s %(process)d %(threadName)s %(levelname)s %(message)s"
+            "format": (
+                "%(asctime)s %(name)s %(process)d %(threadName)s "
+                "%(levelname)s %(message)s"
+            )
         }
     },
     "filters": {

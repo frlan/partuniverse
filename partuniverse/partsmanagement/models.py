@@ -520,7 +520,10 @@ class Part(models.Model):
         super(Part, self).save(*args, **kwargs)
 
     def get_on_stock(self):
-        """ Returns the amount of items which are on stock over all storages """
+        """
+        Returns the amount of items which are on stock over all
+        storages
+        """
 
         # Catching all StorageItems connected with this Part and
         # calculating sum of them

@@ -18,7 +18,8 @@ class PartsmanagementException(Exception):
 
 class PartsNotFitException(PartsmanagementException):
     """
-    Shall be used, when ever a Part is not fitting to another such like cannot be compared
+    Shall be used, when ever a Part is not fitting to another such
+    like cannot be compared.
     """
 
     def __init__(self, error):
@@ -64,7 +65,8 @@ class StorageItemIsTheSameException(PartsmanagementException):
 
 class TransactionAllreadyRevertedException(PartsmanagementException):
     """
-    Used in case of trying to set revert an already marked a reverted transaction
+    Used in case of trying to set revert an already marked a reverted
+    transaction
     """
 
     def __init__(self, error):
