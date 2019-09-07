@@ -2,17 +2,17 @@ from .models import ValidationError
 
 
 def is_pdf(fileob):
-    return fileob.content_type == 'application/pdf'
+    return fileob.content_type == "application/pdf"
 
 
 def is_img(fileob):
-    return fileob.content_type.startswith('image/')
+    return fileob.content_type.startswith("image/")
 
 
 def validate_file_extension(value):
     try:
         if not (is_pdf(value.file) or is_img(value.file)):
-            raise ValidationError(u'Filetype not supported')
+            raise ValidationError(u"Filetype not supported")
     except AttributeError:
         pass
 
@@ -27,10 +27,7 @@ def convertToBase26(num):
     if num < 26:
         return number[num]
     else:
-        return (
-            convertToBase26(num // 26 - 1) +
-            str((number[num % 26]))
-        )
+        return convertToBase26(num // 26 - 1) + str((number[num % 26]))
 
 
 def createExcelArray(rows, cols):
@@ -41,6 +38,5 @@ def createExcelArray(rows, cols):
     result = []
     for col in range(0, cols):
         for row in range(1, rows + 1):
-            result.append(
-                '{}{}'.format(convertToBase26(col), row))
+            result.append("{}{}".format(convertToBase26(col), row))
     return result

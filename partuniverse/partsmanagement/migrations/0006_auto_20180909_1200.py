@@ -6,14 +6,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('partsmanagement', '0005_auto_20180909_1158'),
-    ]
+    dependencies = [("partsmanagement", "0005_auto_20180909_1158")]
 
     operations = [
         migrations.AlterField(
-            model_name='transaction',
-            name='date',
-            field=models.DateTimeField(db_index=True, default=datetime.datetime.now, help_text='The date the transaction took part.', verbose_name='Transaction Date'),
-        ),
+            model_name="transaction",
+            name="date",
+            field=models.DateTimeField(
+                db_index=True,
+                default=datetime.datetime.now,
+                help_text="The date the transaction took part.",
+                verbose_name="Transaction Date",
+            ),
+        )
     ]

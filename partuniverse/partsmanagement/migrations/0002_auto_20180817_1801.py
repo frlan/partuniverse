@@ -7,39 +7,67 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('partsmanagement', '0001_squashed_0034_auto_20171209_1218'),
-    ]
+    dependencies = [("partsmanagement", "0001_squashed_0034_auto_20171209_1218")]
 
     operations = [
         migrations.AlterField(
-            model_name='part',
-            name='created_by',
-            field=models.ForeignKey(help_text='The user the part was created by.', null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Added by'),
+            model_name="part",
+            name="created_by",
+            field=models.ForeignKey(
+                help_text="The user the part was created by.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Added by",
+            ),
         ),
         migrations.AlterField(
-            model_name='storageitem',
-            name='owner',
-            field=models.ForeignKey(blank=True, help_text='The user owning items of this storageitem.', null=True, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, verbose_name='Owned by'),
+            model_name="storageitem",
+            name="owner",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="The user owning items of this storageitem.",
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Owned by",
+            ),
         ),
         migrations.AlterField(
-            model_name='storageitem',
-            name='part',
-            field=models.ForeignKey(help_text='The part stored at this spot.', on_delete=django.db.models.deletion.PROTECT, to='partsmanagement.Part'),
+            model_name="storageitem",
+            name="part",
+            field=models.ForeignKey(
+                help_text="The part stored at this spot.",
+                on_delete=django.db.models.deletion.PROTECT,
+                to="partsmanagement.Part",
+            ),
         ),
         migrations.AlterField(
-            model_name='storageitem',
-            name='storage',
-            field=models.ForeignKey(help_text='The storage the part is stored in.', on_delete=django.db.models.deletion.PROTECT, to='partsmanagement.StoragePlace'),
+            model_name="storageitem",
+            name="storage",
+            field=models.ForeignKey(
+                help_text="The storage the part is stored in.",
+                on_delete=django.db.models.deletion.PROTECT,
+                to="partsmanagement.StoragePlace",
+            ),
         ),
         migrations.AlterField(
-            model_name='transaction',
-            name='created_by',
-            field=models.ForeignKey(help_text='The user which created the transaction.', on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, verbose_name='Created by'),
+            model_name="transaction",
+            name="created_by",
+            field=models.ForeignKey(
+                help_text="The user which created the transaction.",
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Created by",
+            ),
         ),
         migrations.AlterField(
-            model_name='transaction',
-            name='storage_item',
-            field=models.ForeignKey(help_text='The part-storage relation the transaction was applied on.', on_delete=django.db.models.deletion.PROTECT, to='partsmanagement.StorageItem'),
+            model_name="transaction",
+            name="storage_item",
+            field=models.ForeignKey(
+                help_text="The part-storage relation the transaction was applied on.",
+                on_delete=django.db.models.deletion.PROTECT,
+                to="partsmanagement.StorageItem",
+            ),
         ),
     ]

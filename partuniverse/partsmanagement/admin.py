@@ -11,7 +11,7 @@ from .models import (
     StoragePlace,
     StorageType,
     Transaction,
-    VerifiedStock
+    VerifiedStock,
 )
 
 logger = logging.getLogger(__name__)
