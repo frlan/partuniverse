@@ -203,7 +203,7 @@ When finishing your featre, please send a pull request or a patchset via mail.
 
 Please use [pep8](https://www.python.org/dev/peps/pep-0008/) for coding.
 As a little support tool you might can give [autopep8](https://pypi.python.org/pypi/autopep8) a try.
-
+Another nice tool is [black](https://github.com/psf/black).
 
 ### Testing
 
