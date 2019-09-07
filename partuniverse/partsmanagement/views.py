@@ -499,7 +499,14 @@ class StorageItemDetailView(DetailView):
 
 class StorageItemUpdateView(UpdateView):
     model = StorageItem
-    fields = ("part", "storage", "owner", "needs_review", "review_reason", "disabled")
+    fields = (
+        "part",
+        "storage",
+        "owner",
+        "needs_review",
+        "review_reason",
+        "disabled",
+    )
     template_name = "pmgmt/storageitem/update.html"
     success_url = reverse_lazy("storage_item_list")
 
@@ -511,7 +518,9 @@ class StorageItemStockTakingView(FormView):
 
     def form_valid(self, form):
         storageiitem = StorageItem.objects.get(pk=self.kwargs["pk"])
-        storageiitem.stock_report(form.cleaned_data["amount"], self.request.user)
+        storageiitem.stock_report(
+            form.cleaned_data["amount"], self.request.user
+        )
         return super(StorageItemStockTakingView, self).form_valid(form)
 
 

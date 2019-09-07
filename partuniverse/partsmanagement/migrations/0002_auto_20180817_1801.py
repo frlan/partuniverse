@@ -7,7 +7,9 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [("partsmanagement", "0001_squashed_0034_auto_20171209_1218")]
+    dependencies = [
+        ("partsmanagement", "0001_squashed_0034_auto_20171209_1218")
+    ]
 
     operations = [
         migrations.AlterField(

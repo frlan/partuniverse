@@ -45,7 +45,10 @@ class StorageItemBelowZeroException(PartsmanagementException):
     def __init__(self, error):
         super(StorageItemBelowZeroException, self).__init__(error)
         logger.error(
-            _(("Amount of items inside a storage cannot be under 0:", "%s") % error)
+            _(
+                ("Amount of items inside a storage cannot be under 0:", "%s")
+                % error
+            )
         )
 
 

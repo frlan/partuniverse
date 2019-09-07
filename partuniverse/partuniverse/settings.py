@@ -120,7 +120,9 @@ LOGGING = {
             "format": "%(asctime)s %(name)s %(process)d %(threadName)s %(levelname)s %(message)s"
         }
     },
-    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}
+    },
     "handlers": {
         "console": {
             "level": "DEBUG",

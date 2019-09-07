@@ -33,23 +33,35 @@ UNIT_CHOICES = (
     (_("Length"), (("m", _("meters")), ("cm", _("centimeters")))),
     (
         _("Volume"),
-        (("l", _("litres")), ("m³", _("cubicmeters")), ("ccm", _("cubic centimeters"))),
+        (
+            ("l", _("litres")),
+            ("m³", _("cubicmeters")),
+            ("ccm", _("cubic centimeters")),
+        ),
     ),
     (_("Piece"), (("pc", _("piece")),)),
     (_("n/A"), _("Unknown")),
 )
 
-STATE_CHOICES = (("paid", _("Paid")), ("open", _("Open")), ("res", _("Reserverd")))
+STATE_CHOICES = (
+    ("paid", _("Paid")),
+    ("open", _("Open")),
+    ("res", _("Reserverd")),
+)
 
 
 class StorageType(models.Model):
     """ Defining a general typ of storage """
 
     name = models.CharField(
-        max_length=50, help_text=_("The name for a storage type. Should be unique")
+        max_length=50,
+        help_text=_("The name for a storage type. Should be unique"),
     )
     description = models.TextField(
-        _("Description"), blank=True, null=True, help_text=_("A short description.")
+        _("Description"),
+        blank=True,
+        null=True,
+        help_text=_("A short description."),
     )
     pic = models.ImageField(
         null=True,
@@ -76,7 +88,9 @@ class StoragePlace(models.Model):
         e.g. a shelf."""
 
     @classmethod
-    def createBulkStorage(cls, storagetype, parent=None, entries=("A1"), owner=None):
+    def createBulkStorage(
+        cls, storagetype, parent=None, entries=("A1"), owner=None
+    ):
         for entry in entries:
             StoragePlace.objects.create(
                 name=entry, storage_type=storagetype, parent=parent, owner=None
@@ -86,7 +100,8 @@ class StoragePlace(models.Model):
     name = models.CharField(
         max_length=50,
         help_text=_(
-            "A name for the storage place." "E.g. coordinates inside a book shelve."
+            "A name for the storage place."
+            "E.g. coordinates inside a book shelve."
         ),
     )
     storage_type = models.ForeignKey(
@@ -113,7 +128,9 @@ class StoragePlace(models.Model):
         help_text=_("The storage the current storage is part of."),
     )
     disabled = models.BooleanField(
-        _("Disabled"), default=False, help_text=_("Whether a storage is active.")
+        _("Disabled"),
+        default=False,
+        help_text=_("Whether a storage is active."),
     )
     pic = models.ImageField(
         null=True,
@@ -122,14 +139,21 @@ class StoragePlace(models.Model):
         help_text=_("So does look the place in real."),
     )
     description = models.TextField(
-        _("Description"), blank=True, null=True, help_text=_("A short description.")
+        _("Description"),
+        blank=True,
+        null=True,
+        help_text=_("A short description."),
     )
 
     def __str__(self):
         if self.parent is None:
             return "%s" % self.name
         else:
-            return "%s%s%s" % (self.parent, settings.PARENT_DELIMITER, self.name)
+            return "%s%s%s" % (
+                self.parent,
+                settings.PARENT_DELIMITER,
+                self.name,
+            )
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
@@ -205,7 +229,9 @@ class StoragePlace(models.Model):
 class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
-    name = models.CharField(max_length=50, help_text=_("Name of the manufacturer."))
+    name = models.CharField(
+        max_length=50, help_text=_("Name of the manufacturer.")
+    )
     logo = models.ImageField(
         null=True,
         blank=True,
@@ -213,10 +239,13 @@ class Manufacturer(models.Model):
         help_text=_("The logo of the company."),
     )
     url = models.URLField(
-        null=True, blank=True, help_text=_("The URL to homepage of manufacturer.")
+        null=True,
+        blank=True,
+        help_text=_("The URL to homepage of manufacturer."),
     )
     creation_time = models.DateTimeField(
-        auto_now_add=True, help_text=_("Timestamp the manufacturer was created at.")
+        auto_now_add=True,
+        help_text=_("Timestamp the manufacturer was created at."),
     )
     created_by = models.ForeignKey(
         User,
@@ -242,7 +271,9 @@ class Manufacturer(models.Model):
 class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
-    name = models.CharField(max_length=50, help_text=_("Name of the distributor"))
+    name = models.CharField(
+        max_length=50, help_text=_("Name of the distributor")
+    )
     logo = models.ImageField(
         null=True,
         blank=True,
@@ -250,7 +281,9 @@ class Distributor(models.Model):
         help_text=_("The logo of the company."),
     )
     url = models.URLField(
-        null=True, blank=True, help_text=_("The URL to homepage of distributor.")
+        null=True,
+        blank=True,
+        help_text=_("The URL to homepage of distributor."),
     )
 
     creation_time = models.DateTimeField(
@@ -305,7 +338,11 @@ class Category(models.Model):
         if self.parent is None:
             return "{}".format(self.name)
         else:
-            return "%s%s%s" % (self.parent, settings.PARENT_DELIMITER, self.name)
+            return "%s%s%s" % (
+                self.parent,
+                settings.PARENT_DELIMITER,
+                self.name,
+            )
 
     def get_parents(self):
         """ Returns a list with parants of that StoragePare incl itself"""
@@ -337,7 +374,11 @@ class Category(models.Model):
                 self.parent.get_parents()
             except CircleDetectedException:
                 raise ValidationError(
-                    {"parent": _("The category cannot be one of " "its ancestors.")}
+                    {
+                        "parent": _(
+                            "The category cannot be one of " "its ancestors."
+                        )
+                    }
                 )
 
     def get_parts(self):
@@ -452,7 +493,9 @@ class Part(models.Model):
         null=True,
     )
     disabled = models.BooleanField(
-        _("Disabled"), default=False, help_text=_("Whether the part is active or not.")
+        _("Disabled"),
+        default=False,
+        help_text=_("Whether the part is active or not."),
     )
 
     def __str__(self):
@@ -492,7 +535,9 @@ class Part(models.Model):
             If either on_stock or min_stock is not defined, it will
             return False """
         currently_on_stock = self.get_on_stock()
-        return self.min_stock is not None and currently_on_stock < self.min_stock
+        return (
+            self.min_stock is not None and currently_on_stock < self.min_stock
+        )
 
     def is_on_stock(self):
         """ Returns True, if the item is on stock.
@@ -512,21 +557,26 @@ class Part(models.Model):
         # We cannot work on not given StorageItems
         if si1 is None or si2 is None:
             raise PartsmanagementException(
-                "One of the storage items seems to not exists: %s, %s" % (si1, si2)
+                "One of the storage items seems to not exists: %s, %s"
+                % (si1, si2)
             )
 
         # We need to check, whether we don't merge different parts here
         if si1.part.id != si2.part.id or self.id != si1.part.id:
             raise PartsNotFitException(
                 "Cannot merge not idendical parts. "
-                "Parts »{}« and »{}« are not idendical".format(si1.part, si2.part)
+                "Parts »{}« and »{}« are not idendical".format(
+                    si1.part, si2.part
+                )
             )
 
         # Check, whether si1 and si2 are different storage types at all
         # If so, we better don't do anything.
         if si1.id == si2.id:
             raise StorageItemIsTheSameException(
-                "{} and {} are idendical. Nothing to merge".format(si1.id, si2.id)
+                "{} and {} are idendical. Nothing to merge".format(
+                    si1.id, si2.id
+                )
             )
 
         # Special behavior for on_stock is None storage items
@@ -562,7 +612,9 @@ class Part(models.Model):
 
 class StorageItem(models.Model):
     part = models.ForeignKey(
-        Part, help_text=_("The part stored at this spot."), on_delete=models.PROTECT
+        Part,
+        help_text=_("The part stored at this spot."),
+        on_delete=models.PROTECT,
     )
     storage = models.ForeignKey(
         StoragePlace,
@@ -589,7 +641,9 @@ class StorageItem(models.Model):
         help_text=_("Put reason, why this item should be reviewed here in."),
     )
     disabled = models.BooleanField(
-        _("Disabled"), default=False, help_text=_("Whether the storage item is active.")
+        _("Disabled"),
+        default=False,
+        help_text=_("Whether the storage item is active."),
     )
     owner = models.ForeignKey(
         User,
@@ -642,7 +696,9 @@ class StorageItem(models.Model):
             )
 
     def get_verified_stock(self):
-        tmp = VerifiedStock.objects.filter(storage_item__exact=self).order_by("id")
+        tmp = VerifiedStock.objects.filter(storage_item__exact=self).order_by(
+            "id"
+        )
         if len(tmp) == 0:
             return None
         else:
@@ -650,7 +706,9 @@ class StorageItem(models.Model):
 
     def get_verified_stock_last(self):
         try:
-            return VerifiedStock.objects.filter(storage_item__exact=self).latest("id")
+            return VerifiedStock.objects.filter(
+                storage_item__exact=self
+            ).latest("id")
         except VerifiedStock.DoesNotExist:
             return None
 
@@ -709,7 +767,9 @@ class Transaction(models.Model):
     )
     storage_item = models.ForeignKey(
         StorageItem,
-        help_text=_("The part-storage relation the transaction was applied on."),
+        help_text=_(
+            "The part-storage relation the transaction was applied on."
+        ),
         on_delete=models.PROTECT,
     )
     amount = models.DecimalField(
@@ -805,7 +865,9 @@ class Transaction(models.Model):
                     # No need for calling some extra save()
                     return
                 if old_transaction.amount != self.amount:
-                    storageitem = StorageItem.objects.get(pk=self.storage_item.id)
+                    storageitem = StorageItem.objects.get(
+                        pk=self.storage_item.id
+                    )
                     if storageitem.on_stock is not None:
                         storageitem.on_stock = (
                             storageitem.on_stock - old_transaction.amount
@@ -817,7 +879,9 @@ class Transaction(models.Model):
                 # We got a new Transaction
                 storageitem = StorageItem.objects.get(pk=self.storage_item.id)
                 if storageitem.on_stock is not None:
-                    storageitem.on_stock = storageitem.on_stock + Decimal(self.amount)
+                    storageitem.on_stock = storageitem.on_stock + Decimal(
+                        self.amount
+                    )
                 elif self.amount is not None:
                     storageitem.on_stock = Decimal(self.amount)
                 storageitem.save()

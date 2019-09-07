@@ -31,7 +31,10 @@ class Migration(migrations.Migration):
         ("partsmanagement", "0016_rename_url_to_image_url"),
         ("partsmanagement", "0017_transaction_reverted"),
         ("partsmanagement", "0018_distributor_logo"),
-        ("partsmanagement", "0019_alter_field_desctiption_for_transaction_date"),
+        (
+            "partsmanagement",
+            "0019_alter_field_desctiption_for_transaction_date",
+        ),
         ("partsmanagement", "0020_distributor_url"),
         ("partsmanagement", "0021_adding_logo_and_url_to_manufacturer"),
         ("partsmanagement", "0022_part_change_subfolder"),
@@ -77,7 +80,10 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"verbose_name": "Category", "verbose_name_plural": "Categories"},
+            options={
+                "verbose_name": "Category",
+                "verbose_name_plural": "Categories",
+            },
         ),
         migrations.CreateModel(
             name="Distributor",
@@ -141,7 +147,12 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=50, verbose_name="Name of part")),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=50, verbose_name="Name of part"
+                    ),
+                ),
                 (
                     "min_stock",
                     models.DecimalField(
@@ -166,7 +177,10 @@ class Migration(migrations.Migration):
                     "unit",
                     models.CharField(
                         choices=[
-                            ("Length", ((b"m", "meters"), (b"cm", "centimeters"))),
+                            (
+                                "Length",
+                                ((b"m", "meters"), (b"cm", "centimeters")),
+                            ),
                             (
                                 "Volume",
                                 (
@@ -291,7 +305,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("subject", models.CharField(max_length=100, verbose_name="Subject")),
+                (
+                    "subject",
+                    models.CharField(max_length=100, verbose_name="Subject"),
+                ),
                 (
                     "amount",
                     models.DecimalField(
@@ -309,7 +326,10 @@ class Migration(migrations.Migration):
                 (
                     "comment",
                     models.TextField(
-                        blank=True, max_length=200, null=True, verbose_name="Comment"
+                        blank=True,
+                        max_length=200,
+                        null=True,
+                        verbose_name="Comment",
                     ),
                 ),
                 (
@@ -348,7 +368,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="part",
             name="creation_time",
-            field=models.DateTimeField(auto_now_add=True, verbose_name="Creation time"),
+            field=models.DateTimeField(
+                auto_now_add=True, verbose_name="Creation time"
+            ),
         ),
         migrations.AlterField(
             model_name="part",
@@ -407,7 +429,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="distributor",
             name="creation_time",
-            field=models.DateTimeField(auto_now_add=True, verbose_name="Creation time"),
+            field=models.DateTimeField(
+                auto_now_add=True, verbose_name="Creation time"
+            ),
         ),
         migrations.AddField(
             model_name="part",
@@ -494,13 +518,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="part",
             name="description",
-            field=models.TextField(blank=True, null=True, verbose_name="Description"),
+            field=models.TextField(
+                blank=True, null=True, verbose_name="Description"
+            ),
         ),
         migrations.AddField(
             model_name="part",
             name="sku",
             field=models.CharField(
-                blank=True, max_length=60, null=True, unique=True, verbose_name="SKU"
+                blank=True,
+                max_length=60,
+                null=True,
+                unique=True,
+                verbose_name="SKU",
             ),
         ),
         migrations.AddField(
@@ -521,7 +551,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="category",
             name="description",
-            field=models.TextField(blank=True, null=True, verbose_name="Description"),
+            field=models.TextField(
+                blank=True, null=True, verbose_name="Description"
+            ),
         ),
         migrations.AlterUniqueTogether(
             name="category", unique_together=set([("name", "parent")])
@@ -551,14 +583,20 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="storageplace",
             name="description",
-            field=models.TextField(blank=True, null=True, verbose_name="Description"),
+            field=models.TextField(
+                blank=True, null=True, verbose_name="Description"
+            ),
         ),
         migrations.AddField(
             model_name="transaction",
             name="state",
             field=models.CharField(
                 blank=True,
-                choices=[(b"paid", "Paid"), (b"open", "Open"), (b"res", "Reserverd")],
+                choices=[
+                    (b"paid", "Paid"),
+                    (b"open", "Open"),
+                    (b"res", "Reserverd"),
+                ],
                 default=b"---",
                 max_length=6,
                 verbose_name="State",
@@ -570,7 +608,9 @@ class Migration(migrations.Migration):
             field=models.TimeField(
                 auto_now_add=True,
                 db_index=True,
-                default=datetime.datetime(2015, 11, 28, 12, 41, 3, 896981, tzinfo=utc),
+                default=datetime.datetime(
+                    2015, 11, 28, 12, 41, 3, 896981, tzinfo=utc
+                ),
                 verbose_name="Creation timestamp",
             ),
             preserve_default=False,
@@ -578,12 +618,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="part",
             name="pic",
-            field=models.ImageField(blank=True, null=True, upload_to=b"uploads/"),
+            field=models.ImageField(
+                blank=True, null=True, upload_to=b"uploads/"
+            ),
         ),
         migrations.AddField(
             model_name="part",
             name="url",
-            field=models.CharField(blank=True, max_length=255, null=True, unique=True),
+            field=models.CharField(
+                blank=True, max_length=255, null=True, unique=True
+            ),
         ),
         migrations.AlterModelOptions(
             name="category",
@@ -646,7 +690,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="category",
             name="name",
-            field=models.CharField(help_text="Name of the category.", max_length=50),
+            field=models.CharField(
+                help_text="Name of the category.", max_length=50
+            ),
         ),
         migrations.AlterField(
             model_name="category",
@@ -681,7 +727,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="distributor",
             name="name",
-            field=models.CharField(help_text="Name of the distributor", max_length=50),
+            field=models.CharField(
+                help_text="Name of the distributor", max_length=50
+            ),
         ),
         migrations.AlterField(
             model_name="manufacturer",
@@ -845,7 +893,9 @@ class Migration(migrations.Migration):
                 verbose_name="Messuring unit",
             ),
         ),
-        migrations.RenameField(model_name="part", old_name="url", new_name="image_url"),
+        migrations.RenameField(
+            model_name="part", old_name="url", new_name="image_url"
+        ),
         migrations.AlterField(
             model_name="part",
             name="image_url",
@@ -999,7 +1049,11 @@ class Migration(migrations.Migration):
             name="state",
             field=models.CharField(
                 blank=True,
-                choices=[(b"paid", "Paid"), (b"open", "Open"), (b"res", "Reserverd")],
+                choices=[
+                    (b"paid", "Paid"),
+                    (b"open", "Open"),
+                    (b"res", "Reserverd"),
+                ],
                 default=b"---",
                 help_text="The status a transaction is in.",
                 max_length=6,
@@ -1071,7 +1125,9 @@ class Migration(migrations.Migration):
             model_name="distributor",
             name="url",
             field=models.URLField(
-                blank=True, help_text="The URL to homepage of distributor.", null=True
+                blank=True,
+                help_text="The URL to homepage of distributor.",
+                null=True,
             ),
         ),
         migrations.AddField(
@@ -1088,14 +1144,19 @@ class Migration(migrations.Migration):
             model_name="manufacturer",
             name="url",
             field=models.URLField(
-                blank=True, help_text="The URL to homepage of manufacturer.", null=True
+                blank=True,
+                help_text="The URL to homepage of manufacturer.",
+                null=True,
             ),
         ),
         migrations.AlterField(
             model_name="part",
             name="pic",
             field=models.ImageField(
-                blank=True, help_text="The actual image.", null=True, upload_to=b"part"
+                blank=True,
+                help_text="The actual image.",
+                null=True,
+                upload_to=b"part",
             ),
         ),
         migrations.AddField(
@@ -1112,7 +1173,10 @@ class Migration(migrations.Migration):
             model_name="part",
             name="pic",
             field=models.ImageField(
-                blank=True, help_text="The actual image.", null=True, upload_to="part"
+                blank=True,
+                help_text="The actual image.",
+                null=True,
+                upload_to="part",
             ),
         ),
         migrations.AlterField(
@@ -1143,7 +1207,11 @@ class Migration(migrations.Migration):
             name="state",
             field=models.CharField(
                 blank=True,
-                choices=[("paid", "Paid"), ("open", "Open"), ("res", "Reserverd")],
+                choices=[
+                    ("paid", "Paid"),
+                    ("open", "Open"),
+                    ("res", "Reserverd"),
+                ],
                 default="---",
                 help_text="The status a transaction is in.",
                 max_length=6,
@@ -1233,7 +1301,8 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterUniqueTogether(
-            name="storageitem", unique_together=set([("part", "storage", "owner")])
+            name="storageitem",
+            unique_together=set([("part", "storage", "owner")]),
         ),
         migrations.AlterField(
             model_name="distributor",

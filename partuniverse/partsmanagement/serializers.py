@@ -20,7 +20,14 @@ class StorageTypeSerializer(serializers.ModelSerializer):
 class StoragePlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = StoragePlace
-        fields = ("name", "storage_type", "parent", "disabled", "pic", "description")
+        fields = (
+            "name",
+            "storage_type",
+            "parent",
+            "disabled",
+            "pic",
+            "description",
+        )
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):

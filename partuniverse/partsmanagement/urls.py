@@ -84,7 +84,11 @@ urlpatterns = [
         name="category_update",
     ),
     # Transactions
-    url(r"^transaction/list", TransactionListView.as_view(), name="transaction_list"),
+    url(
+        r"^transaction/list",
+        TransactionListView.as_view(),
+        name="transaction_list",
+    ),
     url(
         r"^transaction/add$",
         login_required(TransactionAddView.as_view()),
@@ -97,7 +101,9 @@ urlpatterns = [
     ),
     # Manufacturer
     url(
-        r"^manufacturer/list", ManufacturerListView.as_view(), name="manufacturer_list"
+        r"^manufacturer/list",
+        ManufacturerListView.as_view(),
+        name="manufacturer_list",
     ),
     url(
         r"^manufacturer/add",
@@ -115,7 +121,11 @@ urlpatterns = [
         name="manufacturer_detail",
     ),
     # Distributor
-    url(r"^distributor/list", DistributorListView.as_view(), name="distributor_list"),
+    url(
+        r"^distributor/list",
+        DistributorListView.as_view(),
+        name="distributor_list",
+    ),
     url(
         r"^distributor/add",
         login_required(DistributorAddView.as_view()),
@@ -137,7 +147,11 @@ urlpatterns = [
         login_required(StorageItemAddView.as_view()),
         name="storage_item_add",
     ),
-    url(r"^storageitem/list", StorageItemListView.as_view(), name="storage_item_list"),
+    url(
+        r"^storageitem/list",
+        StorageItemListView.as_view(),
+        name="storage_item_list",
+    ),
     url(
         r"^storageitem/reviewlist",
         StorageItemToReviewListView.as_view(),
@@ -196,7 +210,11 @@ urlpatterns = [
         name="storage_update",
     ),
     # Storage Types
-    url(r"^storagetype/list", StorageTypeListView.as_view(), name="storage_type_list"),
+    url(
+        r"^storagetype/list",
+        StorageTypeListView.as_view(),
+        name="storage_type_list",
+    ),
     url(
         r"^storagetype/add",
         login_required(StorageTypeAddView.as_view()),

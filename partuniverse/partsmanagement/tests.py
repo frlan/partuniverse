@@ -34,8 +34,12 @@ class CategoryTestCase(TestCase):
 
     def setUp(self):
         self.cat1 = Category.objects.create(name=u"Category 1")
-        self.cat2 = Category.objects.create(name=u"Category ü", parent=self.cat1)
-        self.cat3 = Category.objects.create(name=u"Category 3", parent=self.cat2)
+        self.cat2 = Category.objects.create(
+            name=u"Category ü", parent=self.cat1
+        )
+        self.cat3 = Category.objects.create(
+            name=u"Category 3", parent=self.cat2
+        )
 
     def test_category_name(self):
         cat_result1 = u"Category 1"
@@ -59,8 +63,12 @@ class CategoryParents(TestCase):
 
     def setUp(self):
         self.cat1 = Category.objects.create(name=u"Category 1")
-        self.cat2 = Category.objects.create(name=u"Category 2", parent=self.cat1)
-        self.cat3 = Category.objects.create(name=u"Category 3", parent=self.cat2)
+        self.cat2 = Category.objects.create(
+            name=u"Category 2", parent=self.cat1
+        )
+        self.cat3 = Category.objects.create(
+            name=u"Category 3", parent=self.cat2
+        )
 
     def test_category_parents(self):
         # Building up expected resultset
@@ -75,8 +83,12 @@ class CategoryParents(TestCase):
 class CategoryWithCircleSelf(TestCase):
     def setUp(self):
         self.cat1 = Category.objects.create(name=u"Category 1")
-        self.cat2 = Category.objects.create(name=u"Category 2", parent=self.cat1)
-        self.cat3 = Category.objects.create(name=u"Category 3", parent=self.cat2)
+        self.cat2 = Category.objects.create(
+            name=u"Category 2", parent=self.cat1
+        )
+        self.cat3 = Category.objects.create(
+            name=u"Category 3", parent=self.cat2
+        )
 
     def test_category_with_circles_self(self):
         self.cat2.parent = self.cat2
@@ -87,8 +99,12 @@ class CategoryWithCircleSelf(TestCase):
 class CategoryWithCircleAnsistor(TestCase):
     def setUp(self):
         self.cat1 = Category.objects.create(name=u"Category 1")
-        self.cat2 = Category.objects.create(name=u"Category 2", parent=self.cat1)
-        self.cat3 = Category.objects.create(name=u"Category 3", parent=self.cat2)
+        self.cat2 = Category.objects.create(
+            name=u"Category 2", parent=self.cat1
+        )
+        self.cat3 = Category.objects.create(
+            name=u"Category 3", parent=self.cat2
+        )
 
     def test_category_with_circles_ansistors(self):
         self.cat2.parent = self.cat3
@@ -386,7 +402,9 @@ class TransactionAllreadyRevertedTest(TestCase):
         self.assertEqual(
             StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 100
         )
-        self.assertEqual(StorageItem.objects.get(pk=self.storage_item2.id).on_stock, 90)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item2.id).on_stock, 90
+        )
 
         # Revert-transaction most likely will have pk2 and should be
         # si=1
@@ -445,7 +463,9 @@ class VerifiedCutOffDay(TestCase):
         self.assertEqual(verified.amount, 100)
 
     def test_stock_taking(self):
-        self.storage_item1.stock_report(new_on_stock=150, requested_user=self.user)
+        self.storage_item1.stock_report(
+            new_on_stock=150, requested_user=self.user
+        )
         latest_verified = VerifiedStock.objects.filter(
             storage_item__exact=self.storage_item1
         ).latest("id")
@@ -476,9 +496,15 @@ class VerifiedCutOffDay(TestCase):
             date=timezone.now(),
             created_by=self.user,
         )
-        self.assertEqual(self.storage_item1.get_verified_stock()[0].id, verified1.id)
-        self.assertEqual(self.storage_item1.get_verified_stock()[1].id, verified2.id)
-        self.assertEqual(self.storage_item1.get_verified_stock()[2].id, verified3.id)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[0].id, verified1.id
+        )
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[1].id, verified2.id
+        )
+        self.assertEqual(
+            self.storage_item1.get_verified_stock()[2].id, verified3.id
+        )
 
     def test_get_last_verfieid_stock(self):
         verified1 = VerifiedStock.objects.create(
@@ -499,7 +525,9 @@ class VerifiedCutOffDay(TestCase):
             date=timezone.now(),
             created_by=self.user,
         )
-        self.assertEqual(self.storage_item1.get_verified_stock_last().id, verified3.id)
+        self.assertEqual(
+            self.storage_item1.get_verified_stock_last().id, verified3.id
+        )
 
 
 ########################################################################
@@ -629,16 +657,24 @@ class PartGetOnStockAmount(TestCase):
         )
 
     def test_part_with_two_storageitems(self):
-        self.assertEqual(Part.objects.get(name=u"Test Part 1").get_on_stock(), 25)
+        self.assertEqual(
+            Part.objects.get(name=u"Test Part 1").get_on_stock(), 25
+        )
 
     def test_part_with_one_storageitem(self):
-        self.assertEqual(Part.objects.get(name=u"Test Part 2").get_on_stock(), 10)
+        self.assertEqual(
+            Part.objects.get(name=u"Test Part 2").get_on_stock(), 10
+        )
 
     def test_part_without_storageitem(self):
-        self.assertEqual(Part.objects.get(name=u"Test Part 3").get_on_stock(), 0)
+        self.assertEqual(
+            Part.objects.get(name=u"Test Part 3").get_on_stock(), 0
+        )
 
     def test_part_without_stock(self):
-        self.assertEqual(Part.objects.get(name=u"Test Part 4").get_on_stock(), 0)
+        self.assertEqual(
+            Part.objects.get(name=u"Test Part 4").get_on_stock(), 0
+        )
 
 
 class PartsGetStorageItems(TestCase):
@@ -807,22 +843,30 @@ class ItemOutOfStockTestCase(TestCase):
     def test_item_below_min_stock(self):
         """ Testcase for checking whether
             on_stock < min_stock """
-        self.assertTrue(Part.objects.get(name=u"Test Part 2").is_below_min_stock())
+        self.assertTrue(
+            Part.objects.get(name=u"Test Part 2").is_below_min_stock()
+        )
 
     def test_item_over_min_stock(self):
         """ Testcase for checking whether
             on_stock > min_stock """
-        self.assertFalse(Part.objects.get(name=u"Test Part 1").is_below_min_stock())
+        self.assertFalse(
+            Part.objects.get(name=u"Test Part 1").is_below_min_stock()
+        )
 
     def test_item_equals_min_stock(self):
         """ Testcase for checking whether
             on_stock = min_stock """
-        self.assertFalse(Part.objects.get(name=u"Test Part 3").is_below_min_stock())
+        self.assertFalse(
+            Part.objects.get(name=u"Test Part 3").is_below_min_stock()
+        )
 
     def test_item_min_stock_not_defined(self):
         """ Testcase for checking whether
             on_stock = min_stock """
-        self.assertFalse(Part.objects.get(name=u"Test Part 5").is_below_min_stock())
+        self.assertFalse(
+            Part.objects.get(name=u"Test Part 5").is_below_min_stock()
+        )
 
 
 ########################################################################
@@ -852,7 +896,9 @@ class StorageItemOwnerTestCase(TestCase):
             name=u"Test Storage1", storage_type=self.storagetype
         )
         self.storageplace2 = StoragePlace.objects.create(
-            name=u"Test Storage2", storage_type=self.storagetype, owner=self.user
+            name=u"Test Storage2",
+            storage_type=self.storagetype,
+            owner=self.user,
         )
 
         # Part
@@ -872,14 +918,20 @@ class StorageItemOwnerTestCase(TestCase):
 
     def test_storageitem_without_owner_and_storage_with_owner(self):
         si1 = StorageItem.objects.create(
-            part=self.part1, storage=self.storageplace2, owner=self.user, on_stock=25
+            part=self.part1,
+            storage=self.storageplace2,
+            owner=self.user,
+            on_stock=25,
         )
         self.assertIsNotNone(si1.get_owner)
         self.assertEqual(si1.get_owner.id, self.user.id)
 
     def test_storageitem_with_owner_and_storage_without_owner(self):
         si1 = StorageItem.objects.create(
-            part=self.part1, storage=self.storageplace1, owner=self.user, on_stock=25
+            part=self.part1,
+            storage=self.storageplace1,
+            owner=self.user,
+            on_stock=25,
         )
         self.assertIsNotNone(si1.get_owner)
         self.assertEqual(si1.get_owner.id, self.user.id)
@@ -889,7 +941,10 @@ class StorageItemOwnerTestCase(TestCase):
         In this case the storage item will override the storage place
         """
         si1 = StorageItem.objects.create(
-            part=self.part1, storage=self.storageplace1, owner=self.user2, on_stock=25
+            part=self.part1,
+            storage=self.storageplace1,
+            owner=self.user2,
+            on_stock=25,
         )
         self.assertIsNotNone(si1.get_owner)
         self.assertEqual(si1.get_owner.id, self.user2.id)
@@ -978,7 +1033,9 @@ class StorageItemsMergeTestCase(TestCase):
         Checks whether merging the samse storage items fails
         """
         with self.assertRaises(StorageItemIsTheSameException):
-            self.part1.merge_storage_items(self.storage_item1, self.storage_item1)
+            self.part1.merge_storage_items(
+                self.storage_item1, self.storage_item1
+            )
 
     def test_working_merge_of_two_storage_items(self):
         """
@@ -988,7 +1045,9 @@ class StorageItemsMergeTestCase(TestCase):
         self.assertEqual(
             int(StorageItem.objects.get(pk=self.storage_item1.id).on_stock), 75
         )
-        self.assertIsNone(StorageItem.objects.filter(pk=self.storage_item2.id).first())
+        self.assertIsNone(
+            StorageItem.objects.filter(pk=self.storage_item2.id).first()
+        )
 
     def test_merging_with_different_parts(self):
         """
@@ -996,7 +1055,9 @@ class StorageItemsMergeTestCase(TestCase):
         are failing
         """
         with self.assertRaises(PartsNotFitException):
-            self.part1.merge_storage_items(self.storage_item1, self.storage_item3)
+            self.part1.merge_storage_items(
+                self.storage_item1, self.storage_item3
+            )
 
     def test_merging_with_non_existent_storage_items(self):
         """
@@ -1028,10 +1089,16 @@ class StorageItemsMergeTestCase(TestCase):
         and one without any inforamtion is resulting into a on stock value
         """
         try:
-            self.part3.merge_storage_items(self.storage_item_none1, self.storage_item4)
+            self.part3.merge_storage_items(
+                self.storage_item_none1, self.storage_item4
+            )
             self.assertTrue(True)
             self.assertEquals(
-                int(StorageItem.objects.get(pk=self.storage_item_none1.id).on_stock),
+                int(
+                    StorageItem.objects.get(
+                        pk=self.storage_item_none1.id
+                    ).on_stock
+                ),
                 200,
             )
         except:
@@ -1094,7 +1161,9 @@ class Stocktaking(TestCase):
 
     def test_new_amount_on_stock(self):
         self.storage_item1.stock_report(50, requested_user=self.user)
-        self.assertEqual(StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 50)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 50
+        )
 
     def test_new_negativ_amount(self):
         # We expect an exception in case of a negative value here
@@ -1106,7 +1175,9 @@ class Stocktaking(TestCase):
 
     def test_new_zero_amount(self):
         self.storage_item1.stock_report(0, requested_user=self.user)
-        self.assertEqual(StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 0)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item1.id).on_stock, 0
+        )
 
     def test_with_none_on_stock_and_reporting_zero(self):
         self.storage_item2.stock_report(0, requested_user=self.user)
@@ -1116,7 +1187,9 @@ class Stocktaking(TestCase):
 
     def test_with_none_on_stock_and_reporting_above_zero(self):
         self.storage_item3.stock_report(10, requested_user=self.user)
-        self.assertEqual(StorageItem.objects.get(pk=self.storage_item3.id).on_stock, 10)
+        self.assertEqual(
+            StorageItem.objects.get(pk=self.storage_item3.id).on_stock, 10
+        )
 
 
 ########################################################################
@@ -1133,7 +1206,9 @@ class StrorageParentTestCase(TestCase):
             name=u"Storage Lvl 1", storage_type=self.storage_type
         )
         self.stor2 = StoragePlace.objects.create(
-            name=u"Storage Lvl 2", parent=self.stor1, storage_type=self.storage_type
+            name=u"Storage Lvl 2",
+            parent=self.stor1,
+            storage_type=self.storage_type,
         )
         self.stor3 = StoragePlace.objects.create(
             name=u"Storage Lvl 3 with unicode µä³½",
@@ -1143,7 +1218,9 @@ class StrorageParentTestCase(TestCase):
 
     def test_storage_name(self):
         stor_result1 = u"Storage Lvl 1"
-        stor_result2 = u"Storage Lvl 1" + settings.PARENT_DELIMITER + u"Storage Lvl 2"
+        stor_result2 = (
+            u"Storage Lvl 1" + settings.PARENT_DELIMITER + u"Storage Lvl 2"
+        )
         stor_result3 = (
             u"Storage Lvl 1"
             + settings.PARENT_DELIMITER
@@ -1170,7 +1247,9 @@ class StorageGetChild(TestCase):
             name=u"Storage Lvl 1", storage_type=self.storage_type
         )
         self.stor2 = StoragePlace.objects.create(
-            name=u"Storage Lvl 2", parent=self.stor1, storage_type=self.storage_type
+            name=u"Storage Lvl 2",
+            parent=self.stor1,
+            storage_type=self.storage_type,
         )
         self.stor3 = StoragePlace.objects.create(
             name=u"Storage Lvl 2 with unicode µä³½",
@@ -1208,16 +1287,22 @@ class StorageGetParts(TestCase):
             name=u"Storage Lvl 1b", storage_type=self.storage_type
         )
         self.stor2b = StoragePlace.objects.create(
-            name=u"Storage Lvl 2b", storage_type=self.storage_type, parent=self.stor1b
+            name=u"Storage Lvl 2b",
+            storage_type=self.storage_type,
+            parent=self.stor1b,
         )
         self.stor1c = StoragePlace.objects.create(
             name=u"Storage Lvl 1c", storage_type=self.storage_type
         )
         self.stor2c = StoragePlace.objects.create(
-            name=u"Storage Lvl 2c", storage_type=self.storage_type, parent=self.stor1c
+            name=u"Storage Lvl 2c",
+            storage_type=self.storage_type,
+            parent=self.stor1c,
         )
         self.stor3c = StoragePlace.objects.create(
-            name=u"Storage Lvl 3c", storage_type=self.storage_type, parent=self.stor2c
+            name=u"Storage Lvl 3c",
+            storage_type=self.storage_type,
+            parent=self.stor2c,
         )
 
         # Setting up categories
@@ -1336,7 +1421,9 @@ class DistributorWithUnicodeTestCase(TestCase):
         self.user = User.objects.create_user(
             username="jacob", email="jacob@foo.baa", password="top_secret"
         )
-        self.dist = Distributor.objects.create(name=u"Distribü³r", created_by=self.user)
+        self.dist = Distributor.objects.create(
+            name=u"Distribü³r", created_by=self.user
+        )
 
     def test_distributor_name(self):
         dist_result = u"Distribü³r"
