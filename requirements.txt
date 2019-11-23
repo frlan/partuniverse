@@ -34,7 +34,7 @@ pylint-django==2.0
 pylint-plugin-utils==0.4
 pyparsing==2.2.0
 pytz==2018.5
-PyYAML==3.13
+PyYAML==5.1
 six==1.11.0
 snowballstemmer==1.2.1
 tablib==0.12.1
