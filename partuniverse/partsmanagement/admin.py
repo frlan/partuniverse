@@ -16,12 +16,34 @@ from .models import (
 
 logger = logging.getLogger(__name__)
 
-admin.site.register(Category)
-admin.site.register(Distributor)
-admin.site.register(Manufacturer)
-admin.site.register(Part)
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    search_fields = ("name", "description",)
+
+
+@admin.register(Distributor)
+class DistributorAdmin(admin.ModelAdmin):
+    search_fields = ("name",)
+
+
+@admin.register(Manufacturer)
+class ManufacturerAdmin(admin.ModelAdmin):
+    search_fields = ("name",)
+
+
+@admin.register(Part)
+class PartAdmin(admin.ModelAdmin):
+    search_fields = ("name", "sku",)
+
+
+@admin.register(StorageType)
+class StorageTypeAdmin(admin.ModelAdmin):
+    search_fields = ("name", )
+
+
 admin.site.register(StorageItem)
 admin.site.register(StoragePlace)
-admin.site.register(StorageType)
+
 admin.site.register(Transaction)
 admin.site.register(VerifiedStock)
