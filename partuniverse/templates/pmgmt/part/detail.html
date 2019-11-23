@@ -72,7 +72,7 @@
 <tr>
     <td>{% trans "Description" %}</td>
     {% if object.description %}
-        <td>{{object.description}}</td>
+        <td>{{object.description|linebreaks}}</td>
     {% else %}
         <td>{% trans "No description available." %}</td>
     {% endif %}
