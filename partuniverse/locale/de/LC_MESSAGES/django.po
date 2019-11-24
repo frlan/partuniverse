@@ -249,7 +249,7 @@ msgstr "Lagerplätze"
 
 #: partsmanagement/models.py:230
 msgid "Name of the manufacturer."
-msgstr "Liste der Hersteller."
+msgstr "Name des Herstellers"
 
 #: partsmanagement/models.py:236 partsmanagement/models.py:279
 msgid "The logo of the company."
