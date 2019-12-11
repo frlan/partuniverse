@@ -15,10 +15,13 @@
 
 {% block content %}
 
+{% if object.disabled %}
 <div class="ui error message segment">
     <p>{% trans "This storage item has been marked as disbaled." %}</p>
     <p>{% trans "Most likely you will not find this inside storage anymore." %}</p>
 </div>
+{% endif %}
+
 
 {% if object.needs_review %}
 <div class="ui error message segment">
