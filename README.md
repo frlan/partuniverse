@@ -199,6 +199,28 @@ this, please develope one feature within one branch. Try to avoid hacking
 on your master branch. Having feature-branches allows easier merges/discussion/*.
 When finishing your featre, please send a pull request or a patchset via mail.
 
+### Example data
+
+We are trying to keep a valid set of example data with the repository.
+
+#### Usage & Installation
+
+You can add example data to your clean installation by something like:
+
+        $ python manage.py migrate # to create a new datase
+        $ python manage.py loaddata ../utils/example_data/example_data.json
+
+The example data providing a admin-user with username `admin` and
+password `init123!`.
+
+#### Updating
+
+After you made a bigger change you might want to provide an updated set
+of example data
+
+        $ python manage.py dumpdata > ../utils/example_data/example_data.json
+
+
 ### Code style
 
 Please use [pep8](https://www.python.org/dev/peps/pep-0008/) for coding.
