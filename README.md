@@ -220,6 +220,7 @@ of example data
 
         $ python manage.py dumpdata > ../utils/example_data/example_data.json
 
+Please try to keep a clean set of data.
 
 ### Code style
 
