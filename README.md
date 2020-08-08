@@ -31,15 +31,7 @@ Partuniverse depends on:
 - [Install](https://pillow.readthedocs.io/en/3.0.0/installation.html#linux-installation) development headers for the pillow.
 
 
-### Buildout
-
-        $ pwd
-        /path/to/your/sources/
-        $ virtualenv --python=python3 .
-        $ bin/pip install zc.buildout
-        $ ./bin/buildout
-
-### Virtualenv (for testing)
+### Virtualenv
 
         $ pwd
         /path/to/your/sources/
@@ -65,20 +57,6 @@ template for your production environment whereas
 After this has been done, go ahead setting up your application.
 
 Go into the folder where you have checked out the sources.
-
-##### Buildout
-
-First you will have to create the Database:
-
-        $ ./bin/django migrate
-
-Create your superuser:
-
-        $ .bin/django createsuperuser
-
-If everything worked well, you can start the server (in debug mode):
-
-        $ ./bin/django runserver
 
 ##### Virtualenv
 First you will have to create the Database:
@@ -106,7 +84,7 @@ This part assumes the following steps:
   `/home/partuniverse/partuniverse`
 * You are using systemd
 * You have already recommpilled translations by running
-  `./bin/django compilemessages`
+  `../bin/python manage.pycompilemessages`
 
 Now do the following steps:
 
@@ -234,7 +212,8 @@ To test your changes, you can use Django's test framework
 
 To run all available tests:
 
-        $ ./bin/django test
+        $ cd partuniverse
+        $ ../bin/python manage.py test
 
 Please add new tests for each feature you are adding to suitable
 test-files.
