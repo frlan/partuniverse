@@ -28,7 +28,7 @@ idna==2.8
 imagesize==1.0.0
 isort==4.3.4
 jdcal==1.4
-Jinja2==2.10.1
+Jinja2==2.11.3
 lazy-object-proxy==1.4.3
 lockfile==0.12.2
 Markdown==2.6.11
