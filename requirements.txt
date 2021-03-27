@@ -1,6 +1,6 @@
 alabaster==0.7.11
 appdirs==1.4.3
-astroid==2.4.2
+astroid==2.5.1
 Babel==2.6.0
 CacheControl==0.12.6
 certifi==2019.11.28
@@ -14,7 +14,7 @@ distlib==0.3.0
 distro==1.4.0
 Django==2.2.18
 django-appconf==1.0.2
-django-filter==2.0.0
+django-filter==2.4.0
 django-mathfilters==0.4.0
 django-semanticui-forms==1.6.5
 django-user-accounts==2.0.3
@@ -43,7 +43,7 @@ pep8==1.7.1
 Pillow==8.1.1
 progress==1.5
 Pygments==2.2.0
-pylint==2.5.3
+pylint==2.7.2
 pylint-django==2.0
 pylint-plugin-utils==0.4
 pyparsing==2.2.0
@@ -59,7 +59,7 @@ sqlparse==0.3.1
 tablib==0.12.1
 toml==0.10.1
 unicodecsv==0.14.1
-urllib3==1.25.8
+urllib3==1.25.11
 webencodings==0.5.1
 wrapt==1.12.1
 xlrd==1.1.0
