@@ -42,7 +42,7 @@ pep517==0.8.2
 pep8==1.7.1
 Pillow==8.1.1
 progress==1.5
-Pygments==2.2.0
+Pygments==2.7.4
 pylint==2.7.2
 pylint-django==2.0
 pylint-plugin-utils==0.4
