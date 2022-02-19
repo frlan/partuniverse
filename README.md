@@ -7,12 +7,7 @@ but at a more general storage.
 
 ## Discussion and help
 
-To discuss about partuniverse or get help, join our mailing list at
-[lstsrv.org](https://lstsrv.org/mailman/listinfo/partuniverse). There
-is also a XMPP-MUC available to chat. Join
-[partuniverse@chat.kraut.space](xmpp:partuniverse@chat.kraut.space).
-
-We do also have an matrix-chat. Join us at #partuniverse:matrix.org
+We have a matrix-chat. Join us at #partuniverse:matrix.org
 
 ## Bugreporting
 
