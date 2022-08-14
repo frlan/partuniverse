@@ -53,6 +53,12 @@ After this has been done, go ahead setting up your application.
 
 Go into the folder where you have checked out the sources.
 
+#### Backend configuration
+
+You will need to set a few options from inside the admin-UI of Django:
+
+* Site-URL at site-framework
+
 ##### Virtualenv
 First you will have to create the Database:
 
