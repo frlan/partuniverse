@@ -17,7 +17,7 @@ class StockTakingForm(forms.Form):
         label=_("Parts now inside storage"),
         max_digits=10,
         decimal_places=4,
-        help_text=_("The amount of currently inside storage place."),
+        help_text=_("The amount of currently inside storage place.<br/><br/>"),
     )
 
 
@@ -39,7 +39,7 @@ class StorageItemAddTransactionForm(forms.Form):
         decimal_places=4,
         min_value=0.0001,
         help_text=_(
-            "The amount of items taken/put to storage. " "Positiv values only."
+            "The amount of items taken/put to storage. " "Positive values only.<br/><br/>"
         ),
     )
 
@@ -49,12 +49,12 @@ class BulkStorageForm(forms.Form):
         queryset=StorageType.objects.all(),
         required=True,
         label=_("Storage Type"),
-        help_text=_("Sets the type of your to be created storage places"),
+        help_text=_("Sets the type of your to be created storage places.<br/><br/>"),
     )
     parentstorage = forms.ModelChoiceField(
         label=_("Parent"),
         required=True,
-        help_text=_("The parent storage of the new created ones"),
+        help_text=_("The parent storage of the new created ones.<br/><br/>"),
         queryset=StoragePlace.objects.all(),
     )
     cols = forms.IntegerField(
@@ -62,12 +62,12 @@ class BulkStorageForm(forms.Form):
         required=True,
         max_value=100,
         min_value=1,
-        help_text=_("The number of «columns» you need."),
+        help_text=_("The number of «columns» you need.<br/><br/>"),
     )
     rows = forms.IntegerField(
         label=_("Rows"),
         required=True,
         max_value=100,
         min_value=1,
-        help_text=_("The number of «rows» you need."),
+        help_text=_("The number of «rows» you need.<br/><br/>"),
     )

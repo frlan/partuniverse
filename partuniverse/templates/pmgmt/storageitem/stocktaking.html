@@ -9,7 +9,7 @@
 
 {% block content %}
 <h1>{{ object }}</h1>
-<p>{% trans "It will create an Transaction adjusting the amount for items on stock to reported one.." %}</p>
+<p>{% trans "It will create an Transaction adjusting the amount for items on stock to reported one." %}</p>
 <form method="post" class="ui form segment">
   {% csrf_token %}
   {{ form }}

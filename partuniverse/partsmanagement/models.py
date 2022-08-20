@@ -55,13 +55,13 @@ class StorageType(models.Model):
 
     name = models.CharField(
         max_length=50,
-        help_text=_("The name for a storage type. Should be unique"),
+        help_text=_("The name for a storage type. Should be unique.<br/><br/>"),
     )
     description = models.TextField(
         _("Description"),
         blank=True,
         null=True,
-        help_text=_("A short description."),
+        help_text=_("A short description.<br/><br/>"),
     )
     pic = models.ImageField(
         null=True,
@@ -69,7 +69,7 @@ class StorageType(models.Model):
         upload_to="uploads/storagetypes/",
         help_text=_(
             "If you have a typical image of such a storage, "
-            "this is the place where it belongs to."
+            "this is the place where it belongs to.<br/><br/>"
         ),
     )
 
@@ -101,12 +101,12 @@ class StoragePlace(models.Model):
         max_length=50,
         help_text=_(
             "A name for the storage place."
-            "E.g. coordinates inside a book shelve."
+            "E.g. coordinates inside a book shelve.<br/><br/>"
         ),
     )
     storage_type = models.ForeignKey(
         StorageType,
-        help_text=_("Of which type is the storage place."),
+        help_text=_("Of which type is the storage place.<br/><br/>"),
         on_delete=models.PROTECT,
         blank=True,
         null=True,
@@ -116,7 +116,7 @@ class StoragePlace(models.Model):
         null=True,
         blank=True,
         verbose_name=_("Owned by"),
-        help_text=_("The user who is responsible for the storage."),
+        help_text=_("The user who is responsible for the storage.<br/><br/>"),
         on_delete=models.SET_NULL,
     )
     parent = models.ForeignKey(
@@ -125,24 +125,24 @@ class StoragePlace(models.Model):
         blank=True,
         on_delete=models.CASCADE,
         verbose_name=_("Parent storage"),
-        help_text=_("The storage the current storage is part of."),
+        help_text=_("The storage the current storage is part of.<br/><br/>"),
     )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
-        help_text=_("Whether a storage is active."),
+        help_text=_("Whether a storage is active.<br/><br/>"),
     )
     pic = models.ImageField(
         null=True,
         blank=True,
         upload_to="uploads/storageplaces/",
-        help_text=_("So does look the place in real."),
+        help_text=_("So does look the place in real.<br/><br/>"),
     )
     description = models.TextField(
         _("Description"),
         blank=True,
         null=True,
-        help_text=_("A short description."),
+        help_text=_("A short description.<br/><br/>"),
     )
 
     def __str__(self):
@@ -230,22 +230,22 @@ class Manufacturer(models.Model):
     """ Manufacturer for a particular item """
 
     name = models.CharField(
-        max_length=50, help_text=_("Name of the manufacturer.")
+        max_length=50, help_text=_("Name of the manufacturer.<br/><br/>")
     )
     logo = models.ImageField(
         null=True,
         blank=True,
         upload_to="uploads/logos/",
-        help_text=_("The logo of the company."),
+        help_text=_("The logo of the company.<br/><br/>"),
     )
     url = models.URLField(
         null=True,
         blank=True,
-        help_text=_("The URL to homepage of manufacturer."),
+        help_text=_("The URL to homepage of manufacturer.<br/><br/>"),
     )
     creation_time = models.DateTimeField(
         auto_now_add=True,
-        help_text=_("Timestamp the manufacturer was created at."),
+        help_text=_("Timestamp the manufacturer was created at.<br/><br/>"),
     )
     created_by = models.ForeignKey(
         User,
@@ -253,7 +253,7 @@ class Manufacturer(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
-        help_text=_("The user the manufacturer was created by."),
+        help_text=_("The user the manufacturer was created by.<br/><br/>"),
     )
 
     def get_parts(self):
@@ -272,24 +272,24 @@ class Distributor(models.Model):
     """ A distributor which is selling a particular part """
 
     name = models.CharField(
-        max_length=50, help_text=_("Name of the distributor")
+        max_length=50, help_text=_("Name of the distributor.<br/><br/>")
     )
     logo = models.ImageField(
         null=True,
         blank=True,
         upload_to="uploads/logos/",
-        help_text=_("The logo of the company."),
+        help_text=_("The logo of the company.<br/><br/>"),
     )
     url = models.URLField(
         null=True,
         blank=True,
-        help_text=_("The URL to homepage of distributor."),
+        help_text=_("The URL to homepage of distributor.<br/><br/>"),
     )
 
     creation_time = models.DateTimeField(
         _("Creation time"),
         auto_now_add=True,
-        help_text=_("Timestamp the distributor was created at."),
+        help_text=_("Timestamp the distributor was created at.<br/><br/>"),
     )
     created_by = models.ForeignKey(
         User,
@@ -297,7 +297,7 @@ class Distributor(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
         verbose_name=_("Added by"),
-        help_text=_("User who created the distributor."),
+        help_text=_("User who created the distributor.<br/><br/>"),
     )
 
     def __str__(self):
@@ -314,26 +314,26 @@ class Category(models.Model):
     E.g. resistor """
 
     name = models.CharField(
-        max_length=50, help_text=_("Name of the category.")
+        max_length=50, help_text=_("Name of the category.<br/><br/>")
     )
     parent = models.ForeignKey(
         "self",
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        help_text=_("If having a subcateogry, the parent."),
+        help_text=_("If having a subcateogry, the parent.<br/><br/>"),
     )
     description = models.TextField(
         _("Description"),
         blank=True,
         null=True,
-        help_text=_("A short summarize of this category."),
+        help_text=_("A short summarize of this category.<br/><br/>"),
     )
     pic = models.ImageField(
         null=True,
         blank=True,
         upload_to="uploads/categories/",
-        help_text=_("Some picutre for category."),
+        help_text=_("Some picutre for category.<br/><br/>"),
     )
 
     def __str__(self):
@@ -401,13 +401,14 @@ class Part(models.Model):
     """ Representing a special kind of parts """
 
     name = models.CharField(
-        _("Name of part"), max_length=255, help_text=_("Name of the part.")
+        _("Name of part"), max_length=255,
+        help_text=_("Name of the part.<br/><br/>")
     )
     sku = models.CharField(
         _("SKU"),
         max_length=60,
         unique=True,
-        help_text=_("A installation unique idendifier for the part."),
+        help_text=_("A installation unique idendifier for the part.<br/><br/>"),
         null=True,
         blank=True,
     )
@@ -415,7 +416,7 @@ class Part(models.Model):
         _("Description"),
         blank=True,
         null=True,
-        help_text=_("A long text description of the part"),
+        help_text=_("A long text description of the part<br/><br/>"),
     )
     min_stock = models.DecimalField(
         _("Minimal stock"),
@@ -423,7 +424,7 @@ class Part(models.Model):
         decimal_places=4,
         null=True,
         blank=True,
-        help_text=_("Set a minimum that should be stored."),
+        help_text=_("Set a minimum that should be stored.<br/><br/>"),
     )
     unit = models.CharField(
         _("Messuring unit"),
@@ -431,23 +432,23 @@ class Part(models.Model):
         choices=UNIT_CHOICES,
         blank=False,
         default="---",
-        help_text=_("The unit quantities are in."),
+        help_text=_("The unit quantities are in.<br/><br/>"),
     )
     pic = models.ImageField(
         null=True,
         blank=True,
         upload_to=os.path.join("part"),
-        help_text=_("The actual image."),
+        help_text=_("The actual image.<br/><br/>"),
     )
     image_url = models.CharField(
         max_length=255,
         null=True,
         blank=True,
-        help_text=_("The URL of the original image."),
+        help_text=_("The URL of the original image.<br/><br/>"),
     )
     data_sheet = models.FileField(
         _("Data sheet"),
-        help_text=_("A document containing important addition information"),
+        help_text=_("A document containing important addition information.<br/><br/>"),
         upload_to="datasheets",
         validators=[validate_file_extension],
         null=True,
@@ -459,7 +460,7 @@ class Part(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text=_("The manufacturer of the part."),
+        help_text=_("The manufacturer of the part.<br/><br/>"),
     )
     distributor = models.ForeignKey(
         Distributor,
@@ -467,11 +468,11 @@ class Part(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text=_("The usual distributor of the part."),
+        help_text=_("The usual distributor of the part.<br/><br/>"),
     )
     price = models.DecimalField(
         _("Cost of the part"),
-        help_text=_("The cost/price for the part"),
+        help_text=_("The cost/price for the part.<br/><br/>"),
         null=True,
         blank=True,
         max_digits=6,
@@ -480,24 +481,24 @@ class Part(models.Model):
     categories = models.ManyToManyField(
         Category,
         verbose_name=_("Category"),
-        help_text=_("A list of categories the part is in."),
+        help_text=_("A list of categories the part is in.<br/><br/>"),
     )
     creation_time = models.DateTimeField(
         _("Creation time"),
         auto_now_add=True,
-        help_text=_("Timestamp the part was created on."),
+        help_text=_("Timestamp the part was created on.<br/><br/>"),
     )
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Added by"),
-        help_text=_("The user the part was created by."),
+        help_text=_("The user the part was created by.<br/><br/>"),
         on_delete=models.SET_NULL,
         null=True,
     )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
-        help_text=_("Whether the part is active or not."),
+        help_text=_("Whether the part is active or not.<br/><br/>"),
     )
 
     def __str__(self):
@@ -618,12 +619,12 @@ class Part(models.Model):
 class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
-        help_text=_("The part stored at this spot."),
+        help_text=_("The part stored at this spot.<br/><br/>"),
         on_delete=models.PROTECT,
     )
     storage = models.ForeignKey(
         StoragePlace,
-        help_text=_("The storage the part is stored in."),
+        help_text=_("The storage the part is stored in.<br/><br/>"),
         on_delete=models.PROTECT,
     )
     on_stock = models.DecimalField(
@@ -632,30 +633,30 @@ class StorageItem(models.Model):
         decimal_places=4,
         null=True,
         blank=True,
-        help_text=_("The amount currently stored."),
+        help_text=_("The amount currently stored.<br/><br/>"),
     )
     needs_review = models.BooleanField(
         _("Needs review"),
         default=False,
-        help_text=_("Whether this storage item might be wrong"),
+        help_text=_("Whether this storage item might be wrong.<br/><br/>"),
     )
     review_reason = models.TextField(
         _("Reason for Review"),
         blank=True,
         null=True,
-        help_text=_("Put reason, why this item should be reviewed here in."),
+        help_text=_("Put reason, why this item should be reviewed here in.<br/><br/>"),
     )
     disabled = models.BooleanField(
         _("Disabled"),
         default=False,
-        help_text=_("Whether the storage item is active."),
+        help_text=_("Whether the storage item is active.<br/><br/>"),
     )
     owner = models.ForeignKey(
         User,
         null=True,
         blank=True,
         verbose_name=_("Owned by"),
-        help_text=_("The user owning items of this storageitem."),
+        help_text=_("The user owning items of this storageitem.<br/><br/>"),
         on_delete=models.PROTECT,
     )
 
@@ -727,21 +728,21 @@ class StorageItem(models.Model):
 class VerifiedStock(models.Model):
     storage_item = models.ForeignKey(
         StorageItem,
-        help_text=_("The part-storage relation the the stock was verified."),
+        help_text=_("The part-storage relation the the stock was verified.<br/><br/>"),
         on_delete=models.PROTECT,
     )
     amount = models.DecimalField(
         _("Amount"),
         max_digits=10,
         decimal_places=4,
-        help_text=_("The quantity at this very time."),
+        help_text=_("The quantity at this very time.<br/><br/>"),
     )
     comment = models.TextField(
         _("Comment"),
         blank=True,
         null=True,
         max_length=200,
-        help_text=_("A short conclusion."),
+        help_text=_("A short conclusion.<br/><br/>"),
     )
     date = models.DateTimeField(
         _("Verfication Date"),
@@ -749,12 +750,12 @@ class VerifiedStock(models.Model):
         null=False,
         default=datetime.now,
         db_index=True,
-        help_text=_("The date the verifiedcation was created."),
+        help_text=_("The date the verifiedcation was created.<br/><br/>"),
     )
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Created by"),
-        help_text=_("The user which verified the stock."),
+        help_text=_("The user which verified the stock.<br/><br/>"),
         on_delete=models.PROTECT,
     )
 
@@ -768,12 +769,12 @@ class Transaction(models.Model):
     subject = models.CharField(
         _("Subject"),
         max_length=100,
-        help_text=_("A short conclusion of the transaction."),
+        help_text=_("A short conclusion of the transaction.<br/><br/>"),
     )
     storage_item = models.ForeignKey(
         StorageItem,
         help_text=_(
-            "The part-storage relation the transaction was applied on."
+            "The part-storage relation the transaction was applied on.<br/><br/>"
         ),
         on_delete=models.PROTECT,
     )
@@ -781,14 +782,14 @@ class Transaction(models.Model):
         _("Amount"),
         max_digits=10,
         decimal_places=4,
-        help_text=_("The quantity transferred."),
+        help_text=_("The quantity transferred.<br/><br/>"),
     )
     comment = models.TextField(
         _("Comment"),
         blank=True,
         null=True,
         max_length=200,
-        help_text=_("Optional: A short conclusion."),
+        help_text=_("Optional: A short conclusion.<br/><br/>"),
     )
 
     date = models.DateTimeField(
@@ -797,7 +798,7 @@ class Transaction(models.Model):
         null=False,
         default=datetime.now,
         db_index=True,
-        help_text=_("The date the transaction took part."),
+        help_text=_("The date the transaction took part.<br/><br/>"),
     )
     state = models.CharField(
         _("State"),
@@ -805,12 +806,12 @@ class Transaction(models.Model):
         choices=STATE_CHOICES,
         blank=True,
         default="---",
-        help_text=_("The status a transaction is in."),
+        help_text=_("The status a transaction is in.<br/><br/>"),
     )
     created_by = models.ForeignKey(
         User,
         verbose_name=_("Created by"),
-        help_text=_("The user which created the transaction."),
+        help_text=_("The user which created the transaction.<br/><br/>"),
         on_delete=models.PROTECT,
     )
     created_date = models.TimeField(
@@ -819,7 +820,7 @@ class Transaction(models.Model):
         null=False,
         auto_now_add=True,
         db_index=True,
-        help_text=_("The timestamp transaction has been entered."),
+        help_text=_("The timestamp transaction has been entered.<br/><br/>"),
     )
 
     reverted = models.BooleanField(
@@ -827,7 +828,7 @@ class Transaction(models.Model):
         default=False,
         help_text=_(
             "To control whether transaction has been already "
-            "reverted and cannot be reverted again."
+            "reverted and cannot be reverted again.<br/><br/>"
         ),
     )
 
