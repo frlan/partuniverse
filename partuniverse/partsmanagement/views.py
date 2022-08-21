@@ -15,7 +15,7 @@ from django.views.generic import DetailView
 from django.views.generic.list import ListView
 from rest_framework import generics
 from rest_framework import permissions
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 from .utils import createExcelArray

@@ -36,6 +36,7 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
+                "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
             ]
         },
@@ -171,6 +172,11 @@ PRIVATE_COMMUNITY = True
 ########################################################################
 
 MAX_ITEMS_PER_PAGE = 25
+
+########################################################################
+# Default for auto field
+########################################################################
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 ########################################################################
 # Rest
