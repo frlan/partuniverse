@@ -72,3 +72,13 @@ class TransactionAllreadyRevertedException(PartsmanagementException):
     def __init__(self, error):
         super(TransactionAllreadyRevertedException, self).__init__(error)
         logger.error(_("Cannot revert Transaction: %s" % error))
+
+class TransactionBelowZeroException(PartsmanagementException):
+    """
+    Used in case of trying to do a transaction, which leads to
+    an negative amount of items
+    """
+
+    def __init__(self, error):
+        super(PartsmanagementException, self).__init__(error)
+        logger.error(_("Amount of items inside a storage cannot be under 0: %s" % error))
