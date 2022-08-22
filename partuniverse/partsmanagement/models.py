@@ -30,6 +30,7 @@ logger = logging.getLogger(__name__)
 # Just defining units used on the system here.
 # Might can be moved to a seperate file at some point.
 UNIT_CHOICES = (
+    (_("Piece"), (("pc", _("piece")),)),
     (_("Length"), (("m", _("meters")), ("cm", _("centimeters")))),
     (
         _("Volume"),
@@ -39,7 +40,6 @@ UNIT_CHOICES = (
             ("ccm", _("cubic centimeters")),
         ),
     ),
-    (_("Piece"), (("pc", _("piece")),)),
     (_("n/A"), _("Unknown")),
 )
 
