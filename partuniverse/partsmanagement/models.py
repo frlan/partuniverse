@@ -618,12 +618,12 @@ class StorageItem(models.Model):
     part = models.ForeignKey(
         Part,
         help_text=_("The part stored at this spot."),
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     storage = models.ForeignKey(
         StoragePlace,
         help_text=_("The storage the part is stored in."),
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     on_stock = models.DecimalField(
         _("Parts inside storage"),
@@ -655,7 +655,7 @@ class StorageItem(models.Model):
         blank=True,
         verbose_name=_("Owned by"),
         help_text=_("The user owning items of this storageitem."),
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
     )
 
     def __str__(self):
@@ -727,7 +727,7 @@ class VerifiedStock(models.Model):
     storage_item = models.ForeignKey(
         StorageItem,
         help_text=_("The part-storage relation the the stock was verified."),
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     amount = models.DecimalField(
         _("Amount"),
@@ -754,7 +754,7 @@ class VerifiedStock(models.Model):
         User,
         verbose_name=_("Created by"),
         help_text=_("The user which verified the stock."),
-        on_delete=models.PROTECT,
+        on_delete=models.DO_NOTHING,
     )
 
     def __str__(self):
@@ -774,7 +774,7 @@ class Transaction(models.Model):
         help_text=_(
             "The part-storage relation the transaction was applied on."
         ),
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     amount = models.DecimalField(
         _("Amount"),
