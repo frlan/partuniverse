@@ -76,10 +76,6 @@ msgstr "Unterschied"
 msgid "The amount of items taken/put to storage."
 msgstr "Die Menge die ein- bzw. ausgelagert wurde."
 
-#: partsmanagement/forms.py:44
-msgid "The amount of items taken/put to storage. Positiv values only."
-msgstr "Die Menge die ein- bzw. ausgelagert wurde. Nur positive Werte."
-
 #: partsmanagement/forms.py:52 partsmanagement/models.py:82
 #: templates/pmgmt/storage/detail.html:31
 msgid "Storage Type"

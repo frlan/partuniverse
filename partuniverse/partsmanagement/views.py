@@ -535,19 +535,11 @@ class StorageItemTransactionAddView(FormView):
         return context
 
     def form_valid(self, form):
-        if self.request.POST["submit"] == "+":
+        if self.request.POST["submit"] == "Submit":
             Transaction.objects.create(
                 subject=form.cleaned_data["description"],
                 created_by=self.request.user,
                 amount=form.cleaned_data["amount"],
-                storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
-                date=timezone.now(),
-            )
-        elif self.request.POST["submit"] == "-":
-            Transaction.objects.create(
-                subject=form.cleaned_data["description"],
-                created_by=self.request.user,
-                amount=form.cleaned_data["amount"] * -1,
                 storage_item=StorageItem.objects.get(pk=self.kwargs["pk"]),
                 date=timezone.now(),
             )
