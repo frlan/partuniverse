@@ -37,9 +37,8 @@ class StorageItemAddTransactionForm(forms.Form):
         label=_("Difference"),
         max_digits=10,
         decimal_places=4,
-        min_value=0.0001,
         help_text=_(
-            "The amount of items taken/put to storage. " "Positiv values only."
+            "The amount of items taken/put to storage."
         ),
     )
 
