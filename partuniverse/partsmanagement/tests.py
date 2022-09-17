@@ -422,6 +422,53 @@ class TransactionAllreadyRevertedTest(TestCase):
         )
 
 
+class TransactionNegativeValue(TestCase):
+    def setUp(self):
+        self.cat = Category.objects.create(name=u"Category 1")
+        self.user = User.objects.create_user(
+            username="jacob", email="jacob@foo.baa", password="top_secret"
+        )
+        self.manu = Manufacturer.objects.create(
+            name=u"Test Manufacturer 1", created_by=self.user
+        )
+        self.storagetype = StorageType.objects.create(name=u"Testtype")
+        self.storageplace = StoragePlace.objects.create(
+            name=u"Test Storage", storage_type=self.storagetype
+        )
+        self.part1 = Part.objects.create(
+            name=u"Test Part 1",
+            sku=u"tp1",
+            unit="m",
+            creation_time=timezone.now(),
+            created_by=self.user,
+        )
+
+        self.storage_item1 = StorageItem.objects.create(
+            part=self.part1, storage=self.storageplace, on_stock=9
+            name=u"Test Part 1",
+            sku=u"tp1",
+            unit="m",
+            creation_time=timezone.now(),
+            created_by=self.user,
+        )
+
+        self.storage_item1 = StorageItem.objects.create(
+            part=self.part1, storage=self.storageplace, on_stock=9
+        )
+
+    def test_transaction_negative_stock(self):
+        # Trying to add a transaction that causes a negative amount
+        # of items in the storage
+        with self.assertRaises(TransactionBelowZeroException):
+            trans = Transaction.objects.create(
+                subject=u"Testtransaction 1",
+                created_by=self.user,
+                amount=-10,
+                storage_item=self.storage_item1,
+                date=timezone.now(),
+            )
+
+
 ########################################################################
 # Verified Storage
 ########################################################################
