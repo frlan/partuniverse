@@ -883,10 +883,11 @@ class Transaction(models.Model):
             if not self.id:
                 # We got a new Transaction
                 storageitem = StorageItem.objects.get(pk=self.storage_item.id)
-                if storageitem.on_stock + Decimal(self.amount) < 0:
-                    raise TransactionBelowZeroException(
-                        "Tried to set storage item amount below 0")
+
                 if storageitem.on_stock is not None:
+                    if storageitem.on_stock + Decimal(self.amount) < 0:
+                        raise TransactionBelowZeroException(
+                            "Tried to set storage item amount below 0")
                     storageitem.on_stock = storageitem.on_stock + Decimal(
                         self.amount
                     )

@@ -9,6 +9,7 @@ from .exceptions import (
     StorageItemIsTheSameException,
     PartsNotFitException,
     PartsmanagementException,
+    TransactionBelowZeroException,
 )
 from .models import (
     Category,
@@ -423,6 +424,7 @@ class TransactionAllreadyRevertedTest(TestCase):
 
 
 class TransactionNegativeValue(TestCase):
+
     def setUp(self):
         self.cat = Category.objects.create(name=u"Category 1")
         self.user = User.objects.create_user(
@@ -444,16 +446,9 @@ class TransactionNegativeValue(TestCase):
         )
 
         self.storage_item1 = StorageItem.objects.create(
-            part=self.part1, storage=self.storageplace, on_stock=9
-            name=u"Test Part 1",
-            sku=u"tp1",
-            unit="m",
-            creation_time=timezone.now(),
-            created_by=self.user,
-        )
-
-        self.storage_item1 = StorageItem.objects.create(
-            part=self.part1, storage=self.storageplace, on_stock=9
+            part=self.part1,
+            storage=self.storageplace,
+            on_stock=9
         )
 
     def test_transaction_negative_stock(self):
