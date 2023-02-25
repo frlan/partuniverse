@@ -239,7 +239,8 @@ class PartsList(ListView):
     def get_queryset(self):
         parts = Part.objects.exclude(disabled="True")
         if self.search != "":
-            return parts.filter(name__icontains=self.search)
+            return (parts.filter(name__icontains=self.search)
+                   | parts.filter(sku__icontains=self.search))
         return parts
 
 
