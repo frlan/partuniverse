@@ -4,7 +4,7 @@ asgiref==3.5.2
 astroid==2.5.1
 Babel==2.9.1
 CacheControl==0.12.6
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 charset-normalizer==2.1.1
 click==7.1.2
