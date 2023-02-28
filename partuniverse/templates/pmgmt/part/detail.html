@@ -93,7 +93,7 @@
                         <a href="{% url "storage_item_detail" item.id %}">{{item.storage}}</a>
                     </div>
                 {% if item.on_stock %}
-                    ({{item.on_stock}}{{object.unit}})<a href="{% url "storage_item_transaction" item.id %}" class="ui button mini teal right floated compact">{% trans "Update stock" %}</a> <a href="{% url "storage_item_update" item.id %}" class="ui button mini teal right floated compact">{% trans "Edit stock" %}</a>
+                    ({{item.on_stock}}{{object.unit}})<a href="{% url "storage_item_transaction" item.id %}" class="ui button mini teal right floated compact">{% trans "Update stock" %}</a> <a href="{% url "storage_item_update" item.id %}" class="ui button mini teal right floated compact">{% trans "Edit storageitem" %}</a>
 
                 {% elif item.on_stock == 0 %}
                     {{item.on_stock}}
