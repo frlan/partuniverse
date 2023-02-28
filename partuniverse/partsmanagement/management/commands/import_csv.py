@@ -22,7 +22,7 @@ class Command(django.core.management.base.BaseCommand):
                 for cat in part['categories'].split(','):
                     catsearch = models.Category.objects.filter(name=cat)
                     if not len(catsearch):
-                        category = models.Category(name=cat)
+                        category = models.Category.objects.create(name=cat)
                         category.save()
                     else:
                         category = catsearch[0]
@@ -31,10 +31,10 @@ class Command(django.core.management.base.BaseCommand):
                 print(f"Adding {part['title']}")
                 partsearch = models.Part.objects.filter(sku=part['sku'])
                 if not len(partsearch):
-                    partadd = models.Part()
-                    partadd.name = part['title']
-                    partadd.description = part['description']
-                    partadd.sku = part['sku']
+                    partadd = models.Part.objects.create(
+                                name=part['title'],
+                                description=part['description'],
+                                sku=part['sku'])
                     partadd.save()
                     partadd.categories.set(tuple(part_categories))
                     partadd.save()
@@ -42,13 +42,13 @@ class Command(django.core.management.base.BaseCommand):
                     partadd = partsearch[0]
                 kistensearch = models.StoragePlace.objects.filter(name=part['storage_place'])
                 if not len(kistensearch):
-                    kiste = models.StoragePlace(name=part['storage_place'])
+                    kiste = models.StoragePlace.objects.create(name=part['storage_place'])
                     kiste.save()
                 else:
                     kiste = kistensearch[0]
                 sisearch = models.StorageItem.objects.filter(part=partadd, storage=kiste)
                 if not len(sisearch):
-                    si = models.StorageItem(part=partadd, storage=kiste)
+                    si = models.StorageItem.objects.create(part=partadd, storage=kiste)
                     si.save()
                 else:
                     si = sisearch[0]
