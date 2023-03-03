@@ -19,8 +19,8 @@ Please report bugs and feature wishes to the project page at [github](https://gi
 
 Partuniverse depends on:
 
-- Django 2.x and therefore Python3
-- A database server supported by django (PostgreSQL recommended) and
+- Django 4.x and therefore Python3
+- A database server supported by Django (PostgreSQL recommended) and
   its development libraries --
   SQLlite -- the default -- should be fine for the very beginning
 - [Install](https://pillow.readthedocs.io/en/3.0.0/installation.html#linux-installation) development headers for the pillow.
@@ -177,6 +177,8 @@ done either at github or any other public git repo. Once you have done
 this, please develope one feature within one branch. Try to avoid hacking
 on your master branch. Having feature-branches allows easier merges/discussion/*.
 When finishing your featre, please send a pull request or a patchset via mail.
+Don't forget to include a entry for CHANGES.md.
+
 
 ### Example data
 
