@@ -23,7 +23,6 @@ class Command(django.core.management.base.BaseCommand):
                     catsearch = models.Category.objects.filter(name=cat)
                     if not len(catsearch):
                         category = models.Category.objects.create(name=cat)
-                        category.save()
                     else:
                         category = catsearch[0]
                     part_categories.append(category)
@@ -35,7 +34,6 @@ class Command(django.core.management.base.BaseCommand):
                                 name=part['title'],
                                 description=part['description'],
                                 sku=part['sku'])
-                    partadd.save()
                     partadd.categories.set(tuple(part_categories))
                     partadd.save()
                 else:
@@ -43,13 +41,11 @@ class Command(django.core.management.base.BaseCommand):
                 kistensearch = models.StoragePlace.objects.filter(name=part['storage_place'])
                 if not len(kistensearch):
                     kiste = models.StoragePlace.objects.create(name=part['storage_place'])
-                    kiste.save()
                 else:
                     kiste = kistensearch[0]
                 sisearch = models.StorageItem.objects.filter(part=partadd, storage=kiste)
                 if not len(sisearch):
                     si = models.StorageItem.objects.create(part=partadd, storage=kiste)
-                    si.save()
                 else:
                     si = sisearch[0]
                     print("using existing storageitem")
