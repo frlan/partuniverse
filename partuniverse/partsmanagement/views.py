@@ -536,7 +536,7 @@ class StorageItemTransactionAddView(FormView):
         return context
 
     def form_valid(self, form):
-        if self.request.POST["submit"] == "Submit":
+        if self.request.POST["submit"]:
             Transaction.objects.create(
                 subject=form.cleaned_data["description"],
                 created_by=self.request.user,
