@@ -63,7 +63,7 @@ sqlparse==0.4.4
 tablib==0.12.1
 toml==0.10.1
 unicodecsv==0.14.1
-urllib3==1.26.11
+urllib3==1.26.18
 webencodings==0.5.1
 wrapt==1.12.1
 xlrd==1.1.0
